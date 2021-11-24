@@ -7,3 +7,11 @@ class Fockooff
 }
 LAMOAMLDKSNOBHWIUBHDIUWAWJBGDWUZAV
 nene zadne take
+
+hdjashjdhj
+dssadszagzdsg
+
+dsaihsdaisdsa
+sdasdsadasd
+krkkrkkk
+peter  toto som pisal ja
