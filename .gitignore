@@ -1,5 +1,3 @@
-UltraFighters/Library/*
-UltraFighters/library/*
+UltraFighters/[Ll]ibrary/*
 UltraFighters/[Ll]ogs/*
-UltraFighters/[Tt]emps/*
-README.md
+UltraFighters/[Tt]emp/*
