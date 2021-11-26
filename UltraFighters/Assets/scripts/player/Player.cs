@@ -20,33 +20,51 @@ public class Player : MonoBehaviour
 
     Rigidbody2D PlayerBody;
     BoxCollider2D PlayerHitBox;
+    SpriteRenderer PlayerRender;
 
     // Start is called before the first frame update
     void Start()
     {
-        PlayerBody = GetComponent<Rigidbody2D>(); 
+        PlayerBody = GetComponent<Rigidbody2D>();
+        PlayerHitBox = GetComponent<BoxCollider2D>();
+        PlayerRender = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-             
+        Move();
+        Jump();
     }
-    private void FixedUpdate()
+    private void Move()
     {
+        if(Input.GetKey(Right) && !Input.GetKey(Left))
+        {
+            PlayerBody.velocity = new Vector2(+MoveForce, PlayerBody.velocity.y);
+            PlayerRender.flipX = false;
+        }
+        else if (Input.GetKey(Left) && !Input.GetKey(Right))
+        {
+            PlayerBody.velocity = new Vector2(-MoveForce, PlayerBody.velocity.y);
+            PlayerRender.flipX = true;
+        }
+        else
+            PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
+
         
+
+            
     }
     private void Jump()
     {
-        if(Input.GetKeyDown(Up) && isGrounded())
+        if(Input.GetKey(Up) && isGrounded())
         {
-
+            PlayerBody.velocity = Vector2.up * JumpForce;
         }
     }    
     private bool isGrounded()
     {
-        RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, PlayerHitBox.bounds.size, 0f, Vector2.down, 1f, platformLayerMask);
+        RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, PlayerHitBox.bounds.size, 0f, Vector2.down, 0.01f, platformLayerMask);
             return rayCastHit.collider != null;
     }
 }
