@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private LayerMask platformLayerMask;
     public float MoveForce = 10;
     public float JumpForce = 3;     // Premenne na nastavenie pohybu - aby som sa nemusel furt chodit tam a spet po dokonceni fixnut a dat private
 
@@ -17,10 +18,8 @@ public class Player : MonoBehaviour
 
     private Vector2 Movement;
 
-    bool isGrounded = false;
-    bool Jumped = false;
-
     Rigidbody2D PlayerBody;
+    BoxCollider2D PlayerHitBox;
 
     // Start is called before the first frame update
     void Start()
@@ -29,58 +28,25 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (isGrounded)
-        {
-            if (Input.GetKey(Right))
-            {
-                PlayerBody.velocity = new Vector2(MoveForce, PlayerBody.velocity.y);
-                transform.localScale = new Vector3(1, 1, 1);
-            }
-            else if (Input.GetKey(Left))
-            {
-                 PlayerBody.velocity = new Vector2(-MoveForce, PlayerBody.velocity.y);
-                transform.localScale = new Vector3(-1, 1, 1);
-            }
-            else
-                PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y);
-        }
-        else if (Jumped)
-        {
-            if (Input.GetKey(Right))
-            {
-                PlayerBody.AddForce(new Vector2(MoveForce/200, 0f), ForceMode2D.Impulse);
-                Jumped = true;
-            }   
-            else if (Input.GetKey(Left))
-            {
-                PlayerBody.AddForce(new Vector2(-MoveForce/200, 0f), ForceMode2D.Impulse);
-                Jumped = true;
-            }
-        }
-
-        if (Input.GetKey(Up) && isGrounded)
-        {
-            PlayerBody.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
-            isGrounded = false;
-        }
+        
              
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void FixedUpdate()
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            Jumped = false;
-        }    
+        
     }
-    private void OnCollisionExit2D(Collision2D collision)
+    private void Jump()
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if(Input.GetKeyDown(Up) && isGrounded())
         {
-            isGrounded = false;
-            Jumped = true;
+
         }
+    }    
+    private bool isGrounded()
+    {
+        RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, PlayerHitBox.bounds.size, 0f, Vector2.down, 1f, platformLayerMask);
+            return rayCastHit.collider != null;
     }
 }
