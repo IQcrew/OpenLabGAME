@@ -5,9 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask platformLayerMask;
-    public float MoveForce = 10;
-    public float JumpForce = 3;     // Premenne na nastavenie pohybu - aby som sa nemusel furt chodit tam a spet po dokonceni fixnut a dat private
-
+    [SerializeField] private float MoveForce = 5f;
+    [SerializeField] private float JumpForce = 5f;
+    [SerializeField] private float DoubleTapTime = 0.2f;
+    private float LastClickTime = 0;
     public KeyCode Right;          // Nastavovanie pre klavesy pomocou unity
     public KeyCode Left;
     public KeyCode Up;
@@ -15,8 +16,6 @@ public class Player : MonoBehaviour
     public KeyCode Slot1;
     public KeyCode Slot2;
     public KeyCode Slot3;
-
-    private Vector2 Movement;
 
     Rigidbody2D PlayerBody;
     BoxCollider2D PlayerHitBox;
@@ -38,22 +37,40 @@ public class Player : MonoBehaviour
     }
     private void Move()
     {
-        if(Input.GetKey(Right) && !Input.GetKey(Left))
+        float TimeSinceLastClick = Time.time - LastClickTime;
+        if (DoubleTapTime >= TimeSinceLastClick)
         {
-            PlayerBody.velocity = new Vector2(+MoveForce, PlayerBody.velocity.y);
-            PlayerRender.flipX = false;
-        }
-        else if (Input.GetKey(Left) && !Input.GetKey(Right))
-        {
-            PlayerBody.velocity = new Vector2(-MoveForce, PlayerBody.velocity.y);
-            PlayerRender.flipX = true;
+            if (Input.GetKey(Right) && !Input.GetKey(Left))
+            {
+                PlayerBody.velocity = new Vector2(+MoveForce * 2, PlayerBody.velocity.y);
+                PlayerRender.flipX = false;
+            }
+            else if (Input.GetKey(Left) && !Input.GetKey(Right))
+            {
+                PlayerBody.velocity = new Vector2(-MoveForce * 2, PlayerBody.velocity.y);
+                PlayerRender.flipX = true;
+            }
+            else
+                PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
         }
         else
-            PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
+        {
+            if (Input.GetKey(Right) && !Input.GetKey(Left))
+            {
+                PlayerBody.velocity = new Vector2(+MoveForce, PlayerBody.velocity.y);
+                PlayerRender.flipX = false;
+            }
+            else if (Input.GetKey(Left) && !Input.GetKey(Right))
+            {
+                PlayerBody.velocity = new Vector2(-MoveForce, PlayerBody.velocity.y);
+                PlayerRender.flipX = true;
+            }
+            else
+                PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
 
+        }
         
 
-            
     }
     private void Jump()
     {
@@ -64,7 +81,8 @@ public class Player : MonoBehaviour
     }    
     private bool isGrounded()
     {
-        RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, PlayerHitBox.bounds.size, 0f, Vector2.down, 0.01f, platformLayerMask);
+        RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, PlayerHitBox.bounds.size, 0f, Vector2.down, 0.02f, platformLayerMask);
             return rayCastHit.collider != null;
-    }
+    }    
 }
+
