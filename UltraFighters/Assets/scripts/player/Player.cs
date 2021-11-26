@@ -5,10 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask platformLayerMask;
-    [SerializeField] private float MoveForce = 5f;
+    [SerializeField] private float WalkForce = 5f;
+    [SerializeField] private float SprintForce = 8f;
     [SerializeField] private float JumpForce = 5f;
     [SerializeField] private float DoubleTapTime = 0.2f;
-    private float LastClickTime = 0;
+    private float LastClickTime = Time.time;
+    private bool sprinting = false;
+    private bool LastHoldedKey = false;
     public KeyCode Right;          // Nastavovanie pre klavesy pomocou unity
     public KeyCode Left;
     public KeyCode Up;
@@ -37,40 +40,47 @@ public class Player : MonoBehaviour
     }
     private void Move()
     {
-        float TimeSinceLastClick = Time.time - LastClickTime;
-        if (DoubleTapTime >= TimeSinceLastClick)
-        {
-            if (Input.GetKey(Right) && !Input.GetKey(Left))
-            {
-                PlayerBody.velocity = new Vector2(+MoveForce * 2, PlayerBody.velocity.y);
-                PlayerRender.flipX = false;
-            }
-            else if (Input.GetKey(Left) && !Input.GetKey(Right))
-            {
-                PlayerBody.velocity = new Vector2(-MoveForce * 2, PlayerBody.velocity.y);
-                PlayerRender.flipX = true;
-            }
-            else
-                PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
-        }
+        if (sprinting) { sprint(); }
         else
         {
-            if (Input.GetKey(Right) && !Input.GetKey(Left))
-            {
-                PlayerBody.velocity = new Vector2(+MoveForce, PlayerBody.velocity.y);
-                PlayerRender.flipX = false;
-            }
-            else if (Input.GetKey(Left) && !Input.GetKey(Right))
-            {
-                PlayerBody.velocity = new Vector2(-MoveForce, PlayerBody.velocity.y);
-                PlayerRender.flipX = true;
-            }
-            else
-                PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
+            if (LastHoldedKey && (Time.time-LastClickTime < DoubleTapTime) && (Input.GetKey(Right) || Input.GetKey(Left))) 
+            { sprinting = true; }
+            Debug.Log(sprinting);
+            walk();
+        }      
+    }
 
+
+
+    private void walk()
+    {
+        if (Input.GetKey(Right) || Input.GetKey(Left)) { LastClickTime = Time.time; LastHoldedKey = false; }
+        if (Input.GetKey(Right) && !Input.GetKey(Left))
+        {
+            PlayerBody.velocity = new Vector2(+WalkForce, PlayerBody.velocity.y);
+            PlayerRender.flipX = false;
         }
-        
+        else if (Input.GetKey(Left) && !Input.GetKey(Right))
+        {
+            PlayerBody.velocity = new Vector2(-WalkForce, PlayerBody.velocity.y);
+            PlayerRender.flipX = true;
+        }
+        else{ PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); LastHoldedKey = true; }
+    }
 
+    private void sprint()
+    {
+        if (Input.GetKey(Right) && !Input.GetKey(Left))
+        {
+            PlayerBody.velocity = new Vector2(+SprintForce, PlayerBody.velocity.y);
+            PlayerRender.flipX = false;
+        }
+        else if (Input.GetKey(Left) && !Input.GetKey(Right))
+        {
+            PlayerBody.velocity = new Vector2(-SprintForce, PlayerBody.velocity.y);
+            PlayerRender.flipX = true;
+        }
+        else{ sprinting = false; PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }
     }
     private void Jump()
     {
