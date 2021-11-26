@@ -7,6 +7,8 @@
 /[Uu]ser[Ss]ettings/
 UltraFighters/Temp/*
 UltraFighters/Logs/*
+UltraFighters/Library/ArtifactDB
+UltraFighters/Library/SourceAssetDB
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
