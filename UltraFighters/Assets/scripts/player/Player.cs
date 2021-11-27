@@ -10,6 +10,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float JumpForce = 5f;
     [SerializeField] private float DoubleTapTime = 0.2f;
 
+    // crouching variables
+    private float timer;
+    private bool isCrouching = false;
+
     // walking variables
     private float LastKeyRight = -5f;
     private float LastKeyLeft = -5f;
@@ -51,15 +55,18 @@ public class Player : MonoBehaviour
     }
     private void move()
     {
-        if (Input.GetKey(Down))
+        if (Input.GetKey(Down) || isCrouching)
             crouch();
         else
         {
             PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 2.3f);
-            PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.09f);
+            PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.095f);
+            if (sprinting) 
+            { sprint(); }
+            else 
+            { walk(); }
         }
-       if (sprinting) { sprint(); }
-       else { walk(); }
+       
     }
 
     private void walk()
@@ -122,7 +129,7 @@ public class Player : MonoBehaviour
 
     private void jump()
     {
-        if (Input.GetKey(Up) && isGrounded())
+        if (Input.GetKey(Up) && isGrounded() && (!Input.GetKey(Down)) && (!isCrouching))
         {
             PlayerBody.velocity = Vector2.up * JumpForce;
         }
@@ -132,15 +139,13 @@ public class Player : MonoBehaviour
     {
         if (PlayerBody.velocity == Vector2.zero)
         {
-            PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 1.5f);
-            PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.49f);
+            PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 1.69f);
+            PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.4f);
         }
         else if (PlayerBody.velocity == new Vector2(WalkForce, 0f)|| PlayerBody.velocity == new Vector2(-WalkForce, 0f))
         {
-            /*
-            PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 1.2f);
-            PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.64f);
-            */
+            isCrouching = true;
+            StartCoroutine(TimerCoroutine());
         }
         else if (PlayerBody.velocity == new Vector2(SprintForce, 0f)|| PlayerBody.velocity == new Vector2(-SprintForce, 0f))
         {
@@ -154,6 +159,16 @@ public class Player : MonoBehaviour
     {
         RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, PlayerHitBox.bounds.size, 0f, Vector2.down, 0.025f, PlatformLayerMask);
             return rayCastHit.collider != null;
-    }    
+    }
+
+    IEnumerator TimerCoroutine()
+    {
+        PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 1.2f);
+        PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.64f);
+        yield return new WaitForSeconds(0.75f);
+        PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 2.3f);
+        PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.095f);
+        isCrouching = false;
+    }
 }
 
