@@ -46,20 +46,18 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        move();
+        jump();
+    }
+    private void move()
+    {
         if (Input.GetKey(Down))
             crouch();
         else
         {
-             PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 2.3f);
-             PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.09f);
-            jump();
-            move();
-            
+            PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 2.3f);
+            PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.09f);
         }
-        
-    }
-    private void move()
-    {
        if (sprinting) { sprint(); }
        else { walk(); }
     }
@@ -139,10 +137,12 @@ public class Player : MonoBehaviour
         }
         else if (PlayerBody.velocity == new Vector2(WalkForce, 0f)|| PlayerBody.velocity == new Vector2(-WalkForce, 0f))
         {
-            PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y);
-            // kotrmelec
+            /*
+            PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 1.2f);
+            PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.64f);
+            */
         }
-        else if (PlayerBody.velocity == new Vector2(WalkForce * 2, 0f)|| PlayerBody.velocity == new Vector2(-WalkForce * 2, 0f))
+        else if (PlayerBody.velocity == new Vector2(SprintForce, 0f)|| PlayerBody.velocity == new Vector2(-SprintForce, 0f))
         {
             PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y);
             // hodenie sa
