@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private LayerMask platformLayerMask;
+    [SerializeField] private LayerMask PlatformLayerMask;
     [SerializeField] private float WalkForce = 5f;
     [SerializeField] private float SprintForce = 8f;
     [SerializeField] private float JumpForce = 5f;
     [SerializeField] private float DoubleTapTime = 0.2f;
-
-
 
     // walking variables
     private float LastKeyRight = -5f;
@@ -48,16 +46,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Jump();
+        move();
+        jump();
     }
-    private void Move()
+    private void move()
     {
+        if (Input.GetKey(Down))
+            crouch();
+        else
+        {
+            PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 2.3f);
+            PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.09f);
+        }
        if (sprinting) { sprint(); }
        else { walk(); }
-       
     }
-
 
     private void walk()
     {
@@ -116,16 +119,40 @@ public class Player : MonoBehaviour
             LastFreeKeysSprint = true;
             PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }
     }
-    private void Jump()
+
+    private void jump()
     {
-        if(Input.GetKey(Up) && isGrounded())
+        if (Input.GetKey(Up) && isGrounded())
         {
             PlayerBody.velocity = Vector2.up * JumpForce;
         }
-    }    
+    }
+
+    private void crouch()
+    {
+        if (PlayerBody.velocity == Vector2.zero)
+        {
+            PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 1.5f);
+            PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.49f);
+        }
+        else if (PlayerBody.velocity == new Vector2(WalkForce, 0f)|| PlayerBody.velocity == new Vector2(-WalkForce, 0f))
+        {
+            /*
+            PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 1.2f);
+            PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.64f);
+            */
+        }
+        else if (PlayerBody.velocity == new Vector2(SprintForce, 0f)|| PlayerBody.velocity == new Vector2(-SprintForce, 0f))
+        {
+            PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y);
+            // hodenie sa
+        }
+        
+    }
+
     private bool isGrounded()
     {
-        RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, PlayerHitBox.bounds.size, 0f, Vector2.down, 0.02f, platformLayerMask);
+        RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, PlayerHitBox.bounds.size, 0f, Vector2.down, 0.025f, PlatformLayerMask);
             return rayCastHit.collider != null;
     }    
 }
