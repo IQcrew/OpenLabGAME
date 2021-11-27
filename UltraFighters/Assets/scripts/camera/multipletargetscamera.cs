@@ -26,6 +26,7 @@ public class multipletargetscamera : MonoBehaviour         // TOBIAS - Program u
         if (targets.Count == 0) { Debug.Log("CAMERA-Nemá OBJEKTY NA SLEDOVANIE"); return; }
         move();
         zoom();
+        Debug.Log(GetGreatestDistance());
     }
 
 
