@@ -9,9 +9,22 @@ public class Player : MonoBehaviour
     [SerializeField] private float SprintForce = 8f;
     [SerializeField] private float JumpForce = 5f;
     [SerializeField] private float DoubleTapTime = 0.2f;
-    private float LastClickTime = Time.time;
+
+
+
+    // walking variables
+    private float LastKeyRight = -5f;
+    private float LastKeyLeft = -5f;
+    private bool LastFreeKeys = false;
+
+    //sprinting variables
     private bool sprinting = false;
-    private bool LastHoldedKey = false;
+    private bool LastFreeKeysSprint = false;
+    private float LastSprintRight = -5f;
+    private float LastSprintLeft = -5f;
+
+
+
     public KeyCode Right;          // Nastavovanie pre klavesy pomocou unity
     public KeyCode Left;
     public KeyCode Up;
@@ -40,47 +53,68 @@ public class Player : MonoBehaviour
     }
     private void Move()
     {
-        if (sprinting) { sprint(); }
-        else
-        {
-            if (LastHoldedKey && (Time.time-LastClickTime < DoubleTapTime) && (Input.GetKey(Right) || Input.GetKey(Left))) 
-            { sprinting = true; }
-            Debug.Log(sprinting);
-            walk();
-        }      
+       if (sprinting) { sprint(); }
+       else { walk(); }
+       
     }
-
 
 
     private void walk()
     {
-        if (Input.GetKey(Right) || Input.GetKey(Left)) { LastClickTime = Time.time; LastHoldedKey = false; }
         if (Input.GetKey(Right) && !Input.GetKey(Left))
         {
-            PlayerBody.velocity = new Vector2(+WalkForce, PlayerBody.velocity.y);
             PlayerRender.flipX = false;
+            if (LastFreeKeys && Time.time-LastKeyRight < DoubleTapTime) {
+                sprinting = true;
+                sprint();
+                return;
+            }
+            LastKeyRight = Time.time;  LastFreeKeys = false;
+            PlayerBody.velocity = new Vector2(+WalkForce, PlayerBody.velocity.y);
         }
         else if (Input.GetKey(Left) && !Input.GetKey(Right))
         {
-            PlayerBody.velocity = new Vector2(-WalkForce, PlayerBody.velocity.y);
             PlayerRender.flipX = true;
+            if (LastFreeKeys && Time.time - LastKeyLeft < DoubleTapTime) { 
+                sprinting = true;
+                sprint();
+                return;}
+            LastKeyLeft = Time.time; LastFreeKeys = false;
+            PlayerBody.velocity = new Vector2(-WalkForce, PlayerBody.velocity.y);
         }
-        else{ PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); LastHoldedKey = true; }
+        else { PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); LastFreeKeys = true; }
     }
 
     private void sprint()
     {
         if (Input.GetKey(Right) && !Input.GetKey(Left))
         {
+            if (LastFreeKeysSprint && Time.time - LastSprintRight < DoubleTapTime){
+                sprinting = false;
+                walk();
+                return;
+            }
             PlayerBody.velocity = new Vector2(+SprintForce, PlayerBody.velocity.y);
             PlayerRender.flipX = false;
+            LastSprintRight = Time.time;
+            LastFreeKeysSprint = false;
         }
         else if (Input.GetKey(Left) && !Input.GetKey(Right))
         {
+            if (LastFreeKeysSprint && Time.time-LastSprintLeft < DoubleTapTime){
+                sprinting = false;
+                walk();
+                return;
+            }
             PlayerBody.velocity = new Vector2(-SprintForce, PlayerBody.velocity.y);
             PlayerRender.flipX = true;
+            LastSprintLeft = Time.time;
+            LastFreeKeysSprint = false;
         }
-        else{ sprinting = false; PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }
+        else{ 
+            if (Time.time-LastSprintLeft > DoubleTapTime && Time.time - LastSprintRight > DoubleTapTime) {sprinting = false; }
+            LastFreeKeysSprint = true;
+            PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }
     }
     private void Jump()
     {
