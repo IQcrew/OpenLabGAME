@@ -55,12 +55,10 @@ public class Player : MonoBehaviour
     }
     private void move()
     {
-        if (Input.GetKey(Down) || isCrouching)
+        if ((Input.GetKey(Down) && isGrounded()) || isCrouching)
             crouch();
         else
         {
-            PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 2.3f);
-            PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.095f);
             if (sprinting) 
             { sprint(); }
             else 
@@ -139,13 +137,28 @@ public class Player : MonoBehaviour
     {
         if (PlayerBody.velocity == Vector2.zero)
         {
-            PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 1.69f);
-            PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.4f);
+            if (Input.GetKey(Down))
+            {
+                isCrouching = true;
+                PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 1.69f);
+                PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.4f);
+            }
+            else
+            {
+                isCrouching = false;
+                PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 2.3f);
+                PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.095f);
+            }   
         }
-        else if (PlayerBody.velocity == new Vector2(WalkForce, 0f)|| PlayerBody.velocity == new Vector2(-WalkForce, 0f))
+        else if ((PlayerBody.velocity == new Vector2(WalkForce, 0f))|| (PlayerBody.velocity == new Vector2(-WalkForce, 0f)))
         {
-            isCrouching = true;
-            StartCoroutine(TimerCoroutine());
+            if ((Input.GetKey(Right) && !Input.GetKey(Left)) || (Input.GetKey(Left) && !Input.GetKey(Right)))
+            {
+                isCrouching = true;
+                StartCoroutine(Roll());
+            }
+            else if (!isCrouching)
+                PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
         }
         else if (PlayerBody.velocity == new Vector2(SprintForce, 0f)|| PlayerBody.velocity == new Vector2(-SprintForce, 0f))
         {
@@ -161,7 +174,7 @@ public class Player : MonoBehaviour
             return rayCastHit.collider != null;
     }
 
-    IEnumerator TimerCoroutine()
+    IEnumerator Roll()
     {
         PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 1.2f);
         PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.64f);
