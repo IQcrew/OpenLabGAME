@@ -1,0 +1,15 @@
+Layers and tags in Unity:
+
+Layers:
+0. "Default" - For background image.
+1. "TransparentFX" - For background decorative objects.
+2. "Ignore Raycast" - For ladders.
+3. "PrimarObjects" - For players, objects, walls etc...
+4. "Water" - For Lava and Water.
+5. "UI" - For User Interface (For Menu).
+
+
+Tags:
+0. "Ground" - For ground to able jump.
+1. "Player" - For Player.
+2. "Bullet" - for bullet to easyer colision detect.
