@@ -1,0 +1,11 @@
+List zbrani:
+"pistol" - defaultna zbran, tmavá, nema vypadat niak op
+"Desert Eagle" - väčšia siva pištoľ
+"Assalut Rifle" - samopal
+"Sniper Rifle" - sniperka bude mat zamierovač a pojde s nej laser po celej mape
+"ShotGun" - brokovka
+"bazooka" - raketomet
+"Mac-10" - rucny samopal
+"Gulomet" - bude trosku OP ale zmenšim % šancu na generaciu
+
+#dalsie guny este vymyslim.
