@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float SprintForce = 8f;
     [SerializeField] private float JumpForce = 5f;
     [SerializeField] private float DoubleTapTime = 0.2f;
+    public string PlayerRotation = "Right";
+    private string PlayerLastRotation;
 
     // crouching variables
     private float timer;
@@ -17,11 +18,9 @@ public class Player : MonoBehaviour
     // walking variables
     private float LastKeyRight = -5f;
     private float LastKeyLeft = -5f;
-    private bool LastFreeKeys = false;
 
     //sprinting variables
     private bool sprinting = false;
-    private bool LastFreeKeysSprint = false;
     private float LastSprintRight = -5f;
     private float LastSprintLeft = -5f;
 
@@ -45,6 +44,8 @@ public class Player : MonoBehaviour
         PlayerBody = GetComponent<Rigidbody2D>();
         PlayerHitBox = GetComponent<BoxCollider2D>();
         PlayerRender = GetComponent<SpriteRenderer>();
+        PlayerLastRotation = PlayerRotation;
+        if (PlayerRotation == "Left") { transform.Rotate(0f, 180f, 0F); }
     }
 
     // Update is called once per frame
@@ -64,64 +65,49 @@ public class Player : MonoBehaviour
             else 
             { walk(); }
         }
-       
+        //Fliping Player
+        if (PlayerRotation == "Right" && PlayerLastRotation != "Right") { transform.Rotate(0f, 180f, 0F); }
+        else if (PlayerRotation == "Left" && PlayerLastRotation != "Left") { transform.Rotate(0f, 180f, 0F); }
+        PlayerLastRotation = PlayerRotation;
     }
 
     private void walk()
     {
-        if (Input.GetKey(Right) && !Input.GetKey(Left))
-        {
-            PlayerRender.flipX = false;
-            if (LastFreeKeys && Time.time-LastKeyRight < DoubleTapTime) {
-                sprinting = true;
-                sprint();
-                return;
-            }
-            LastKeyRight = Time.time;  LastFreeKeys = false;
+        if (Input.GetKey(Right) && !Input.GetKey(Left)) //walk right
+        {   //sprint check
+            if (Input.GetKeyDown(Right) && Time.time - LastKeyRight < DoubleTapTime) {sprinting = true; }   
+            LastKeyRight = Time.time; PlayerRotation = "Right";
+            if (sprinting) { sprint(); return; }
             PlayerBody.velocity = new Vector2(+WalkForce, PlayerBody.velocity.y);
         }
-        else if (Input.GetKey(Left) && !Input.GetKey(Right))
-        {
-            PlayerRender.flipX = true;
-            if (LastFreeKeys && Time.time - LastKeyLeft < DoubleTapTime) { 
-                sprinting = true;
-                sprint();
-                return;}
-            LastKeyLeft = Time.time; LastFreeKeys = false;
+        else if (Input.GetKey(Left) && !Input.GetKey(Right))     // walk left
+        {   //sprint check
+            if (Input.GetKeyDown(Left) && Time.time - LastKeyLeft < DoubleTapTime){sprinting = true;}          
+            LastKeyLeft = Time.time; PlayerRotation = "Left";   
+            if (sprinting) { sprint(); return; }
             PlayerBody.velocity = new Vector2(-WalkForce, PlayerBody.velocity.y);
         }
-        else { PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); LastFreeKeys = true; }
+        else { PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }   //stay at position
     }
 
     private void sprint()
     {
-        if (Input.GetKey(Right) && !Input.GetKey(Left))
-        {
-            if (LastFreeKeysSprint && Time.time - LastSprintRight < DoubleTapTime){
-                sprinting = false;
-                walk();
-                return;
-            }
+        if (Input.GetKey(Right) && !Input.GetKey(Left)) //sprint right
+        {   //check double tap right to walk
+            if (Input.GetKeyDown(Left) && Time.time - LastSprintLeft < DoubleTapTime){ sprinting = false;}
+            LastSprintRight = Time.time; PlayerRotation = "Right";
+            if (!sprinting) { walk(); return; }
             PlayerBody.velocity = new Vector2(+SprintForce, PlayerBody.velocity.y);
-            PlayerRender.flipX = false;
-            LastSprintRight = Time.time;
-            LastFreeKeysSprint = false;
         }
-        else if (Input.GetKey(Left) && !Input.GetKey(Right))
-        {
-            if (LastFreeKeysSprint && Time.time-LastSprintLeft < DoubleTapTime){
-                sprinting = false;
-                walk();
-                return;
-            }
+        else if (Input.GetKey(Left) && !Input.GetKey(Right))  //sprint left
+        {   //check double tap left to walk
+            if (Input.GetKeyDown(Left) && Time.time - LastSprintLeft < DoubleTapTime){sprinting = false;}
+            LastSprintLeft = Time.time; PlayerRotation = "Left";
+            if (!sprinting) { walk(); return; }
             PlayerBody.velocity = new Vector2(-SprintForce, PlayerBody.velocity.y);
-            PlayerRender.flipX = true;
-            LastSprintLeft = Time.time;
-            LastFreeKeysSprint = false;
         }
-        else{ 
+        else{   //if you  stay more than "DoubleTapTime" it will remove sprint
             if (Time.time-LastSprintLeft > DoubleTapTime && Time.time - LastSprintRight > DoubleTapTime) {sprinting = false; }
-            LastFreeKeysSprint = true;
             PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }
     }
 
