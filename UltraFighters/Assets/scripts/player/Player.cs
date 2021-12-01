@@ -136,9 +136,9 @@ public class Player : MonoBehaviour
                 PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.095f);
             }   
         }
-        else if ((PlayerBody.velocity == new Vector2(WalkForce, 0f))|| (PlayerBody.velocity == new Vector2(-WalkForce, 0f)))
+        else if ((PlayerBody.velocity == new Vector2(WalkForce, 0f)) || (PlayerBody.velocity == new Vector2(-WalkForce, 0f)))
         {
-            if ((Input.GetKey(Right) && !Input.GetKey(Left)) || (Input.GetKey(Left) && !Input.GetKey(Right)))
+            if (((Input.GetKey(Right) && (!Input.GetKey(Left))) || (Input.GetKey(Left) && (!Input.GetKey(Right)))) && (!isCrouching))
             {
                 isCrouching = true;
                 StartCoroutine(Roll());
