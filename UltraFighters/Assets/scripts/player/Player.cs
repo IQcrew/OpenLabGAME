@@ -77,14 +77,12 @@ public class Player : MonoBehaviour
         {   //sprint check
             if (Input.GetKeyDown(Right) && Time.time - LastKeyRight < DoubleTapTime) {sprinting = true; }   
             LastKeyRight = Time.time; PlayerRotation = "Right";
-            if (sprinting) { sprint(); return; }
             PlayerBody.velocity = new Vector2(+WalkForce, PlayerBody.velocity.y);
         }
         else if (Input.GetKey(Left) && !Input.GetKey(Right))     // walk left
         {   //sprint check
             if (Input.GetKeyDown(Left) && Time.time - LastKeyLeft < DoubleTapTime){sprinting = true;}          
             LastKeyLeft = Time.time; PlayerRotation = "Left";   
-            if (sprinting) { sprint(); return; }
             PlayerBody.velocity = new Vector2(-WalkForce, PlayerBody.velocity.y);
         }
         else { PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }   //stay at position
@@ -94,16 +92,14 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(Right) && !Input.GetKey(Left)) //sprint right
         {   //check double tap right to walk
-            if (Input.GetKeyDown(Left) && Time.time - LastSprintLeft < DoubleTapTime){ sprinting = false;}
+            if (Input.GetKeyDown(Right) && Time.time - LastSprintRight < DoubleTapTime){ sprinting = false;}
             LastSprintRight = Time.time; PlayerRotation = "Right";
-            if (!sprinting) { walk(); return; }
             PlayerBody.velocity = new Vector2(+SprintForce, PlayerBody.velocity.y);
         }
         else if (Input.GetKey(Left) && !Input.GetKey(Right))  //sprint left
         {   //check double tap left to walk
             if (Input.GetKeyDown(Left) && Time.time - LastSprintLeft < DoubleTapTime){sprinting = false;}
             LastSprintLeft = Time.time; PlayerRotation = "Left";
-            if (!sprinting) { walk(); return; }
             PlayerBody.velocity = new Vector2(-SprintForce, PlayerBody.velocity.y);
         }
         else{   //if you  stay more than "DoubleTapTime" it will remove sprint
