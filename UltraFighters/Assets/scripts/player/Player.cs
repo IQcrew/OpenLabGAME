@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
     Rigidbody2D PlayerBody;
     BoxCollider2D PlayerHitBox;
     SpriteRenderer PlayerRender;
+    Animator PlayerAnimation;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour
         PlayerBody = GetComponent<Rigidbody2D>();
         PlayerHitBox = GetComponent<BoxCollider2D>();
         PlayerRender = GetComponent<SpriteRenderer>();
+        PlayerAnimation = GetComponent<Animator>();
         PlayerLastRotation = PlayerRotation;
         if (PlayerRotation == "Left") { transform.Rotate(0f, 180f, 0F); }
     }
@@ -56,6 +59,7 @@ public class Player : MonoBehaviour
     }
     private void move()
     {
+        PlayerAnimation.SetFloat("PlayerVelocity", Math.Abs(PlayerBody.velocity.x));
         if ((Input.GetKey(Down) && isGrounded()) || isCrouching)
             crouch();
         else
