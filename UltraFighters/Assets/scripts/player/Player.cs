@@ -7,10 +7,12 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask PlatformLayerMask;
     [SerializeField] private float WalkForce = 5f;
     [SerializeField] private float SprintForce = 8f;
-    [SerializeField] private float JumpForce = 5f;
+    [SerializeField] private float JumpForce = 10f;
     [SerializeField] private float DoubleTapTime = 0.2f;
     public string PlayerRotation = "Right";
     private string PlayerLastRotation;
+
+    private bool isOnLadder;
 
     // crouching variables
     private float timer;
@@ -54,8 +56,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        move();
-        jump();
+        if(isOnLadder)
+            Ladder();
+        else
+        {
+            move();
+            jump();
+        }
     }
     private void move()
     {
@@ -73,6 +80,22 @@ public class Player : MonoBehaviour
         if (PlayerRotation == "Right" && PlayerLastRotation != "Right") { transform.Rotate(0f, 180f, 0F); }
         else if (PlayerRotation == "Left" && PlayerLastRotation != "Left") { transform.Rotate(0f, 180f, 0F); }
         PlayerLastRotation = PlayerRotation;
+    }
+
+    private void Ladder()
+    {
+        PlayerAnimation.SetFloat("PlayerVelocity", 0f);
+        if (Input.GetKey(Right) && !Input.GetKey(Left))
+            { PlayerBody.velocity = new Vector2(+3f, PlayerBody.velocity.y); }
+        else if (Input.GetKey(Left) && !Input.GetKey(Right)) 
+            { PlayerBody.velocity = new Vector2(-3f, PlayerBody.velocity.y);}
+        else { PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y); }
+
+        if (Input.GetKey(Up) && (!Input.GetKey(Down)))
+        { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, +5f); }
+        else if (Input.GetKey(Down) && (!Input.GetKey(Up)))
+        { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, -5f); }
+        else { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, 0f); }
     }
 
     private void walk()
@@ -158,6 +181,25 @@ public class Player : MonoBehaviour
     {
         RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, PlayerHitBox.bounds.size, 0f, Vector2.down, 0.025f, PlatformLayerMask);
             return rayCastHit.collider != null;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ladder"))
+        {
+            PlayerBody.gravityScale = 0f;
+            isOnLadder = true;
+        }
+            
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ladder"))
+        {
+            PlayerBody.gravityScale = 2.5f;
+            isOnLadder = false;
+        }
+            
     }
 
     IEnumerator Roll()
