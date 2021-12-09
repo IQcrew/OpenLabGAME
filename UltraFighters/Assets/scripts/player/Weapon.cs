@@ -6,15 +6,16 @@ public class Weapon : MonoBehaviour
 {
 
     public Transform FirePoint;
-    public GameObject BulletPrefab;
-
-
-
+    public GameObject StandardBulletPrefab;
     private bool ReadyToFire = false;
 
 
+    public Gun[] AllGuns = new Gun[2];
+
+    
     void Update()
     {
+        
         if (Player.shooting)
         {
             if (Input.GetKey(GlobalVariables.P1fire))
@@ -23,13 +24,15 @@ public class Weapon : MonoBehaviour
             }
             else if (ReadyToFire){
                 ReadyToFire = false;
-                shoot();
+                if (AllGuns[1].fire())
+                {
+                    Instantiate(AllGuns[1].Bullet, FirePoint.position, FirePoint.rotation);
+                }
+                
             }
         }
         
     }
-    void shoot()
-    {
-        Instantiate(BulletPrefab, FirePoint.position, FirePoint.rotation);
-    }
 }
+
+
