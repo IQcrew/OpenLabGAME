@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FirePoint : MonoBehaviour
-{
+{   
+
     public Transform RotationCenter;
     [SerializeField]
     private float RotationSpeed, RotationRadius;
@@ -27,6 +28,7 @@ public class FirePoint : MonoBehaviour
                     {
                         angle += Time.deltaTime * RotationSpeed;
                     }
+                    else { angle = 1.5707963268f; }
                     if (angle >= 360f * Mathf.Deg2Rad) { angle = 0f; }
                 }
                 else if (Input.GetKey(GlobalVariables.P1Down) && (!Input.GetKey(GlobalVariables.P1Up)))
@@ -39,6 +41,7 @@ public class FirePoint : MonoBehaviour
                     {
                         angle -= Time.deltaTime * RotationSpeed;
                     }
+                    else { angle = 4.7123889804f; }
                     if (angle <= 0f) { angle = 360f * Mathf.Deg2Rad; }
                 }
             }
@@ -49,6 +52,9 @@ public class FirePoint : MonoBehaviour
                 posY = RotationCenter.position.y + Mathf.Sin(angle) * RotationRadius;
                 transform.position = new Vector2(posX, posY);
             }
+            var rotationVector = transform.rotation.eulerAngles;
+            rotationVector.z = angle * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(rotationVector);
         }
         else if (Player.PlayerRotation == "Left")
         {
@@ -77,7 +83,11 @@ public class FirePoint : MonoBehaviour
                 posX = RotationCenter.position.x + Mathf.Cos(angle) * RotationRadius;
                 posY = RotationCenter.position.y + Mathf.Sin(angle) * RotationRadius;
                 transform.position = new Vector2(posX, posY);
-            }    
+            }
+            var rotationVector = transform.rotation.eulerAngles;
+            rotationVector.z = 180 - (angle * Mathf.Rad2Deg);
+            transform.rotation = Quaternion.Euler(rotationVector);
         }
     }
+        
 }

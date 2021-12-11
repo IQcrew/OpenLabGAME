@@ -9,6 +9,7 @@ public class Gun
     //Options of gun
     public string name;
     public int ammo;
+    public int damage;
     public double FireSpeed;
     public GameObject Bullet;
     public GameObject GunTexture;

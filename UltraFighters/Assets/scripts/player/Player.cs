@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     private bool isOnLadder;
 
     // crouching variables
-    private float timer;
     private bool isCrouching = false;
 
     // walking variables
@@ -35,7 +34,6 @@ public class Player : MonoBehaviour
 
     Rigidbody2D PlayerBody;
     BoxCollider2D PlayerHitBox;
-    SpriteRenderer PlayerRender;
     Animator PlayerAnimation;
 
     // Start is called before the first frame update
@@ -43,7 +41,6 @@ public class Player : MonoBehaviour
     {
         PlayerBody = GetComponent<Rigidbody2D>();
         PlayerHitBox = GetComponent<BoxCollider2D>();
-        PlayerRender = GetComponent<SpriteRenderer>();
         PlayerAnimation = GetComponent<Animator>();
         PlayerLastRotation = PlayerRotation;
         if (PlayerRotation == "Left") { transform.Rotate(0f, 180f, 0F); }
@@ -91,9 +88,9 @@ public class Player : MonoBehaviour
     {
         PlayerAnimation.SetFloat("PlayerVelocity", 0f);
         if (Input.GetKey(GlobalVariables.P1Right) && !Input.GetKey(GlobalVariables.P1Left))
-            { PlayerBody.velocity = new Vector2(+3f, PlayerBody.velocity.y); }
+            { PlayerBody.velocity = new Vector2(+3f, PlayerBody.velocity.y); PlayerRotation = "Right"; }
         else if (Input.GetKey(GlobalVariables.P1Left) && !Input.GetKey(GlobalVariables.P1Right)) 
-            { PlayerBody.velocity = new Vector2(-3f, PlayerBody.velocity.y);}
+            { PlayerBody.velocity = new Vector2(-3f, PlayerBody.velocity.y); PlayerRotation = "Left"; }
         else { PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y); }
 
         if (Input.GetKey(GlobalVariables.P1Up) && (!Input.GetKey(GlobalVariables.P1Down)))
