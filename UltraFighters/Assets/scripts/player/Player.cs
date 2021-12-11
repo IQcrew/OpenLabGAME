@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float SprintForce = 8f;
     [SerializeField] private float JumpForce = 10f;
     [SerializeField] private float DoubleTapTime = 0.2f;
-    public string PlayerRotation = "Right";
+    public static string PlayerRotation = "Right";
     private string PlayerLastRotation;
 
     private bool isOnLadder;
