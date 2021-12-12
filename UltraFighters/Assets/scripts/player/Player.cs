@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
     {
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(GlobalVariables.P1fire) && (Input.GetKey(GlobalVariables.P1Right) || Input.GetKey(GlobalVariables.P1Left) || Input.GetKey(GlobalVariables.P1Up) || Input.GetKey(GlobalVariables.P1Down) || Input.GetKey(GlobalVariables.P1hit) || Input.GetKey(GlobalVariables.P1slot)))
             shooting = false;
-        if (isOnLadder)
+        if (isOnLadder && (!isCrouching) && (!isGrounded()))
             Ladder();
         else if (isGrounded() && (Input.GetKey(GlobalVariables.P1fire) || shooting))
         {
@@ -147,7 +147,6 @@ public class Player : MonoBehaviour
     private void ShootPosition()
     {
         if (Input.GetKeyDown(GlobalVariables.P1hit) || Input.GetKeyDown(GlobalVariables.P1slot)) { shooting = false; }
-        
     }
 
     private void crouch()
@@ -157,14 +156,14 @@ public class Player : MonoBehaviour
             if (Input.GetKey(GlobalVariables.P1Down))
             {
                 isCrouching = true;
-                PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 1.69f);
-                PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.4f);
+                PlayerHitBox.size = new Vector2(1.2f, 1.7f);
+                PlayerHitBox.offset = new Vector2(0f, -0.323f);
             }
             else
             {
                 isCrouching = false;
-                PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 2.3f);
-                PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.095f);
+                PlayerHitBox.size = new Vector2(1.2f, 2.2f);
+                PlayerHitBox.offset = new Vector2(0f, -0.075f);
             }   
         }
         else if ((PlayerBody.velocity == new Vector2(WalkForce, 0f)) || (PlayerBody.velocity == new Vector2(-WalkForce, 0f)))
@@ -179,10 +178,23 @@ public class Player : MonoBehaviour
         }
         else if (PlayerBody.velocity == new Vector2(SprintForce, 0f)|| PlayerBody.velocity == new Vector2(-SprintForce, 0f))
         {
-            PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y);
-            // hodenie sa
-        }
-        
+            if (!isCrouching)
+            {
+                isCrouching = true;
+                PlayerHitBox.size = new Vector2(2f, 1f);
+                PlayerHitBox.offset = new Vector2(0, 0);
+            }
+            else if(isGrounded())
+            {
+                PlayerHitBox.size = new Vector2(1.2f, 2.2f);
+                PlayerHitBox.offset = new Vector2(0f, -0.075f);
+                if(PlayerBody.velocity.x > 0)
+                    PlayerBody.velocity = PlayerBody.velocity = new Vector2(WalkForce, 0f);
+                else if (PlayerBody.velocity.x < 0)
+                    PlayerBody.velocity = PlayerBody.velocity = new Vector2(-WalkForce, 0f);
+                StartCoroutine(Roll());
+            }
+        } 
     }
 
     private bool isGrounded()
@@ -212,11 +224,11 @@ public class Player : MonoBehaviour
 
     IEnumerator Roll()
     {
-        PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 1.2f);
-        PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.64f);
-        yield return new WaitForSeconds(0.75f);
-        PlayerHitBox.size = new Vector2(PlayerHitBox.size.x, 2.3f);
-        PlayerHitBox.offset = new Vector2(PlayerHitBox.offset.x, -0.095f);
+        PlayerHitBox.size = new Vector2(1.2f, 1.2f);
+        PlayerHitBox.offset = new Vector2(0f, -0.64f);
+        yield return new WaitForSeconds(0.5f);
+        PlayerHitBox.size = new Vector2(1.2f, 2.2f);
+        PlayerHitBox.offset = new Vector2(0f, -0.075f);
         isCrouching = false;
     }
 }
