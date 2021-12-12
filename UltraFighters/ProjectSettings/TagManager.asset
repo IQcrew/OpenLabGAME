@@ -8,6 +8,7 @@ TagManager:
   - Boxes
   - Walls
   - Indestructible
+  - Destructible
   layers:
   - Default
   - TransparentFX

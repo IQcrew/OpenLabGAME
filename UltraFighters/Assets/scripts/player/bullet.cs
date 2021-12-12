@@ -6,9 +6,11 @@ using System;
 public class bullet : MonoBehaviour
 {
     public float speed = 20f;
+    public int damage = 20;
     public Rigidbody2D RigidBodyObject;
     public float MaxBulletTime = 20f;
-    private float StartTime = Time.time;
+    private float StartTime = Time.time; 
+    
 
     // Start is called before the first frame update
     void Start()
@@ -17,9 +19,25 @@ public class bullet : MonoBehaviour
         StartTime = Time.time;
     }
 
-    private void Update()
+    private void OnCollisionEnter2D (Collision2D other) //checkuje stretnutie z druhym objektom
     {
-        if (StartTime + MaxBulletTime < Time.time) { Destroy(gameObject); }
+        if(other.collider.tag is "Destructible")
+        {
+            objectHP enemy = other.collider.GetComponent<objectHP>();
+            enemy.TakeDamage(damage);
+        }
+        else if(other.collider.tag is "Player")
+        {
+            
+        }
+        else if (other.collider.tag is "DestrBEZpozastavenia")
+        {
+            objectHP enemy = other.collider.GetComponent<objectHP>();
+            enemy.TakeDamage(10000);
+            return;
+        }
+
+        Destroy(gameObject);
     }
 
     // Update is called once per frame

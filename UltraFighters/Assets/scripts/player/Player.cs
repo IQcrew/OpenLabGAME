@@ -29,7 +29,9 @@ public class Player : MonoBehaviour
     //shooting
     public static bool shooting = false;
     private double LastTimeShoot = -5f;
-
+    public Transform FirePoint;
+    private bool ReadyToFire = false;
+    public Gun[] AllGuns = new Gun[2];
 
 
     Rigidbody2D PlayerBody;
@@ -147,6 +149,19 @@ public class Player : MonoBehaviour
     private void ShootPosition()
     {
         if (Input.GetKeyDown(GlobalVariables.P1hit) || Input.GetKeyDown(GlobalVariables.P1slot)) { shooting = false; }
+        if (Input.GetKey(GlobalVariables.P1fire))
+        {
+            ReadyToFire = true;
+        }
+        else if (ReadyToFire)
+        {
+            ReadyToFire = false;
+            if (AllGuns[1].fire())
+            {
+                Instantiate(AllGuns[1].Bullet, FirePoint.position, FirePoint.rotation);
+            }
+
+        }
     }
 
     private void crouch()

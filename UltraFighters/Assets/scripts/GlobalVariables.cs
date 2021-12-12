@@ -6,8 +6,9 @@ public class GlobalVariables : MonoBehaviour
 {
     public static float TimeInGame = 0;
 
-    //Nastavovanie pre klavesy pomocou unity
+    
     //player 1:
+    public static int P1Health = 100;
     public static KeyCode P1Right = KeyCode.RightArrow;          
     public static KeyCode P1Left = KeyCode.LeftArrow;
     public static KeyCode P1Up = KeyCode.UpArrow;
@@ -16,6 +17,7 @@ public class GlobalVariables : MonoBehaviour
     public static KeyCode P1fire = KeyCode.M;
     public static KeyCode P1slot = KeyCode.K;
     //player2:
+    public static int P2Health = 100;
     public static KeyCode P2Right;
     public static KeyCode P2Left;
     public static KeyCode P2Up;
