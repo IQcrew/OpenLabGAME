@@ -9,6 +9,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float SprintForce = 8f;
     [SerializeField] private float JumpForce = 10f;
     [SerializeField] private float DoubleTapTime = 0.2f;
+    [SerializeField] private float LadderVertical = 5f;
+    [SerializeField] private float LadderHorizontal = 3f;
+    [SerializeField] private float TimeInRoll = 0.5f;
+    [SerializeField] private float ThrowJump = 5f;
+    [SerializeField] private float ThrowJumpGravity = 2f;
 
     public static string PlayerRotation = "Right";
     private string PlayerLastRotation;
@@ -60,7 +65,7 @@ public class Player : MonoBehaviour
             PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
         }
         else 
-            move(); 
+            move();
     }
 
     private void move()
@@ -117,22 +122,22 @@ public class Player : MonoBehaviour
     private void jump()
     {
         if (Input.GetKey(GlobalVariables.P1Up) && isGrounded() && (!Input.GetKey(GlobalVariables.P1Down)) && (!isCrouching))
-            PlayerBody.velocity = Vector2.up * JumpForce;
+            PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, JumpForce) ;
     }
 
     private void Ladder()
     {
         PlayerAnimation.SetFloat("PlayerVelocity", 0f);
         if (Input.GetKey(GlobalVariables.P1Right) && !Input.GetKey(GlobalVariables.P1Left))
-            { PlayerBody.velocity = new Vector2(+3f, PlayerBody.velocity.y); PlayerRotation = "Right"; }
+            { PlayerBody.velocity = new Vector2(+LadderHorizontal, PlayerBody.velocity.y); PlayerRotation = "Right"; }
         else if (Input.GetKey(GlobalVariables.P1Left) && !Input.GetKey(GlobalVariables.P1Right)) 
-            { PlayerBody.velocity = new Vector2(-3f, PlayerBody.velocity.y); PlayerRotation = "Left"; }
+            { PlayerBody.velocity = new Vector2(-LadderHorizontal, PlayerBody.velocity.y); PlayerRotation = "Left"; }
         else { PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y); }
 
         if (Input.GetKey(GlobalVariables.P1Up) && (!Input.GetKey(GlobalVariables.P1Down)))
-        { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, +5f); }
+        { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, +LadderVertical); }
         else if (Input.GetKey(GlobalVariables.P1Down) && (!Input.GetKey(GlobalVariables.P1Up)))
-        { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, -5f); }
+        { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, -LadderVertical); }
         else { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, 0f); }
     }
     private void crouch()
@@ -165,17 +170,24 @@ public class Player : MonoBehaviour
             {
                 isCrouching = true;
                 HitBoxChanger(2f, 1f, 0f, 0f);
-                PlayerBody.gravityScale = 2f;
-                PlayerBody.velocity = new Vector2(PlayerBody.velocity.x,2f);
+                PlayerBody.gravityScale = ThrowJumpGravity;
+                PlayerBody.velocity = new Vector2(PlayerBody.velocity.x,ThrowJump);
             }
             else if(isGrounded())
             {
-                if (PlayerBody.velocity.x > 0) { PlayerBody.velocity = PlayerBody.velocity = new Vector2(WalkForce, 0f); }
-                else if (PlayerBody.velocity.x < 0) { PlayerBody.velocity = PlayerBody.velocity = new Vector2(-WalkForce, 0f); }
+                if (PlayerBody.velocity.x > 0) { PlayerBody.velocity = new Vector2(WalkForce, 0f); }
+                else if (PlayerBody.velocity.x < 0) { PlayerBody.velocity = new Vector2(-WalkForce, 0f); }
                 StartCoroutine(Roll());
                 PlayerBody.gravityScale = 2.5f;
             }
         }  
+    }
+    IEnumerator Roll()
+    {
+        HitBoxChanger(1.2f, 1.2f, 0f, -0.575f);
+        yield return new WaitForSeconds(TimeInRoll);
+        HitBoxChanger(1.2f, 2.2f, 0f, -0.075f);
+        isCrouching = false;
     }
 
     private void ShootPosition()
@@ -191,7 +203,7 @@ public class Player : MonoBehaviour
 
     private bool isGrounded()
     {
-        RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, PlayerHitBox.bounds.size, 0f, Vector2.down, 0.025f, PlatformLayerMask);
+        RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, new Vector2(PlayerHitBox.bounds.size.x*0.9f, PlayerHitBox.bounds.size.y), 0f, Vector2.down, 0.025f, PlatformLayerMask);
             return rayCastHit.collider != null;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -212,14 +224,6 @@ public class Player : MonoBehaviour
                 PlayerBody.gravityScale = 2.5f;
             isOnLadder = false;
         }
-    }
-
-    IEnumerator Roll()
-    {
-        HitBoxChanger(1.2f , 1.2f, 0f, -0.64f);
-        yield return new WaitForSeconds(0.5f);
-        HitBoxChanger(1.2f, 2.2f, 0f, -0.075f);
-        isCrouching = false;
     }
 
     private void HitBoxChanger(float sizeX, float sizeY, float offsetX, float offsetY)
