@@ -9,12 +9,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float SprintForce = 8f;
     [SerializeField] private float JumpForce = 10f;
     [SerializeField] private float DoubleTapTime = 0.2f;
+
     public static string PlayerRotation = "Right";
     private string PlayerLastRotation;
 
     private bool isOnLadder;
-
-    // crouching variables
     private bool isCrouching = false;
 
     // walking variables
@@ -33,12 +32,11 @@ public class Player : MonoBehaviour
     private bool ReadyToFire = false;
     public Gun[] AllGuns = new Gun[2];
 
-
+    //player components
     Rigidbody2D PlayerBody;
     BoxCollider2D PlayerHitBox;
     Animator PlayerAnimation;
 
-    // Start is called before the first frame update
     void Start()
     {
         PlayerBody = GetComponent<Rigidbody2D>();
@@ -48,13 +46,12 @@ public class Player : MonoBehaviour
         if (PlayerRotation == "Left") { transform.Rotate(0f, 180f, 0F); }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(GlobalVariables.P1fire) && (Input.GetKey(GlobalVariables.P1Right) || Input.GetKey(GlobalVariables.P1Left) || Input.GetKey(GlobalVariables.P1Up) || Input.GetKey(GlobalVariables.P1Down) || Input.GetKey(GlobalVariables.P1hit) || Input.GetKey(GlobalVariables.P1slot)))
             shooting = false;
-        if (isOnLadder && (!isCrouching) && (!isGrounded()))
-            Ladder();
+        if (isOnLadder && (!isCrouching) && (!isGrounded())) 
+            Ladder(); 
         else if (isGrounded() && (Input.GetKey(GlobalVariables.P1fire) || shooting))
         {
             if (Input.GetKey(GlobalVariables.P1fire)) { LastTimeShoot = Time.time; }
@@ -62,12 +59,10 @@ public class Player : MonoBehaviour
             ShootPosition();
             PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
         }
-        else
-        {
-            move();
-            jump();
-        }
+        else 
+            move(); 
     }
+
     private void move()
     {
         PlayerAnimation.SetFloat("PlayerVelocity", Math.Abs(PlayerBody.velocity.x));
@@ -75,31 +70,14 @@ public class Player : MonoBehaviour
             crouch();
         else
         {
-            if (sprinting) 
-            { sprint(); }
-            else 
-            { walk(); }
+            if (sprinting) { sprint(); }
+            else { walk(); }
+            jump();
         }
         //Fliping Player
         if (PlayerRotation == "Right" && PlayerLastRotation != "Right") { transform.Rotate(0f, 180f, 0F); }
         else if (PlayerRotation == "Left" && PlayerLastRotation != "Left") { transform.Rotate(0f, 180f, 0F); }
         PlayerLastRotation = PlayerRotation;
-    }
-
-    private void Ladder()
-    {
-        PlayerAnimation.SetFloat("PlayerVelocity", 0f);
-        if (Input.GetKey(GlobalVariables.P1Right) && !Input.GetKey(GlobalVariables.P1Left))
-            { PlayerBody.velocity = new Vector2(+3f, PlayerBody.velocity.y); PlayerRotation = "Right"; }
-        else if (Input.GetKey(GlobalVariables.P1Left) && !Input.GetKey(GlobalVariables.P1Right)) 
-            { PlayerBody.velocity = new Vector2(-3f, PlayerBody.velocity.y); PlayerRotation = "Left"; }
-        else { PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y); }
-
-        if (Input.GetKey(GlobalVariables.P1Up) && (!Input.GetKey(GlobalVariables.P1Down)))
-        { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, +5f); }
-        else if (Input.GetKey(GlobalVariables.P1Down) && (!Input.GetKey(GlobalVariables.P1Up)))
-        { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, -5f); }
-        else { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, 0f); }
     }
 
     private void walk()
@@ -118,52 +96,45 @@ public class Player : MonoBehaviour
         }
         else { PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }   //stay at position
     }
-
     private void sprint()
     {
         if (Input.GetKey(GlobalVariables.P1Right) && !Input.GetKey(GlobalVariables.P1Left)) //sprint right
         {   //check double tap right to walk
-            if (Input.GetKeyDown(GlobalVariables.P1Right) && Time.time - LastSprintRight < DoubleTapTime){ sprinting = false;}
+            if (Input.GetKeyDown(GlobalVariables.P1Right) && Time.time - LastSprintRight < DoubleTapTime) { sprinting = false;}
             LastSprintRight = Time.time; PlayerRotation = "Right";
             PlayerBody.velocity = new Vector2(+SprintForce, PlayerBody.velocity.y);
         }
         else if (Input.GetKey(GlobalVariables.P1Left) && !Input.GetKey(GlobalVariables.P1Right))  //sprint left
         {   //check double tap left to walk
-            if (Input.GetKeyDown(GlobalVariables.P1Left) && Time.time - LastSprintLeft < DoubleTapTime){sprinting = false;}
+            if (Input.GetKeyDown(GlobalVariables.P1Left) && Time.time - LastSprintLeft < DoubleTapTime) {sprinting = false;}
             LastSprintLeft = Time.time; PlayerRotation = "Left";
             PlayerBody.velocity = new Vector2(-SprintForce, PlayerBody.velocity.y);
         }
-        else{   //if you  stay more than "DoubleTapTime" it will remove sprint
+        else {   //if you  stay more than "DoubleTapTime" it will remove sprint
             if (Time.time-LastSprintLeft > DoubleTapTime && Time.time - LastSprintRight > DoubleTapTime) {sprinting = false; }
             PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }
     }
-
     private void jump()
     {
         if (Input.GetKey(GlobalVariables.P1Up) && isGrounded() && (!Input.GetKey(GlobalVariables.P1Down)) && (!isCrouching))
-        {
             PlayerBody.velocity = Vector2.up * JumpForce;
-        }
     }
 
-    private void ShootPosition()
+    private void Ladder()
     {
-        if (Input.GetKeyDown(GlobalVariables.P1hit) || Input.GetKeyDown(GlobalVariables.P1slot)) { shooting = false; }
-        if (Input.GetKey(GlobalVariables.P1fire))
-        {
-            ReadyToFire = true;
-        }
-        else if (ReadyToFire)
-        {
-            ReadyToFire = false;
-            if (AllGuns[1].fire())
-            {
-                Instantiate(AllGuns[1].Bullet, FirePoint.position, FirePoint.rotation);
-            }
+        PlayerAnimation.SetFloat("PlayerVelocity", 0f);
+        if (Input.GetKey(GlobalVariables.P1Right) && !Input.GetKey(GlobalVariables.P1Left))
+            { PlayerBody.velocity = new Vector2(+3f, PlayerBody.velocity.y); PlayerRotation = "Right"; }
+        else if (Input.GetKey(GlobalVariables.P1Left) && !Input.GetKey(GlobalVariables.P1Right)) 
+            { PlayerBody.velocity = new Vector2(-3f, PlayerBody.velocity.y); PlayerRotation = "Left"; }
+        else { PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y); }
 
-        }
+        if (Input.GetKey(GlobalVariables.P1Up) && (!Input.GetKey(GlobalVariables.P1Down)))
+        { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, +5f); }
+        else if (Input.GetKey(GlobalVariables.P1Down) && (!Input.GetKey(GlobalVariables.P1Up)))
+        { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, -5f); }
+        else { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, 0f); }
     }
-
     private void crouch()
     {
         if (PlayerBody.velocity == Vector2.zero)
@@ -171,14 +142,12 @@ public class Player : MonoBehaviour
             if (Input.GetKey(GlobalVariables.P1Down))
             {
                 isCrouching = true;
-                PlayerHitBox.size = new Vector2(1.2f, 1.7f);
-                PlayerHitBox.offset = new Vector2(0f, -0.323f);
+                HitBoxChanger(1.2f, 1.7f, 0f, -0.323f);
             }
             else
             {
                 isCrouching = false;
-                PlayerHitBox.size = new Vector2(1.2f, 2.2f);
-                PlayerHitBox.offset = new Vector2(0f, -0.075f);
+                HitBoxChanger(1.2f, 2.2f, 0f, -0.075f);
             }   
         }
         else if ((PlayerBody.velocity == new Vector2(WalkForce, 0f)) || (PlayerBody.velocity == new Vector2(-WalkForce, 0f)))
@@ -188,28 +157,36 @@ public class Player : MonoBehaviour
                 isCrouching = true;
                 StartCoroutine(Roll());
             }
-            else if (!isCrouching)
-                PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
+            else if (!isCrouching) { PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }
         }
-        else if (PlayerBody.velocity == new Vector2(SprintForce, 0f)|| PlayerBody.velocity == new Vector2(-SprintForce, 0f))
+        else if (PlayerBody.velocity == new Vector2(SprintForce, 0f) || PlayerBody.velocity == new Vector2(-SprintForce, 0f))
         {
             if (!isCrouching)
             {
                 isCrouching = true;
-                PlayerHitBox.size = new Vector2(2f, 1f);
-                PlayerHitBox.offset = new Vector2(0, 0);
+                HitBoxChanger(2f, 1f, 0f, 0f);
+                PlayerBody.gravityScale = 2f;
+                PlayerBody.velocity = new Vector2(PlayerBody.velocity.x,2f);
             }
             else if(isGrounded())
             {
-                PlayerHitBox.size = new Vector2(1.2f, 2.2f);
-                PlayerHitBox.offset = new Vector2(0f, -0.075f);
-                if(PlayerBody.velocity.x > 0)
-                    PlayerBody.velocity = PlayerBody.velocity = new Vector2(WalkForce, 0f);
-                else if (PlayerBody.velocity.x < 0)
-                    PlayerBody.velocity = PlayerBody.velocity = new Vector2(-WalkForce, 0f);
+                if (PlayerBody.velocity.x > 0) { PlayerBody.velocity = PlayerBody.velocity = new Vector2(WalkForce, 0f); }
+                else if (PlayerBody.velocity.x < 0) { PlayerBody.velocity = PlayerBody.velocity = new Vector2(-WalkForce, 0f); }
                 StartCoroutine(Roll());
+                PlayerBody.gravityScale = 2.5f;
             }
-        } 
+        }  
+    }
+
+    private void ShootPosition()
+    {
+        if (Input.GetKeyDown(GlobalVariables.P1hit) || Input.GetKeyDown(GlobalVariables.P1slot)) { shooting = false; }
+        if (Input.GetKey(GlobalVariables.P1fire)) { ReadyToFire = true; }
+        else if (ReadyToFire)
+        {
+            ReadyToFire = false;
+            if (AllGuns[1].fire()) { Instantiate(AllGuns[1].Bullet, FirePoint.position, FirePoint.rotation); }
+        }
     }
 
     private bool isGrounded()
@@ -217,12 +194,12 @@ public class Player : MonoBehaviour
         RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, PlayerHitBox.bounds.size, 0f, Vector2.down, 0.025f, PlatformLayerMask);
             return rayCastHit.collider != null;
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ladder"))
         {
-            PlayerBody.gravityScale = 0f;
+            if (!isCrouching)
+                PlayerBody.gravityScale = 0f;
             isOnLadder = true;
         }
             
@@ -231,20 +208,23 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("Ladder"))
         {
-            PlayerBody.gravityScale = 2.5f;
+            if(!isCrouching)
+                PlayerBody.gravityScale = 2.5f;
             isOnLadder = false;
         }
-            
     }
 
     IEnumerator Roll()
     {
-        PlayerHitBox.size = new Vector2(1.2f, 1.2f);
-        PlayerHitBox.offset = new Vector2(0f, -0.64f);
+        HitBoxChanger(1.2f , 1.2f, 0f, -0.64f);
         yield return new WaitForSeconds(0.5f);
-        PlayerHitBox.size = new Vector2(1.2f, 2.2f);
-        PlayerHitBox.offset = new Vector2(0f, -0.075f);
+        HitBoxChanger(1.2f, 2.2f, 0f, -0.075f);
         isCrouching = false;
     }
-}
 
+    private void HitBoxChanger(float sizeX, float sizeY, float offsetX, float offsetY)
+    {
+        PlayerHitBox.size = new Vector2(sizeX, sizeY);
+        PlayerHitBox.offset = new Vector2(offsetX, offsetY);
+    }
+}

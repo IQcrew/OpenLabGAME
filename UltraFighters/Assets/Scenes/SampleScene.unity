@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 318439651}
   - component: {fileID: 318439650}
   - component: {fileID: 318439649}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: docasna podlaha (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,15 +323,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: a3b7408c2fec8394185d54ffd96ba537, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.24, y: 0.24}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &505477965 stripped
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 519831699}
   - component: {fileID: 519831698}
   - component: {fileID: 519831697}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: docasna podlaha (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,17 +573,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate01
       objectReference: {fileID: 0}
+    - target: {fileID: 3916273067155387203, guid: aec3c87b99564544c970d1df68f969d2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3916273067155387215, guid: aec3c87b99564544c970d1df68f969d2, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3916273067155387215, guid: aec3c87b99564544c970d1df68f969d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0231119
+      value: 2.93
       objectReference: {fileID: 0}
     - target: {fileID: 3916273067155387215, guid: aec3c87b99564544c970d1df68f969d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4339334
+      value: 5.43
       objectReference: {fileID: 0}
     - target: {fileID: 3916273067155387215, guid: aec3c87b99564544c970d1df68f969d2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -630,7 +634,7 @@ GameObject:
   - component: {fileID: 1157224348}
   - component: {fileID: 1157224347}
   - component: {fileID: 1157224346}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: docasna podlaha (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,7 +743,7 @@ GameObject:
   - component: {fileID: 1224852456}
   - component: {fileID: 1224852455}
   - component: {fileID: 1224852454}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: docasna podlaha (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,11 +854,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9016420348259430256, guid: 787cac3ac4df3f045960f97835924011, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.65252936
+      value: 1.21
       objectReference: {fileID: 0}
     - target: {fileID: 9016420348259430256, guid: 787cac3ac4df3f045960f97835924011, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.81806827
+      value: 5.67
       objectReference: {fileID: 0}
     - target: {fileID: 9016420348259430256, guid: 787cac3ac4df3f045960f97835924011, type: 3}
       propertyPath: m_LocalPosition.z
@@ -892,6 +896,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate00
       objectReference: {fileID: 0}
+    - target: {fileID: 9016420348259430260, guid: 787cac3ac4df3f045960f97835924011, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 787cac3ac4df3f045960f97835924011, type: 3}
 --- !u!1 &1291227655
@@ -905,7 +913,7 @@ GameObject:
   - component: {fileID: 1291227658}
   - component: {fileID: 1291227657}
   - component: {fileID: 1291227656}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: docasna podlaha (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1269,7 +1277,7 @@ GameObject:
   - component: {fileID: 1668105216}
   - component: {fileID: 1668105215}
   - component: {fileID: 1668105214}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: docasna podlaha (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1582,6 +1590,10 @@ PrefabInstance:
     - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: PlayerRotation
       value: Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: PlatformLayerMask.m_Bits
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: AllGuns.Array.data[1].ammo

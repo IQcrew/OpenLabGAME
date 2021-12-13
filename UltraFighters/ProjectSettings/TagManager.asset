@@ -9,14 +9,15 @@ TagManager:
   - Walls
   - Indestructible
   - Destructible
+  - DestrBEZpozastavenia
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - Platformy
+  - Objects
   - 
   - 
   - 
