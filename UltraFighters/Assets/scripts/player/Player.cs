@@ -5,7 +5,7 @@ using System;
 public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask PlatformLayerMask;
-    [SerializeField] private int Health = 200;
+    [SerializeField] public int MaxHealth = 200;
     [SerializeField] private float WalkForce = 5f;
     [SerializeField] private float SprintForce = 8f;
     [SerializeField] private float JumpForce = 10f;
@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
     public static string PlayerRotation = "Right";
     private string PlayerLastRotation;
+    private int Health = 200;
 
     private bool isOnLadder;
     private bool isCrouching = false;
@@ -235,6 +236,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-
+        Health -= damage;
+        
     }
 }
