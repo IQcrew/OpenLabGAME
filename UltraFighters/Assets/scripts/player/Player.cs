@@ -5,6 +5,7 @@ using System;
 public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask PlatformLayerMask;
+    [SerializeField] private int Health = 200;
     [SerializeField] private float WalkForce = 5f;
     [SerializeField] private float SprintForce = 8f;
     [SerializeField] private float JumpForce = 10f;
@@ -55,8 +56,8 @@ public class Player : MonoBehaviour
     {
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(GlobalVariables.P1fire) && (Input.GetKey(GlobalVariables.P1Right) || Input.GetKey(GlobalVariables.P1Left) || Input.GetKey(GlobalVariables.P1Up) || Input.GetKey(GlobalVariables.P1Down) || Input.GetKey(GlobalVariables.P1hit) || Input.GetKey(GlobalVariables.P1slot)))
             shooting = false;
-        if (isOnLadder && (!isCrouching) && (!isGrounded())) 
-            Ladder(); 
+        if (isOnLadder && (!isCrouching) && (!isGrounded()))
+            Ladder();
         else if (isGrounded() && (Input.GetKey(GlobalVariables.P1fire) || shooting))
         {
             if (Input.GetKey(GlobalVariables.P1fire)) { LastTimeShoot = Time.time; }
@@ -64,7 +65,7 @@ public class Player : MonoBehaviour
             ShootPosition();
             PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
         }
-        else 
+        else
             move();
     }
 
@@ -89,14 +90,14 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(GlobalVariables.P1Right) && !Input.GetKey(GlobalVariables.P1Left)) //walk right
         {   //sprint check
-            if (Input.GetKeyDown(GlobalVariables.P1Right) && Time.time - LastKeyRight < DoubleTapTime) {sprinting = true; }   
+            if (Input.GetKeyDown(GlobalVariables.P1Right) && Time.time - LastKeyRight < DoubleTapTime) { sprinting = true; }
             LastKeyRight = Time.time; PlayerRotation = "Right";
             PlayerBody.velocity = new Vector2(+WalkForce, PlayerBody.velocity.y);
         }
         else if (Input.GetKey(GlobalVariables.P1Left) && !Input.GetKey(GlobalVariables.P1Right))     // walk left
         {   //sprint check
-            if (Input.GetKeyDown(GlobalVariables.P1Left) && Time.time - LastKeyLeft < DoubleTapTime){sprinting = true;}          
-            LastKeyLeft = Time.time; PlayerRotation = "Left";   
+            if (Input.GetKeyDown(GlobalVariables.P1Left) && Time.time - LastKeyLeft < DoubleTapTime) { sprinting = true; }
+            LastKeyLeft = Time.time; PlayerRotation = "Left";
             PlayerBody.velocity = new Vector2(-WalkForce, PlayerBody.velocity.y);
         }
         else { PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }   //stay at position
@@ -105,33 +106,33 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(GlobalVariables.P1Right) && !Input.GetKey(GlobalVariables.P1Left)) //sprint right
         {   //check double tap right to walk
-            if (Input.GetKeyDown(GlobalVariables.P1Right) && Time.time - LastSprintRight < DoubleTapTime) { sprinting = false;}
+            if (Input.GetKeyDown(GlobalVariables.P1Right) && Time.time - LastSprintRight < DoubleTapTime) { sprinting = false; }
             LastSprintRight = Time.time; PlayerRotation = "Right";
             PlayerBody.velocity = new Vector2(+SprintForce, PlayerBody.velocity.y);
         }
         else if (Input.GetKey(GlobalVariables.P1Left) && !Input.GetKey(GlobalVariables.P1Right))  //sprint left
         {   //check double tap left to walk
-            if (Input.GetKeyDown(GlobalVariables.P1Left) && Time.time - LastSprintLeft < DoubleTapTime) {sprinting = false;}
+            if (Input.GetKeyDown(GlobalVariables.P1Left) && Time.time - LastSprintLeft < DoubleTapTime) { sprinting = false; }
             LastSprintLeft = Time.time; PlayerRotation = "Left";
             PlayerBody.velocity = new Vector2(-SprintForce, PlayerBody.velocity.y);
         }
         else {   //if you  stay more than "DoubleTapTime" it will remove sprint
-            if (Time.time-LastSprintLeft > DoubleTapTime && Time.time - LastSprintRight > DoubleTapTime) {sprinting = false; }
+            if (Time.time - LastSprintLeft > DoubleTapTime && Time.time - LastSprintRight > DoubleTapTime) { sprinting = false; }
             PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }
     }
     private void jump()
     {
         if (Input.GetKey(GlobalVariables.P1Up) && isGrounded() && (!Input.GetKey(GlobalVariables.P1Down)) && (!isCrouching))
-            PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, JumpForce) ;
+            PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, JumpForce);
     }
 
     private void Ladder()
     {
         PlayerAnimation.SetFloat("PlayerVelocity", 0f);
         if (Input.GetKey(GlobalVariables.P1Right) && !Input.GetKey(GlobalVariables.P1Left))
-            { PlayerBody.velocity = new Vector2(+LadderHorizontal, PlayerBody.velocity.y); PlayerRotation = "Right"; }
-        else if (Input.GetKey(GlobalVariables.P1Left) && !Input.GetKey(GlobalVariables.P1Right)) 
-            { PlayerBody.velocity = new Vector2(-LadderHorizontal, PlayerBody.velocity.y); PlayerRotation = "Left"; }
+        { PlayerBody.velocity = new Vector2(+LadderHorizontal, PlayerBody.velocity.y); PlayerRotation = "Right"; }
+        else if (Input.GetKey(GlobalVariables.P1Left) && !Input.GetKey(GlobalVariables.P1Right))
+        { PlayerBody.velocity = new Vector2(-LadderHorizontal, PlayerBody.velocity.y); PlayerRotation = "Left"; }
         else { PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y); }
 
         if (Input.GetKey(GlobalVariables.P1Up) && (!Input.GetKey(GlobalVariables.P1Down)))
@@ -153,7 +154,7 @@ public class Player : MonoBehaviour
             {
                 isCrouching = false;
                 HitBoxChanger(1.2f, 2.2f, 0f, -0.075f);
-            }   
+            }
         }
         else if ((PlayerBody.velocity == new Vector2(WalkForce, 0f)) || (PlayerBody.velocity == new Vector2(-WalkForce, 0f)))
         {
@@ -171,16 +172,16 @@ public class Player : MonoBehaviour
                 isCrouching = true;
                 HitBoxChanger(2f, 1f, 0f, 0f);
                 PlayerBody.gravityScale = ThrowJumpGravity;
-                PlayerBody.velocity = new Vector2(PlayerBody.velocity.x,ThrowJump);
+                PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, ThrowJump);
             }
-            else if(isGrounded())
+            else if (isGrounded())
             {
                 if (PlayerBody.velocity.x > 0) { PlayerBody.velocity = new Vector2(WalkForce, 0f); }
                 else if (PlayerBody.velocity.x < 0) { PlayerBody.velocity = new Vector2(-WalkForce, 0f); }
                 StartCoroutine(Roll());
                 PlayerBody.gravityScale = 2.5f;
             }
-        }  
+        }
     }
     IEnumerator Roll()
     {
@@ -203,8 +204,8 @@ public class Player : MonoBehaviour
 
     private bool isGrounded()
     {
-        RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, new Vector2(PlayerHitBox.bounds.size.x*0.9f, PlayerHitBox.bounds.size.y), 0f, Vector2.down, 0.025f, PlatformLayerMask);
-            return rayCastHit.collider != null;
+        RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, new Vector2(PlayerHitBox.bounds.size.x * 0.9f, PlayerHitBox.bounds.size.y), 0f, Vector2.down, 0.025f, PlatformLayerMask);
+        return rayCastHit.collider != null;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -214,13 +215,13 @@ public class Player : MonoBehaviour
                 PlayerBody.gravityScale = 0f;
             isOnLadder = true;
         }
-            
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Ladder"))
         {
-            if(!isCrouching)
+            if (!isCrouching)
                 PlayerBody.gravityScale = 2.5f;
             isOnLadder = false;
         }
@@ -230,5 +231,10 @@ public class Player : MonoBehaviour
     {
         PlayerHitBox.size = new Vector2(sizeX, sizeY);
         PlayerHitBox.offset = new Vector2(offsetX, offsetY);
+    }
+
+    public void TakeDamage(int damage)
+    {
+
     }
 }
