@@ -30,12 +30,6 @@ public class bullet : MonoBehaviour
         {
             
         }
-        else if (other.collider.tag is "DestrBEZpozastavenia")
-        {
-            objectHP enemy = other.collider.GetComponent<objectHP>();
-            enemy.TakeDamage(10000);
-            return;
-        }
 
         Destroy(gameObject);
     }

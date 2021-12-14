@@ -9,7 +9,6 @@ TagManager:
   - Walls
   - Indestructible
   - Destructible
-  - DestrBEZpozastavenia
   layers:
   - Default
   - TransparentFX

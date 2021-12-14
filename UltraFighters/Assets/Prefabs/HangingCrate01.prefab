@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8404751597573598748}
   - component: {fileID: 8404751597573598749}
   - component: {fileID: -3355654095457198713}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HangingCrate01
   m_TagString: Destructible
   m_Icon: {fileID: 0}
