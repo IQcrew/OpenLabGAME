@@ -68,11 +68,14 @@ public class Player : MonoBehaviour
         }
         else
             move();
+        PlayerAnimation.SetBool("isGrounded", isGrounded());
+        PlayerAnimation.SetBool("isCrouching", isCrouching);
+        PlayerAnimation.SetBool("isOnLadder", isOnLadder);
+        PlayerAnimation.SetFloat("PlayerSpeed", Math.Abs(PlayerBody.velocity.x));
     }
 
     private void move()
     {
-        PlayerAnimation.SetFloat("PlayerVelocity", Math.Abs(PlayerBody.velocity.x));
         if ((Input.GetKey(GlobalVariables.P1Down) && isGrounded()) || isCrouching)
             crouch();
         else
