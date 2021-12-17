@@ -37,12 +37,15 @@ public class Player : MonoBehaviour
     private double LastTimeShoot = -5f;
     public Transform FirePoint;
     private bool ReadyToFire = false;
-    public Gun[] AllGuns = new Gun[2];
+
+    public GunManager GM = GameObject.Find("LevelManager").GetComponent<GunManager>();
+    public Gun PlayerGun = GM.GimmiGunList()[1];
 
     //player components
     Rigidbody2D PlayerBody;
     BoxCollider2D PlayerHitBox;
     Animator PlayerAnimation;
+    
 
     void Start()
     {
@@ -202,7 +205,7 @@ public class Player : MonoBehaviour
         else if (ReadyToFire)
         {
             ReadyToFire = false;
-            if (AllGuns[1].fire()) { Instantiate(AllGuns[1].Bullet, FirePoint.position, FirePoint.rotation); }
+            //if (PlayerGun.fire()) { Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation); }
         }
     }
 
