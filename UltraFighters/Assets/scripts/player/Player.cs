@@ -120,9 +120,11 @@ public class Player : MonoBehaviour
             LastSprintLeft = Time.time; PlayerRotation = "Left";
             PlayerBody.velocity = new Vector2(-SprintForce, PlayerBody.velocity.y);
         }
-        else {   //if you  stay more than "DoubleTapTime" it will remove sprint
+        else
+        {   //if you  stay more than "DoubleTapTime" it will remove sprint
             if (Time.time - LastSprintLeft > DoubleTapTime && Time.time - LastSprintRight > DoubleTapTime) { sprinting = false; }
-            PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }
+            PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
+        }
     }
     private void jump()
     {
@@ -187,7 +189,7 @@ public class Player : MonoBehaviour
             }
         }
     }
-    IEnumerator Roll()
+    private IEnumerator Roll()
     {
         HitBoxChanger(1.2f, 1.2f, 0f, -0.575f);
         yield return new WaitForSeconds(TimeInRoll);
@@ -208,8 +210,15 @@ public class Player : MonoBehaviour
 
     private bool isGrounded()
     {
-        RaycastHit2D rayCastHit = Physics2D.BoxCast(PlayerHitBox.bounds.center, new Vector2(PlayerHitBox.bounds.size.x * 0.9f, PlayerHitBox.bounds.size.y), 0f, Vector2.down, 0.025f, PlatformLayerMask);
-        return rayCastHit.collider != null;
+        bool Grounded;
+        RaycastHit2D rayCastHit1 = Physics2D.Raycast(PlayerHitBox.bounds.center, Vector2.down, PlayerHitBox.bounds.extents.y + 0.1f, PlatformLayerMask);
+        RaycastHit2D rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.down, PlayerHitBox.bounds.extents.y + 0.1f, PlatformLayerMask);
+        RaycastHit2D rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.down, PlayerHitBox.bounds.extents.y + 0.1f, PlatformLayerMask);
+        if (rayCastHit1.collider != null || rayCastHit2.collider != null || rayCastHit3.collider != null)
+            Grounded = true;
+        else
+            Grounded = false;
+        return Grounded;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -240,6 +249,5 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health -= damage;
-        
     }
 }
