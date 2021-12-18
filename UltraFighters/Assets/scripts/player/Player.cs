@@ -214,9 +214,9 @@ public class Player : MonoBehaviour
     private bool isGrounded()
     {
         bool Grounded;
-        RaycastHit2D rayCastHit1 = Physics2D.Raycast(PlayerHitBox.bounds.center, Vector2.down, PlayerHitBox.bounds.extents.y + 0.1f, PlatformLayerMask);
-        RaycastHit2D rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.down, PlayerHitBox.bounds.extents.y + 0.1f, PlatformLayerMask);
-        RaycastHit2D rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.down, PlayerHitBox.bounds.extents.y + 0.1f, PlatformLayerMask);
+        RaycastHit2D rayCastHit1 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x, PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
+        RaycastHit2D rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
+        RaycastHit2D rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
         if (rayCastHit1.collider != null || rayCastHit2.collider != null || rayCastHit3.collider != null)
             Grounded = true;
         else
