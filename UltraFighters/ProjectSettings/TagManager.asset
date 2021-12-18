@@ -9,6 +9,7 @@ TagManager:
   - Walls
   - Indestructible
   - Destructible
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Objects
-  - 
+  - OneWayPlatform
   - 
   - 
   - 

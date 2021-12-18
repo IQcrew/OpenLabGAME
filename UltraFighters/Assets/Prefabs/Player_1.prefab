@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 801980984305395064}
   - component: {fileID: 801980984305395071}
   - component: {fileID: 801980984305395070}
+  - component: {fileID: 5396672426453200219}
   - component: {fileID: 801980984305395067}
   m_Layer: 0
   m_Name: Player_1
@@ -148,18 +149,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlatformLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 72
+  MaxHealth: 200
   WalkForce: 5
   SprintForce: 8
   JumpForce: 9
   DoubleTapTime: 0.2
-  Right: 275
-  Left: 276
-  Up: 273
-  Down: 274
-  Slot1: 0
-  Slot2: 0
-  Slot3: 0
+  LadderVertical: 5
+  LadderHorizontal: 3
+  TimeInRoll: 0.5
+  ThrowJump: 5
+  ThrowJumpGravity: 2
+  FirePoint: {fileID: 0}
+  GM: {fileID: 0}
+--- !u!114 &5396672426453200219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801980984305395069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489eafa78529e3e46826f65bbdef8541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerHitBox: {fileID: 801980984305395064}
+  DoubleTapTime: 0.2
 --- !u!95 &801980984305395067
 Animator:
   serializedVersion: 3

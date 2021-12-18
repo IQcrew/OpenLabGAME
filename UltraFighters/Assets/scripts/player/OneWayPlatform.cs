@@ -5,7 +5,7 @@ using UnityEngine;
 public class OneWayPlatform : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D PlayerHitBox;
-    [SerializeField] private float DoubleTapTime = 0.2f;
+    [SerializeField] private float DoubleTapTime = 0.5f;
     private float LastKeyDown;
     private GameObject currentPlatform;
 
@@ -24,12 +24,18 @@ public class OneWayPlatform : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("OneWayPlatform"))
+        {
             currentPlatform = collision.gameObject;
+            Player.isInPlatform = false;
+        }
+            
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("OneWayPlatform"))
             currentPlatform = null;
+        
+            
     }
 
     private IEnumerator DisableCollision()

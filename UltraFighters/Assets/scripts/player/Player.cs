@@ -5,6 +5,7 @@ using System;
 public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask PlatformLayerMask;
+    [SerializeField] private LayerMask PlatformLayerMask2;
     [SerializeField] public int MaxHealth = 200;
     [SerializeField] private float WalkForce = 5f;
     [SerializeField] private float SprintForce = 8f;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
 
     private bool isOnLadder;
     private bool isCrouching = false;
+    public static bool isInPlatform = false;
 
     // walking variables
     private float LastKeyRight = -5f;
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour
     private bool ReadyToFire = false;
 
     public GunManager GM = GameObject.Find("LevelManager").GetComponent<GunManager>();
-    public Gun PlayerGun = GM.GimmiGunList()[1];
+   // public Gun PlayerGun = GM.GimmiGunList()[1];
 
     //player components
     Rigidbody2D PlayerBody;
@@ -213,15 +215,32 @@ public class Player : MonoBehaviour
 
     private bool isGrounded()
     {
-        bool Grounded;
-        RaycastHit2D rayCastHit1 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x, PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
-        RaycastHit2D rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
-        RaycastHit2D rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
-        if (rayCastHit1.collider != null || rayCastHit2.collider != null || rayCastHit3.collider != null)
-            Grounded = true;
+        RaycastHit2D rayCastHit1 = Physics2D.Raycast(PlayerHitBox.bounds.center, Vector2.down, PlayerHitBox.bounds.extents.y - 0.2f, PlatformLayerMask2);
+        RaycastHit2D rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.down, PlayerHitBox.bounds.extents.y - 0.2f, PlatformLayerMask2);
+        RaycastHit2D rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.down, PlayerHitBox.bounds.extents.y - 0.2f, PlatformLayerMask2);
+        if ((rayCastHit1.collider != null || rayCastHit2.collider != null || rayCastHit3.collider != null) && (!isInPlatform))
+        {
+            StartCoroutine(IsInPlatform());
+            return false;
+        }
+        else if (!isInPlatform)
+        {
+            rayCastHit1 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
+            rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
+            rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
+            if (rayCastHit1.collider != null || rayCastHit2.collider != null || rayCastHit3.collider != null)
+                return true; 
+            else
+                return false; 
+        }
         else
-            Grounded = false;
-        return Grounded;
+            return false;
+    }
+    private IEnumerator IsInPlatform()
+    {
+        isInPlatform = true;
+        yield return new WaitForSeconds(0.5f);
+        isInPlatform = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -231,7 +250,6 @@ public class Player : MonoBehaviour
                 PlayerBody.gravityScale = 0f;
             isOnLadder = true;
         }
-
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
