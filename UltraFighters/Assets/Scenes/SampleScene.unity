@@ -776,6 +776,7 @@ MonoBehaviour:
     ammo: 0
     damage: 0
     FireSpeed: 0
+    BulletsOnShoot: 0
     Bullet: {fileID: 0}
     GunTexture: {fileID: 0}
     ShootingTexture: {fileID: 0}
@@ -783,6 +784,7 @@ MonoBehaviour:
     ammo: 10
     damage: 20
     FireSpeed: 0.5
+    BulletsOnShoot: 1
     Bullet: {fileID: 2801291378827411501, guid: af380b0541d5ffa48aed64727ccf5b9d, type: 3}
     GunTexture: {fileID: 0}
     ShootingTexture: {fileID: 0}

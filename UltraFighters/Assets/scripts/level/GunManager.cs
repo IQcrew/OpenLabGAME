@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GunManager : MonoBehaviour
 {
-    public Gun[] AllGuns = new Gun[2];
+    [SerializeField] public List<Gun> AllGuns = new List<Gun>();
 }
 
 [System.Serializable]
@@ -17,6 +17,7 @@ public class Gun
     public int ammo;
     public int damage;
     public double FireSpeed;
+    public int BulletsOnShoot = 1;
     public GameObject Bullet;
     public Sprite GunTexture;
     public Sprite ShootingTexture;

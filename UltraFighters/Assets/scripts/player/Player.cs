@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -45,14 +46,12 @@ public class Player : MonoBehaviour
 
     [Header("Shooting")]
     [SerializeField] public Transform FirePoint;
-    [SerializeField] public GunManager GM = GameObject.Find("LevelManager").GetComponent<GunManager>();
-
-    //shooting
+    private Gun PlayerGun;
+    List<Gun> GunDatabase;
     public static bool shooting = false;
     private double LastTimeShoot = -5f;
     private bool ReadyToFire = false;
 
-    // public Gun PlayerGun = GM.GimmiGunList()[1];
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
@@ -61,12 +60,19 @@ public class Player : MonoBehaviour
     
     void Start()
     {
+        //get database of guns
+        GameObject GM = GameObject.Find("LevelManager");
+        GunManager GunM = GM.GetComponent<GunManager>();
+        List<Gun> GunDatabase = new List<Gun>(GunM.AllGuns);
+        PlayerGun = GunDatabase[1];
+
         PlayerLastRotation = PlayerRotation;
         if (PlayerRotation == "Left") { transform.Rotate(0f, 180f, 0F); }
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GunDatabase[1]; }
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(GlobalVariables.P1fire) && (Input.GetKey(GlobalVariables.P1Right) || Input.GetKey(GlobalVariables.P1Left) || Input.GetKey(GlobalVariables.P1Up) || Input.GetKey(GlobalVariables.P1Down) || Input.GetKey(GlobalVariables.P1hit) || Input.GetKey(GlobalVariables.P1slot)))
             shooting = false;
         if (isOnLadder && (!isCrouching) && (!isGrounded()))
@@ -214,10 +220,20 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(GlobalVariables.P1hit) || Input.GetKeyDown(GlobalVariables.P1slot)) { shooting = false; }
         if (Input.GetKey(GlobalVariables.P1fire)) { ReadyToFire = true; }
-        else if (ReadyToFire)
-        {
+        else if (ReadyToFire && (PlayerGun.name != "" || PlayerGun.name != "None"))
+        {   
             ReadyToFire = false;
-            //if (PlayerGun.fire()) { Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation); }
+            if (PlayerGun.fire())
+            {
+                if (PlayerGun.name is "Shotgun")
+                {
+                    Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
+                }
+                else
+                {
+                    Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
+                }
+            }          
         }
     }
 
