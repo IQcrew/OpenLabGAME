@@ -4,25 +4,34 @@ using System;
 
 public class Player : MonoBehaviour
 {
+    [Header("LayerMasks")]
     [SerializeField] private LayerMask PlatformLayerMask;
     [SerializeField] private LayerMask PlatformLayerMask2;
+    [Header("Health & Saturation")]
     [SerializeField] public int MaxHealth = 200;
+    [SerializeField] public int Saturation = 100;
+    [Header("Movement")]
     [SerializeField] private float WalkForce = 5f;
     [SerializeField] private float SprintForce = 8f;
     [SerializeField] private float JumpForce = 10f;
-    [SerializeField] private float DoubleTapTime = 0.2f;
     [SerializeField] private float LadderVertical = 5f;
     [SerializeField] private float LadderHorizontal = 3f;
+    [Header("Other")]
+    [SerializeField] private float DoubleTapTime = 0.2f;
     [SerializeField] private float TimeInRoll = 0.5f;
     [SerializeField] private float ThrowJump = 5f;
+    [Header("Gravity settings")]
     [SerializeField] private float ThrowJumpGravity = 2f;
+    [SerializeField] private float NormalGravity = 2.5f;
+    [SerializeField] private float FallGravity = 3.5f;
 
     public static string PlayerRotation = "Right";
     private string PlayerLastRotation;
-    private int Health = 200;
+    private float Health = 200;
 
-    private bool isOnLadder;
+    //crouching,ladder,onewayplatform variables
     private bool isCrouching = false;
+    private bool isOnLadder;
     public static bool isInPlatform = false;
 
     // walking variables
@@ -34,26 +43,24 @@ public class Player : MonoBehaviour
     private float LastSprintRight = -5f;
     private float LastSprintLeft = -5f;
 
+    [Header("Shooting")]
+    [SerializeField] public Transform FirePoint;
+    [SerializeField] public GunManager GM = GameObject.Find("LevelManager").GetComponent<GunManager>();
+
     //shooting
     public static bool shooting = false;
     private double LastTimeShoot = -5f;
-    public Transform FirePoint;
     private bool ReadyToFire = false;
 
-    public GunManager GM = GameObject.Find("LevelManager").GetComponent<GunManager>();
-   // public Gun PlayerGun = GM.GimmiGunList()[1];
+    // public Gun PlayerGun = GM.GimmiGunList()[1];
 
-    //player components
-    Rigidbody2D PlayerBody;
-    BoxCollider2D PlayerHitBox;
-    Animator PlayerAnimation;
+    [Header("Components")]
+    [SerializeField] private Rigidbody2D PlayerBody;
+    [SerializeField] private BoxCollider2D PlayerHitBox;
+    [SerializeField] private Animator PlayerAnimator;
     
-
     void Start()
     {
-        PlayerBody = GetComponent<Rigidbody2D>();
-        PlayerHitBox = GetComponent<BoxCollider2D>();
-        PlayerAnimation = GetComponent<Animator>();
         PlayerLastRotation = PlayerRotation;
         if (PlayerRotation == "Left") { transform.Rotate(0f, 180f, 0F); }
     }
@@ -73,10 +80,7 @@ public class Player : MonoBehaviour
         }
         else
             move();
-        PlayerAnimation.SetBool("isGrounded", isGrounded());
-        PlayerAnimation.SetBool("isCrouching", isCrouching);
-        PlayerAnimation.SetBool("isOnLadder", isOnLadder);
-        PlayerAnimation.SetFloat("PlayerSpeed", Math.Abs(PlayerBody.velocity.x));
+        AnimationSetter();
     }
 
     private void move()
@@ -85,9 +89,13 @@ public class Player : MonoBehaviour
             crouch();
         else
         {
+            jump();
             if (sprinting) { sprint(); }
             else { walk(); }
-            jump();
+            if (PlayerBody.velocity.y < 0)
+                PlayerBody.gravityScale = FallGravity;
+            else
+                PlayerBody.gravityScale = NormalGravity;
         }
         //Fliping Player
         if (PlayerRotation == "Right" && PlayerLastRotation != "Right") { transform.Rotate(0f, 180f, 0F); }
@@ -139,7 +147,7 @@ public class Player : MonoBehaviour
 
     private void Ladder()
     {
-        PlayerAnimation.SetFloat("PlayerVelocity", 0f);
+        PlayerAnimator.SetFloat("PlayerVelocity", 0f);
         if (Input.GetKey(GlobalVariables.P1Right) && !Input.GetKey(GlobalVariables.P1Left))
         { PlayerBody.velocity = new Vector2(+LadderHorizontal, PlayerBody.velocity.y); PlayerRotation = "Right"; }
         else if (Input.GetKey(GlobalVariables.P1Left) && !Input.GetKey(GlobalVariables.P1Right))
@@ -190,7 +198,7 @@ public class Player : MonoBehaviour
                 if (PlayerBody.velocity.x > 0) { PlayerBody.velocity = new Vector2(WalkForce, 0f); }
                 else if (PlayerBody.velocity.x < 0) { PlayerBody.velocity = new Vector2(-WalkForce, 0f); }
                 StartCoroutine(Roll());
-                PlayerBody.gravityScale = 2.5f;
+                PlayerBody.gravityScale = NormalGravity;
             }
         }
     }
@@ -270,5 +278,12 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health -= damage;
+    }
+    private void AnimationSetter()
+    {
+        PlayerAnimator.SetBool("isGrounded", isGrounded());
+        PlayerAnimator.SetBool("isCrouching", isCrouching);
+        PlayerAnimator.SetBool("isOnLadder", isOnLadder);
+        PlayerAnimator.SetFloat("PlayerSpeed", Math.Abs(PlayerBody.velocity.x));
     }
 }

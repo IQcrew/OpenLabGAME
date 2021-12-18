@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 801980984305395066}
   - component: {fileID: 801980984305395064}
   - component: {fileID: 801980984305395071}
+  - component: {fileID: 801980984305395067}
   - component: {fileID: 801980984305395070}
   - component: {fileID: 5396672426453200219}
-  - component: {fileID: 801980984305395067}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Untagged
@@ -135,47 +135,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &801980984305395070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801980984305395069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17cadecd9c404904d84d8f5de5d81758, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlatformLayerMask:
-    serializedVersion: 2
-    m_Bits: 72
-  MaxHealth: 200
-  WalkForce: 5
-  SprintForce: 8
-  JumpForce: 9
-  DoubleTapTime: 0.2
-  LadderVertical: 5
-  LadderHorizontal: 3
-  TimeInRoll: 0.5
-  ThrowJump: 5
-  ThrowJumpGravity: 2
-  FirePoint: {fileID: 0}
-  GM: {fileID: 0}
---- !u!114 &5396672426453200219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801980984305395069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 489eafa78529e3e46826f65bbdef8541, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerHitBox: {fileID: 801980984305395064}
-  DoubleTapTime: 0.2
 --- !u!95 &801980984305395067
 Animator:
   serializedVersion: 3
@@ -195,6 +154,54 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &801980984305395070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801980984305395069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17cadecd9c404904d84d8f5de5d81758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlatformLayerMask:
+    serializedVersion: 2
+    m_Bits: 72
+  PlatformLayerMask2:
+    serializedVersion: 2
+    m_Bits: 0
+  MaxHealth: 200
+  Saturation: 100
+  WalkForce: 5
+  SprintForce: 8
+  JumpForce: 9
+  LadderVertical: 5
+  LadderHorizontal: 3
+  DoubleTapTime: 0.2
+  TimeInRoll: 0.5
+  ThrowJump: 5
+  ThrowJumpGravity: 2
+  FirePoint: {fileID: 0}
+  GM: {fileID: 0}
+  PlayerBody: {fileID: 0}
+  PlayerHitBox: {fileID: 0}
+  PlayerAnimator: {fileID: 0}
+--- !u!114 &5396672426453200219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801980984305395069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489eafa78529e3e46826f65bbdef8541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerHitBox: {fileID: 801980984305395064}
+  DoubleTapTime: 0.2
 --- !u!1 &3878938826071732551
 GameObject:
   m_ObjectHideFlags: 0
