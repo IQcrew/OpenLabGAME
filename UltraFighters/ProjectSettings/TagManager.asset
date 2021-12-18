@@ -10,6 +10,7 @@ TagManager:
   - Indestructible
   - Destructible
   - OneWayPlatform
+  - OneTapBezZastavenia
   layers:
   - Default
   - TransparentFX

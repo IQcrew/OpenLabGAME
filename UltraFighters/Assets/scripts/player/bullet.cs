@@ -20,10 +20,25 @@ public class bullet : MonoBehaviour
 
     private void OnCollisionEnter2D (Collision2D other) //checkuje stretnutie z druhym objektom
     {
+        
         if(other.collider.tag is "Destructible")
         {
             objectHP enemy = other.collider.GetComponent<objectHP>();
             enemy.TakeDamage(damage);
+        }
+        else if (other.collider.tag is "OneWayPlatform")
+        {
+            Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), other.collider);
+            RigidBodyObject.velocity = transform.right * speed;
+            return;
+        }
+        else if (other.collider.tag is "OneTapBezZastavenia")
+        {
+            Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), other.collider);
+            objectHP enemy = other.collider.GetComponent<objectHP>();
+            enemy.TakeDamage(1000);
+            RigidBodyObject.velocity = transform.right * speed;
+            return;
         }
         else if(other.collider.tag is "Player")
         {
@@ -41,6 +56,7 @@ public class bullet : MonoBehaviour
 
         Destroy(gameObject);
     }
+
 
     // Update is called once per frame
 

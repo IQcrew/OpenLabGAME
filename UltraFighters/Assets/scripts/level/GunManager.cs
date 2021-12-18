@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class GunManager : MonoBehaviour
 {
-    [SerializeField] public List<Gun> AllGuns = new List<Gun>();
+    public List<Gun> AllGuns = new List<Gun>();
+
 }
 
 [System.Serializable]
