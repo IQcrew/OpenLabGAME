@@ -35,6 +35,19 @@ public class Gun
         }
         else { return false; }
     }
-
+    public Gun Clone()
+    {
+        return new Gun
+        {
+            name = this.name,
+            ammo = this.ammo,
+            damage = this.damage,
+            FireSpeed = this.FireSpeed,
+            BulletsOnShoot = this.BulletsOnShoot,
+            Bullet = this.Bullet,
+            GunTexture = this.GunTexture,
+            ShootingTexture = this.ShootingTexture
+        };
+    }
 
 }

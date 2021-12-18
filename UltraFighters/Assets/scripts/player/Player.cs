@@ -46,8 +46,7 @@ public class Player : MonoBehaviour
 
     [Header("Shooting")]
     [SerializeField] public Transform FirePoint;
-    private Gun PlayerGun;
-    List<Gun> GunDatabase;
+    Gun PlayerGun;
     public static bool shooting = false;
     private double LastTimeShoot = -5f;
     private bool ReadyToFire = false;
@@ -60,19 +59,14 @@ public class Player : MonoBehaviour
     
     void Start()
     {
-        //get database of guns
-        GameObject GM = GameObject.Find("LevelManager");
-        GunManager GunM = GM.GetComponent<GunManager>();
-        List<Gun> GunDatabase = new List<Gun>(GunM.AllGuns);
-        PlayerGun = GunDatabase[1];
-
+        PlayerGun = GetGun(1);
         PlayerLastRotation = PlayerRotation;
         if (PlayerRotation == "Left") { transform.Rotate(0f, 180f, 0F); }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GunDatabase[1]; }
+        if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GetGun(1); }
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(GlobalVariables.P1fire) && (Input.GetKey(GlobalVariables.P1Right) || Input.GetKey(GlobalVariables.P1Left) || Input.GetKey(GlobalVariables.P1Up) || Input.GetKey(GlobalVariables.P1Down) || Input.GetKey(GlobalVariables.P1hit) || Input.GetKey(GlobalVariables.P1slot)))
             shooting = false;
         if (isOnLadder && (!isCrouching) && (!isGrounded()))
@@ -220,7 +214,8 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(GlobalVariables.P1hit) || Input.GetKeyDown(GlobalVariables.P1slot)) { shooting = false; }
         if (Input.GetKey(GlobalVariables.P1fire)) { ReadyToFire = true; }
-        else if (ReadyToFire && (PlayerGun.name != "" || PlayerGun.name != "None"))
+        
+        else if (ReadyToFire && PlayerGun.name != "" && PlayerGun.name != "None")
         {   
             ReadyToFire = false;
             if (PlayerGun.fire())
@@ -235,6 +230,7 @@ public class Player : MonoBehaviour
                 }
             }          
         }
+        
     }
 
     private bool isGrounded()
@@ -301,5 +297,11 @@ public class Player : MonoBehaviour
         PlayerAnimator.SetBool("isCrouching", isCrouching);
         PlayerAnimator.SetBool("isOnLadder", isOnLadder);
         PlayerAnimator.SetFloat("PlayerSpeed", Math.Abs(PlayerBody.velocity.x));
+    }
+    private Gun GetGun(int index)
+    {
+        GameObject GM = GameObject.Find("LevelManager");
+        GunManager GunM = GM.GetComponent<GunManager>();
+        return GunM.AllGuns[index].Clone();
     }
 }
