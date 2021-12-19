@@ -5,6 +5,7 @@ using System;
 
 public class Player : MonoBehaviour
 {
+    System.Random rrr = new System.Random();
     [Header("LayerMasks")]
     [SerializeField] private LayerMask PlatformLayerMask;
     [SerializeField] private LayerMask PlatformLayerMask2;
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
 
     public static string PlayerRotation = "Right";
     private string PlayerLastRotation;
-    private float Health = 200;
+    private float Health;
 
     //crouching,ladder,onewayplatform variables
     private bool isCrouching = false;
@@ -59,14 +60,16 @@ public class Player : MonoBehaviour
     
     void Start()
     {
-        PlayerGun = GetGun(1);
+        Health = MaxHealth;
+        PlayerGun = GetGun("Pistol");
         PlayerLastRotation = PlayerRotation;
         if (PlayerRotation == "Left") { transform.Rotate(0f, 180f, 0F); }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GetGun(1); }
+        if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GetGun("Pistol"); }
+        if (Input.GetKeyDown(KeyCode.W)) { PlayerGun = GetGun("Shotgun"); }
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(GlobalVariables.P1fire) && (Input.GetKey(GlobalVariables.P1Right) || Input.GetKey(GlobalVariables.P1Left) || Input.GetKey(GlobalVariables.P1Up) || Input.GetKey(GlobalVariables.P1Down) || Input.GetKey(GlobalVariables.P1hit) || Input.GetKey(GlobalVariables.P1slot)))
             shooting = false;
         if (isOnLadder && (!isCrouching) && (!isGrounded()))
@@ -223,11 +226,14 @@ public class Player : MonoBehaviour
             {
                 if (PlayerGun.name is "Shotgun")
                 {
-                    Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
+                    Quaternion idk1 = Quaternion.Euler(0, 0, 5);
+                    Vector3 idk2 = new Vector3(0, 0, 1);
+                    Instantiate(PlayerGun.P1_Bullet, FirePoint.position - idk2, QuaternionDifference(idk1, FirePoint.rotation));
+                    Instantiate(PlayerGun.P1_Bullet, FirePoint.position, FirePoint.rotation);
                 }
                 else
                 {
-                    Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
+                    Instantiate(PlayerGun.P1_Bullet, FirePoint.position, FirePoint.rotation);
                 }
             }          
         }
@@ -299,10 +305,19 @@ public class Player : MonoBehaviour
         PlayerAnimator.SetBool("isOnLadder", isOnLadder);
         PlayerAnimator.SetFloat("PlayerSpeed", Math.Abs(PlayerBody.velocity.x));
     }
-    private Gun GetGun(int index)
+    private Gun GetGun(string name)
     {
         GameObject GM = GameObject.Find("LevelManager");
         GunManager GunM = GM.GetComponent<GunManager>();
-        return GunM.AllGuns[index].Clone();
+        foreach (var Gunitem in GunM.AllGuns){
+            if (name == Gunitem.name) { return Gunitem.Clone(); }
+        }
+        return GunM.AllGuns[0];
+    }
+    private Quaternion QuaternionDifference(Quaternion origin, Quaternion target)
+    {
+        Quaternion identityOrigin = Quaternion.identity * Quaternion.Inverse(origin);
+        Quaternion identityTarget = Quaternion.identity * Quaternion.Inverse(target);
+        return identityOrigin * Quaternion.Inverse(identityTarget);
     }
 }

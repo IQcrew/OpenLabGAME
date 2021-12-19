@@ -19,7 +19,8 @@ public class Gun
     public int damage;
     public double FireSpeed;
     public int BulletsOnShoot = 1;
-    public GameObject Bullet;
+    public GameObject P1_Bullet;
+    public GameObject P2_Bullet;
     public Sprite GunTexture;
     public Sprite ShootingTexture;
 
@@ -44,7 +45,8 @@ public class Gun
             damage = this.damage,
             FireSpeed = this.FireSpeed,
             BulletsOnShoot = this.BulletsOnShoot,
-            Bullet = this.Bullet,
+            P1_Bullet = this.P1_Bullet,
+            P2_Bullet = this.P2_Bullet,
             GunTexture = this.GunTexture,
             ShootingTexture = this.ShootingTexture
         };

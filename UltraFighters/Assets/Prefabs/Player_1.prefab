@@ -183,8 +183,9 @@ MonoBehaviour:
   TimeInRoll: 0.5
   ThrowJump: 5
   ThrowJumpGravity: 2
+  NormalGravity: 2.5
+  FallGravity: 3.5
   FirePoint: {fileID: 0}
-  GM: {fileID: 0}
   PlayerBody: {fileID: 0}
   PlayerHitBox: {fileID: 0}
   PlayerAnimator: {fileID: 0}
