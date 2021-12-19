@@ -147,13 +147,14 @@ public class Player : MonoBehaviour
 
     private void Ladder()
     {
-        PlayerAnimator.SetFloat("PlayerVelocity", 0f);
+        PlayerBody.gravityScale = 0f;
+        // pohyb vpravo a vlavo
         if (Input.GetKey(GlobalVariables.P1Right) && !Input.GetKey(GlobalVariables.P1Left))
         { PlayerBody.velocity = new Vector2(+LadderHorizontal, PlayerBody.velocity.y); PlayerRotation = "Right"; }
         else if (Input.GetKey(GlobalVariables.P1Left) && !Input.GetKey(GlobalVariables.P1Right))
         { PlayerBody.velocity = new Vector2(-LadderHorizontal, PlayerBody.velocity.y); PlayerRotation = "Left"; }
         else { PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y); }
-
+        // pohyb hore a dole
         if (Input.GetKey(GlobalVariables.P1Up) && (!Input.GetKey(GlobalVariables.P1Down)))
         { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, +LadderVertical); }
         else if (Input.GetKey(GlobalVariables.P1Down) && (!Input.GetKey(GlobalVariables.P1Up)))
