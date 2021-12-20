@@ -304,6 +304,10 @@ public class Player : MonoBehaviour
         PlayerAnimator.SetBool("isCrouching", isCrouching);
         PlayerAnimator.SetBool("isOnLadder", isOnLadder);
         PlayerAnimator.SetFloat("PlayerSpeed", Math.Abs(PlayerBody.velocity.x));
+        if (PlayerBody.velocity != Vector2.zero)
+            PlayerAnimator.SetBool("IsLadderMoving", true);
+        else
+            PlayerAnimator.SetBool("IsLadderMoving", false);
     }
     private Gun GetGun(string name)
     {
