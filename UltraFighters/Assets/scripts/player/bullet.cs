@@ -28,13 +28,13 @@ public class bullet : MonoBehaviour
             objectHP enemy = other.collider.GetComponent<objectHP>();
             enemy.TakeDamage(damage);
         }
-        else if (other.collider.tag is "OneWayPlatform")
+        else if (other.collider.tag is "OneWayPlatform" || other.collider.tag is "Bullet")
         {
             Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), other.collider);
             RigidBodyObject.velocity = transform.right * speed;
             return;
         }
-        else if (other.collider.tag is "OneTapBezZastavenia" || other.collider.tag is "Bullet")
+        else if (other.collider.tag is "OneTapBezZastavenia")
         {
             Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), other.collider);
             objectHP enemy = other.collider.GetComponent<objectHP>();

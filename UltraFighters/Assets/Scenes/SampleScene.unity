@@ -808,6 +808,24 @@ MonoBehaviour:
     P2_Bullet: {fileID: 0}
     GunTexture: {fileID: 0}
     ShootingTexture: {fileID: 0}
+  - name: Mac-10
+    ammo: 5
+    damage: 20
+    FireSpeed: 0.4
+    BulletsOnShoot: 1
+    P1_Bullet: {fileID: 2801291378827411501, guid: af380b0541d5ffa48aed64727ccf5b9d, type: 3}
+    P2_Bullet: {fileID: 0}
+    GunTexture: {fileID: 0}
+    ShootingTexture: {fileID: 0}
+  - name: Sniper
+    ammo: 5
+    damage: 20
+    FireSpeed: 0.4
+    BulletsOnShoot: 1
+    P1_Bullet: {fileID: 2801291378827411501, guid: af380b0541d5ffa48aed64727ccf5b9d, type: 3}
+    P2_Bullet: {fileID: 0}
+    GunTexture: {fileID: 0}
+    ShootingTexture: {fileID: 0}
 --- !u!4 &657252224
 Transform:
   m_ObjectHideFlags: 0

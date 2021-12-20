@@ -51,7 +51,14 @@ public class Player : MonoBehaviour
     public static bool shooting = false;
     private double LastTimeShoot = -5f;
     private bool ReadyToFire = false;
-
+    private int BulletsToShot = 0;
+    private Quaternion TempQuaternion = Quaternion.Euler(0, 0, 0);
+    Quaternion[] shotgun_bullets =  {
+        Quaternion.Euler(0, 0, -6),
+        Quaternion.Euler(0, 0, -2),
+        Quaternion.Euler(0, 0, 6),
+        Quaternion.Euler(0, 0, 2),
+    };
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
@@ -69,12 +76,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GetGun("Pistol"); }
-        if (Input.GetKeyDown(KeyCode.W)) { PlayerGun = GetGun("Shotgun"); }
+        if (Input.GetKeyDown(KeyCode.W)) { PlayerGun = GetGun("Mac-10"); }
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(GlobalVariables.P1fire) && (Input.GetKey(GlobalVariables.P1Right) || Input.GetKey(GlobalVariables.P1Left) || Input.GetKey(GlobalVariables.P1Up) || Input.GetKey(GlobalVariables.P1Down) || Input.GetKey(GlobalVariables.P1hit) || Input.GetKey(GlobalVariables.P1slot)))
             shooting = false;
         if (isOnLadder && (!isCrouching) && (!isGrounded()))
             Ladder();
-        else if (isGrounded() && (Input.GetKey(GlobalVariables.P1fire) || shooting))
+        else if (PlayerGun.name!="None" && isGrounded() && (Input.GetKey(GlobalVariables.P1fire) || shooting))
         {
             if (Input.GetKey(GlobalVariables.P1fire)) { LastTimeShoot = Time.time; }
             shooting = true;
@@ -216,28 +223,36 @@ public class Player : MonoBehaviour
 
     private void ShootPosition()
     {
+        if (BulletsToShot > 0){
+            TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble())*6)-3);
+            Instantiate(PlayerGun.P1_Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation));
+            BulletsToShot -= 1;
+            return;
+        }
         if (Input.GetKeyDown(GlobalVariables.P1hit) || Input.GetKeyDown(GlobalVariables.P1slot)) { shooting = false; }
-        if (Input.GetKey(GlobalVariables.P1fire)) { ReadyToFire = true; }
-        
+        if (Input.GetKey(GlobalVariables.P1fire)) { ReadyToFire = true; }    
         else if (ReadyToFire && PlayerGun.name != "" && PlayerGun.name != "None")
         {   
             ReadyToFire = false;
-            if (PlayerGun.fire())
-            {
-                if (PlayerGun.name is "Shotgun")
-                {
-                    Quaternion idk1 = Quaternion.Euler(0, 0, 5);
-                    Vector3 idk2 = new Vector3(0, 0, 1);
-                    Instantiate(PlayerGun.P1_Bullet, FirePoint.position - idk2, QuaternionDifference(idk1, FirePoint.rotation));
-                    Instantiate(PlayerGun.P1_Bullet, FirePoint.position, FirePoint.rotation);
-                }
-                else
-                {
-                    Instantiate(PlayerGun.P1_Bullet, FirePoint.position, FirePoint.rotation);
-                }
+            if (PlayerGun.fire()){
+                switch (PlayerGun.name){
+                    case "Shotgun":
+                        foreach (var bullet in shotgun_bullets){
+                            Instantiate(PlayerGun.P1_Bullet, FirePoint.position, QuaternionDifference(bullet,FirePoint.rotation));}
+                        break;
+                    case "Mac-10":
+                        BulletsToShot = 5;
+                        break;
+                    default:
+                        Instantiate(PlayerGun.P1_Bullet, FirePoint.position, FirePoint.rotation);
+                        break;
+                }  
             }          
         }
-        
+        if (PlayerGun.ammo <= 0)
+        {
+            PlayerGun = GetGun("None");
+        }
     }
 
     private bool isGrounded()
