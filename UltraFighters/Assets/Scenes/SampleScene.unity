@@ -891,9 +891,9 @@ MonoBehaviour:
     GunTexture: {fileID: 0}
     ShootingTexture: {fileID: 0}
   - name: Mac-10
-    ammo: 5
-    damage: 20
-    FireSpeed: 0.4
+    ammo: 20
+    damage: 15
+    FireSpeed: 1
     BulletsOnShoot: 1
     P1_Bullet: {fileID: 2801291378827411501, guid: af380b0541d5ffa48aed64727ccf5b9d, type: 3}
     P2_Bullet: {fileID: 0}

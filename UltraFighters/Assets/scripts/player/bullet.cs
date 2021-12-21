@@ -6,7 +6,7 @@ using System;
 public class bullet : MonoBehaviour
 {
     public string shooter_name = "";
-    public float speed = 20f;
+    public float speed = 50f;
     public int damage = 20;
     public Rigidbody2D RigidBodyObject;
     public float MaxBulletTime = 20f;
@@ -17,6 +17,10 @@ public class bullet : MonoBehaviour
     {
         RigidBodyObject.velocity = transform.right * speed;
         
+    }
+    public void setparameter()
+    {
+        shooter_name = "";
     }
 
 

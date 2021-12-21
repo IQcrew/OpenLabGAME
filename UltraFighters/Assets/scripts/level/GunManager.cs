@@ -16,9 +16,8 @@ public class Gun
     //Options of gun
     public string name;
     public int ammo;
-    public int damage;
     public double FireSpeed;
-    public int BulletsOnShoot = 1;
+    public int BulletsOnShoot = 0;
     public GameObject P1_Bullet;
     public GameObject P2_Bullet;
     public Sprite GunTexture;
@@ -31,7 +30,6 @@ public class Gun
         if (LastFire + FireSpeed < Time.time && ammo > 0)
         {
             LastFire = Time.time;
-            ammo -= 1;
             return true;
         }
         else { return false; }
@@ -42,7 +40,6 @@ public class Gun
         {
             name = this.name,
             ammo = this.ammo,
-            damage = this.damage,
             FireSpeed = this.FireSpeed,
             BulletsOnShoot = this.BulletsOnShoot,
             P1_Bullet = this.P1_Bullet,

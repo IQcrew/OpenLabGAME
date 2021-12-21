@@ -75,21 +75,22 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GetGun("Pistol"); }
+        if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GetGun("Shotgun"); }
         if (Input.GetKeyDown(KeyCode.W)) { PlayerGun = GetGun("Mac-10"); }
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(GlobalVariables.P1fire) && (Input.GetKey(GlobalVariables.P1Right) || Input.GetKey(GlobalVariables.P1Left) || Input.GetKey(GlobalVariables.P1Up) || Input.GetKey(GlobalVariables.P1Down) || Input.GetKey(GlobalVariables.P1hit) || Input.GetKey(GlobalVariables.P1slot)))
             shooting = false;
         if (isOnLadder && (!isCrouching) && (!isGrounded()))
             Ladder();
-        else if (PlayerGun.name!="None" && isGrounded() && (Input.GetKey(GlobalVariables.P1fire) || shooting))
+        else if (PlayerGun.name != "None" && isGrounded() && (Input.GetKey(GlobalVariables.P1fire) || shooting))
         {
-            if (Input.GetKey(GlobalVariables.P1fire)) { LastTimeShoot = Time.time; }
             shooting = true;
             ShootPosition();
             PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
         }
-        else
+        else{
+            BulletsToShot = 0;
             move();
+        }
         AnimationSetter();
     }
 
@@ -215,9 +216,13 @@ public class Player : MonoBehaviour
     private void ShootPosition()
     {
         if (BulletsToShot > 0){
-            TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble())*6)-3);
-            Instantiate(PlayerGun.P1_Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation));
-            BulletsToShot -= 1;
+            if (Time.time > LastTimeShoot + 0.15f){
+                TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 10) - 5);
+                Instantiate(PlayerGun.P1_Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation));
+                BulletsToShot -= 1;
+                PlayerGun.ammo -= 1;
+                LastTimeShoot = Time.time;
+            }
             return;
         }
         if (Input.GetKeyDown(GlobalVariables.P1hit) || Input.GetKeyDown(GlobalVariables.P1slot)) { shooting = false; }
@@ -228,22 +233,29 @@ public class Player : MonoBehaviour
             if (PlayerGun.fire()){
                 switch (PlayerGun.name){
                     case "Shotgun":
-                        foreach (var bullet in shotgun_bullets){
-                            Instantiate(PlayerGun.P1_Bullet, FirePoint.position, QuaternionDifference(bullet,FirePoint.rotation));}
+                        //foreach (var bullet in shotgun_bullets){
+                        //    Instantiate(PlayerGun.P1_Bullet, FirePoint.position, QuaternionDifference(bullet,FirePoint.rotation));}
+                        for (int i = 0; i < 4; i++){
+                            TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 14) - 7);
+                            Instantiate(PlayerGun.P1_Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation)); 
+                        }
+                        PlayerGun.ammo -= 1;
                         break;
                     case "Mac-10":
                         BulletsToShot = 5;
                         break;
                     default:
+                        bullet bl = PlayerGun.P1_Bullet.GetComponent<bullet>();
+
+                        
                         Instantiate(PlayerGun.P1_Bullet, FirePoint.position, FirePoint.rotation);
+                        PlayerGun.ammo -= 1;
                         break;
                 }  
             }          
         }
-        if (PlayerGun.ammo <= 0)
-        {
-            PlayerGun = GetGun("None");
-        }
+        if (Input.GetKey(GlobalVariables.P1fire)) { LastTimeShoot = Time.time; }
+        if (PlayerGun.ammo <= 0){ PlayerGun = GetGun("None"); }
     }
 
     private bool isGrounded()
