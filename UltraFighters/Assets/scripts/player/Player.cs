@@ -175,32 +175,18 @@ public class Player : MonoBehaviour
     {
         if (PlayerBody.velocity == Vector2.zero)
         {
-            if (Input.GetKey(GlobalVariables.P1Down))
-            {
-                isCrouching = true;
-                HitBoxChanger(1.2f, 1.7f, 0f, -0.323f);
-            }
-            else
-            {
-                isCrouching = false;
-                HitBoxChanger(1.2f, 2.2f, 0f, -0.075f);
-            }
+            if (!isCrouching) { HitBoxChanger(1.2f, 1.7f, 0f, -0.323f, true); }
+            else if (!Input.GetKey(GlobalVariables.P1Down)) { HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false); }
         }
-        else if ((PlayerBody.velocity == new Vector2(WalkForce, 0f)) || (PlayerBody.velocity == new Vector2(-WalkForce, 0f)))
-        {
-            if (((Input.GetKey(GlobalVariables.P1Right) && (!Input.GetKey(GlobalVariables.P1Left))) || (Input.GetKey(GlobalVariables.P1Left) && (!Input.GetKey(GlobalVariables.P1Right)))) && (!isCrouching))
-            {
-                isCrouching = true;
-                StartCoroutine(Roll());
-            }
-            else if (!isCrouching) { PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }
+        else if (new Vector2(Math.Abs(PlayerBody.velocity.x), 0f) == new Vector2(WalkForce, 0f))
+        { 
+            if (!isCrouching) { StartCoroutine(Roll()); } 
         }
-        else if (PlayerBody.velocity == new Vector2(SprintForce, 0f) || PlayerBody.velocity == new Vector2(-SprintForce, 0f))
+        else if (new Vector2(Math.Abs(PlayerBody.velocity.x),0f) == new Vector2(SprintForce, 0f))
         {
             if (!isCrouching)
             {
-                isCrouching = true;
-                HitBoxChanger(2f, 1f, 0f, 0f);
+                HitBoxChanger(2f, 1f, 0f, 0f, true);
                 PlayerBody.gravityScale = ThrowJumpGravity;
                 PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, ThrowJump);
             }
@@ -208,17 +194,16 @@ public class Player : MonoBehaviour
             {
                 if (PlayerBody.velocity.x > 0) { PlayerBody.velocity = new Vector2(WalkForce, 0f); }
                 else if (PlayerBody.velocity.x < 0) { PlayerBody.velocity = new Vector2(-WalkForce, 0f); }
-                StartCoroutine(Roll());
                 PlayerBody.gravityScale = NormalGravity;
+                StartCoroutine(Roll());
             }
         }
     }
     private IEnumerator Roll()
     {
-        HitBoxChanger(1.2f, 1.2f, 0f, -0.575f);
+        HitBoxChanger(1.2f, 1.2f, 0f, -0.575f, true);
         yield return new WaitForSeconds(TimeInRoll);
-        HitBoxChanger(1.2f, 2.2f, 0f, -0.075f);
-        isCrouching = false;
+        HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false);
     }
 
     private void ShootPosition()
@@ -249,10 +234,13 @@ public class Player : MonoBehaviour
                 }  
             }          
         }
+<<<<<<< Updated upstream
         if (PlayerGun.ammo <= 0)
         {
             PlayerGun = GetGun("None");
         }
+=======
+>>>>>>> Stashed changes
     }
 
     private bool isGrounded()
@@ -303,10 +291,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void HitBoxChanger(float sizeX, float sizeY, float offsetX, float offsetY)
+    private void HitBoxChanger(float sizeX, float sizeY, float offsetX, float offsetY, bool isCrouching)
     {
         PlayerHitBox.size = new Vector2(sizeX, sizeY);
         PlayerHitBox.offset = new Vector2(offsetX, offsetY);
+        this.isCrouching = isCrouching;
     }
 
     public void TakeDamage(int damage)
