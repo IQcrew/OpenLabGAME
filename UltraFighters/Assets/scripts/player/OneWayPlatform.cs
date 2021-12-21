@@ -26,7 +26,6 @@ public class OneWayPlatform : MonoBehaviour
         if(collision.gameObject.CompareTag("OneWayPlatform"))
         {
             currentPlatform = collision.gameObject;
-            Player.isInPlatform = false;
         }
             
     }
