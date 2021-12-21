@@ -16,10 +16,10 @@ public class Gun
     //Options of gun
     public string name;
     public int ammo;
+    public int damage;
     public double FireSpeed;
     public int BulletsOnShoot = 0;
-    public GameObject P1_Bullet;
-    public GameObject P2_Bullet;
+    public GameObject Bullet;
     public Sprite GunTexture;
     public Sprite ShootingTexture;
 
@@ -40,10 +40,10 @@ public class Gun
         {
             name = this.name,
             ammo = this.ammo,
+            damage = this.damage,
             FireSpeed = this.FireSpeed,
             BulletsOnShoot = this.BulletsOnShoot,
-            P1_Bullet = this.P1_Bullet,
-            P2_Bullet = this.P2_Bullet,
+            Bullet = this.Bullet,
             GunTexture = this.GunTexture,
             ShootingTexture = this.ShootingTexture
         };

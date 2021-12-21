@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 4183995721774498977}
   - component: {fileID: -6110386507884552361}
   m_Layer: 0
-  m_Name: bullettry2
-  m_TagString: Untagged
+  m_Name: standartB
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,7 +131,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-6110386507884552361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69b9030fafd47842b72a1cad35ff400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shooter_name: Player_1
   speed: 60
   damage: 20
   RigidBodyObject: {fileID: 4183995721774498977}

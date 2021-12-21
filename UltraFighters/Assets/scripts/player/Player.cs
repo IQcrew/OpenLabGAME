@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask PlatformLayerMask;
     [SerializeField] private LayerMask OneWayPlatformLayerMask;
     [Header("Health & Saturation")]
+    [SerializeField] public string PlayerName;
     [SerializeField] public int MaxHealth = 200;
     [SerializeField] public int Saturation = 100;
     [Header("Movement")]
@@ -53,12 +54,6 @@ public class Player : MonoBehaviour
     private bool ReadyToFire = false;
     private int BulletsToShot = 0;
     private Quaternion TempQuaternion = Quaternion.Euler(0, 0, 0);
-    Quaternion[] shotgun_bullets =  {
-        Quaternion.Euler(0, 0, -6),
-        Quaternion.Euler(0, 0, -2),
-        Quaternion.Euler(0, 0, 6),
-        Quaternion.Euler(0, 0, 2),
-    };
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
@@ -218,7 +213,7 @@ public class Player : MonoBehaviour
         if (BulletsToShot > 0){
             if (Time.time > LastTimeShoot + 0.15f){
                 TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 10) - 5);
-                Instantiate(PlayerGun.P1_Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation));
+                Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation));
                 BulletsToShot -= 1;
                 PlayerGun.ammo -= 1;
                 LastTimeShoot = Time.time;
@@ -233,11 +228,9 @@ public class Player : MonoBehaviour
             if (PlayerGun.fire()){
                 switch (PlayerGun.name){
                     case "Shotgun":
-                        //foreach (var bullet in shotgun_bullets){
-                        //    Instantiate(PlayerGun.P1_Bullet, FirePoint.position, QuaternionDifference(bullet,FirePoint.rotation));}
                         for (int i = 0; i < 4; i++){
                             TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 14) - 7);
-                            Instantiate(PlayerGun.P1_Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation)); 
+                            Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation)); 
                         }
                         PlayerGun.ammo -= 1;
                         break;
@@ -245,10 +238,7 @@ public class Player : MonoBehaviour
                         BulletsToShot = 5;
                         break;
                     default:
-                        bullet bl = PlayerGun.P1_Bullet.GetComponent<bullet>();
-
-                        
-                        Instantiate(PlayerGun.P1_Bullet, FirePoint.position, FirePoint.rotation);
+                        Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
                         PlayerGun.ammo -= 1;
                         break;
                 }  
@@ -316,13 +306,23 @@ public class Player : MonoBehaviour
         PlayerAnimator.SetBool("isCrouching", isCrouching);
         PlayerAnimator.SetBool("isOnLadder", isOnLadder);
         PlayerAnimator.SetFloat("PlayerSpeed", Math.Abs(PlayerBody.velocity.x));
+        if (PlayerBody.velocity != Vector2.zero)
+            PlayerAnimator.SetBool("IsLadderMoving", true);
+        else
+            PlayerAnimator.SetBool("IsLadderMoving", false);
     }
     private Gun GetGun(string name)
     {
         GameObject GM = GameObject.Find("LevelManager");
         GunManager GunM = GM.GetComponent<GunManager>();
         foreach (var Gunitem in GunM.AllGuns){
-            if (name == Gunitem.name) { return Gunitem.Clone(); }
+            if (name == Gunitem.name) { 
+                Gun TempGun = Gunitem.Clone();
+                bullet TempBullet = TempGun.Bullet.GetComponent<bullet>();
+                TempBullet.shooter_name = PlayerName;
+                TempBullet.damage = TempGun.damage;
+                return TempGun;
+            }
         }
         return GunM.AllGuns[0];
     }
