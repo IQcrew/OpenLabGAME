@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
     private bool ReadyToFire = false;
     private int BulletsToShot = 0;
     private Quaternion TempQuaternion = Quaternion.Euler(0, 0, 0);
+    private Laser MyLaser;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
@@ -62,6 +63,8 @@ public class Player : MonoBehaviour
     
     void Start()
     {
+        GameObject LaserClass = GameObject.Find("LaserPoint");
+        MyLaser = LaserClass.GetComponent<Laser>();
         Health = MaxHealth;
         PlayerGun = GetGun("Pistol");
         PlayerLastRotation = PlayerRotation;
@@ -70,10 +73,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GetGun("Shotgun"); }
-        if (Input.GetKeyDown(KeyCode.W)) { PlayerGun = GetGun("Mac-10"); }
-        if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(GlobalVariables.P1fire) && (Input.GetKey(GlobalVariables.P1Right) || Input.GetKey(GlobalVariables.P1Left) || Input.GetKey(GlobalVariables.P1Up) || Input.GetKey(GlobalVariables.P1Down) || Input.GetKey(GlobalVariables.P1hit) || Input.GetKey(GlobalVariables.P1slot)))
-            shooting = false;
+        if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GetGun("AssalutRifle"); }
+        if (Input.GetKeyDown(KeyCode.W)) { PlayerGun = GetGun("SniperRifle"); }
+        if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(GlobalVariables.P1fire) && (Input.GetKey(GlobalVariables.P1Right) || Input.GetKey(GlobalVariables.P1Left) || Input.GetKey(GlobalVariables.P1Up) || Input.GetKey(GlobalVariables.P1Down) || Input.GetKey(GlobalVariables.P1hit) || Input.GetKey(GlobalVariables.P1slot))) { 
+            shooting = false; MyLaser.ShootLaser(false); }
         if (isOnLadder && (!isCrouching) && (!isGrounded()))
             Ladder();
         else if (PlayerGun.name != "None" && isGrounded() && (Input.GetKey(GlobalVariables.P1fire) || shooting))
@@ -211,16 +214,25 @@ public class Player : MonoBehaviour
     private void ShootPosition()
     {
         if (BulletsToShot > 0){
-            if (Time.time > LastTimeShoot + 0.15f){
-                TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 10) - 5);
-                Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation));
-                BulletsToShot -= 1;
-                PlayerGun.ammo -= 1;
-                LastTimeShoot = Time.time;
+            switch (PlayerGun.name)
+            {
+                case "Mac-10":
+                    if (Time.time > LastTimeShoot + 0.15f){
+                        TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 10) - 5);
+                        Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation));
+                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time;}
+                    break;
+                case "AssalutRifle":
+                    if (Time.time > LastTimeShoot + 0.1f){
+                        Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
+                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time;}
+                    break;
             }
             return;
         }
-        if (Input.GetKeyDown(GlobalVariables.P1hit) || Input.GetKeyDown(GlobalVariables.P1slot)) { shooting = false; }
+        if(PlayerGun.name is "SniperRifle") { MyLaser.ShootLaser(true); }
+        else { MyLaser.ShootLaser(false); }
+        if (Input.GetKeyDown(GlobalVariables.P1hit) || Input.GetKeyDown(GlobalVariables.P1slot)) { shooting = false; MyLaser.ShootLaser(false); }
         if (Input.GetKey(GlobalVariables.P1fire)) { ReadyToFire = true; }    
         else if (ReadyToFire && PlayerGun.name != "" && PlayerGun.name != "None")
         {   
@@ -235,7 +247,8 @@ public class Player : MonoBehaviour
                         PlayerGun.ammo -= 1;
                         break;
                     case "Mac-10":
-                        BulletsToShot = 5;
+                    case "AssalutRifle":
+                        BulletsToShot = PlayerGun.BulletsOnShoot;
                         break;
                     default:
                         Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
@@ -332,4 +345,5 @@ public class Player : MonoBehaviour
         Quaternion identityTarget = Quaternion.identity * Quaternion.Inverse(target);
         return identityOrigin * Quaternion.Inverse(identityTarget);
     }
+    
 }
