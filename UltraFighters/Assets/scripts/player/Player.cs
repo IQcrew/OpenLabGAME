@@ -345,5 +345,12 @@ public class Player : MonoBehaviour
         Quaternion identityTarget = Quaternion.identity * Quaternion.Inverse(target);
         return identityOrigin * Quaternion.Inverse(identityTarget);
     }
-    
+    public void PickUpItem(string Name)
+    {
+        if(Name is "Heal") { Health = MaxHealth; }
+        else if (PlayerGun.name is "None") { GetGun(Name); }
+        else{
+            if (Input.GetKey(GlobalVariables.P1hit) && Input.GetKey(GlobalVariables.P2Down)){ GetGun(Name); }
+        }
+    }
 }
