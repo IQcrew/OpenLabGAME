@@ -905,7 +905,7 @@ MonoBehaviour:
     FireSpeed: 0.3
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
-    GunTexture: {fileID: 0}
+    GunTexture: {fileID: 21300000, guid: c443bf8cc52c6f24ca05b10b71f0d057, type: 3}
     ShootingTexture: {fileID: 0}
   - name: Eagle
     ammo: 6
@@ -913,7 +913,7 @@ MonoBehaviour:
     FireSpeed: 0.6
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
-    GunTexture: {fileID: 0}
+    GunTexture: {fileID: 21300000, guid: 2004b0d14fe15cf48b2bcb46a27ca347, type: 3}
     ShootingTexture: {fileID: 0}
   - name: Shotgun
     ammo: 5
@@ -921,7 +921,7 @@ MonoBehaviour:
     FireSpeed: 0.4
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
-    GunTexture: {fileID: 0}
+    GunTexture: {fileID: 21300000, guid: 3626a6e73b44dea43b8fed2eb4cb0125, type: 3}
     ShootingTexture: {fileID: 0}
   - name: Mac-10
     ammo: 20
@@ -929,15 +929,15 @@ MonoBehaviour:
     FireSpeed: 1
     BulletsOnShoot: 5
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
-    GunTexture: {fileID: 0}
+    GunTexture: {fileID: 21300000, guid: 8a7fd03e7d00e8644a03887bf60a321e, type: 3}
     ShootingTexture: {fileID: 0}
   - name: SniperRifle
     ammo: 5
-    damage: 100
+    damage: 90
     FireSpeed: 1
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
-    GunTexture: {fileID: 0}
+    GunTexture: {fileID: 21300000, guid: df92c48779dc6b14c9ea30bf8e843c5b, type: 3}
     ShootingTexture: {fileID: 0}
   - name: AssalutRifle
     ammo: 15
@@ -945,7 +945,7 @@ MonoBehaviour:
     FireSpeed: 0.4
     BulletsOnShoot: 3
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
-    GunTexture: {fileID: 0}
+    GunTexture: {fileID: 21300000, guid: 50d83569f80fc5e4295a17d8aba05dfe, type: 3}
     ShootingTexture: {fileID: 0}
 --- !u!4 &657252224
 Transform:
@@ -1082,7 +1082,7 @@ GameObject:
   - component: {fileID: 730972200}
   - component: {fileID: 730972199}
   - component: {fileID: 730972202}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GunSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1106,8 +1106,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.4, y: 0.4}
-    newSize: {x: 0.4, y: 0.4}
+    oldSize: {x: 0.5, y: 0.4}
+    newSize: {x: 0.5, y: 0.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1155,15 +1155,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c443bf8cc52c6f24ca05b10b71f0d057, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.4, y: 0.4}
+  m_Size: {x: 0.5, y: 0.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &730972201
@@ -1192,6 +1192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4e66fb4ca3030f4f899e1dcde397150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ThisGameObject: {fileID: 730972198}
+  MedKit: {fileID: 21300000, guid: 55c2f7e543fe53247b6b7cd8290e8b15, type: 3}
 --- !u!1 &784719263 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2159112510937071499, guid: 72ab42eef3f63ce42aeedc06f2e30466, type: 3}
@@ -2441,11 +2443,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2159112510937071543, guid: 72ab42eef3f63ce42aeedc06f2e30466, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.41
+      value: -7.413
       objectReference: {fileID: 0}
     - target: {fileID: 2159112510937071543, guid: 72ab42eef3f63ce42aeedc06f2e30466, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.77
+      value: 3.606
       objectReference: {fileID: 0}
     - target: {fileID: 2159112510937071543, guid: 72ab42eef3f63ce42aeedc06f2e30466, type: 3}
       propertyPath: m_LocalPosition.z

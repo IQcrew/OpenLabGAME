@@ -48,5 +48,6 @@ public class Gun
             ShootingTexture = this.ShootingTexture
         };
     }
+    public Sprite ReturnTexture(){ return GunTexture; }
 
 }

@@ -11,13 +11,15 @@ public class OneWayPlatform : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(GlobalVariables.P1Down) && currentPlatform != null)
-        {
-            if((Time.time - LastKeyDown) <= DoubleTapTime)
+        if (!Player.shooting) {
+            if (Input.GetKeyDown(GlobalVariables.P1Down) && currentPlatform != null)
             {
-                StartCoroutine(DisableCollision());
+                if ((Time.time - LastKeyDown) <= DoubleTapTime)
+                {
+                    StartCoroutine(DisableCollision());
+                }
+                LastKeyDown = Time.time;
             }
-            LastKeyDown = Time.time;
         }
     }
 
@@ -41,7 +43,7 @@ public class OneWayPlatform : MonoBehaviour
     {
         BoxCollider2D platformHitBox = currentPlatform.GetComponent<BoxCollider2D>();
         Physics2D.IgnoreCollision(PlayerHitBox, platformHitBox);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         Physics2D.IgnoreCollision(PlayerHitBox, platformHitBox,false);
     }
 }
