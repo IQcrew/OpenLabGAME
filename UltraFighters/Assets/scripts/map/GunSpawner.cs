@@ -49,6 +49,10 @@ public class GunSpawner : MonoBehaviour
     private void OneLoop()
     {
     }
+    private void Setup()
+    {
+
+    }
 
 
 }
