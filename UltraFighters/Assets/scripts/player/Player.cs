@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using System.Collections;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -31,6 +30,7 @@ public class Player : MonoBehaviour
     public static string PlayerRotation = "Right";
     private string PlayerLastRotation;
     private float Health;
+    private bool isGrounded;
 
     //crouching,ladder,onewayplatform variables
     private bool isCrouching = false;
@@ -73,13 +73,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        isGrounded = GroundCheck();
         if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GetGun("AssalutRifle"); }
         if (Input.GetKeyDown(KeyCode.W)) { PlayerGun = GetGun("SniperRifle"); }
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(GlobalVariables.P1fire) && (Input.GetKey(GlobalVariables.P1Right) || Input.GetKey(GlobalVariables.P1Left) || Input.GetKey(GlobalVariables.P1Up) || Input.GetKey(GlobalVariables.P1Down) || Input.GetKey(GlobalVariables.P1hit) || Input.GetKey(GlobalVariables.P1slot))) { 
             shooting = false; MyLaser.ShootLaser(false); }
-        if (isOnLadder && (!isCrouching) && (!isGrounded()))
+        if (isOnLadder && (!isCrouching) && (!isGrounded))
             Ladder();
-        else if (PlayerGun.name != "None" && isGrounded() && (Input.GetKey(GlobalVariables.P1fire) || shooting))
+        else if (PlayerGun.name != "None" && isGrounded && (Input.GetKey(GlobalVariables.P1fire) || shooting))
         {
             shooting = true;
             ShootPosition();
@@ -94,7 +95,7 @@ public class Player : MonoBehaviour
 
     private void move()
     {
-        if ((Input.GetKey(GlobalVariables.P1Down) && isGrounded()) || isCrouching)
+        if ((Input.GetKey(GlobalVariables.P1Down) && isGrounded) || isCrouching)
             crouch();
         else
         {
@@ -150,7 +151,7 @@ public class Player : MonoBehaviour
     }
     private void jump()
     {
-        if (Input.GetKey(GlobalVariables.P1Up) && isGrounded() && (!Input.GetKey(GlobalVariables.P1Down)) && (!isCrouching))
+        if (Input.GetKey(GlobalVariables.P1Up) && isGrounded && (!Input.GetKey(GlobalVariables.P1Down)) && (!isCrouching))
             PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, JumpForce);
     }
 
@@ -189,7 +190,7 @@ public class Player : MonoBehaviour
                 PlayerBody.gravityScale = ThrowJumpGravity;
                 PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, ThrowJump);
             }
-            else if (isGrounded())
+            else if (isGrounded)
             {
                 if (PlayerBody.velocity.x > 0) { PlayerBody.velocity = new Vector2(WalkForce, 0f); }
                 else if (PlayerBody.velocity.x < 0) { PlayerBody.velocity = new Vector2(-WalkForce, 0f); }
@@ -261,7 +262,7 @@ public class Player : MonoBehaviour
         if (PlayerGun.ammo <= 0){ PlayerGun = GetGun("None"); }
     }
 
-    private bool isGrounded()
+    private bool GroundCheck()
     {
         RaycastHit2D rayCastHit1 = Physics2D.Raycast(PlayerHitBox.bounds.center, Vector2.down, PlayerHitBox.bounds.extents.y - 0.2f, OneWayPlatformLayerMask);
         RaycastHit2D rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.down, PlayerHitBox.bounds.extents.y - 0.2f, OneWayPlatformLayerMask);
@@ -315,14 +316,17 @@ public class Player : MonoBehaviour
     }
     private void AnimationSetter()
     {
-        PlayerAnimator.SetBool("isGrounded", isGrounded());
+        if((isGrounded && Input.GetKey(GlobalVariables.P1Up)) || !isGrounded)
+            PlayerAnimator.SetBool("isGrounded", false);
+        else
+            PlayerAnimator.SetBool("isGrounded", true);
         PlayerAnimator.SetBool("isCrouching", isCrouching);
         PlayerAnimator.SetBool("isOnLadder", isOnLadder);
         PlayerAnimator.SetFloat("PlayerSpeed", Math.Abs(PlayerBody.velocity.x));
         if (PlayerBody.velocity != Vector2.zero)
-            PlayerAnimator.SetBool("IsLadderMoving", true);
+            PlayerAnimator.SetBool("isLadderMoving", true);
         else
-            PlayerAnimator.SetBool("IsLadderMoving", false);
+            PlayerAnimator.SetBool("isLadderMoving", false);    
     }
     private Gun GetGun(string name)
     {
