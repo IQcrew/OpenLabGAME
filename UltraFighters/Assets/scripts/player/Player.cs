@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
 
     //crouching,ladder,onewayplatform variables
     private bool isCrouching = false;
+    private bool inRoll = false;
     private bool isOnLadder;
     public static bool isInPlatform = false;
 
