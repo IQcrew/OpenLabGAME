@@ -173,16 +173,19 @@ public class Player : MonoBehaviour
     }
     private void crouch()
     {
-        if (PlayerBody.velocity == Vector2.zero)
+        if (Math.Abs(PlayerBody.velocity.x) <= WalkForce - 1f)
         {
+            if (inRoll) 
+            { 
+                StopCoroutine(Roll());
+                inRoll = false;
+                HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false); 
+            }
             if (!isCrouching) { HitBoxChanger(1.2f, 1.7f, 0f, -0.323f, true); }
             else if (!Input.GetKey(GlobalVariables.P1Down)) { HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false); }
         }
-        else if (new Vector2(Math.Abs(PlayerBody.velocity.x), 0f) == new Vector2(WalkForce, 0f))
-        {
-            if (!isCrouching) { StartCoroutine(Roll()); }
-        }
-        else if (new Vector2(Math.Abs(PlayerBody.velocity.x), 0f) == new Vector2(SprintForce, 0f))
+        else if ((Math.Abs(PlayerBody.velocity.x) <= WalkForce) && (!inRoll)) { StartCoroutine(Roll()); }
+        else if (Math.Abs(PlayerBody.velocity.x) <= SprintForce && (Math.Abs(PlayerBody.velocity.x) >= WalkForce))
         {
             if (!isCrouching)
             {
@@ -192,8 +195,8 @@ public class Player : MonoBehaviour
             }
             else if (isGrounded)
             {
-                if (PlayerBody.velocity.x > 0) { PlayerBody.velocity = new Vector2(WalkForce, 0f); }
-                else if (PlayerBody.velocity.x < 0) { PlayerBody.velocity = new Vector2(-WalkForce, 0f); }
+                if (PlayerRotation == "Right") { PlayerBody.velocity = new Vector2(WalkForce, 0f); }
+                else if (PlayerRotation == "Left") { PlayerBody.velocity = new Vector2(-WalkForce, 0f); }
                 PlayerBody.gravityScale = NormalGravity;
                 StartCoroutine(Roll());
             }
@@ -201,9 +204,11 @@ public class Player : MonoBehaviour
     }
     private IEnumerator Roll()
     {
+        inRoll = true;
         HitBoxChanger(1.2f, 1.2f, 0f, -0.575f, true);
         yield return new WaitForSeconds(TimeInRoll);
         HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false);
+        inRoll = false;
     }
     private void HitBoxChanger(float sizeX, float sizeY, float offsetX, float offsetY, bool isCrouching)
     {
