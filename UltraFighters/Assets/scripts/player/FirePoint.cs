@@ -5,15 +5,17 @@ using UnityEngine;
 public class FirePoint : MonoBehaviour
 {   
 
-    public Transform RotationCenter;
-    [SerializeField]
-    private float RotationSpeed, RotationRadius;
+    [SerializeField] private Transform RotationCenter;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private float RotationSpeed, RotationRadius;
 
     private float posX, posY, angle;
 
     // Update is called once per frame
     void Update()
     {
+        if (Player.shooting) { spriteRenderer.enabled = true; }
+        else { spriteRenderer.enabled = false; }
         var rotationVector = transform.rotation.eulerAngles;
         if (Player.PlayerRotation == "Right")
         {

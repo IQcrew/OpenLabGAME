@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody2D PlayerBody;
     [SerializeField] private BoxCollider2D PlayerHitBox;
     [SerializeField] private Animator PlayerAnimator;
-    
+    [SerializeField] private SpriteRenderer PlayerRenderer;
     void Start()
     {
         GameObject LaserClass = GameObject.Find("LaserPoint");
@@ -78,12 +78,14 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GetGun("AssalutRifle"); }
         if (Input.GetKeyDown(KeyCode.W)) { PlayerGun = GetGun("SniperRifle"); }
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(GlobalVariables.P1fire) && (Input.GetKey(GlobalVariables.P1Right) || Input.GetKey(GlobalVariables.P1Left) || Input.GetKey(GlobalVariables.P1Up) || Input.GetKey(GlobalVariables.P1Down) || Input.GetKey(GlobalVariables.P1hit) || Input.GetKey(GlobalVariables.P1slot))) { 
-            shooting = false; MyLaser.ShootLaser(false); }
+            shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true;
+        }
         if (isOnLadder && (!isCrouching) && (!isGrounded))
             Ladder();
         else if (PlayerGun.name != "None" && isGrounded && (Input.GetKey(GlobalVariables.P1fire) || shooting))
         {
             shooting = true;
+            PlayerRenderer.enabled = false;
             ShootPosition();
             PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
         }
