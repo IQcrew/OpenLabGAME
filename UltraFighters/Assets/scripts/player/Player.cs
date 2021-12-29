@@ -74,6 +74,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(PlayerGun.name);
         isGrounded = GroundCheck();
         if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GetGun("AssalutRifle"); }
         if (Input.GetKeyDown(KeyCode.W)) { PlayerGun = GetGun("SniperRifle"); }
@@ -357,12 +358,12 @@ public class Player : MonoBehaviour
         Quaternion identityTarget = Quaternion.identity * Quaternion.Inverse(target);
         return identityOrigin * Quaternion.Inverse(identityTarget);
     }
-    public void PickUpItem(string Name)
+    public bool PickUpGun(string GunName)
     {
-        if(Name is "Heal") { Health = MaxHealth; }
-        else if (PlayerGun.name is "None") { GetGun(Name); }
-        else{
-            if (Input.GetKey(GlobalVariables.P1hit) && Input.GetKey(GlobalVariables.P2Down)){ GetGun(Name); }
-        }
+        if (GunName == "MedicKit") { Health = MaxHealth; }
+        if(PlayerGun.name == "None") { PlayerGun = GetGun(GunName); return true; }
+        else if (Input.GetKey(GlobalVariables.P1Down) && Input.GetKeyDown(GlobalVariables.P1hit)) { PlayerGun = GetGun(GunName); return true; }
+        return false;
     }
+    
 }
