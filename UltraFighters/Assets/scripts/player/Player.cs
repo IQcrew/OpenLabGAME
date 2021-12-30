@@ -360,9 +360,9 @@ public class Player : MonoBehaviour
     }
     public bool PickUpGun(string GunName)
     {
-        if (GunName == "MedicKit") { Health = MaxHealth; }
+        if (GunName == "MedicKit") { Health = MaxHealth; return true; }
         if(PlayerGun.name == "None") { PlayerGun = GetGun(GunName); return true; }
-        else if (Input.GetKey(GlobalVariables.P1Down) && Input.GetKeyDown(GlobalVariables.P1hit)) { PlayerGun = GetGun(GunName); return true; }
+        else if (Input.GetKey(GlobalVariables.P1Down) && Input.GetKey(GlobalVariables.P1hit)) { PlayerGun = GetGun(GunName); return true; }
         return false;
     }
     

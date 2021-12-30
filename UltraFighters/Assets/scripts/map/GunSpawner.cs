@@ -35,12 +35,10 @@ public class GunSpawner : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (StartTime + Timer>TickTime)
+        if (StartTime + Timer<Time.time)
         {
-            Debug.Log(collision.tag);
-            if (ActualItem.name != "" && collision.tag is "Player")
+            if (ActualItem.name != "" && collision.tag == "Player")
             {
-                Debug.Log("jeej");
                 Player enemy = collision.GetComponent<Player>();
                 if (enemy.PickUpGun(ActualItem.name)) { Setup(); }
             }
@@ -52,15 +50,15 @@ public class GunSpawner : MonoBehaviour
         Timer = Random.Range(5, 30);
         StartTime = Time.time;
         TempRandom = Random.Range(0,1100);
-            if (TempRandom < 200) { GetGun("MedicKit"); }
-            else if (TempRandom < 400) { ActualItem = GetGun("Pistol"); }
-            else if (TempRandom < 550) { ActualItem = GetGun("Eagle"); }
-            else if (TempRandom < 700) { ActualItem = GetGun("Mac-10"); }
-            else if (TempRandom < 800) { ActualItem = GetGun("MedicKit"); }
-            else if (TempRandom < 900) { ActualItem = GetGun("SniperRifle"); }
-            else if (TempRandom < 950) { ActualItem = GetGun("AssalutRifle"); }
-            else if (TempRandom < 1100) { ActualItem = GetGun("Shotgun"); }
-        
+        if (TempRandom < 200) { GetGun("MedicKit"); }
+        else if (TempRandom < 400) { ActualItem = GetGun("Pistol"); }
+        else if (TempRandom < 550) { ActualItem = GetGun("Eagle"); }
+        else if (TempRandom < 700) { ActualItem = GetGun("Mac-10"); }
+        else if (TempRandom < 800) { ActualItem = GetGun("AssalutRifle"); }
+        else if (TempRandom < 900) { ActualItem = GetGun("SniperRifle"); }
+        else if (TempRandom < 950) { ActualItem = GetGun("AssalutRifle"); }
+        else if (TempRandom < 1100) { ActualItem = GetGun("Shotgun"); }
+        else { ActualItem = GetGun("MedicKit"); }
     }
 
     private Gun GetGun(string name)
