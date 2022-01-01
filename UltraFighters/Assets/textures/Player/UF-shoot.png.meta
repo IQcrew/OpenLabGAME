@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: 32e9fa94b050af146b22807f81c6a176
+guid: 8aaae86d58938784daa293dbd8d6d698
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -965382487560948686
-    second: UF-breathing_0
+      213: 3785663470463989132
+    second: UF-shoot_0
   - first:
-      213: 2661246233722594116
-    second: UF-breathing_1
+      213: 7157651828581922068
+    second: UF-shoot_1
+  - first:
+      213: 6048353983754201218
+    second: UF-shoot_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -75,7 +78,7 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
-    compressionQuality: 0
+    compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
@@ -87,7 +90,7 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
-    compressionQuality: 0
+    compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
@@ -97,43 +100,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UF-breathing_0
+      name: UF-shoot_0
       rect:
         serializedVersion: 2
-        x: 9
+        x: 13
         y: 0
-        width: 24
-        height: 38
+        width: 11
+        height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 234fb8c0eb54a92f0800000000000000
-      internalID: -965382487560948686
+      spriteID: c85bd2c7ed0698430800000000000000
+      internalID: 3785663470463989132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UF-breathing_1
+      name: UF-shoot_1
       rect:
         serializedVersion: 2
-        x: 49
-        y: 0
-        width: 24
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 40
+        y: 26
+        width: 12
+        height: 13
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 443a1e48955aee420800000000000000
-      internalID: 2661246233722594116
+      spriteID: 415fc8c4a66155360800000000000000
+      internalID: 7157651828581922068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF-shoot_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 16
+        width: 18
+        height: 8
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 288ec7517e110f350800000000000000
+      internalID: 6048353983754201218
       vertices: []
       indices: 
       edges: []

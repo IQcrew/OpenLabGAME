@@ -6,7 +6,7 @@ public class ShootingTextureManager : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private bool upTexture;
+    [SerializeField] private Transform hand;
     void Start()
     {
         spriteRenderer.enabled = false;
@@ -18,7 +18,13 @@ public class ShootingTextureManager : MonoBehaviour
         if (Player.shooting)
         {
             spriteRenderer.enabled = true;
-            if (upTexture)
+            if (spriteRenderer.sprite.name == "UF-shoot_1")
+            {
+                transform.rotation = hand.transform.rotation; 
+                if (Player.PlayerRotation == "Right") { spriteRenderer.flipY = false; }
+                else if (Player.PlayerRotation == "Left") { spriteRenderer.flipY = true; }
+            }
+            else if (spriteRenderer.sprite.name == "UF-shoot_2")
             {
                 if (Player.PlayerRotation == "Right") { spriteRenderer.flipY = false; }
                 else if (Player.PlayerRotation == "Left") { spriteRenderer.flipY = true; }

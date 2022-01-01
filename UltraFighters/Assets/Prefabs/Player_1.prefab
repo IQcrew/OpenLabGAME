@@ -95,6 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8e94395e296964ca3fd578b4217d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  firePoint: {fileID: 0}
+  upTexture: 0
 --- !u!1 &801980984305395069
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +115,7 @@ GameObject:
   - component: {fileID: 5396672426453200219}
   m_Layer: 0
   m_Name: Player_1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -458,3 +461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8e94395e296964ca3fd578b4217d14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  firePoint: {fileID: 0}
+  upTexture: 0
