@@ -17,14 +17,15 @@ public class ShootingTextureManager : MonoBehaviour
     { 
         if (Player.shooting)
         {
-            spriteRenderer.enabled = true;
+            if(spriteRenderer.sprite.name == "UF-shoot_1" || spriteRenderer.sprite.name == "UF-shoot_3" || spriteRenderer.sprite.name == "UF-shoot_0")
+                spriteRenderer.enabled = true;
             if (spriteRenderer.sprite.name == "UF-shoot_1")
             {
                 transform.rotation = hand.transform.rotation; 
                 if (Player.PlayerRotation == "Right") { spriteRenderer.flipY = false; }
                 else if (Player.PlayerRotation == "Left") { spriteRenderer.flipY = true; }
             }
-            else if (spriteRenderer.sprite.name == "UF-shoot_2")
+            else if (spriteRenderer.sprite.name == "UF-shoot_3")
             {
                 if (Player.PlayerRotation == "Right") { spriteRenderer.flipY = false; }
                 else if (Player.PlayerRotation == "Left") { spriteRenderer.flipY = true; }
