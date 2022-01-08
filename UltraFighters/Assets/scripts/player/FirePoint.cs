@@ -5,7 +5,7 @@ using UnityEngine;
 public class FirePoint : MonoBehaviour
 {   
 
-    [SerializeField] private Transform RotationCenter;
+    public static Transform RotationCenter;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float RotationSpeed, RotationRadius;
 

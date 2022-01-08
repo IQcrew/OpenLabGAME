@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
 
     [Header("Shooting")]
     [SerializeField] public Transform FirePoint;
-    Gun PlayerGun;
+    public static Gun PlayerGun;
     public static bool shooting = false;
     private double LastTimeShoot = -5f;
     private bool ReadyToFire = false;

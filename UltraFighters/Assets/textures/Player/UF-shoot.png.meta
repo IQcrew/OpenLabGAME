@@ -4,22 +4,25 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 3785663470463989132
-    second: UF-shoot_0
+    second: PlayerShootBody
   - first:
       213: 7157651828581922068
-    second: UF-shoot_1
+    second: PlayerShootHead
   - first:
       213: 6048353983754201218
-    second: UF-shoot_2
+    second: PlayerShootHand3
   - first:
       213: 8208245753667161119
-    second: UF-shoot_3
+    second: PlayerShootHand1
   - first:
       213: 9219531731433995601
-    second: UF-shoot_4
+    second: PlayerShootHand2.1
   - first:
       213: -5198715494201027924
-    second: UF-shoot_5
+    second: PlayerShootHand2.2
+  - first:
+      213: -2891875160962825184
+    second: UF-shoot_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -121,7 +124,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UF-shoot_0
+      name: PlayerShootBody
       rect:
         serializedVersion: 2
         x: 3
@@ -142,7 +145,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UF-shoot_1
+      name: PlayerShootHead
       rect:
         serializedVersion: 2
         x: 21
@@ -163,7 +166,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UF-shoot_2
+      name: PlayerShootHand3
       rect:
         serializedVersion: 2
         x: 49
@@ -184,7 +187,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UF-shoot_3
+      name: PlayerShootHand1
       rect:
         serializedVersion: 2
         x: 19
@@ -205,7 +208,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UF-shoot_4
+      name: PlayerShootHand2.1
       rect:
         serializedVersion: 2
         x: 41
@@ -226,7 +229,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UF-shoot_5
+      name: PlayerShootHand2.2
       rect:
         serializedVersion: 2
         x: 56
@@ -242,6 +245,27 @@ TextureImporter:
       bones: []
       spriteID: ca214df4dc37ad7b0800000000000000
       internalID: -5198715494201027924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF-shoot_6
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 4
+        width: 25
+        height: 9
+      alignment: 9
+      pivot: {x: 0.20145889, y: 0.5249407}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0240908ecdefdd7d0800000000000000
+      internalID: -2891875160962825184
       vertices: []
       indices: 
       edges: []
