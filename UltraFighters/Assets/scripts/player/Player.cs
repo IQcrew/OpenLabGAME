@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float NormalGravity = 2.5f;
     [SerializeField] private float FallGravity = 3.5f;
 
-    public static string PlayerRotation = "Right";
+    public string PlayerRotation = "Right";
     private string PlayerLastRotation;
     private float Health;
     private bool isGrounded;
@@ -57,8 +57,8 @@ public class Player : MonoBehaviour
 
     [Header("Shooting")]
     [SerializeField] public Transform FirePoint;
-    public static Gun PlayerGun;
-    public static bool shooting = false;
+    public Gun PlayerGun;
+    [SerializeField] public bool shooting = false;
     private double LastTimeShoot = -5f;
     private bool ReadyToFire = false;
     private int BulletsToShot = 0;

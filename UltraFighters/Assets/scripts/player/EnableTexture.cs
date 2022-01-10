@@ -5,11 +5,12 @@ using UnityEngine;
 public class EnableTexture : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
-
-    void Start() { spriteRenderer.enabled = false; }
+    [SerializeField] public GameObject currectPlayer;
+    Player playerScript;
+    void Start() { spriteRenderer.enabled = false; playerScript = currectPlayer.GetComponent<Player>(); }
     void Update()
     {
-        if (Player.shooting == true) { spriteRenderer.enabled = true; }
+        if (playerScript.shooting == true) { spriteRenderer.enabled = true; }
         else { spriteRenderer.enabled = false; }
     }
 }

@@ -16,7 +16,7 @@ public class OneWayPlatform : MonoBehaviour
     }
     void Update()
     {
-        if (!Player.shooting) {
+        if (!playerScript.shooting) {
             if (Input.GetKeyDown(playerScript.Down) && currentPlatform != null)
             {
                 if ((Time.time - LastKeyDown) <= DoubleTapTime)

@@ -52,6 +52,7 @@ public class bullet : MonoBehaviour
             {
                 objectHP enemyP = other.collider.GetComponent<objectHP>();
                 enemyP.TakeDamage(damage);
+                Debug.Log("L");
             }
             else
             {

@@ -6,16 +6,18 @@ public class TextureRotation : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform firePoint;
+    [SerializeField] public GameObject currectPlayer;
+    Player playerScript;
 
-    void Start() { spriteRenderer.enabled = false; }
+    void Start() { spriteRenderer.enabled = false; playerScript = currectPlayer.GetComponent<Player>(); }
     void Update()
     {
-        if (Player.shooting)
+        if (playerScript.shooting)
         {
             spriteRenderer.enabled = true;
-            spriteRenderer.sprite = Player.PlayerGun.GunTexture;
-            if (Player.PlayerRotation == "Right") { spriteRenderer.flipY = false; }
-            else if (Player.PlayerRotation == "Left") { spriteRenderer.flipY = true; }
+            spriteRenderer.sprite = playerScript.PlayerGun.GunTexture;
+            if (playerScript.PlayerRotation == "Right") { spriteRenderer.flipY = false; }
+            else if (playerScript.PlayerRotation == "Left") { spriteRenderer.flipY = true; }
             float angle = Mathf.Atan2(firePoint.position.y - transform.position.y, firePoint.position.x - transform.position.x) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Mathf.Infinity);

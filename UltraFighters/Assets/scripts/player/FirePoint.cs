@@ -13,16 +13,16 @@ public class FirePoint : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
-        Player playerScript = currectPlayer.GetComponent<Player>();
+        playerScript = currectPlayer.GetComponent<Player>();
     }
     void Update()
     {
-        if (Player.shooting) { spriteRenderer.enabled = true; }
+        if (playerScript.shooting) { spriteRenderer.enabled = true; }
         else { spriteRenderer.enabled = false; }
         var rotationVector = transform.rotation.eulerAngles;
-        if (Player.PlayerRotation == "Right")
+        if (playerScript.PlayerRotation == "Right")
         {
-            if (Player.shooting)
+            if (playerScript.shooting)
             {
                 if (Input.GetKey(playerScript.Up) && (!Input.GetKey(playerScript.Down)))
                 {
@@ -66,9 +66,9 @@ public class FirePoint : MonoBehaviour
             }
             
         }
-        else if (Player.PlayerRotation == "Left")
+        else if (playerScript.PlayerRotation == "Left")
         {
-            if (Player.shooting)
+            if (playerScript.shooting)
             {
                 if (Input.GetKey(playerScript.Up) && (!Input.GetKey(playerScript.Down)))
                 {
