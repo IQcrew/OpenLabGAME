@@ -5,6 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     System.Random rrr = new System.Random();
+    [Header("KeyBinds")]
+    [SerializeField] public KeyCode Right = KeyCode.RightArrow;
+    [SerializeField] public KeyCode Left = KeyCode.LeftArrow;
+    [SerializeField] public KeyCode Up = KeyCode.UpArrow;
+    [SerializeField] public KeyCode Down = KeyCode.DownArrow;
+    [SerializeField] public KeyCode hit = KeyCode.N;
+    [SerializeField] public KeyCode fire = KeyCode.M;
+    [SerializeField] public KeyCode slot = KeyCode.K;
     [Header("LayerMasks")]
     [SerializeField] private LayerMask PlatformLayerMask;
     [SerializeField] private LayerMask OneWayPlatformLayerMask;
@@ -78,12 +86,12 @@ public class Player : MonoBehaviour
         isGrounded = GroundCheck();
         if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GetGun("AssalutRifle"); }
         if (Input.GetKeyDown(KeyCode.W)) { PlayerGun = GetGun("SniperRifle"); }
-        if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(GlobalVariables.P1fire) && (Input.GetKey(GlobalVariables.P1Right) || Input.GetKey(GlobalVariables.P1Left) || Input.GetKey(GlobalVariables.P1Up) || Input.GetKey(GlobalVariables.P1Down) || Input.GetKey(GlobalVariables.P1hit) || Input.GetKey(GlobalVariables.P1slot))) { 
+        if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (Input.GetKey(Right) || Input.GetKey(Left) || Input.GetKey(Up) || Input.GetKey(Down) || Input.GetKey(hit) || Input.GetKey(slot))) { 
             shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true;
         }
         if (isOnLadder && (!isCrouching) && (!isGrounded))
             Ladder();
-        else if (PlayerGun.name != "None" && isGrounded && (Input.GetKey(GlobalVariables.P1fire) || shooting))
+        else if (PlayerGun.name != "None" && isGrounded && (Input.GetKey(fire) || shooting))
         {
             shooting = true;
             PlayerRenderer.enabled = false;
@@ -99,7 +107,7 @@ public class Player : MonoBehaviour
 
     private void move()
     {
-        if ((Input.GetKey(GlobalVariables.P1Down) && isGrounded) || isCrouching)
+        if ((Input.GetKey(Down) && isGrounded) || isCrouching)
             crouch();
         else
         {
@@ -119,15 +127,15 @@ public class Player : MonoBehaviour
 
     private void walk()
     {
-        if (Input.GetKey(GlobalVariables.P1Right) && !Input.GetKey(GlobalVariables.P1Left)) //walk right
+        if (Input.GetKey(Right) && !Input.GetKey(Left)) //walk right
         {   //sprint check
-            if (Input.GetKeyDown(GlobalVariables.P1Right) && Time.time - LastKeyRight < DoubleTapTime) { sprinting = true; }
+            if (Input.GetKeyDown(Right) && Time.time - LastKeyRight < DoubleTapTime) { sprinting = true; }
             LastKeyRight = Time.time; PlayerRotation = "Right";
             PlayerBody.velocity = new Vector2(+WalkForce, PlayerBody.velocity.y);
         }
-        else if (Input.GetKey(GlobalVariables.P1Left) && !Input.GetKey(GlobalVariables.P1Right))     // walk left
+        else if (Input.GetKey(Left) && !Input.GetKey(Right))     // walk left
         {   //sprint check
-            if (Input.GetKeyDown(GlobalVariables.P1Left) && Time.time - LastKeyLeft < DoubleTapTime) { sprinting = true; }
+            if (Input.GetKeyDown(Left) && Time.time - LastKeyLeft < DoubleTapTime) { sprinting = true; }
             LastKeyLeft = Time.time; PlayerRotation = "Left";
             PlayerBody.velocity = new Vector2(-WalkForce, PlayerBody.velocity.y);
         }
@@ -135,15 +143,15 @@ public class Player : MonoBehaviour
     }
     private void sprint()
     {
-        if (Input.GetKey(GlobalVariables.P1Right) && !Input.GetKey(GlobalVariables.P1Left)) //sprint right
+        if (Input.GetKey(Right) && !Input.GetKey(Left)) //sprint right
         {   //check double tap right to walk
-            if (Input.GetKeyDown(GlobalVariables.P1Right) && Time.time - LastSprintRight < DoubleTapTime) { sprinting = false; }
+            if (Input.GetKeyDown(Right) && Time.time - LastSprintRight < DoubleTapTime) { sprinting = false; }
             LastSprintRight = Time.time; PlayerRotation = "Right";
             PlayerBody.velocity = new Vector2(+SprintForce, PlayerBody.velocity.y);
         }
-        else if (Input.GetKey(GlobalVariables.P1Left) && !Input.GetKey(GlobalVariables.P1Right))  //sprint left
+        else if (Input.GetKey(Left) && !Input.GetKey(Right))  //sprint left
         {   //check double tap left to walk
-            if (Input.GetKeyDown(GlobalVariables.P1Left) && Time.time - LastSprintLeft < DoubleTapTime) { sprinting = false; }
+            if (Input.GetKeyDown(Left) && Time.time - LastSprintLeft < DoubleTapTime) { sprinting = false; }
             LastSprintLeft = Time.time; PlayerRotation = "Left";
             PlayerBody.velocity = new Vector2(-SprintForce, PlayerBody.velocity.y);
         }
@@ -155,7 +163,7 @@ public class Player : MonoBehaviour
     }
     private void jump()
     {
-        if (Input.GetKey(GlobalVariables.P1Up) && isGrounded && (!Input.GetKey(GlobalVariables.P1Down)) && (!isCrouching))
+        if (Input.GetKey(Up) && isGrounded && (!Input.GetKey(Down)) && (!isCrouching))
             PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, JumpForce);
     }
 
@@ -163,15 +171,15 @@ public class Player : MonoBehaviour
     {
         PlayerBody.gravityScale = 0f;
         // pohyb vpravo a vlavo
-        if (Input.GetKey(GlobalVariables.P1Right) && !Input.GetKey(GlobalVariables.P1Left))
+        if (Input.GetKey(Right) && !Input.GetKey(Left))
         { PlayerBody.velocity = new Vector2(+LadderHorizontal, PlayerBody.velocity.y); PlayerRotation = "Right"; }
-        else if (Input.GetKey(GlobalVariables.P1Left) && !Input.GetKey(GlobalVariables.P1Right))
+        else if (Input.GetKey(Left) && !Input.GetKey(Right))
         { PlayerBody.velocity = new Vector2(-LadderHorizontal, PlayerBody.velocity.y); PlayerRotation = "Left"; }
         else { PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y); }
         // pohyb hore a dole
-        if (Input.GetKey(GlobalVariables.P1Up) && (!Input.GetKey(GlobalVariables.P1Down)))
+        if (Input.GetKey(Up) && (!Input.GetKey(Down)))
         { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, +LadderVertical); }
-        else if (Input.GetKey(GlobalVariables.P1Down) && (!Input.GetKey(GlobalVariables.P1Up)))
+        else if (Input.GetKey(Down) && (!Input.GetKey(Up)))
         { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, -LadderVertical); }
         else { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, 0f); }
     }
@@ -186,7 +194,7 @@ public class Player : MonoBehaviour
                 HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false); 
             }
             if (!isCrouching) { HitBoxChanger(1.2f, 1.7f, 0f, -0.323f, true); }
-            else if (!Input.GetKey(GlobalVariables.P1Down)) { HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false); }
+            else if (!Input.GetKey(Down)) { HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false); }
         }
         else if ((Math.Abs(PlayerBody.velocity.x) <= WalkForce) && (!inRoll)) { StartCoroutine(Roll()); }
         else if (Math.Abs(PlayerBody.velocity.x) <= SprintForce && (Math.Abs(PlayerBody.velocity.x) >= WalkForce))
@@ -242,8 +250,8 @@ public class Player : MonoBehaviour
         }
         if(PlayerGun.name is "SniperRifle") { MyLaser.ShootLaser(true); }
         else { MyLaser.ShootLaser(false); }
-        if (Input.GetKeyDown(GlobalVariables.P1hit) || Input.GetKeyDown(GlobalVariables.P1slot)) { shooting = false; MyLaser.ShootLaser(false); }
-        if (Input.GetKey(GlobalVariables.P1fire)) { ReadyToFire = true; }    
+        if (Input.GetKeyDown(hit) || Input.GetKeyDown(slot)) { shooting = false; MyLaser.ShootLaser(false); }
+        if (Input.GetKey(fire)) { ReadyToFire = true; }    
         else if (ReadyToFire && PlayerGun.name != "" && PlayerGun.name != "None")
         {   
             ReadyToFire = false;
@@ -267,7 +275,7 @@ public class Player : MonoBehaviour
                 }  
             }          
         }
-        if (Input.GetKey(GlobalVariables.P1fire)) { LastTimeShoot = Time.time; }
+        if (Input.GetKey(fire)) { LastTimeShoot = Time.time; }
         if (PlayerGun.ammo <= 0){ PlayerGun = GetGun("None"); }
     }
 
@@ -325,7 +333,7 @@ public class Player : MonoBehaviour
     }
     private void AnimationSetter()
     {
-        if((isGrounded && Input.GetKey(GlobalVariables.P1Up)) || !isGrounded)
+        if((isGrounded && Input.GetKey(Up)) || !isGrounded)
             PlayerAnimator.SetBool("isGrounded", false);
         else
             PlayerAnimator.SetBool("isGrounded", true);
@@ -362,7 +370,7 @@ public class Player : MonoBehaviour
     {
         if (GunName == "MedicKit") { Health = MaxHealth; return true; }
         if(PlayerGun.name == "None") { PlayerGun = GetGun(GunName); return true; }
-        else if (Input.GetKey(GlobalVariables.P1Down) && Input.GetKey(GlobalVariables.P1hit)) { PlayerGun = GetGun(GunName); return true; }
+        else if (Input.GetKey(Down) && Input.GetKey(hit)) { PlayerGun = GetGun(GunName); return true; }
         return false;
     }
     

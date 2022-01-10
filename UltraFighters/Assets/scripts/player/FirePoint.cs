@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FirePoint : MonoBehaviour
-{   
-
+{
+    [SerializeField] private GameObject currectPlayer;
     [SerializeField] private Transform RotationCenter;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private float RotationSpeed, RotationRadius;
-
     private float posX, posY, angle;
-
+    private Player playerScript;
     // Update is called once per frame
+    private void Start()
+    {
+        Player playerScript = currectPlayer.GetComponent<Player>();
+    }
     void Update()
     {
         if (Player.shooting) { spriteRenderer.enabled = true; }
@@ -21,7 +24,7 @@ public class FirePoint : MonoBehaviour
         {
             if (Player.shooting)
             {
-                if (Input.GetKey(GlobalVariables.P1Up) && (!Input.GetKey(GlobalVariables.P1Down)))
+                if (Input.GetKey(playerScript.Up) && (!Input.GetKey(playerScript.Down)))
                 {
                     posX = RotationCenter.position.x + Mathf.Cos(angle) * RotationRadius;
                     posY = RotationCenter.position.y + Mathf.Sin(angle) * RotationRadius;
@@ -35,7 +38,7 @@ public class FirePoint : MonoBehaviour
 
                     if (angle >= 360f * Mathf.Deg2Rad) { angle = 0f; }
                 }
-                else if (Input.GetKey(GlobalVariables.P1Down) && (!Input.GetKey(GlobalVariables.P1Up)))
+                else if (Input.GetKey(playerScript.Down) && (!Input.GetKey(playerScript.Up)))
                 {
                     posX = RotationCenter.position.x + Mathf.Cos(angle) * RotationRadius;
                     posY = RotationCenter.position.y + Mathf.Sin(angle) * RotationRadius;
@@ -67,7 +70,7 @@ public class FirePoint : MonoBehaviour
         {
             if (Player.shooting)
             {
-                if (Input.GetKey(GlobalVariables.P1Up) && (!Input.GetKey(GlobalVariables.P1Down)))
+                if (Input.GetKey(playerScript.Up) && (!Input.GetKey(playerScript.Down)))
                 {
                     posX = RotationCenter.position.x + Mathf.Cos(angle) * RotationRadius;
                     posY = RotationCenter.position.y + Mathf.Sin(angle) * RotationRadius;
@@ -75,7 +78,7 @@ public class FirePoint : MonoBehaviour
 
                     if (angle > 90f * Mathf.Deg2Rad) { angle -= Time.deltaTime * RotationSpeed; }
                 }
-                else if (Input.GetKey(GlobalVariables.P1Down) && (!Input.GetKey(GlobalVariables.P1Up)))
+                else if (Input.GetKey(playerScript.Down) && (!Input.GetKey(playerScript.Up)))
                 {
                     posX = RotationCenter.position.x + Mathf.Cos(angle) * RotationRadius;
                     posY = RotationCenter.position.y + Mathf.Sin(angle) * RotationRadius;

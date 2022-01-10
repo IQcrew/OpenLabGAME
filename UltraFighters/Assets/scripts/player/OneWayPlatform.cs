@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class OneWayPlatform : MonoBehaviour
 {
+    [SerializeField] public GameObject currectPlayer;
     [SerializeField] private BoxCollider2D PlayerHitBox;
     [SerializeField] private float DoubleTapTime = 0.5f;
     private float LastKeyDown;
     private GameObject currentPlatform;
-
+    private Player playerScript;
+    private void Start()
+    {
+        playerScript = currectPlayer.GetComponent<Player>();
+    }
     void Update()
     {
         if (!Player.shooting) {
-            if (Input.GetKeyDown(GlobalVariables.P1Down) && currentPlatform != null)
+            if (Input.GetKeyDown(playerScript.Down) && currentPlatform != null)
             {
                 if ((Time.time - LastKeyDown) <= DoubleTapTime)
                 {
