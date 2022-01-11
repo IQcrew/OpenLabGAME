@@ -86,7 +86,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(PlayerGun.name);
         isGrounded = GroundCheck();
         if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GetGun("AssalutRifle"); }
         if (Input.GetKeyDown(KeyCode.W)) { PlayerGun = GetGun("SniperRifle"); }
@@ -367,9 +366,10 @@ public class Player : MonoBehaviour
         foreach (var Gunitem in GunM.AllGuns){
             if (name == Gunitem.name) { 
                 Gun TempGun = Gunitem.Clone();
-                bullet TempBullet = TempGun.Bullet.GetComponent<bullet>();
-                TempBullet.shooter_name = PlayerName;
-                TempBullet.damage = TempGun.damage;
+                GameObject TempBullet = PlayerName == "Player_1" ? TempGun.Bullet : TempGun.Bullet2P;
+                TempBullet.GetComponent<bullet>().damage = TempGun.damage;
+                TempBullet.GetComponent<bullet>().speed = TempGun.speed;
+                TempGun.Bullet = TempBullet;
                 return TempGun;
             }
         }

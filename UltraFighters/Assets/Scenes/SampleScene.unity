@@ -1086,58 +1086,72 @@ MonoBehaviour:
   AllGuns:
   - name: None
     ammo: 0
+    speed: 0
     damage: 0
     FireSpeed: 0
     BulletsOnShoot: 0
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
+    Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     GunTexture: {fileID: 0}
     ShootingTexture: {fileID: 0}
   - name: Pistol
     ammo: 10
+    speed: 50
     damage: 20
     FireSpeed: 0.3
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
-    GunTexture: {fileID: 0}
+    Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
+    GunTexture: {fileID: 21300000, guid: c443bf8cc52c6f24ca05b10b71f0d057, type: 3}
     ShootingTexture: {fileID: 3785663470463989132, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
   - name: Eagle
     ammo: 6
+    speed: 50
     damage: 40
     FireSpeed: 0.6
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
+    Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     GunTexture: {fileID: 21300000, guid: 2004b0d14fe15cf48b2bcb46a27ca347, type: 3}
     ShootingTexture: {fileID: 7157651828581922068, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
   - name: Shotgun
     ammo: 5
+    speed: 50
     damage: 20
     FireSpeed: 0.4
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
+    Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     GunTexture: {fileID: 21300000, guid: 3626a6e73b44dea43b8fed2eb4cb0125, type: 3}
     ShootingTexture: {fileID: 9219531731433995601, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
   - name: Mac-10
     ammo: 20
+    speed: 50
     damage: 15
     FireSpeed: 1
     BulletsOnShoot: 5
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
+    Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     GunTexture: {fileID: 21300000, guid: 8a7fd03e7d00e8644a03887bf60a321e, type: 3}
     ShootingTexture: {fileID: 6048353983754201218, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
   - name: SniperRifle
     ammo: 5
+    speed: 100
     damage: 90
     FireSpeed: 1
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
+    Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     GunTexture: {fileID: 21300000, guid: df92c48779dc6b14c9ea30bf8e843c5b, type: 3}
     ShootingTexture: {fileID: 8208245753667161119, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
   - name: AssalutRifle
     ammo: 15
+    speed: 50
     damage: 100
     FireSpeed: 0.4
     BulletsOnShoot: 3
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
+    Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     GunTexture: {fileID: 21300000, guid: 50d83569f80fc5e4295a17d8aba05dfe, type: 3}
     ShootingTexture: {fileID: -5198715494201027924, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
 --- !u!4 &657252224
@@ -3784,10 +3798,12 @@ MonoBehaviour:
   PlayerGun:
     name: 
     ammo: 0
+    speed: 0
     damage: 0
     FireSpeed: 0
     BulletsOnShoot: 0
     Bullet: {fileID: 0}
+    Bullet2P: {fileID: 0}
     GunTexture: {fileID: 0}
     ShootingTexture: {fileID: 0}
   shooting: 0

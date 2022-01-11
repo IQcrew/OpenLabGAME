@@ -48,11 +48,11 @@ public class bullet : MonoBehaviour
         }
         else if(other.collider.tag is "Player")
         {
+            Debug.Log(other.collider.name+"  "+shooter_name);
             if (other.collider.name != shooter_name)
             {
-                objectHP enemyP = other.collider.GetComponent<objectHP>();
+                Player enemyP = other.collider.GetComponent<Player>();
                 enemyP.TakeDamage(damage);
-                Debug.Log("L");
             }
             else
             {
