@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     private bool isCrouching = false;
     private bool inRoll = false;
     private bool isOnLadder;
-    public static bool isInPlatform = false;
+    public bool isInPlatform = false;
 
     // walking variables
     private float LastKeyRight = -5f;
@@ -293,13 +293,22 @@ public class Player : MonoBehaviour
         }
         else
         {
-            rayCastHit1 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
-            rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
-            rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
-            if ((rayCastHit1.collider != null || rayCastHit2.collider != null || rayCastHit3.collider != null))
-                return true; 
+            rayCastHit1 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, OneWayPlatformLayerMask);
+            rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, OneWayPlatformLayerMask);
+            rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, OneWayPlatformLayerMask);
+            if (rayCastHit1.collider != null) { OneWayPlatform.currentPlatform = rayCastHit1.collider.gameObject; return true; }
+            else if (rayCastHit2.collider != null) { OneWayPlatform.currentPlatform = rayCastHit2.collider.gameObject; return true; }
+            else if (rayCastHit3.collider != null) { OneWayPlatform.currentPlatform = rayCastHit3.collider.gameObject; return true; }
             else
-                return false; 
+            {
+                OneWayPlatform.currentPlatform = null;
+                rayCastHit1 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
+                rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
+                rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
+                if ((rayCastHit1.collider != null || rayCastHit2.collider != null || rayCastHit3.collider != null))
+                    return true;
+                else return false;
+            }
         }
     }
     private IEnumerator IsInPlatform()

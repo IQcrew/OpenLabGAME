@@ -8,7 +8,7 @@ public class OneWayPlatform : MonoBehaviour
     [SerializeField] private BoxCollider2D PlayerHitBox;
     [SerializeField] private float DoubleTapTime = 0.5f;
     private float LastKeyDown;
-    private GameObject currentPlatform;
+    public static GameObject currentPlatform;
     private Player playerScript;
     private void Start()
     {
@@ -16,39 +16,25 @@ public class OneWayPlatform : MonoBehaviour
     }
     void Update()
     {
-        if (!playerScript.shooting) {
+        if (!playerScript.shooting)
+        {
+            Debug.Log(currentPlatform);
             if (Input.GetKeyDown(playerScript.Down) && currentPlatform != null)
             {
                 if ((Time.time - LastKeyDown) <= DoubleTapTime)
                 {
+                    Debug.Log("Disabled!");
                     StartCoroutine(DisableCollision());
                 }
                 LastKeyDown = Time.time;
             }
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("OneWayPlatform"))
-        {
-            currentPlatform = collision.gameObject;
-        }
-            
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("OneWayPlatform"))
-            currentPlatform = null;
-        
-            
-    }
-
     private IEnumerator DisableCollision()
     {
         BoxCollider2D platformHitBox = currentPlatform.GetComponent<BoxCollider2D>();
         Physics2D.IgnoreCollision(PlayerHitBox, platformHitBox);
         yield return new WaitForSeconds(0.5f);
-        Physics2D.IgnoreCollision(PlayerHitBox, platformHitBox,false);
+        Physics2D.IgnoreCollision(PlayerHitBox, platformHitBox, false);
     }
 }
