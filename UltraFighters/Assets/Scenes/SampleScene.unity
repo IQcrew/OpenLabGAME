@@ -668,6 +668,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: onewayplatform (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2159112510937071541, guid: 72ab42eef3f63ce42aeedc06f2e30466, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2159112510937071541, guid: 72ab42eef3f63ce42aeedc06f2e30466, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2159112510937071542, guid: 72ab42eef3f63ce42aeedc06f2e30466, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a25a47c636b0cb145ac9e71095172325, type: 3}
     - target: {fileID: 2159112510937071543, guid: 72ab42eef3f63ce42aeedc06f2e30466, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -3414,18 +3426,6 @@ PrefabInstance:
     - target: {fileID: 2159112510937071499, guid: 72ab42eef3f63ce42aeedc06f2e30466, type: 3}
       propertyPath: m_Name
       value: onewayplatform
-      objectReference: {fileID: 0}
-    - target: {fileID: 2159112510937071499, guid: 72ab42eef3f63ce42aeedc06f2e30466, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2159112510937071499, guid: 72ab42eef3f63ce42aeedc06f2e30466, type: 3}
-      propertyPath: m_TagString
-      value: OneWayPlatform
-      objectReference: {fileID: 0}
-    - target: {fileID: 2159112510937071499, guid: 72ab42eef3f63ce42aeedc06f2e30466, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2159112510937071543, guid: 72ab42eef3f63ce42aeedc06f2e30466, type: 3}
       propertyPath: m_RootOrder
