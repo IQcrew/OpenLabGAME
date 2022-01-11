@@ -15,7 +15,7 @@ public class TextureRotation : MonoBehaviour
         if (playerScript.shooting)
         {
             spriteRenderer.enabled = true;
-            spriteRenderer.sprite = playerScript.PlayerGun.GunTexture;
+            if (playerScript.PlayerGun.ShootingTexture != null) { spriteRenderer.sprite = playerScript.PlayerGun.ShootingTexture; }
             if (playerScript.PlayerRotation == "Right") { spriteRenderer.flipY = false; }
             else if (playerScript.PlayerRotation == "Left") { spriteRenderer.flipY = true; }
             float angle = Mathf.Atan2(firePoint.position.y - transform.position.y, firePoint.position.x - transform.position.x) * Mathf.Rad2Deg;
