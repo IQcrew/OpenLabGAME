@@ -180,6 +180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e843214b38813642ba0abaa2206fce8, type: 3}
+--- !u!1 &43104450 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1631260843464700150, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+  m_PrefabInstance: {fileID: 801980984605335092}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &60585810
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,7 +1141,7 @@ MonoBehaviour:
     ShootingTexture: {fileID: 6048353983754201218, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
   - name: SniperRifle
     ammo: 5
-    speed: 100
+    speed: 200
     damage: 90
     FireSpeed: 1
     BulletsOnShoot: 1
@@ -2638,7 +2643,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 48.4
+  field of view: 45
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -2685,11 +2690,8 @@ MonoBehaviour:
   targets:
   - {fileID: 1597867535}
   - {fileID: 6255620023719281911}
-  offset: {x: 0, y: 0, z: -60}
-  smoothTime: 0.1
-  minZoom: 40
-  maxZoom: 10
-  zoomLimiter: 30
+  smoothTime: 0.3
+  minZoom: 10
 --- !u!1 &1668105213
 GameObject:
   m_ObjectHideFlags: 0
@@ -3312,6 +3314,10 @@ PrefabInstance:
       value: Player_1
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: LaserPoint
+      value: 
+      objectReference: {fileID: 43104450}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: OpponentHitBox
       value: 
       objectReference: {fileID: 6255620023719281910}
@@ -3813,6 +3819,7 @@ MonoBehaviour:
   PlayerAnimator: {fileID: 6255620023719281909}
   PlayerRenderer: {fileID: 6255620023719281908}
   platformScript: {fileID: 1663390440727809237}
+  LaserPoint: {fileID: 5427469943896035704}
 --- !u!50 &6255620023719281905
 Rigidbody2D:
   serializedVersion: 4
