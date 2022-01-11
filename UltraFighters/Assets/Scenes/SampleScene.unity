@@ -3297,6 +3297,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_1
       objectReference: {fileID: 0}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: OpponentHitBox
+      value: 
+      objectReference: {fileID: 6255620023719281910}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: platformScript
+      value: 
+      objectReference: {fileID: 801980984605335094}
+    - target: {fileID: 5396672426453200219, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: DoubleTapTime
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5396672426453200219, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: currectPlayer
       value: 
@@ -3306,6 +3318,22 @@ PrefabInstance:
 --- !u!1 &801980984605335093 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 801980984305395069, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+  m_PrefabInstance: {fileID: 801980984605335092}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &801980984605335094 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5396672426453200219, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+  m_PrefabInstance: {fileID: 801980984605335092}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801980984605335093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489eafa78529e3e46826f65bbdef8541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &801980984605335098 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 801980984305395064, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
   m_PrefabInstance: {fileID: 801980984605335092}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1076850054072587190
@@ -3336,7 +3364,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currectPlayer: {fileID: 6255620023719281907}
   PlayerHitBox: {fileID: 6255620023719281910}
-  DoubleTapTime: 0.5
+  DoubleTapTime: 0.3
+  currentPlatform: {fileID: 0}
 --- !u!4 &1768349950232503462
 Transform:
   m_ObjectHideFlags: 0
@@ -3760,8 +3789,10 @@ MonoBehaviour:
   shooting: 0
   PlayerBody: {fileID: 6255620023719281905}
   PlayerHitBox: {fileID: 6255620023719281910}
+  OpponentHitBox: {fileID: 801980984605335098}
   PlayerAnimator: {fileID: 6255620023719281909}
   PlayerRenderer: {fileID: 6255620023719281908}
+  platformScript: {fileID: 1663390440727809237}
 --- !u!50 &6255620023719281905
 Rigidbody2D:
   serializedVersion: 4

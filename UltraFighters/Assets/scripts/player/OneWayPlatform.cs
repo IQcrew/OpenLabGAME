@@ -6,9 +6,9 @@ public class OneWayPlatform : MonoBehaviour
 {
     [SerializeField] public GameObject currectPlayer;
     [SerializeField] private BoxCollider2D PlayerHitBox;
-    [SerializeField] private float DoubleTapTime = 0.5f;
+    [SerializeField] private float DoubleTapTime = 0.3f;
     private float LastKeyDown;
-    public static GameObject currentPlatform;
+    public GameObject currentPlatform;
     private Player playerScript;
     private void Start()
     {
@@ -18,12 +18,11 @@ public class OneWayPlatform : MonoBehaviour
     {
         if (!playerScript.shooting)
         {
-            Debug.Log(currentPlatform);
             if (Input.GetKeyDown(playerScript.Down) && currentPlatform != null)
             {
                 if ((Time.time - LastKeyDown) <= DoubleTapTime)
                 {
-                    Debug.Log("Disabled!");
+                    
                     StartCoroutine(DisableCollision());
                 }
                 LastKeyDown = Time.time;
