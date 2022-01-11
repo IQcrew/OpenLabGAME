@@ -72,12 +72,12 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator PlayerAnimator;
     [SerializeField] private SpriteRenderer PlayerRenderer;
     [SerializeField] private OneWayPlatform platformScript;
+    [SerializeField] private GameObject LaserPoint;
 
     void Start()
     {
         Physics2D.IgnoreCollision(PlayerHitBox, OpponentHitBox);
-        GameObject LaserClass = GameObject.Find("LaserPoint");
-        MyLaser = LaserClass.GetComponent<Laser>();
+        MyLaser = LaserPoint.GetComponent<Laser>();
         Health = MaxHealth;
         PlayerGun = GetGun("Pistol");
         PlayerLastRotation = PlayerRotation;
@@ -86,10 +86,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(PlayerGun.name);
         isGrounded = GroundCheck();
-        if (Input.GetKeyDown(KeyCode.E)) { PlayerGun = GetGun("AssalutRifle"); }
-        if (Input.GetKeyDown(KeyCode.W)) { PlayerGun = GetGun("SniperRifle"); }
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (Input.GetKey(Right) || Input.GetKey(Left) || Input.GetKey(Up) || Input.GetKey(Down) || Input.GetKey(hit) || Input.GetKey(slot))) { 
             shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true;
         }
@@ -367,9 +364,10 @@ public class Player : MonoBehaviour
         foreach (var Gunitem in GunM.AllGuns){
             if (name == Gunitem.name) { 
                 Gun TempGun = Gunitem.Clone();
-                bullet TempBullet = TempGun.Bullet.GetComponent<bullet>();
-                TempBullet.shooter_name = PlayerName;
-                TempBullet.damage = TempGun.damage;
+                GameObject TempBullet = PlayerName == "Player_1" ? TempGun.Bullet : TempGun.Bullet2P;
+                TempBullet.GetComponent<bullet>().damage = TempGun.damage;
+                TempBullet.GetComponent<bullet>().speed = TempGun.speed;
+                TempGun.Bullet = TempBullet;
                 return TempGun;
             }
         }

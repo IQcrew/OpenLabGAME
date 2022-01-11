@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shooter_name: Player_1
-  speed: 50
+  speed: 100
   damage: 90
   RigidBodyObject: {fileID: 4183995721774498977}
   MaxBulletTime: 22.62

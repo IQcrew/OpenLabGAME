@@ -7,19 +7,11 @@ public class multipletargetscamera : MonoBehaviour         // TOBIAS - Program u
 {
     public List<Transform> targets;
 
-    public Vector3 offset;
     public float smoothTime = .5f;
     public float minZoom = 40f;
-    public float maxZoom = 10f;
-    public float zoomLimiter = 50f;
 
     private Vector3 velocity;
-    private Camera cam;
 
-    private void Start()
-    {
-        cam = GetComponent<Camera>();
-    }
 
     private void LateUpdate()           //update camery
     {
@@ -45,16 +37,16 @@ public class multipletargetscamera : MonoBehaviour         // TOBIAS - Program u
     {
         Vector3 centerPoint = GetCenterPoint();
 
-        Vector3 newPosition = centerPoint + offset;
+        Vector3 newPosition = centerPoint + zoom();
 
         transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
     }
 
 
-    private void zoom()     // podla najvecsej vzdialenosti hraca urèí zoom kamery.
+    private Vector3 zoom()     // returnuje z suradnicu pre akoby zoom
     {
-        float newZoom = Mathf.Lerp(maxZoom, minZoom, GetGreatestDistance() / zoomLimiter);
-        cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, newZoom, Time.deltaTime);
+        
+        return new Vector3(0f,0f, -(GetGreatestDistance()/2+minZoom));
     }
 
 
@@ -65,6 +57,6 @@ public class multipletargetscamera : MonoBehaviour         // TOBIAS - Program u
         {
             bounds.Encapsulate(targets[i].position);
         }
-        return bounds.size.x;
+        return  bounds.size.x > bounds.size.y ? bounds.size.x : (bounds.size.y*1.7f);
     }
 }

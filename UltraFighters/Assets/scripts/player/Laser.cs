@@ -24,7 +24,6 @@ public class Laser : MonoBehaviour
                 ThisGameObject.SetActive(true);
                 RaycastHit2D Rhit = Physics2D.Raycast(MyTransform.position, transform.right);
                 DrawRay(LaserPoint.position, Rhit.point);
-                
             }
             else{ ThisGameObject.SetActive(false); }
             }
