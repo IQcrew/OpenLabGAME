@@ -11,7 +11,9 @@ public class GunSpawner : MonoBehaviour
     private float StartTime;
     private int TempRandom;
     private float TickTime = 0f;
-    private void Start(){ Setup(); }
+    [SerializeField] private AudioSource AudioManager;
+    [SerializeField] private AudioClip PickUpAudio;
+    private void Start(){ Setup(); AudioManager.clip = PickUpAudio; }
     private void Update()
     {
 
@@ -40,7 +42,7 @@ public class GunSpawner : MonoBehaviour
             if (ActualItem.name != "" && collision.tag == "Player")
             {
                 Player enemy = collision.GetComponent<Player>();
-                if (enemy.PickUpGun(ActualItem.name)) { Setup(); }
+                if (enemy.PickUpGun(ActualItem.name)) {Setup(); AudioManager.Play(); }
             }
         }
     }

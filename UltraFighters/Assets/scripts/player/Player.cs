@@ -234,7 +234,6 @@ public class Player : MonoBehaviour
 
     private void ShootPosition()
     {
-        PlayerAudio.clip = PlayerGun.Sound;
         if (BulletsToShot > 0){
             switch (PlayerGun.name)
             {
@@ -242,7 +241,7 @@ public class Player : MonoBehaviour
                     if (Time.time > LastTimeShoot + 0.15f){
                         TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 10) - 5);
                         Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation));
-                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; 
+                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time;
                     }
                     break;
                 case "AssalutRifle":
@@ -252,7 +251,7 @@ public class Player : MonoBehaviour
                     }
                     break;
             }
-            PlayerAudio.Play();
+            
             return;
         }
         if(PlayerGun.name is "SniperRifle") { MyLaser.ShootLaser(true); }
@@ -275,6 +274,7 @@ public class Player : MonoBehaviour
                     case "Mac-10":
                     case "AssalutRifle":
                         BulletsToShot = PlayerGun.BulletsOnShoot;
+                        PlayerAudio.Play();
                         break;
                     default:
                         Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
@@ -375,9 +375,11 @@ public class Player : MonoBehaviour
                 TempBullet.GetComponent<bullet>().damage = TempGun.damage;
                 TempBullet.GetComponent<bullet>().speed = TempGun.speed;
                 TempGun.Bullet = TempBullet;
+                PlayerAudio.clip = TempGun.Sound;
                 return TempGun;
             }
         }
+        PlayerAudio.clip = GunM.AllGuns[0].Sound;
         return GunM.AllGuns[0];
     }
     private Quaternion QuaternionDifference(Quaternion origin, Quaternion target)
