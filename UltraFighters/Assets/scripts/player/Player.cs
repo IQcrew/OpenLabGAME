@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
     private int BulletsToShot = 0;
     private Quaternion TempQuaternion = Quaternion.Euler(0, 0, 0);
     private Laser MyLaser;
+    private float lastHit = 0f;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
@@ -87,6 +88,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (Health <= 0) { death(); }
         isGrounded = GroundCheck();
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (Input.GetKey(Right) || Input.GetKey(Left) || Input.GetKey(Up) || Input.GetKey(Down) || Input.GetKey(hit) || Input.GetKey(slot))) { 
             shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true;
@@ -105,6 +107,11 @@ public class Player : MonoBehaviour
             move();
         }
         AnimationSetter();
+        if (Health < MaxHealth && Time.time-lastHit > 3){
+            Health += 0.02f;
+            if(Health > MaxHealth) { Health = MaxHealth; }
+        }
+            
     }
 
     private void move()
@@ -348,6 +355,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        lastHit = Time.time;
         Health -= damage;
     }
     private void AnimationSetter()
@@ -394,6 +402,10 @@ public class Player : MonoBehaviour
         if(PlayerGun.name == "None") { PlayerGun = GetGun(GunName); return true; }
         else if (Input.GetKey(Down) && Input.GetKey(hit)) { PlayerGun = GetGun(GunName); return true; }
         return false;
+    }
+    private void death()
+    {
+        Destroy(gameObject);
     }
     
 }
