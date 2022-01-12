@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
         }
         AnimationSetter();
         if (Health < MaxHealth && Time.time-lastHit > 3){
-            Health += 0.02f;
+            Health += 0.05f;
             if(Health > MaxHealth) { Health = MaxHealth; }
         }
             
@@ -238,7 +238,11 @@ public class Player : MonoBehaviour
         PlayerHitBox.offset = new Vector2(offsetX, offsetY);
         this.isCrouching = isCrouching;
     }
-
+    public float getHealt
+    {
+        get { return Health; }
+        set { }
+    }
     private void ShootPosition()
     {
         if (BulletsToShot > 0){
