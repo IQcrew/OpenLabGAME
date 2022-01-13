@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
     [SerializeField] private SpriteRenderer PlayerRenderer;
     [SerializeField] private OneWayPlatform platformScript;
     [SerializeField] private GameObject LaserPoint;
+    [SerializeField] private AudioSource PlayerAudio;
 
     void Start()
     {
@@ -233,6 +234,7 @@ public class Player : MonoBehaviour
 
     private void ShootPosition()
     {
+        PlayerAudio.clip = PlayerGun.Sound;
         if (BulletsToShot > 0){
             switch (PlayerGun.name)
             {
@@ -240,14 +242,17 @@ public class Player : MonoBehaviour
                     if (Time.time > LastTimeShoot + 0.15f){
                         TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 10) - 5);
                         Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation));
-                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time;}
+                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; 
+                    }
                     break;
                 case "AssalutRifle":
                     if (Time.time > LastTimeShoot + 0.1f){
                         Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
-                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time;}
+                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time;
+                    }
                     break;
             }
+            PlayerAudio.Play();
             return;
         }
         if(PlayerGun.name is "SniperRifle") { MyLaser.ShootLaser(true); }
@@ -265,6 +270,7 @@ public class Player : MonoBehaviour
                             Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation)); 
                         }
                         PlayerGun.ammo -= 1;
+                        PlayerAudio.Play();
                         break;
                     case "Mac-10":
                     case "AssalutRifle":
@@ -272,13 +278,14 @@ public class Player : MonoBehaviour
                         break;
                     default:
                         Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
+                        PlayerAudio.Play();
                         PlayerGun.ammo -= 1;
                         break;
-                }  
-            }          
+                }
+            }
         }
         if (Input.GetKey(fire)) { LastTimeShoot = Time.time; }
-        if (PlayerGun.ammo <= 0){ PlayerGun = GetGun("None"); }
+        if (PlayerGun.ammo <= 0){ PlayerGun = GetGun("None"); PlayerAudio.Play(); }
     }
 
     private bool GroundCheck()
@@ -317,7 +324,7 @@ public class Player : MonoBehaviour
     private IEnumerator IsInPlatform()
     {
         isInPlatform = true;
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.25f);
         isInPlatform = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
