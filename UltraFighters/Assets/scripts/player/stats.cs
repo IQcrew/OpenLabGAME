@@ -18,10 +18,14 @@ public class stats : MonoBehaviour
 
     void Update()
     {
-        ThisTransform.transform.position = FollowedObject.transform.position+offset;
-        if (followedplayer.getHealt > followedplayer.MaxHealth / 1.5) { Bar.color = Color.green; }
-        else if (followedplayer.getHealt > followedplayer.MaxHealth / 2.5) { Bar.color = Color.yellow; }
-        else { Bar.color = Color.red;}
-        HealthBar.transform.localScale = new Vector3 (1.7f*(followedplayer.getHealt/followedplayer.MaxHealth),0.25f,1);
+        try
+        {
+            ThisTransform.transform.position = FollowedObject.transform.position + offset;
+            if (followedplayer.getHealt > followedplayer.MaxHealth / 1.5) { Bar.color = Color.green; }
+            else if (followedplayer.getHealt > followedplayer.MaxHealth / 2.5) { Bar.color = Color.yellow; }
+            else { Bar.color = Color.red; }
+            HealthBar.transform.localScale = new Vector3(1.7f * (followedplayer.getHealt / followedplayer.MaxHealth), 0.25f, 1);
+        }
+        catch { Destroy(gameObject); }
     }
 }

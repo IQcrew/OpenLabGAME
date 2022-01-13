@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
     [SerializeField] private OneWayPlatform platformScript;
     [SerializeField] private GameObject LaserPoint;
     [SerializeField] private AudioSource PlayerAudio;
+    [SerializeField] private GameObject LevelManager;
 
     void Start()
     {
@@ -108,7 +109,7 @@ public class Player : MonoBehaviour
         }
         AnimationSetter();
         if (Health < MaxHealth && Time.time-lastHit > 3){
-            Health += 0.05f;
+            Health += 25f*Time.deltaTime;
             if(Health > MaxHealth) { Health = MaxHealth; }
         }
             
@@ -409,6 +410,7 @@ public class Player : MonoBehaviour
     }
     private void death()
     {
+        LevelManager.GetComponent<sceneManager>().setEndScreen(name);
         Destroy(gameObject);
     }
     

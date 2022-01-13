@@ -23,13 +23,21 @@ public class multipletargetscamera : MonoBehaviour         // TOBIAS - Program u
 
     Vector3 GetCenterPoint()            // najde to stred medzi viacerimi objektmi
     {
-        if (targets.Count == 1) { return targets[0].position; }
-        var bounds = new Bounds(targets[0].position, Vector3.zero);
-        for (int i = 0; i < targets.Count; i++)
+        try
         {
-            bounds.Encapsulate(targets[i].position);
+            if (targets.Count == 1) { return targets[0].position; }
+            var bounds = new Bounds(targets[0].position, Vector3.zero);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                bounds.Encapsulate(targets[i].position);
+            }
+            return bounds.center;
         }
-        return bounds.center;
+        catch
+        {
+            if (targets[0] != null) { return targets[0].position; }
+            else { return targets[1].position; }
+        }
     }
 
 
@@ -40,6 +48,7 @@ public class multipletargetscamera : MonoBehaviour         // TOBIAS - Program u
         Vector3 newPosition = centerPoint + zoom();
 
         transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref velocity, smoothTime);
+        
     }
 
 
@@ -52,11 +61,15 @@ public class multipletargetscamera : MonoBehaviour         // TOBIAS - Program u
 
     float GetGreatestDistance()  //returne najvacsiu vzialenost medzi hrácmi
     {
-        var bounds = new Bounds(targets[0].position, Vector3.zero);
-        for (int i = 0; i < targets.Count; i++)
+        try
         {
-            bounds.Encapsulate(targets[i].position);
+            var bounds = new Bounds(targets[0].position, Vector3.zero);
+            for (int i = 0; i < targets.Count; i++)
+            {
+                bounds.Encapsulate(targets[i].position);
+            }
+            return bounds.size.x > bounds.size.y ? bounds.size.x : (bounds.size.y * 1.7f);
         }
-        return  bounds.size.x > bounds.size.y ? bounds.size.x : (bounds.size.y*1.7f);
+        catch { return 0f; }
     }
 }
