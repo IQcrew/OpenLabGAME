@@ -336,7 +336,7 @@ public class Player : MonoBehaviour
     private IEnumerator IsInPlatform()
     {
         isInPlatform = true;
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.4f);
         isInPlatform = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -365,7 +365,7 @@ public class Player : MonoBehaviour
     }
     private void AnimationSetter()
     {
-        if((isGrounded && Input.GetKey(Up)) || !isGrounded)
+        if((isGrounded && Input.GetKey(Up)) || !isGrounded || isInPlatform)
             PlayerAnimator.SetBool("isGrounded", false);
         else
             PlayerAnimator.SetBool("isGrounded", true);
