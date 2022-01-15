@@ -1110,7 +1110,7 @@ MonoBehaviour:
     ammo: 5
     speed: 200
     damage: 90
-    FireSpeed: 2
+    FireSpeed: 1.5
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
@@ -3432,7 +3432,7 @@ MonoBehaviour:
   - {fileID: 1597867535}
   - {fileID: 6255620023719281911}
   smoothTime: 0.3
-  minZoom: 15
+  minZoom: 20
 --- !u!1001 &1709727988
 PrefabInstance:
   m_ObjectHideFlags: 0
