@@ -3824,6 +3824,7 @@ GameObject:
   - component: {fileID: 1855278692}
   - component: {fileID: 1855278694}
   - component: {fileID: 1855278693}
+  - component: {fileID: 1855278695}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -3872,10 +3873,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 80
+    m_FontSize: 100
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 8
+    m_BestFit: 1
+    m_MinSize: 1
     m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3883,7 +3884,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: ajsbhuhfi
 --- !u!222 &1855278694
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3892,6 +3893,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855278691}
   m_CullTransparentMesh: 1
+--- !u!114 &1855278695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1855278691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 7.42, y: 4.79}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1895106773
 GameObject:
   m_ObjectHideFlags: 0
