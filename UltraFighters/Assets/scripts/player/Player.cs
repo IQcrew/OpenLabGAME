@@ -309,7 +309,9 @@ public class Player : MonoBehaviour
                             Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation)); 
                         }
                         PlayerGun.ammo -= 1;
-                        PlayerAudio.PlayOneShot(PlayerGun.Sound); 
+                        PlayerAudio.PlayOneShot(PlayerGun.Sound);
+                        PlayerAudio.clip = Reload; 
+                        PlayerAudio.PlayDelayed(0.02f);
                         break;
                     case "Mac-10":
                     case "AssalutRifle":
@@ -320,6 +322,7 @@ public class Player : MonoBehaviour
                         Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
                         PlayerAudio.PlayOneShot(PlayerGun.Sound);
                         PlayerGun.ammo -= 1;
+                        if(PlayerGun.name == "SniperRifle") { PlayerAudio.clip = Reload; PlayerAudio.PlayDelayed(0.02f); }
                         break;
                 }
             }
@@ -327,7 +330,6 @@ public class Player : MonoBehaviour
         if (Input.GetKey(fire)) { LastTimeShoot = Time.time; }
         if (PlayerGun.ammo <= 0){ PlayerGun = GetGun("None"); PlayerAudio.PlayOneShot(PlayerGun.Sound); }
     }
-
     private bool GroundCheck()
     {
         RaycastHit2D rayCastHit1 = Physics2D.Raycast(PlayerHitBox.bounds.center, Vector2.down, PlayerHitBox.bounds.extents.y - 0.2f, OneWayPlatformLayerMask);
@@ -385,7 +387,6 @@ public class Player : MonoBehaviour
             isOnLadder = false;
         }
     }
-
     public void TakeDamage(int damage)
     {
         lastHit = Time.time;
@@ -416,11 +417,9 @@ public class Player : MonoBehaviour
                 TempBullet.GetComponent<bullet>().damage = TempGun.damage;
                 TempBullet.GetComponent<bullet>().speed = TempGun.speed;
                 TempGun.Bullet = TempBullet;
-                PlayerAudio.clip = TempGun.Sound;
                 return TempGun;
             }
         }
-        PlayerAudio.clip = GunM.AllGuns[0].Sound;
         return GunM.AllGuns[0];
     }
     private Quaternion QuaternionDifference(Quaternion origin, Quaternion target)

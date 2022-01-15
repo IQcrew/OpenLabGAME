@@ -23,7 +23,8 @@ public class Gun
     public GameObject Bullet;
     public GameObject Bullet2P;
     public Sprite GunTexture;
-    public Sprite ShootingTexture;
+    public Sprite ShootingTextureP1;
+    public Sprite ShootingTextureP2;
     public AudioClip Sound;
 
     private double LastFire = -5f;
@@ -50,7 +51,8 @@ public class Gun
             Bullet = this.Bullet,
             Bullet2P = this.Bullet2P,
             GunTexture = this.GunTexture,
-            ShootingTexture = this.ShootingTexture,
+            ShootingTextureP1 = this.ShootingTextureP1,
+            ShootingTextureP2 = this.ShootingTextureP2,
             Sound = this.Sound
         };
     }

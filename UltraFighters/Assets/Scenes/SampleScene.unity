@@ -1055,7 +1055,8 @@ MonoBehaviour:
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     GunTexture: {fileID: 0}
-    ShootingTexture: {fileID: 0}
+    ShootingTextureP1: {fileID: 0}
+    ShootingTextureP2: {fileID: 0}
     Sound: {fileID: 8300000, guid: b17dd5805767e92479ec9bb1c434c205, type: 3}
   - name: Pistol
     ammo: 10
@@ -1066,7 +1067,8 @@ MonoBehaviour:
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     GunTexture: {fileID: 21300000, guid: c443bf8cc52c6f24ca05b10b71f0d057, type: 3}
-    ShootingTexture: {fileID: 3785663470463989132, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP1: {fileID: 3785663470463989132, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP2: {fileID: -4767880067820600482, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: 3b4c005fde30db840bb856da99f30d7f, type: 3}
   - name: Eagle
     ammo: 6
@@ -1077,7 +1079,8 @@ MonoBehaviour:
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     GunTexture: {fileID: 21300000, guid: 2004b0d14fe15cf48b2bcb46a27ca347, type: 3}
-    ShootingTexture: {fileID: 7157651828581922068, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP1: {fileID: 7157651828581922068, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP2: {fileID: -8865965697991447391, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: ac6c43685701fae428cabe066f1f0473, type: 3}
   - name: Shotgun
     ammo: 5
@@ -1088,7 +1091,8 @@ MonoBehaviour:
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     GunTexture: {fileID: 21300000, guid: 3626a6e73b44dea43b8fed2eb4cb0125, type: 3}
-    ShootingTexture: {fileID: 9219531731433995601, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP1: {fileID: 9219531731433995601, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP2: {fileID: 8402364051210284345, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: fa13a11b184d06f4b814b7cf2b0026e3, type: 3}
   - name: Mac-10
     ammo: 20
@@ -1099,7 +1103,8 @@ MonoBehaviour:
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     GunTexture: {fileID: 21300000, guid: 8a7fd03e7d00e8644a03887bf60a321e, type: 3}
-    ShootingTexture: {fileID: 6048353983754201218, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP1: {fileID: 6048353983754201218, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP2: {fileID: 8927664636750835710, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: a8305c89b24140740ba72f05c1518fbd, type: 3}
   - name: SniperRifle
     ammo: 5
@@ -1110,7 +1115,8 @@ MonoBehaviour:
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     GunTexture: {fileID: 21300000, guid: df92c48779dc6b14c9ea30bf8e843c5b, type: 3}
-    ShootingTexture: {fileID: 8208245753667161119, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP1: {fileID: 8208245753667161119, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP2: {fileID: 1860027645441148040, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: 64fb4e88c804d4e49ac1ee66fe371e55, type: 3}
   - name: AssalutRifle
     ammo: 15
@@ -1121,7 +1127,8 @@ MonoBehaviour:
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     GunTexture: {fileID: 21300000, guid: 50d83569f80fc5e4295a17d8aba05dfe, type: 3}
-    ShootingTexture: {fileID: -5198715494201027924, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP1: {fileID: -5198715494201027924, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP2: {fileID: -6185314415179336160, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: 37edb0187dbf1d4479a9c712031420a1, type: 3}
 --- !u!4 &657252224
 Transform:
@@ -4370,6 +4377,18 @@ PrefabInstance:
       propertyPath: OpponentHitBox
       value: 
       objectReference: {fileID: 6255620023719281910}
+    - target: {fileID: 3324419334488222410, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324419334488222410, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324419334488222410, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5981032485778403896, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.23
@@ -4544,7 +4563,7 @@ SpriteRenderer:
   m_SortingLayerID: 1049633549
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c1a3d759e65d97447b7703645a93ef1f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 01dab539b87327d45a7cadf742e96c2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4766,12 +4785,13 @@ MonoBehaviour:
     Bullet: {fileID: 0}
     Bullet2P: {fileID: 0}
     GunTexture: {fileID: 0}
-    ShootingTexture: {fileID: 0}
+    ShootingTextureP1: {fileID: 0}
+    ShootingTextureP2: {fileID: 0}
     Sound: {fileID: 0}
   shooting: 0
   Jump: {fileID: 8300000, guid: 441f817e39bf8d144974ecf25de21f01, type: 3}
-  Walk: {fileID: 8300000, guid: 98bae598f646fe040ac921b802625c41, type: 3}
-  Run: {fileID: 8300000, guid: 82c6e445c77e9754ab33c95b85878344, type: 3}
+  Walk: {fileID: 8300000, guid: 82c6e445c77e9754ab33c95b85878344, type: 3}
+  Run: {fileID: 8300000, guid: 98bae598f646fe040ac921b802625c41, type: 3}
   Reload: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
   PlayerBody: {fileID: 6255620023719281905}
   PlayerHitBox: {fileID: 6255620023719281910}
@@ -4866,7 +4886,7 @@ SpriteRenderer:
   m_SortingLayerID: 1049633549
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -965382487560948686, guid: 32e9fa94b050af146b22807f81c6a176, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 06a009bfc9e72954d9eecdc1eb65e4ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4887,7 +4907,7 @@ Animator:
   m_GameObject: {fileID: 6255620023719281907}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8b389d5adea43764cb8a56a94bea5d20, type: 2}
+  m_Controller: {fileID: 9100000, guid: d0b68d39438a87740a9164c20cc41440, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4913,7 +4933,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 2.375}
+    oldSize: {x: 2.5, y: 2.5}
     newSize: {x: 2.5, y: 2.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4930,7 +4950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6255620023719281907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.162003, y: -3.5440006, z: 0}
+  m_LocalPosition: {x: -20.16, y: -3.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2985014994384760375}
@@ -5207,8 +5227,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1049633549
   m_SortingLayer: 1
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7157651828581922068, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+  m_SortingOrder: 5
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5216,7 +5236,7 @@ SpriteRenderer:
   m_Size: {x: 0.75, y: 0.8125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8494271806506804104

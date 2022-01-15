@@ -195,7 +195,7 @@ TextureImporter:
         width: 39
         height: 20
       alignment: 9
-      pivot: {x: 0.21385299, y: 0.27714527}
+      pivot: {x: 0.19810851, y: 0.29030317}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -216,7 +216,7 @@ TextureImporter:
         width: 35
         height: 20
       alignment: 9
-      pivot: {x: 0.23304498, y: 0.29377145}
+      pivot: {x: 0.22803257, y: 0.3157013}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -232,12 +232,12 @@ TextureImporter:
       name: UF-shoot_5
       rect:
         serializedVersion: 2
-        x: 82
+        x: 81
         y: 0
         width: 36
         height: 21
       alignment: 9
-      pivot: {x: 0.2334457, y: 0.33164996}
+      pivot: {x: 0.24881363, y: 0.34049416}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
