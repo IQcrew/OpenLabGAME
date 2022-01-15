@@ -1110,7 +1110,7 @@ MonoBehaviour:
     ammo: 5
     speed: 200
     damage: 90
-    FireSpeed: 1
+    FireSpeed: 2
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
@@ -1122,7 +1122,7 @@ MonoBehaviour:
     ammo: 15
     speed: 50
     damage: 20
-    FireSpeed: 0.4
+    FireSpeed: 1
     BulletsOnShoot: 3
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
@@ -3824,7 +3824,6 @@ GameObject:
   - component: {fileID: 1855278692}
   - component: {fileID: 1855278694}
   - component: {fileID: 1855278693}
-  - component: {fileID: 1855278695}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -3884,7 +3883,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ajsbhuhfi
+  m_Text: 
 --- !u!222 &1855278694
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3893,21 +3892,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855278691}
   m_CullTransparentMesh: 1
---- !u!114 &1855278695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855278691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 7.42, y: 4.79}
-  m_UseGraphicAlpha: 1
 --- !u!1 &1895106773
 GameObject:
   m_ObjectHideFlags: 0

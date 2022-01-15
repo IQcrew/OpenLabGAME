@@ -744,4 +744,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/ToboLestGoIT/Desktop/UltraFighters.exe
+  playerPath: C:/Users/ToboLestGoIT/Desktop/UltraFightersALPHA/UltraFighters.exe
