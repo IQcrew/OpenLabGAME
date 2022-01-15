@@ -1086,7 +1086,7 @@ MonoBehaviour:
     ammo: 5
     speed: 50
     damage: 20
-    FireSpeed: 0.4
+    FireSpeed: 0.7
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
