@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     private string PlayerLastRotation;
     private float Health;
     private bool isGrounded;
+    private bool jumped = false;
 
     //crouching,ladder,onewayplatform variables
     private bool isCrouching = false;
@@ -65,6 +66,12 @@ public class Player : MonoBehaviour
     private Quaternion TempQuaternion = Quaternion.Euler(0, 0, 0);
     private Laser MyLaser;
     private float lastHit = 0f;
+
+    [Header("Sounds")]
+    [SerializeField] private AudioClip Jump;
+    [SerializeField] private AudioClip Walk;
+    [SerializeField] private AudioClip Run;
+    [SerializeField] private AudioClip Reload;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
@@ -94,16 +101,17 @@ public class Player : MonoBehaviour
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (Input.GetKey(Right) || Input.GetKey(Left) || Input.GetKey(Up) || Input.GetKey(Down) || Input.GetKey(hit) || Input.GetKey(slot))) { 
             shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true;
         }
-        if (isOnLadder && (!isCrouching) && (!isGrounded))
-            Ladder();
+        if (isOnLadder && (!isCrouching) && (!isGrounded)) { Ladder(); PlayerAudio.clip = null; }
         else if (PlayerGun.name != "None" && isGrounded && (Input.GetKey(fire) || shooting))
         {
+            PlayerAudio.clip = null;
             shooting = true;
             PlayerRenderer.enabled = false;
             ShootPosition();
             PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
         }
-        else{
+        else
+        {
             BulletsToShot = 0;
             move();
         }
@@ -117,13 +125,23 @@ public class Player : MonoBehaviour
 
     private void move()
     {
-        if ((Input.GetKey(Down) && isGrounded) || isCrouching)
-            crouch();
+        if ((Input.GetKey(Down) && isGrounded) || isCrouching) { crouch(); PlayerAudio.clip = null; }
         else
         {
             jump();
-            if (sprinting) { sprint(); }
-            else { walk(); }
+            if (sprinting)
+            {
+                sprint();
+                PlayerAudio.clip = Run;
+                if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); }
+            }
+            else
+            {
+                walk();
+                if (PlayerAudio.clip == Run) { PlayerAudio.clip = null; }
+                PlayerAudio.clip = Walk;
+                if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); }
+            }
             if (PlayerBody.velocity.y < 0)
                 PlayerBody.gravityScale = FallGravity;
             else
@@ -149,7 +167,7 @@ public class Player : MonoBehaviour
             LastKeyLeft = Time.time; PlayerRotation = "Left";
             PlayerBody.velocity = new Vector2(-WalkForce, PlayerBody.velocity.y);
         }
-        else { PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); }   //stay at position
+        else { PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); PlayerAudio.clip = null; }   //stay at position
     }
     private void sprint()
     {
@@ -173,10 +191,19 @@ public class Player : MonoBehaviour
     }
     private void jump()
     {
-        if (Input.GetKey(Up) && isGrounded && (!Input.GetKey(Down)) && (!isCrouching))
+        if (Input.GetKey(Up) && isGrounded && (!Input.GetKey(Down)) && (!isCrouching) && (!jumped))
+        {
+            jumped = true;
             PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, JumpForce);
+            PlayerAudio.PlayOneShot(Jump);
+            StartCoroutine(JumpPause());
+        }
     }
-
+    private IEnumerator JumpPause() 
+    {
+        yield return new WaitForSeconds(0.1f);
+        jumped = false;
+    }
     private void Ladder()
     {
         PlayerBody.gravityScale = 0f;
@@ -214,6 +241,7 @@ public class Player : MonoBehaviour
                 HitBoxChanger(2f, 1f, 0f, 0f, true);
                 PlayerBody.gravityScale = ThrowJumpGravity;
                 PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, ThrowJump);
+                PlayerAudio.PlayOneShot(Jump);
             }
             else if (isGrounded)
             {
@@ -281,23 +309,23 @@ public class Player : MonoBehaviour
                             Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation)); 
                         }
                         PlayerGun.ammo -= 1;
-                        PlayerAudio.Play();
+                        PlayerAudio.PlayOneShot(PlayerGun.Sound); 
                         break;
                     case "Mac-10":
                     case "AssalutRifle":
                         BulletsToShot = PlayerGun.BulletsOnShoot;
-                        PlayerAudio.Play();
+                        PlayerAudio.PlayOneShot(PlayerGun.Sound);
                         break;
                     default:
                         Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
-                        PlayerAudio.Play();
+                        PlayerAudio.PlayOneShot(PlayerGun.Sound);
                         PlayerGun.ammo -= 1;
                         break;
                 }
             }
         }
         if (Input.GetKey(fire)) { LastTimeShoot = Time.time; }
-        if (PlayerGun.ammo <= 0){ PlayerGun = GetGun("None"); PlayerAudio.Play(); }
+        if (PlayerGun.ammo <= 0){ PlayerGun = GetGun("None"); PlayerAudio.PlayOneShot(PlayerGun.Sound); }
     }
 
     private bool GroundCheck()
@@ -413,5 +441,4 @@ public class Player : MonoBehaviour
         LevelManager.GetComponent<sceneManager>().setEndScreen(name);
         Destroy(gameObject);
     }
-    
 }
