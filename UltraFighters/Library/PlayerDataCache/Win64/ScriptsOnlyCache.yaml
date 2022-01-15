@@ -12,6 +12,7 @@ ScriptsOnlyBuild:
     - TextureRotation
     - bullet
     - multipletargetscamera
+    - objectHP
     - sceneManager
     - stats
     Unity.2D.Animation.Editor.dll:
@@ -32,8 +33,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -84,41 +87,43 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1478}
+      Script: {instanceID: 1492}
     - Class: 114
-      Script: {instanceID: 1740}
+      Script: {instanceID: 1754}
     - Class: 114
-      Script: {instanceID: 1840}
+      Script: {instanceID: 1854}
     - Class: 114
-      Script: {instanceID: 1860}
+      Script: {instanceID: 1874}
     - Class: 114
-      Script: {instanceID: 1984}
+      Script: {instanceID: 1998}
     - Class: 114
-      Script: {instanceID: 2260}
+      Script: {instanceID: 2274}
     - Class: 114
-      Script: {instanceID: 2280}
+      Script: {instanceID: 2294}
     - Class: 114
-      Script: {instanceID: 2378}
+      Script: {instanceID: 2392}
     - Class: 114
-      Script: {instanceID: 2558}
+      Script: {instanceID: 2514}
     - Class: 114
-      Script: {instanceID: 2692}
+      Script: {instanceID: 2572}
     - Class: 114
-      Script: {instanceID: 2864}
+      Script: {instanceID: 2706}
     - Class: 114
-      Script: {instanceID: 3082}
+      Script: {instanceID: 2878}
     - Class: 114
-      Script: {instanceID: 3094}
+      Script: {instanceID: 3096}
     - Class: 114
-      Script: {instanceID: 3102}
+      Script: {instanceID: 3108}
     - Class: 114
-      Script: {instanceID: 3350}
+      Script: {instanceID: 3116}
     - Class: 114
-      Script: {instanceID: 3434}
+      Script: {instanceID: 3364}
     - Class: 114
-      Script: {instanceID: 4842}
+      Script: {instanceID: 3448}
     - Class: 114
-      Script: {instanceID: 5168}
+      Script: {instanceID: 4856}
+    - Class: 114
+      Script: {instanceID: 5182}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 120
@@ -216,7 +221,7 @@ ScriptsOnlyBuild:
     className: HorizontalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: f737d4ad2622111657a37ca31bed896f
+      Hash: aeaddd68e933086656b289b19302511a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GunManager
@@ -288,7 +293,7 @@ ScriptsOnlyBuild:
     className: CinemachinePixelPerfect
   - hash:
       serializedVersion: 2
-      Hash: 268a5cfe32b50ddccc1582a7531e45ed
+      Hash: 1f9f6e8599b37e2a1efc8930bf4298cb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
@@ -372,7 +377,7 @@ ScriptsOnlyBuild:
     className: TestRunCallbackListener
   - hash:
       serializedVersion: 2
-      Hash: 3d6f15b3b0665d813a682272dddf85be
+      Hash: 31e3c5178d0e1b910902bdaca53875f2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GunSpawner
