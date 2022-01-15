@@ -1059,7 +1059,7 @@ MonoBehaviour:
     ShootingTextureP2: {fileID: 0}
     Sound: {fileID: 8300000, guid: b17dd5805767e92479ec9bb1c434c205, type: 3}
   - name: Pistol
-    ammo: 10
+    ammo: 12
     speed: 50
     damage: 20
     FireSpeed: 0.3
@@ -1085,7 +1085,7 @@ MonoBehaviour:
   - name: Shotgun
     ammo: 5
     speed: 50
-    damage: 20
+    damage: 18
     FireSpeed: 0.7
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
@@ -1097,7 +1097,7 @@ MonoBehaviour:
   - name: Mac-10
     ammo: 20
     speed: 50
-    damage: 20
+    damage: 13
     FireSpeed: 1
     BulletsOnShoot: 5
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
