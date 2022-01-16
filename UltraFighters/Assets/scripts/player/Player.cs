@@ -228,7 +228,7 @@ public class Player : MonoBehaviour
             { 
                 StopCoroutine(Roll());
                 inRoll = false;
-                HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false); 
+                HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false);
             }
             if (!isCrouching) { HitBoxChanger(1.2f, 1.7f, 0f, -0.323f, true); }
             else if (!Input.GetKey(Down)) { HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false); }
@@ -310,8 +310,7 @@ public class Player : MonoBehaviour
                         }
                         PlayerGun.ammo -= 1;
                         PlayerAudio.PlayOneShot(PlayerGun.Sound);
-                        PlayerAudio.clip = Reload; 
-                        PlayerAudio.PlayDelayed(0.02f);
+                        PlayerAudio.PlayOneShot(Reload);
                         break;
                     case "Mac-10":
                     case "AssalutRifle":
@@ -322,7 +321,7 @@ public class Player : MonoBehaviour
                         Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
                         PlayerAudio.PlayOneShot(PlayerGun.Sound);
                         PlayerGun.ammo -= 1;
-                        if(PlayerGun.name == "SniperRifle") { PlayerAudio.clip = Reload; PlayerAudio.PlayDelayed(0.02f); }
+                        if(PlayerGun.name == "SniperRifle") { PlayerAudio.PlayOneShot(Reload); }
                         break;
                 }
             }
