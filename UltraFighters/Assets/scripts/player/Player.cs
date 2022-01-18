@@ -35,8 +35,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float NormalGravity = 2.5f;
     [SerializeField] private float FallGravity = 3.5f;
 
-    public string PlayerRotation = "Right";
-    private string PlayerLastRotation;
+    public bool PlayerRotationRight = true;
+    private bool PlayerLastRotationRight;
     private float Health;
     private bool isGrounded;
     private bool jumped = false;
@@ -90,8 +90,8 @@ public class Player : MonoBehaviour
         MyLaser = LaserPoint.GetComponent<Laser>();
         Health = MaxHealth;
         PlayerGun = GetGun("Pistol");
-        PlayerLastRotation = PlayerRotation;
-        if (PlayerRotation == "Left") { transform.Rotate(0f, 180f, 0F); }
+        PlayerLastRotationRight = PlayerRotationRight;
+        if (!PlayerRotationRight) { transform.Rotate(0f, 180f, 0F); }
     }
 
     void Update()
@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
             shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true;
         }
         if (isOnLadder && (!isCrouching) && (!isGrounded)) { Ladder(); PlayerAudio.clip = null; }
-        else if (PlayerGun.name != "None" && isGrounded && (Input.GetKey(fire) || shooting))
+        else if (PlayerGun.name != "None" && !isCrouching && isGrounded && (Input.GetKey(fire) || shooting))
         {
             PlayerAudio.clip = null;
             shooting = true;
@@ -113,7 +113,34 @@ public class Player : MonoBehaviour
         else
         {
             BulletsToShot = 0;
-            move();
+            //move
+
+            if ((Input.GetKey(Down) && isGrounded) || isCrouching) { crouch(); PlayerAudio.clip = null; }
+            else
+            {
+                jump();
+                if (sprinting)
+                {
+                    sprint();
+                    PlayerAudio.clip = Run;
+                    if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); }
+                }
+                else
+                {
+                    walk();
+                    if (PlayerAudio.clip == Run) { PlayerAudio.clip = null; }
+                    PlayerAudio.clip = Walk;
+                    if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); }
+                }
+                if (PlayerBody.velocity.y < 0)
+                    PlayerBody.gravityScale = FallGravity;
+                else
+                    PlayerBody.gravityScale = NormalGravity;
+            }
+            //Fliping Player
+            if (PlayerRotationRight && !PlayerLastRotationRight) { transform.Rotate(0f, 180f, 0F); }
+            else if (!PlayerRotationRight && PlayerLastRotationRight) { transform.Rotate(0f, 180f, 0F); }
+            PlayerLastRotationRight = PlayerRotationRight;
         }
         AnimationSetter();
         if (Health < MaxHealth && Time.time-lastHit > 3){
@@ -123,48 +150,18 @@ public class Player : MonoBehaviour
             
     }
 
-    private void move()
-    {
-        if ((Input.GetKey(Down) && isGrounded) || isCrouching) { crouch(); PlayerAudio.clip = null; }
-        else
-        {
-            jump();
-            if (sprinting)
-            {
-                sprint();
-                PlayerAudio.clip = Run;
-                if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); }
-            }
-            else
-            {
-                walk();
-                if (PlayerAudio.clip == Run) { PlayerAudio.clip = null; }
-                PlayerAudio.clip = Walk;
-                if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); }
-            }
-            if (PlayerBody.velocity.y < 0)
-                PlayerBody.gravityScale = FallGravity;
-            else
-                PlayerBody.gravityScale = NormalGravity;
-        }
-        //Fliping Player
-        if (PlayerRotation == "Right" && PlayerLastRotation != "Right") { transform.Rotate(0f, 180f, 0F); }
-        else if (PlayerRotation == "Left" && PlayerLastRotation != "Left") { transform.Rotate(0f, 180f, 0F); }
-        PlayerLastRotation = PlayerRotation;
-    }
-
     private void walk()
     {
         if (Input.GetKey(Right) && !Input.GetKey(Left)) //walk right
         {   //sprint check
             if (Input.GetKeyDown(Right) && Time.time - LastKeyRight < DoubleTapTime) { sprinting = true; }
-            LastKeyRight = Time.time; PlayerRotation = "Right";
+            LastKeyRight = Time.time; PlayerRotationRight = true;
             PlayerBody.velocity = new Vector2(+WalkForce, PlayerBody.velocity.y);
         }
         else if (Input.GetKey(Left) && !Input.GetKey(Right))     // walk left
         {   //sprint check
             if (Input.GetKeyDown(Left) && Time.time - LastKeyLeft < DoubleTapTime) { sprinting = true; }
-            LastKeyLeft = Time.time; PlayerRotation = "Left";
+            LastKeyLeft = Time.time; PlayerRotationRight = false;
             PlayerBody.velocity = new Vector2(-WalkForce, PlayerBody.velocity.y);
         }
         else { PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); PlayerAudio.clip = null; }   //stay at position
@@ -174,13 +171,13 @@ public class Player : MonoBehaviour
         if (Input.GetKey(Right) && !Input.GetKey(Left)) //sprint right
         {   //check double tap right to walk
             if (Input.GetKeyDown(Right) && Time.time - LastSprintRight < DoubleTapTime) { sprinting = false; }
-            LastSprintRight = Time.time; PlayerRotation = "Right";
+            LastSprintRight = Time.time; PlayerRotationRight = true;
             PlayerBody.velocity = new Vector2(+SprintForce, PlayerBody.velocity.y);
         }
         else if (Input.GetKey(Left) && !Input.GetKey(Right))  //sprint left
         {   //check double tap left to walk
             if (Input.GetKeyDown(Left) && Time.time - LastSprintLeft < DoubleTapTime) { sprinting = false; }
-            LastSprintLeft = Time.time; PlayerRotation = "Left";
+            LastSprintLeft = Time.time; PlayerRotationRight = false;
             PlayerBody.velocity = new Vector2(-SprintForce, PlayerBody.velocity.y);
         }
         else
@@ -209,9 +206,9 @@ public class Player : MonoBehaviour
         PlayerBody.gravityScale = 0f;
         // pohyb vpravo a vlavo
         if (Input.GetKey(Right) && !Input.GetKey(Left))
-        { PlayerBody.velocity = new Vector2(+LadderHorizontal, PlayerBody.velocity.y); PlayerRotation = "Right"; }
+        { PlayerBody.velocity = new Vector2(+LadderHorizontal, PlayerBody.velocity.y); PlayerRotationRight = true; }
         else if (Input.GetKey(Left) && !Input.GetKey(Right))
-        { PlayerBody.velocity = new Vector2(-LadderHorizontal, PlayerBody.velocity.y); PlayerRotation = "Left"; }
+        { PlayerBody.velocity = new Vector2(-LadderHorizontal, PlayerBody.velocity.y); PlayerRotationRight = false; }
         else { PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y); }
         // pohyb hore a dole
         if (Input.GetKey(Up) && (!Input.GetKey(Down)))
@@ -245,8 +242,8 @@ public class Player : MonoBehaviour
             }
             else if (isGrounded)
             {
-                if (PlayerRotation == "Right") { PlayerBody.velocity = new Vector2(WalkForce, 0f); }
-                else if (PlayerRotation == "Left") { PlayerBody.velocity = new Vector2(-WalkForce, 0f); }
+                if (PlayerRotationRight) { PlayerBody.velocity = new Vector2(WalkForce, 0f); }
+                else if (!PlayerRotationRight) { PlayerBody.velocity = new Vector2(-WalkForce, 0f); }
                 PlayerBody.gravityScale = NormalGravity;
                 StartCoroutine(Roll());
             }
@@ -281,13 +278,13 @@ public class Player : MonoBehaviour
                     if (Time.time > LastTimeShoot + 0.15f){
                         TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 10) - 5);
                         Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation));
-                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time;
+                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound);
                     }
                     break;
                 case "AssalutRifle":
                     if (Time.time > LastTimeShoot + 0.1f){
                         Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
-                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time;
+                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound);
                     }
                     break;
             }
@@ -314,8 +311,7 @@ public class Player : MonoBehaviour
                         break;
                     case "Mac-10":
                     case "AssalutRifle":
-                        BulletsToShot = PlayerGun.BulletsOnShoot;
-                        PlayerAudio.PlayOneShot(PlayerGun.Sound);
+                        BulletsToShot =  PlayerGun.ammo >= PlayerGun.BulletsOnShoot ? PlayerGun.BulletsOnShoot : PlayerGun.ammo;
                         break;
                     default:
                         Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);

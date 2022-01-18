@@ -13,13 +13,16 @@ public class GunSpawner : MonoBehaviour
     private float TickTime = 0f;
     [SerializeField] private AudioSource AudioManager;
     [SerializeField] private AudioClip PickUpAudio;
-    private void Start(){ Setup(); AudioManager.clip = PickUpAudio; }
+    [SerializeField] private AudioClip MedKitAudio;
+    private SpriteRenderer ThisRender;
+    private void Start(){ Setup(); AudioManager.clip = PickUpAudio; ThisRender = ThisGameObject.GetComponent<SpriteRenderer>(); }
     private void Update()
     {
 
         if (StartTime + Timer > Time.time) {}  //waiting
         else if (StartTime + Timer + 1 > Time.time)
-        { 
+        {
+            ThisGameObject.GetComponent<SpriteRenderer>().enabled = true;
             ThisGameObject.GetComponent<SpriteRenderer>().sprite = ActualItem.GunTexture;
         }
         else if (StartTime + Timer + 15 > Time.time){ }
@@ -27,9 +30,9 @@ public class GunSpawner : MonoBehaviour
         {
             if (Time.time-TickTime < 0.5f)
             {
-                ThisGameObject.GetComponent<SpriteRenderer>().sprite = ActualItem.GunTexture;
+                ThisGameObject.GetComponent<SpriteRenderer>().enabled = true;
             }
-            else if (Time.time - TickTime < 1f) { ThisGameObject.GetComponent<SpriteRenderer>().sprite = null;}
+            else if (Time.time - TickTime < 1f) { ThisGameObject.GetComponent<SpriteRenderer>().enabled = false;}
             else{TickTime = Time.time; }
         }
         else {Setup(); }
@@ -37,22 +40,23 @@ public class GunSpawner : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (StartTime + Timer<Time.time)
+        if (StartTime + Timer < Time.time)
         {
             if (ActualItem.name != "" && collision.tag == "Player")
             {
                 Player enemy = collision.GetComponent<Player>();
-                if (enemy.PickUpGun(ActualItem.name)) {Setup(); AudioManager.Play(); }
+                if (enemy.PickUpGun(ActualItem.name)) { Setup(); AudioManager.Play(); }
             }
         }
+        
     }
     private void Setup()
     {
-        ThisGameObject.GetComponent<SpriteRenderer>().sprite = null;
+        ThisGameObject.GetComponent<SpriteRenderer>().enabled = false;
         Timer = Random.Range(5, 30);
         StartTime = Time.time;
         TempRandom = Random.Range(0,1100);
-        if (TempRandom < 200) { GetGun("MedicKit"); }
+        if (TempRandom < 200) { ActualItem = MedKit; AudioManager.clip = PickUpAudio; }
         else if (TempRandom < 400) { ActualItem = GetGun("Pistol"); }
         else if (TempRandom < 550) { ActualItem = GetGun("Eagle"); }
         else if (TempRandom < 700) { ActualItem = GetGun("Mac-10"); }
@@ -60,14 +64,14 @@ public class GunSpawner : MonoBehaviour
         else if (TempRandom < 900) { ActualItem = GetGun("SniperRifle"); }
         else if (TempRandom < 950) { ActualItem = GetGun("AssalutRifle"); }
         else if (TempRandom < 1100) { ActualItem = GetGun("Shotgun"); }
-        else { ActualItem = GetGun("MedicKit"); }
+        else { ActualItem = MedKit; AudioManager.clip = PickUpAudio; }
     }
-
+    
     private Gun GetGun(string name)
     {
         GameObject GM = GameObject.Find("LevelManager");
         GunManager GunM = GM.GetComponent<GunManager>();
-        if (name == "MedicKit") { return MedKit; }
+        AudioManager.clip = PickUpAudio;
         foreach (var Gunitem in GunM.AllGuns)
         {
             if (name == Gunitem.name)

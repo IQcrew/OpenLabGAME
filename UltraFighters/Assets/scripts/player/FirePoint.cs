@@ -20,7 +20,7 @@ public class FirePoint : MonoBehaviour
         if (playerScript.shooting) { spriteRenderer.enabled = true; }
         else { spriteRenderer.enabled = false; }
         var rotationVector = transform.rotation.eulerAngles;
-        if (playerScript.PlayerRotation == "Right")
+        if (playerScript.PlayerRotationRight)
         {
             if (playerScript.shooting)
             {
@@ -66,7 +66,7 @@ public class FirePoint : MonoBehaviour
             }
             
         }
-        else if (playerScript.PlayerRotation == "Left")
+        else if (!playerScript.PlayerRotationRight)
         {
             if (playerScript.shooting)
             {
