@@ -137,9 +137,9 @@ MonoBehaviour:
     ShootingTextureP1: {fileID: 0}
     ShootingTextureP2: {fileID: 0}
     Sound: {fileID: 0}
+    ReloadPickup: {fileID: 8300000, guid: f8bc947014000f542bb984c81a88afec, type: 3}
   AudioManager: {fileID: 1682180017}
   PickUpAudio: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
-  MedKitAudio: {fileID: 8300000, guid: f8bc947014000f542bb984c81a88afec, type: 3}
 --- !u!82 &1682180017
 AudioSource:
   m_ObjectHideFlags: 0

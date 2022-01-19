@@ -13,7 +13,6 @@ public class GunSpawner : MonoBehaviour
     private float TickTime = 0f;
     [SerializeField] private AudioSource AudioManager;
     [SerializeField] private AudioClip PickUpAudio;
-    [SerializeField] private AudioClip MedKitAudio;
     private SpriteRenderer ThisRender;
     private void Start(){ Setup(); AudioManager.clip = PickUpAudio; ThisRender = ThisGameObject.GetComponent<SpriteRenderer>(); }
     private void Update()
@@ -45,7 +44,8 @@ public class GunSpawner : MonoBehaviour
             if (ActualItem.name != "" && collision.tag == "Player")
             {
                 Player enemy = collision.GetComponent<Player>();
-                if (enemy.PickUpGun(ActualItem.name)) { Setup(); AudioManager.Play(); }
+                if (enemy.PickUpGun(ActualItem.name)) { AudioManager.clip = ActualItem.ReloadPickup; AudioManager.Play(); Setup(); }
+                
             }
         }
         
@@ -56,7 +56,7 @@ public class GunSpawner : MonoBehaviour
         Timer = Random.Range(5, 30);
         StartTime = Time.time;
         TempRandom = Random.Range(0,1100);
-        if (TempRandom < 200) { ActualItem = MedKit; AudioManager.clip = PickUpAudio; }
+        if (TempRandom < 200) { ActualItem = MedKit; }
         else if (TempRandom < 400) { ActualItem = GetGun("Pistol"); }
         else if (TempRandom < 550) { ActualItem = GetGun("Eagle"); }
         else if (TempRandom < 700) { ActualItem = GetGun("Mac-10"); }
@@ -64,14 +64,13 @@ public class GunSpawner : MonoBehaviour
         else if (TempRandom < 900) { ActualItem = GetGun("SniperRifle"); }
         else if (TempRandom < 950) { ActualItem = GetGun("AssalutRifle"); }
         else if (TempRandom < 1100) { ActualItem = GetGun("Shotgun"); }
-        else { ActualItem = MedKit; AudioManager.clip = PickUpAudio; }
+        else { ActualItem = MedKit;}
     }
     
     private Gun GetGun(string name)
     {
         GameObject GM = GameObject.Find("LevelManager");
         GunManager GunM = GM.GetComponent<GunManager>();
-        AudioManager.clip = PickUpAudio;
         foreach (var Gunitem in GunM.AllGuns)
         {
             if (name == Gunitem.name)

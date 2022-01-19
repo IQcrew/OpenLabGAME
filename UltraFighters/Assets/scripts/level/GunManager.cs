@@ -26,6 +26,7 @@ public class Gun
     public Sprite ShootingTextureP1;
     public Sprite ShootingTextureP2;
     public AudioClip Sound;
+    public AudioClip ReloadPickup;
 
     private double LastFire = -5f;
 
@@ -53,7 +54,8 @@ public class Gun
             GunTexture = this.GunTexture,
             ShootingTextureP1 = this.ShootingTextureP1,
             ShootingTextureP2 = this.ShootingTextureP2,
-            Sound = this.Sound
+            Sound = this.Sound,
+            ReloadPickup = this.ReloadPickup,
         };
     }
     public Sprite ReturnTexture(){ return GunTexture; }

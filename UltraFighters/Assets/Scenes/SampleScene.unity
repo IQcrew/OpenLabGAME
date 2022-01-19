@@ -2463,6 +2463,7 @@ MonoBehaviour:
     ShootingTextureP1: {fileID: 0}
     ShootingTextureP2: {fileID: 0}
     Sound: {fileID: 8300000, guid: b17dd5805767e92479ec9bb1c434c205, type: 3}
+    ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
   - name: Pistol
     ammo: 12
     speed: 50
@@ -2475,6 +2476,7 @@ MonoBehaviour:
     ShootingTextureP1: {fileID: 3785663470463989132, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
     ShootingTextureP2: {fileID: -4767880067820600482, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: 3b4c005fde30db840bb856da99f30d7f, type: 3}
+    ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
   - name: Eagle
     ammo: 6
     speed: 50
@@ -2487,6 +2489,7 @@ MonoBehaviour:
     ShootingTextureP1: {fileID: 7157651828581922068, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
     ShootingTextureP2: {fileID: -8865965697991447391, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: ac6c43685701fae428cabe066f1f0473, type: 3}
+    ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
   - name: Shotgun
     ammo: 5
     speed: 50
@@ -2499,6 +2502,7 @@ MonoBehaviour:
     ShootingTextureP1: {fileID: 9219531731433995601, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
     ShootingTextureP2: {fileID: 8402364051210284345, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: fa13a11b184d06f4b814b7cf2b0026e3, type: 3}
+    ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
   - name: Mac-10
     ammo: 20
     speed: 50
@@ -2511,6 +2515,7 @@ MonoBehaviour:
     ShootingTextureP1: {fileID: 6048353983754201218, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
     ShootingTextureP2: {fileID: 8927664636750835710, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: a8305c89b24140740ba72f05c1518fbd, type: 3}
+    ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
   - name: SniperRifle
     ammo: 5
     speed: 200
@@ -2523,6 +2528,7 @@ MonoBehaviour:
     ShootingTextureP1: {fileID: 8208245753667161119, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
     ShootingTextureP2: {fileID: 1860027645441148040, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: 64fb4e88c804d4e49ac1ee66fe371e55, type: 3}
+    ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
   - name: AssalutRifle
     ammo: 15
     speed: 50
@@ -2535,6 +2541,7 @@ MonoBehaviour:
     ShootingTextureP1: {fileID: -5198715494201027924, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
     ShootingTextureP2: {fileID: -6185314415179336160, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: 37edb0187dbf1d4479a9c712031420a1, type: 3}
+    ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
 --- !u!4 &657252224
 Transform:
   m_ObjectHideFlags: 0
@@ -9277,6 +9284,10 @@ PrefabInstance:
       value: 10.5
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: emptySound
+      value: 
+      objectReference: {fileID: 8300000, guid: b17dd5805767e92479ec9bb1c434c205, type: 3}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: FallGravity
       value: 4.5
       objectReference: {fileID: 0}
@@ -9716,11 +9727,13 @@ MonoBehaviour:
     ShootingTextureP1: {fileID: 0}
     ShootingTextureP2: {fileID: 0}
     Sound: {fileID: 0}
+    ReloadPickup: {fileID: 0}
   shooting: 0
   Jump: {fileID: 8300000, guid: 441f817e39bf8d144974ecf25de21f01, type: 3}
   Walk: {fileID: 8300000, guid: 82c6e445c77e9754ab33c95b85878344, type: 3}
   Run: {fileID: 8300000, guid: 98bae598f646fe040ac921b802625c41, type: 3}
   Reload: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
+  emptySound: {fileID: 8300000, guid: b17dd5805767e92479ec9bb1c434c205, type: 3}
   PlayerBody: {fileID: 6255620023719281905}
   PlayerHitBox: {fileID: 6255620023719281910}
   OpponentHitBox: {fileID: 801980984605335098}

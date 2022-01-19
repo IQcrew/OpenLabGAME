@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip Walk;
     [SerializeField] private AudioClip Run;
     [SerializeField] private AudioClip Reload;
+    [SerializeField] private AudioClip emptySound;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
@@ -107,9 +108,6 @@ public class Player : MonoBehaviour
             shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true;
         }
         isGrounded = GroundCheck();
-        Debug.Log("Ground"+isGrounded);
-        Debug.Log(Time.time - startAirTime > startFallTime);
-        Debug.Log("Air" + isInAir);
         if ((!isGrounded) && (!isOnLadder) && (!isCrouching)) { if (!isInAir) { isInAir = true; startAirTime = Time.time; } }
         else { isInAir = false; }
         if (((Time.time - startAirTime > startFallTime) && isInAir) || isFalling) { fall(); }
@@ -358,7 +356,7 @@ public class Player : MonoBehaviour
             }
         }
         if (Input.GetKey(fire)) { LastTimeShoot = Time.time; }
-        if (PlayerGun.ammo <= 0){ PlayerGun = GetGun("None"); PlayerAudio.PlayOneShot(PlayerGun.Sound); }
+        if (PlayerGun.ammo <= 0){ PlayerAudio.PlayOneShot(emptySound); PlayerGun = GetGun("None"); }
     }
     private bool GroundCheck()
     {
