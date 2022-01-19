@@ -31,7 +31,4 @@ public class sceneManager : MonoBehaviour
         endScreen = true; textObject.SetActive(true);
     
     }
-
-
-
 }
