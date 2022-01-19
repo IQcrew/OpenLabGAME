@@ -33,13 +33,19 @@ public class Player : MonoBehaviour
     [Header("Gravity settings")]
     [SerializeField] private float ThrowJumpGravity = 2f;
     [SerializeField] private float NormalGravity = 2.5f;
-    [SerializeField] private float FallGravity = 3.5f;
+    [SerializeField] private float FallGravity = 4.5f;
 
     public bool PlayerRotationRight = true;
     private bool PlayerLastRotationRight;
     private float Health;
+    //jumping & falling
     private bool isGrounded;
     private bool jumped = false;
+    private bool isFalling = false;
+    private bool isInAir = false;
+    private float startAirTime = 0f;
+    [SerializeField] private float startFallTime = 1f;
+    private bool knockedOut = false;
 
     //crouching,ladder,onewayplatform variables
     private bool isCrouching = false;
@@ -96,12 +102,20 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Health <= 0) { death(); }
-        isGrounded = GroundCheck();
-        if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (Input.GetKey(Right) || Input.GetKey(Left) || Input.GetKey(Up) || Input.GetKey(Down) || Input.GetKey(hit) || Input.GetKey(slot))) { 
+        if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (Input.GetKey(Right) || Input.GetKey(Left) || Input.GetKey(Up) || Input.GetKey(Down) || Input.GetKey(hit) || Input.GetKey(slot)))
+        {
             shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true;
         }
-        if (isOnLadder && (!isCrouching) && (!isGrounded)) { Ladder(); PlayerAudio.clip = null; }
+        isGrounded = GroundCheck();
+        Debug.Log("Ground"+isGrounded);
+        Debug.Log(Time.time - startAirTime > startFallTime);
+        Debug.Log("Air" + isInAir);
+        if ((!isGrounded) && (!isOnLadder) && (!isCrouching)) { if (!isInAir) { isInAir = true; startAirTime = Time.time; } }
+        else { isInAir = false; }
+        if (((Time.time - startAirTime > startFallTime) && isInAir) || isFalling) { fall(); }
+        else if (knockedOut) { PlayerBody.velocity = Vector2.zero; }
+        else if (isOnLadder && (!isCrouching) && (!isGrounded)) { Ladder(); PlayerAudio.clip = null; }
+        else if ((!isOnLadder) && (!isCrouching) && Input.GetKey(hit)) { meleeAttack(); }
         else if (PlayerGun.name != "None" && !isCrouching && isGrounded && (Input.GetKey(fire) || shooting))
         {
             PlayerAudio.clip = null;
@@ -114,7 +128,6 @@ public class Player : MonoBehaviour
         {
             BulletsToShot = 0;
             //move
-
             if ((Input.GetKey(Down) && isGrounded) || isCrouching) { crouch(); PlayerAudio.clip = null; }
             else
             {
@@ -143,13 +156,35 @@ public class Player : MonoBehaviour
             PlayerLastRotationRight = PlayerRotationRight;
         }
         AnimationSetter();
-        if (Health < MaxHealth && Time.time-lastHit > 3){
-            Health += 25f*Time.deltaTime;
-            if(Health > MaxHealth) { Health = MaxHealth; }
+        if (Health < MaxHealth && Time.time - lastHit > 5) {
+            Health += 20f * Time.deltaTime;
+            if (Health > MaxHealth) { Health = MaxHealth; }
         }
-            
     }
-
+    private void fall()
+    {
+        if (!isFalling) { isFalling = true; HitBoxChanger(0.5f, 0.5f, 0f, -0.575f, false); }
+        else if (isGrounded)
+        {
+            isFalling = false;
+            isInAir = false;
+            startAirTime = 0f;
+            TakeDamage((int)(Time.time - startAirTime + startFallTime));
+            StartCoroutine(knockedOff());
+        }
+    }
+    private IEnumerator knockedOff()
+    {
+        knockedOut = true;
+        HitBoxChanger(1f, 1f, 0f, 0f, false);
+        yield return new WaitForSeconds(1f);
+        knockedOut = false;
+        HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false);
+    }
+    private void meleeAttack()
+    {
+        
+    }
     private void walk()
     {
         if (Input.GetKey(Right) && !Input.GetKey(Left)) //walk right
@@ -386,6 +421,7 @@ public class Player : MonoBehaviour
     {
         lastHit = Time.time;
         Health -= damage;
+        if (Health <= 0) { death(); }
     }
     private void AnimationSetter()
     {
