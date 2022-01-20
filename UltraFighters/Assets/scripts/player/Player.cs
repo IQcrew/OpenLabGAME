@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     private float startAirTime = 0f;
     [SerializeField] private float startFallTime = 1f;
     private bool knockedOut = false;
+    [SerializeField] private float fallDmg=50f;
 
     //crouching,ladder,onewayplatform variables
     private bool isCrouching = false;
@@ -110,8 +111,8 @@ public class Player : MonoBehaviour
         isGrounded = GroundCheck();
         if ((!isGrounded) && (!isOnLadder) && (!isCrouching)) { if (!isInAir) { isInAir = true; startAirTime = Time.time; } }
         else { isInAir = false; }
-        if (((Time.time - startAirTime > startFallTime) && isInAir) || isFalling) { fall(); }
-        else if (knockedOut) { PlayerBody.velocity = Vector2.zero; }
+        if ((((Time.time - startAirTime > startFallTime) && isInAir) || isFalling) && !knockedOut) { fall(); }
+        else if (knockedOut) { PlayerBody.velocity = Vector2.zero; PlayerAudio.clip = null; startAirTime = 0f; }
         else if (isOnLadder && (!isCrouching) && (!isGrounded)) { Ladder(); PlayerAudio.clip = null; }
         else if ((!isOnLadder) && (!isCrouching) && Input.GetKey(hit)) { meleeAttack(); }
         else if (PlayerGun.name != "None" && !isCrouching && isGrounded && (Input.GetKey(fire) || shooting))
@@ -141,7 +142,6 @@ public class Player : MonoBehaviour
                     walk();
                     if (PlayerAudio.clip == Run) { PlayerAudio.clip = null; }
                     PlayerAudio.clip = Walk;
-                    if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); }
                 }
                 if (PlayerBody.velocity.y < 0)
                     PlayerBody.gravityScale = FallGravity;
@@ -166,8 +166,7 @@ public class Player : MonoBehaviour
         {
             isFalling = false;
             isInAir = false;
-            startAirTime = 0f;
-            TakeDamage((int)(Time.time - startAirTime + startFallTime));
+            TakeDamage((int)((Time.time - startAirTime + startFallTime) *fallDmg)); ;
             StartCoroutine(knockedOff());
         }
     }
@@ -190,12 +189,14 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(Right) && Time.time - LastKeyRight < DoubleTapTime) { sprinting = true; }
             LastKeyRight = Time.time; PlayerRotationRight = true;
             PlayerBody.velocity = new Vector2(+WalkForce, PlayerBody.velocity.y);
+            if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); }
         }
         else if (Input.GetKey(Left) && !Input.GetKey(Right))     // walk left
         {   //sprint check
             if (Input.GetKeyDown(Left) && Time.time - LastKeyLeft < DoubleTapTime) { sprinting = true; }
             LastKeyLeft = Time.time; PlayerRotationRight = false;
             PlayerBody.velocity = new Vector2(-WalkForce, PlayerBody.velocity.y);
+            if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); }
         }
         else { PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y); PlayerAudio.clip = null; }   //stay at position
     }
