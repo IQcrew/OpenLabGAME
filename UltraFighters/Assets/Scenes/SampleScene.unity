@@ -8455,6 +8455,14 @@ PrefabInstance:
       value: Player_1
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: fallDmg
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: fallSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: LevelManager
       value: 
       objectReference: {fileID: 657252222}
@@ -8462,6 +8470,18 @@ PrefabInstance:
       propertyPath: OpponentHitBox
       value: 
       objectReference: {fileID: 6255620023719281910}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: fallAcceleration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006640324493165864, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8223
+      objectReference: {fileID: 0}
+    - target: {fileID: 5006640324493165864, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.3441
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
 --- !u!61 &801980984605335098 stripped
@@ -8822,8 +8842,9 @@ MonoBehaviour:
   NormalGravity: 2.5
   FallGravity: 4.5
   PlayerRotationRight: 1
-  startFallTime: 1
-  fallDmg: 50
+  fallSpeed: 25
+  fallAcceleration: 20
+  fallDmg: 2
   isInPlatform: 0
   FirePoint: {fileID: 2985014994384760375}
   PlayerGun:

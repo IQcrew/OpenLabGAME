@@ -42,11 +42,12 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private bool jumped = false;
     private bool isFalling = false;
-    private bool isInAir = false;
-    private float startAirTime = 0f;
-    [SerializeField] private float startFallTime = 1f;
+    [SerializeField] private float fallSpeed = 15f;
+    [SerializeField] private float fallAcceleration = 20f;
+    [SerializeField] private float fallDmg = 2f;
+    private float maxFallSpeed= 0f;
     private bool knockedOut = false;
-    [SerializeField] private float fallDmg=50f;
+    private float fallingTime;
 
     //crouching,ladder,onewayplatform variables
     private bool isCrouching = false;
@@ -109,10 +110,8 @@ public class Player : MonoBehaviour
             shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true;
         }
         isGrounded = GroundCheck();
-        if ((!isGrounded) && (!isOnLadder) && (!isCrouching)) { if (!isInAir) { isInAir = true; startAirTime = Time.time; } }
-        else { isInAir = false; }
-        if ((((Time.time - startAirTime > startFallTime) && isInAir) || isFalling) && !knockedOut) { fall(); }
-        else if (knockedOut) { PlayerBody.velocity = Vector2.zero; PlayerAudio.clip = null; startAirTime = 0f; }
+        if (PlayerBody.velocity.y <= -fallSpeed || isFalling) { fall(); }
+        else if (knockedOut) { PlayerBody.velocity = Vector2.zero; PlayerAudio.clip = null; }
         else if (isOnLadder && (!isCrouching) && (!isGrounded)) { Ladder(); PlayerAudio.clip = null; }
         else if ((!isOnLadder) && (!isCrouching) && Input.GetKey(hit)) { meleeAttack(); }
         else if (PlayerGun.name != "None" && !isCrouching && isGrounded && (Input.GetKey(fire) || shooting))
@@ -161,12 +160,12 @@ public class Player : MonoBehaviour
     }
     private void fall()
     {
-        if (!isFalling) { isFalling = true; HitBoxChanger(0.5f, 0.5f, 0f, -0.575f, false); }
+        if(PlayerBody.velocity.y < maxFallSpeed) { maxFallSpeed = PlayerBody.velocity.y; }
+        if (!isFalling) { isFalling = true; fallingTime = Time.time; HitBoxChanger(0.5f, 0.5f, 0f, -0.575f, false); }
         else if (isGrounded)
         {
             isFalling = false;
-            isInAir = false;
-            TakeDamage((int)((Time.time - startAirTime + startFallTime) *fallDmg)); ;
+            TakeDamage((int)(fallDmg*Math.Abs(maxFallSpeed - (Time.time-fallingTime) * fallAcceleration)));
             StartCoroutine(knockedOff());
         }
     }
@@ -177,6 +176,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1f);
         knockedOut = false;
         HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false);
+        maxFallSpeed = 0f;
     }
     private void meleeAttack()
     {
@@ -189,7 +189,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(Right) && Time.time - LastKeyRight < DoubleTapTime) { sprinting = true; }
             LastKeyRight = Time.time; PlayerRotationRight = true;
             PlayerBody.velocity = new Vector2(+WalkForce, PlayerBody.velocity.y);
-            if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); }
+            if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); } 
         }
         else if (Input.GetKey(Left) && !Input.GetKey(Right))     // walk left
         {   //sprint check
