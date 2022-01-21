@@ -8455,6 +8455,10 @@ PrefabInstance:
       value: Player_1
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: getHit
+      value: 
+      objectReference: {fileID: 8300000, guid: 84efc399ba9b9ad4593c8c89bc930329, type: 3}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: fallDmg
       value: 2
       objectReference: {fileID: 0}
@@ -8462,6 +8466,10 @@ PrefabInstance:
       propertyPath: fallSpeed
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 096ba5f43b8b53b4895bd82bbfa733e0, type: 3}
     - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: LevelManager
       value: 
@@ -8895,6 +8903,8 @@ MonoBehaviour:
   Run: {fileID: 8300000, guid: 98bae598f646fe040ac921b802625c41, type: 3}
   Reload: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
   emptySound: {fileID: 8300000, guid: b17dd5805767e92479ec9bb1c434c205, type: 3}
+  getHit: {fileID: 8300000, guid: 258395c04a4cdd043b6d445d08c3422e, type: 3}
+  deathSound: {fileID: 8300000, guid: 51a33d184c055e94e91a57ed09809345, type: 3}
   PlayerBody: {fileID: 6255620023719281905}
   PlayerHitBox: {fileID: 6255620023719281910}
   OpponentHitBox: {fileID: 801980984605335098}

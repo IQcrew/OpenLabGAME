@@ -81,6 +81,8 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip Run;
     [SerializeField] private AudioClip Reload;
     [SerializeField] private AudioClip emptySound;
+    [SerializeField] private AudioClip getHit;
+    [SerializeField] private AudioClip deathSound;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
@@ -425,6 +427,7 @@ public class Player : MonoBehaviour
     {
         lastHit = Time.time;
         Health -= damage;
+        PlayerAudio.PlayOneShot(getHit);
         if (Health <= 0) { death(); }
     }
     private void AnimationSetter()
@@ -472,6 +475,7 @@ public class Player : MonoBehaviour
     }
     private void death()
     {
+        GameObject.Find("AudioManager").GetComponent<AudioSource>().PlayOneShot(deathSound);
         LevelManager.GetComponent<sceneManager>().setEndScreen(name);
         Destroy(gameObject);
     }
