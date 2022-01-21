@@ -116,6 +116,11 @@ public class Player : MonoBehaviour
         else if ((!isOnLadder) && (!isCrouching) && Input.GetKey(hit)) { meleeAttack(); }
         else if (PlayerGun.name != "None" && !isCrouching && isGrounded && (Input.GetKey(fire) || shooting))
         {
+            if (Input.GetKey(Right) && !Input.GetKey(Left)) { PlayerRotationRight = true; }
+            else if (Input.GetKey(Left) && !Input.GetKey(Right)) { PlayerRotationRight = false; }
+            if (PlayerRotationRight && !PlayerLastRotationRight) { transform.Rotate(0f, 180f, 0F); }
+            else if (!PlayerRotationRight && PlayerLastRotationRight) { transform.Rotate(0f, 180f, 0F); }
+            PlayerLastRotationRight = PlayerRotationRight;
             PlayerAudio.clip = null;
             shooting = true;
             PlayerRenderer.enabled = false;
