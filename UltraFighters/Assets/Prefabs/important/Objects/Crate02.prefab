@@ -145,5 +145,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 80
-  HitEffect: {fileID: 0}
-  DeathEffect: {fileID: 0}
+  HitSound: {fileID: 8300000, guid: e2d1e2e97cf99f846a1ad7bffb5b3b48, type: 3}
+  DeathSound: {fileID: 8300000, guid: 7888f10a34080664fa10d134ae0f088e, type: 3}

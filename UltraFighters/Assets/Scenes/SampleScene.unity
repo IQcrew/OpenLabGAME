@@ -2364,7 +2364,7 @@ MonoBehaviour:
     Sound: {fileID: 8300000, guid: 3b4c005fde30db840bb856da99f30d7f, type: 3}
     ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
   - name: Eagle
-    ammo: 6
+    ammo: 7
     speed: 50
     damage: 40
     FireSpeed: 0.6
