@@ -22,11 +22,13 @@ public class Gun
     public int BulletsOnShoot = 0;
     public GameObject Bullet;
     public GameObject Bullet2P;
-    public Sprite GunTexture;
+    public Sprite weaponTexture;
     public Sprite ShootingTextureP1;
     public Sprite ShootingTextureP2;
     public AudioClip Sound;
+    [Range(0f,1f)]public float fireVolume = 1;
     public AudioClip ReloadPickup;
+    [Range(0f, 1f)] public float reloadVolume = 1;
 
     private double LastFire = -5f;
 
@@ -51,20 +53,40 @@ public class Gun
             BulletsOnShoot = this.BulletsOnShoot,
             Bullet = this.Bullet,
             Bullet2P = this.Bullet2P,
-            GunTexture = this.GunTexture,
+            weaponTexture = this.weaponTexture,
             ShootingTextureP1 = this.ShootingTextureP1,
             ShootingTextureP2 = this.ShootingTextureP2,
             Sound = this.Sound,
             ReloadPickup = this.ReloadPickup,
+            reloadVolume = this.reloadVolume,
+            fireVolume = this.fireVolume,
         };
     }
-    public Sprite ReturnTexture(){ return GunTexture; }
 }
+
+[System.Serializable]
 public class MeleeWeapon
 {
+    public string name;
     public int damage;
     public int hitSpeed;
     public Sprite weaponTexture;
-    public Animator P1Animator;
-    public Animator P2Animator;
+    public Animator PlayerAnimator;
+    public AudioClip HitSound;
+    [Range(0f, 1f)] public float volume = 1;
+
+    public MeleeWeapon clone()
+    {
+        return new MeleeWeapon
+        {
+            name = this.name,
+            damage = this.damage,
+            hitSpeed = this.hitSpeed,
+            weaponTexture = this.weaponTexture,
+            PlayerAnimator = this.PlayerAnimator,
+            HitSound = this.HitSound,
+            volume = this.volume,
+        };
+    }
+    
 }

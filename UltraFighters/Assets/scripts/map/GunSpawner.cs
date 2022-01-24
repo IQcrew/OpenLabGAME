@@ -22,7 +22,7 @@ public class GunSpawner : MonoBehaviour
         else if (StartTime + Timer + 1 > Time.time)
         {
             ThisGameObject.GetComponent<SpriteRenderer>().enabled = true;
-            ThisGameObject.GetComponent<SpriteRenderer>().sprite = ActualItem.GunTexture;
+            ThisGameObject.GetComponent<SpriteRenderer>().sprite = ActualItem.weaponTexture;
         }
         else if (StartTime + Timer + 15 > Time.time){ }
         else if (StartTime + Timer + 25 > Time.time)
@@ -44,7 +44,7 @@ public class GunSpawner : MonoBehaviour
             if (ActualItem.name != "" && collision.tag == "Player")
             {
                 Player enemy = collision.GetComponent<Player>();
-                if (enemy.PickUpGun(ActualItem.name)) { AudioManager.clip = ActualItem.ReloadPickup; AudioManager.Play(); Setup(); }
+                if (enemy.PickUpGun(ActualItem.name)) { AudioManager.PlayOneShot(ActualItem.ReloadPickup, ActualItem.reloadVolume); Setup(); }
                 
             }
         }

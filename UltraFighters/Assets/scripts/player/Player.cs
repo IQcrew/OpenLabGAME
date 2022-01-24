@@ -319,13 +319,13 @@ public class Player : MonoBehaviour
                     if (Time.time > LastTimeShoot + 0.15f){
                         TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 10) - 5);
                         Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation));
-                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound);
+                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound,PlayerGun.fireVolume);
                     }
                     break;
                 case "AssalutRifle":
                     if (Time.time > LastTimeShoot + 0.1f){
                         Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
-                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound);
+                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound,PlayerGun.fireVolume);
                     }
                     break;
             }
@@ -347,8 +347,8 @@ public class Player : MonoBehaviour
                             Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation)); 
                         }
                         PlayerGun.ammo -= 1;
-                        PlayerAudio.PlayOneShot(PlayerGun.Sound);
-                        PlayerAudio.PlayOneShot(Reload);
+                        PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
+                        PlayerAudio.PlayOneShot(Reload, PlayerGun.fireVolume);
                         break;
                     case "Mac-10":
                     case "AssalutRifle":
@@ -356,9 +356,9 @@ public class Player : MonoBehaviour
                         break;
                     default:
                         Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
-                        PlayerAudio.PlayOneShot(PlayerGun.Sound);
+                        PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
                         PlayerGun.ammo -= 1;
-                        if(PlayerGun.name == "SniperRifle") { PlayerAudio.PlayOneShot(Reload); }
+                        if(PlayerGun.name == "SniperRifle") { PlayerAudio.PlayOneShot(Reload, PlayerGun.fireVolume); }
                         break;
                 }
             }

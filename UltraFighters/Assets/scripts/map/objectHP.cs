@@ -6,7 +6,9 @@ public class objectHP : MonoBehaviour
 {
     public int health = 80;
     public AudioClip HitSound;
+    [Range(0f, 1f)] public float hitVolume = 1;
     public AudioClip DeathSound;
+    [Range(0f, 1f)] public float deathVolume = 1;
     private AudioSource AudioManagerSet;
     private void Start()
     {
@@ -20,12 +22,12 @@ public class objectHP : MonoBehaviour
 
         if (health <= 1)     //DeathEffect and remove object
         {
-            AudioManagerSet.PlayOneShot(DeathSound);
+            AudioManagerSet.PlayOneShot(DeathSound,deathVolume);
             Destroy(gameObject);
         }
         else      //HitEffect
         {
-            AudioManagerSet.PlayOneShot(HitSound);
+            AudioManagerSet.PlayOneShot(HitSound, hitVolume);
         }
     }
 }
