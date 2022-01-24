@@ -2379,7 +2379,7 @@ MonoBehaviour:
     ShootingTextureP2: {fileID: -8865965697991447391, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: ac6c43685701fae428cabe066f1f0473, type: 3}
     fireVolume: 1
-    ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
+    ReloadPickup: {fileID: 8300000, guid: fbdaade43c5701f4883c1928bf08f500, type: 3}
     reloadVolume: 1
   - name: Shotgun
     ammo: 5
@@ -2407,7 +2407,7 @@ MonoBehaviour:
     ShootingTextureP2: {fileID: 8927664636750835710, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: a8305c89b24140740ba72f05c1518fbd, type: 3}
     fireVolume: 1
-    ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
+    ReloadPickup: {fileID: 8300000, guid: a52e151384dfadf49b59b879ec413ce2, type: 3}
     reloadVolume: 1
   - name: SniperRifle
     ammo: 5
@@ -2421,7 +2421,7 @@ MonoBehaviour:
     ShootingTextureP2: {fileID: 1860027645441148040, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: 64fb4e88c804d4e49ac1ee66fe371e55, type: 3}
     fireVolume: 1
-    ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
+    ReloadPickup: {fileID: 8300000, guid: 9d7aa32a171db6445b37083a822325ba, type: 3}
     reloadVolume: 1
   - name: AssalutRifle
     ammo: 15
@@ -2435,8 +2435,8 @@ MonoBehaviour:
     ShootingTextureP2: {fileID: -6185314415179336160, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: 37edb0187dbf1d4479a9c712031420a1, type: 3}
     fireVolume: 1
-    ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
-    reloadVolume: 1
+    ReloadPickup: {fileID: 8300000, guid: 953b412f362aa6543928102d2d1e6177, type: 3}
+    reloadVolume: 0.7
   AllMeleeWeapons:
   - name: Hand
     damage: 0
