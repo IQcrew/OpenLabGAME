@@ -7,7 +7,7 @@ using UnityEngine;
 public class GunManager : MonoBehaviour
 {
     public List<Gun> AllGuns = new List<Gun>();
-
+    public List<MeleeWeapon> AllMeleeWeapons = new List<MeleeWeapon>();
 }
 
 [System.Serializable]
@@ -59,5 +59,12 @@ public class Gun
         };
     }
     public Sprite ReturnTexture(){ return GunTexture; }
-
+}
+public class MeleeWeapon
+{
+    public int damage;
+    public int hitSpeed;
+    public Sprite weaponTexture;
+    public Animator P1Animator;
+    public Animator P2Animator;
 }
