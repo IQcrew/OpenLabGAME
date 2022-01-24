@@ -2315,8 +2315,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 657252224}
+  - component: {fileID: 657252227}
   - component: {fileID: 657252223}
   - component: {fileID: 657252225}
+  - component: {fileID: 657252226}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -2344,13 +2346,13 @@ MonoBehaviour:
     FireSpeed: 0
     BulletsOnShoot: 0
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
-    Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     weaponTexture: {fileID: 0}
     ShootingTextureP1: {fileID: 0}
     ShootingTextureP2: {fileID: 0}
     Sound: {fileID: 8300000, guid: b17dd5805767e92479ec9bb1c434c205, type: 3}
+    fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
-    volume: 100
+    reloadVolume: 1
   - name: Pistol
     ammo: 12
     speed: 50
@@ -2358,13 +2360,13 @@ MonoBehaviour:
     FireSpeed: 0.3
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
-    Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     weaponTexture: {fileID: 21300000, guid: c443bf8cc52c6f24ca05b10b71f0d057, type: 3}
     ShootingTextureP1: {fileID: 3785663470463989132, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
     ShootingTextureP2: {fileID: -4767880067820600482, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: 3b4c005fde30db840bb856da99f30d7f, type: 3}
+    fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
-    volume: 100
+    reloadVolume: 1
   - name: Eagle
     ammo: 7
     speed: 50
@@ -2372,13 +2374,13 @@ MonoBehaviour:
     FireSpeed: 0.6
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
-    Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     weaponTexture: {fileID: 21300000, guid: 2004b0d14fe15cf48b2bcb46a27ca347, type: 3}
     ShootingTextureP1: {fileID: 7157651828581922068, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
     ShootingTextureP2: {fileID: -8865965697991447391, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: ac6c43685701fae428cabe066f1f0473, type: 3}
+    fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
-    volume: 100
+    reloadVolume: 1
   - name: Shotgun
     ammo: 5
     speed: 50
@@ -2386,13 +2388,13 @@ MonoBehaviour:
     FireSpeed: 0.7
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
-    Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     weaponTexture: {fileID: 21300000, guid: 3626a6e73b44dea43b8fed2eb4cb0125, type: 3}
     ShootingTextureP1: {fileID: 9219531731433995601, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
     ShootingTextureP2: {fileID: 8402364051210284345, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: fa13a11b184d06f4b814b7cf2b0026e3, type: 3}
+    fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
-    volume: 100
+    reloadVolume: 1
   - name: Mac-10
     ammo: 20
     speed: 50
@@ -2400,13 +2402,13 @@ MonoBehaviour:
     FireSpeed: 0.8
     BulletsOnShoot: 5
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
-    Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     weaponTexture: {fileID: 21300000, guid: 8a7fd03e7d00e8644a03887bf60a321e, type: 3}
     ShootingTextureP1: {fileID: 6048353983754201218, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
     ShootingTextureP2: {fileID: 8927664636750835710, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: a8305c89b24140740ba72f05c1518fbd, type: 3}
+    fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
-    volume: 100
+    reloadVolume: 1
   - name: SniperRifle
     ammo: 5
     speed: 200
@@ -2414,13 +2416,13 @@ MonoBehaviour:
     FireSpeed: 1.5
     BulletsOnShoot: 1
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
-    Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     weaponTexture: {fileID: 21300000, guid: df92c48779dc6b14c9ea30bf8e843c5b, type: 3}
     ShootingTextureP1: {fileID: 8208245753667161119, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
     ShootingTextureP2: {fileID: 1860027645441148040, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: 64fb4e88c804d4e49ac1ee66fe371e55, type: 3}
+    fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
-    volume: 100
+    reloadVolume: 1
   - name: AssalutRifle
     ammo: 15
     speed: 50
@@ -2428,13 +2430,13 @@ MonoBehaviour:
     FireSpeed: 1
     BulletsOnShoot: 3
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
-    Bullet2P: {fileID: 5038062060661562308, guid: 455990c5fd7c77b40bc3381b95fb6b33, type: 3}
     weaponTexture: {fileID: 21300000, guid: 50d83569f80fc5e4295a17d8aba05dfe, type: 3}
     ShootingTextureP1: {fileID: -5198715494201027924, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
     ShootingTextureP2: {fileID: -6185314415179336160, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: 37edb0187dbf1d4479a9c712031420a1, type: 3}
+    fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
-    volume: 100
+    reloadVolume: 1
   AllMeleeWeapons:
   - name: Hand
     damage: 0
@@ -2442,7 +2444,7 @@ MonoBehaviour:
     weaponTexture: {fileID: 0}
     PlayerAnimator: {fileID: 0}
     HitSound: {fileID: 0}
-    volume: 100
+    volume: 1
 --- !u!4 &657252224
 Transform:
   m_ObjectHideFlags: 0
@@ -2473,6 +2475,114 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextBox: {fileID: 1855278693}
   textObject: {fileID: 1744586802}
+--- !u!114 &657252226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657252222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93bf952f3629f14896ac4088cf9206d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &657252227
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657252222}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &657462101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8533,6 +8643,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.31
       objectReference: {fileID: 0}
+    - target: {fileID: 8855404817806557075, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
 --- !u!61 &801980984605335098 stripped
@@ -8906,13 +9020,13 @@ MonoBehaviour:
     FireSpeed: 0
     BulletsOnShoot: 0
     Bullet: {fileID: 0}
-    Bullet2P: {fileID: 0}
     weaponTexture: {fileID: 0}
     ShootingTextureP1: {fileID: 0}
     ShootingTextureP2: {fileID: 0}
     Sound: {fileID: 0}
+    fireVolume: 1
     ReloadPickup: {fileID: 0}
-    volume: 100
+    reloadVolume: 1
   shooting: 0
   Jump: {fileID: 8300000, guid: 441f817e39bf8d144974ecf25de21f01, type: 3}
   Walk: {fileID: 8300000, guid: 82c6e445c77e9754ab33c95b85878344, type: 3}

@@ -26,7 +26,7 @@ public class bullet : MonoBehaviour
 
     private void OnCollisionEnter2D (Collision2D other) //checkuje stretnutie z druhym objektom
     {
-        
+        Debug.Log(other.collider.tag + "  " + shooter_name);
         if(other.collider.tag is "Destructible")
         {
             objectHP enemy = other.collider.GetComponent<objectHP>();

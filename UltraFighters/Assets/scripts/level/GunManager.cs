@@ -21,7 +21,6 @@ public class Gun
     public double FireSpeed;
     public int BulletsOnShoot = 0;
     public GameObject Bullet;
-    public GameObject Bullet2P;
     public Sprite weaponTexture;
     public Sprite ShootingTextureP1;
     public Sprite ShootingTextureP2;
@@ -52,7 +51,6 @@ public class Gun
             FireSpeed = this.FireSpeed,
             BulletsOnShoot = this.BulletsOnShoot,
             Bullet = this.Bullet,
-            Bullet2P = this.Bullet2P,
             weaponTexture = this.weaponTexture,
             ShootingTextureP1 = this.ShootingTextureP1,
             ShootingTextureP2 = this.ShootingTextureP2,

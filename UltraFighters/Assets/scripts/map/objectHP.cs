@@ -12,7 +12,7 @@ public class objectHP : MonoBehaviour
     private AudioSource AudioManagerSet;
     private void Start()
     {
-        AudioManagerSet = GameObject.Find("AudioManager").GetComponent<AudioSource>();
+        AudioManagerSet = GameObject.Find("LevelManager").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

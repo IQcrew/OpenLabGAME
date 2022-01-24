@@ -451,7 +451,8 @@ public class Player : MonoBehaviour
         foreach (var Gunitem in GunM.AllGuns){
             if (name == Gunitem.name) { 
                 Gun TempGun = Gunitem.Clone();
-                GameObject TempBullet = PlayerName == "Player_1" ? TempGun.Bullet : TempGun.Bullet2P;
+                GameObject TempBullet = TempGun.Bullet;
+                TempBullet.GetComponent<bullet>().shooter_name = name;
                 TempBullet.GetComponent<bullet>().damage = TempGun.damage;
                 TempBullet.GetComponent<bullet>().speed = TempGun.speed;
                 TempGun.Bullet = TempBullet;
