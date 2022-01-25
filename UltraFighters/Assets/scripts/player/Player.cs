@@ -13,27 +13,10 @@ public class Player : MonoBehaviour
     [SerializeField] public KeyCode hit = KeyCode.N;
     [SerializeField] public KeyCode fire = KeyCode.M;
     [SerializeField] public KeyCode slot = KeyCode.K;
-    [Header("LayerMasks")]
-    [SerializeField] private LayerMask PlatformLayerMask;
-    [SerializeField] private LayerMask OneWayPlatformLayerMask;
     [Header("Health & Saturation")]
     [SerializeField] public string PlayerName;
     [SerializeField] public int MaxHealth = 200;
     [SerializeField] public int Saturation = 100;
-    [Header("Movement")]
-    [SerializeField] private float WalkForce = 5f;
-    [SerializeField] private float SprintForce = 8f;
-    [SerializeField] private float JumpForce = 10f;
-    [SerializeField] private float LadderVertical = 5f;
-    [SerializeField] private float LadderHorizontal = 3f;
-    [Header("Other")]
-    [SerializeField] private float DoubleTapTime = 0.2f;
-    [SerializeField] private float TimeInRoll = 0.5f;
-    [SerializeField] private float ThrowJump = 5f;
-    [Header("Gravity settings")]
-    [SerializeField] private float ThrowJumpGravity = 2f;
-    [SerializeField] private float NormalGravity = 2.5f;
-    [SerializeField] private float FallGravity = 4.5f;
 
     public bool PlayerRotationRight = true;
     private bool PlayerLastRotationRight;
@@ -42,10 +25,7 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private bool jumped = false;
     private bool isFalling = false;
-    [SerializeField] private float fallSpeed = 15f;
-    [SerializeField] private float fallAcceleration = 20f;
-    [SerializeField] private float fallDmg = 2f;
-    private float maxFallSpeed= 0f;
+    private float maxFallSpeed = 0f;
     private bool knockedOut = false;
     private float fallingTime;
 
@@ -63,7 +43,9 @@ public class Player : MonoBehaviour
     private bool sprinting = false;
     private float LastSprintRight = -5f;
     private float LastSprintLeft = -5f;
-
+    [Header("LayerMasks")]
+    [SerializeField] public LayerMask PlatformLayerMask;
+    [SerializeField] public LayerMask OneWayPlatformLayerMask;
     [Header("Shooting")]
     [SerializeField] public Transform FirePoint;
     public Gun PlayerGun;
@@ -75,14 +57,6 @@ public class Player : MonoBehaviour
     private Laser MyLaser;
     private float lastHit = 0f;
 
-    [Header("Sounds")]
-    [SerializeField] private AudioClip Jump;
-    [SerializeField] private AudioClip Walk;
-    [SerializeField] private AudioClip Run;
-    [SerializeField] private AudioClip Reload;
-    [SerializeField] private AudioClip emptySound;
-    [SerializeField] private AudioClip getHit;
-    [SerializeField] private AudioClip deathSound;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
@@ -94,9 +68,58 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject LaserPoint;
     [SerializeField] private AudioSource PlayerAudio;
     [SerializeField] private GameObject LevelManager;
+    private FirePoint FP;
+
+
+    private float WalkForce = 5f;
+    private float SprintForce = 8f;
+    private float JumpForce = 10f;
+    private float LadderVertical = 5f;
+    private float LadderHorizontal = 3f;
+    private float DoubleTapTime = 0.2f;
+    private float TimeInRoll = 0.5f;
+    private float ThrowJump = 5f;
+    private float ThrowJumpGravity = 2f;
+    private float NormalGravity = 2.5f;
+    private float FallGravity = 4.5f;
+    private float fallSpeed = 15f;
+    private float fallAcceleration = 20f;
+    private float fallDmg = 2f;
+    private AudioClip Jump;
+    private AudioClip Walk;
+    private AudioClip Run;
+    private AudioClip Reload;
+    private AudioClip emptySound;
+    private AudioClip getHit;
+    private AudioClip deathSound;
 
     void Start()
     {
+        FP = FirePoint.GetComponent<FirePoint>();
+        playerTemplate PT = GameObject.Find("LevelManager").GetComponent<playerTemplate>();
+        //setup values
+        WalkForce = PT.WalkForce;
+        SprintForce = PT.SprintForce;
+        JumpForce = PT.JumpForce;
+         LadderVertical = PT.LadderVertical;
+        LadderHorizontal = PT.LadderHorizontal;
+        DoubleTapTime = PT.DoubleTapTime;
+        TimeInRoll = PT.TimeInRoll;
+        ThrowJump = PT.ThrowJump;
+        ThrowJumpGravity = PT.ThrowJumpGravity;
+        NormalGravity = PT.NormalGravity;
+        FallGravity = PT.FallGravity;
+        fallSpeed = PT.fallSpeed;
+        fallAcceleration = PT.fallAcceleration;
+        fallDmg = PT.fallDmg;
+        Jump = PT.Jump;
+        Walk = PT.Walk;
+        Run = PT.Run;
+        Reload = PT.Reload;
+        emptySound = PT.emptySound;
+        deathSound = PT.deathSound;
+        getHit = PT.getHit;
+
         Physics2D.IgnoreCollision(PlayerHitBox, OpponentHitBox);
         MyLaser = LaserPoint.GetComponent<Laser>();
         Health = MaxHealth;
@@ -109,7 +132,7 @@ public class Player : MonoBehaviour
     {
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (Input.GetKey(Right) || Input.GetKey(Left) || Input.GetKey(Up) || Input.GetKey(Down) || Input.GetKey(hit) || Input.GetKey(slot)))
         {
-            shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true;
+            shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true; FP.exitFP();
         }
         isGrounded = GroundCheck();
         if (PlayerBody.velocity.y <= -fallSpeed || isFalling) { fall(); }
@@ -167,12 +190,12 @@ public class Player : MonoBehaviour
     }
     private void fall()
     {
-        if(PlayerBody.velocity.y < maxFallSpeed) { maxFallSpeed = PlayerBody.velocity.y; }
+        if (PlayerBody.velocity.y < maxFallSpeed) { maxFallSpeed = PlayerBody.velocity.y; }
         if (!isFalling) { isFalling = true; fallingTime = Time.time; HitBoxChanger(0.5f, 0.5f, 0f, -0.575f, false); }
         else if (isGrounded)
         {
             isFalling = false;
-            TakeDamage((int)(fallDmg*Math.Abs(maxFallSpeed - (Time.time-fallingTime) * fallAcceleration)));
+            TakeDamage((int)(fallDmg * Math.Abs(maxFallSpeed - (Time.time - fallingTime) * fallAcceleration)));
             StartCoroutine(knockedOff());
         }
     }
@@ -187,7 +210,7 @@ public class Player : MonoBehaviour
     }
     private void meleeAttack()
     {
-        
+
     }
     private void walk()
     {
@@ -196,7 +219,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(Right) && Time.time - LastKeyRight < DoubleTapTime) { sprinting = true; }
             LastKeyRight = Time.time; PlayerRotationRight = true;
             PlayerBody.velocity = new Vector2(+WalkForce, PlayerBody.velocity.y);
-            if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); } 
+            if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); }
         }
         else if (Input.GetKey(Left) && !Input.GetKey(Right))     // walk left
         {   //sprint check
@@ -237,7 +260,7 @@ public class Player : MonoBehaviour
             StartCoroutine(JumpPause());
         }
     }
-    private IEnumerator JumpPause() 
+    private IEnumerator JumpPause()
     {
         yield return new WaitForSeconds(0.1f);
         jumped = false;
@@ -262,8 +285,8 @@ public class Player : MonoBehaviour
     {
         if (Math.Abs(PlayerBody.velocity.x) <= WalkForce - 1f)
         {
-            if (inRoll) 
-            { 
+            if (inRoll)
+            {
                 StopCoroutine(Roll());
                 inRoll = false;
                 HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false);
@@ -312,39 +335,40 @@ public class Player : MonoBehaviour
     }
     private void ShootPosition()
     {
-        if (BulletsToShot > 0){
+        FP.FUpdate();
+        if (BulletsToShot > 0) {
             switch (PlayerGun.name)
             {
                 case "Mac-10":
-                    if (Time.time > LastTimeShoot + 0.15f){
+                    if (Time.time > LastTimeShoot + 0.08f) {
                         TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 10) - 5);
-                        Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation));
-                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound,PlayerGun.fireVolume);
+                        shootingBullet(QuaternionDifference(TempQuaternion, FirePoint.rotation));
+                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
                     }
                     break;
                 case "AssalutRifle":
-                    if (Time.time > LastTimeShoot + 0.1f){
-                        Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
-                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound,PlayerGun.fireVolume);
+                    if (Time.time > LastTimeShoot + 0.1f) {
+                        
+                        shootingBullet(FirePoint.rotation);
+                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
                     }
                     break;
             }
-            
             return;
         }
-        if(PlayerGun.name is "SniperRifle") { MyLaser.ShootLaser(true); }
+        if (PlayerGun.name is "SniperRifle") { MyLaser.ShootLaser(true); }
         else { MyLaser.ShootLaser(false); }
         if (Input.GetKeyDown(hit) || Input.GetKeyDown(slot)) { shooting = false; MyLaser.ShootLaser(false); }
-        if (Input.GetKey(fire)) { ReadyToFire = true; }    
+        if (Input.GetKey(fire)) { ReadyToFire = true; }
         else if (ReadyToFire && PlayerGun.name != "" && PlayerGun.name != "None")
-        {   
+        {
             ReadyToFire = false;
-            if (PlayerGun.fire()){
-                switch (PlayerGun.name){
+            if (PlayerGun.fire()) {
+                switch (PlayerGun.name) {
                     case "Shotgun":
-                        for (int i = 0; i < 4; i++){
+                        for (int i = 0; i < 4; i++) {
                             TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 14) - 7);
-                            Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation)); 
+                            shootingBullet(QuaternionDifference(TempQuaternion, FirePoint.rotation));
                         }
                         PlayerGun.ammo -= 1;
                         PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
@@ -352,20 +376,30 @@ public class Player : MonoBehaviour
                         break;
                     case "Mac-10":
                     case "AssalutRifle":
-                        BulletsToShot =  PlayerGun.ammo >= PlayerGun.BulletsOnShoot ? PlayerGun.BulletsOnShoot : PlayerGun.ammo;
+                        BulletsToShot = PlayerGun.ammo >= PlayerGun.BulletsOnShoot ? PlayerGun.BulletsOnShoot : PlayerGun.ammo;
                         break;
                     default:
-                        Instantiate(PlayerGun.Bullet, FirePoint.position, FirePoint.rotation);
+                        shootingBullet(FirePoint.rotation);
                         PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
                         PlayerGun.ammo -= 1;
-                        if(PlayerGun.name == "SniperRifle") { PlayerAudio.PlayOneShot(Reload, PlayerGun.fireVolume); }
+                        if (PlayerGun.name == "SniperRifle") { PlayerAudio.PlayOneShot(Reload, PlayerGun.fireVolume); }
                         break;
                 }
             }
         }
         if (Input.GetKey(fire)) { LastTimeShoot = Time.time; }
-        if (PlayerGun.ammo <= 0){ PlayerAudio.PlayOneShot(emptySound); PlayerGun = GetGun("None"); }
+        if (PlayerGun.ammo <= 0) { PlayerAudio.PlayOneShot(emptySound); PlayerGun = GetGun("None"); }
     }
+
+    private void shootingBullet( Quaternion rotation)
+    {
+        GameObject TVP = Instantiate(PlayerGun.Bullet, FirePoint.position, rotation);
+        TVP.GetComponent<bullet>().shooter_name = PlayerName;
+        TVP.GetComponent<bullet>().damage = PlayerGun.damage;
+        TVP.GetComponent<bullet>().speed = PlayerGun.speed;
+    }
+
+
     private bool GroundCheck()
     {
         RaycastHit2D rayCastHit1 = Physics2D.Raycast(PlayerHitBox.bounds.center, Vector2.down, PlayerHitBox.bounds.extents.y - 0.2f, OneWayPlatformLayerMask);
@@ -427,8 +461,8 @@ public class Player : MonoBehaviour
     {
         lastHit = Time.time;
         Health -= damage;
+        if (Health <= 0f) { death(); }
         PlayerAudio.PlayOneShot(getHit);
-        if (Health <= 0) { death(); }
     }
     private void AnimationSetter()
     {
@@ -442,23 +476,13 @@ public class Player : MonoBehaviour
         if (PlayerBody.velocity != Vector2.zero)
             PlayerAnimator.SetBool("isLadderMoving", true);
         else
-            PlayerAnimator.SetBool("isLadderMoving", false);    
+            PlayerAnimator.SetBool("isLadderMoving", false);
     }
     private Gun GetGun(string name)
     {
         GameObject GM = GameObject.Find("LevelManager");
         GunManager GunM = GM.GetComponent<GunManager>();
-        foreach (var Gunitem in GunM.AllGuns){
-            if (name == Gunitem.name) { 
-                Gun TempGun = Gunitem.Clone();
-                GameObject TempBullet = TempGun.Bullet;
-                TempBullet.GetComponent<bullet>().shooter_name = name;
-                TempBullet.GetComponent<bullet>().damage = TempGun.damage;
-                TempBullet.GetComponent<bullet>().speed = TempGun.speed;
-                TempGun.Bullet = TempBullet;
-                return TempGun;
-            }
-        }
+        foreach (var Gunitem in GunM.AllGuns){if (name == Gunitem.name) {return Gunitem.Clone();}}
         return GunM.AllGuns[0];
     }
     private Quaternion QuaternionDifference(Quaternion origin, Quaternion target)
@@ -476,7 +500,7 @@ public class Player : MonoBehaviour
     }
     private void death()
     {
-        GameObject.Find("AudioManager").GetComponent<AudioSource>().PlayOneShot(deathSound);
+        GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(deathSound);
         LevelManager.GetComponent<sceneManager>().setEndScreen(name);
         Destroy(gameObject);
     }

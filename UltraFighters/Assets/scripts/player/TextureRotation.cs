@@ -24,7 +24,7 @@ public class TextureRotation : MonoBehaviour
             else if (!playerScript.PlayerRotationRight) { spriteRenderer.flipY = true; }
             float angle = Mathf.Atan2(firePoint.position.y - transform.position.y, firePoint.position.x - transform.position.x) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Mathf.Infinity);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 100);
         }
         else { spriteRenderer.enabled = false; }
     }

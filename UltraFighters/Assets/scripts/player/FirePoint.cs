@@ -11,15 +11,14 @@ public class FirePoint : MonoBehaviour
     private bool PlayerLastRotationRight;
     private float posX, posY, angle;
     private Player playerScript;
+    
     // Update is called once per frame
     private void Start()
     {
         playerScript = currectPlayer.GetComponent<Player>();
     }
-    void Update()
+    public void FUpdate()
     {
-        if (playerScript.shooting) { spriteRenderer.enabled = true; }
-        else { spriteRenderer.enabled = false; }
         var rotationVector = transform.rotation.eulerAngles;
         if (playerScript.PlayerRotationRight)
         {
@@ -86,6 +85,22 @@ public class FirePoint : MonoBehaviour
     {
         rotationVector.z = angle;
         transform.rotation = Quaternion.Euler(rotationVector);
+    }
+    public void exitFP()
+    {
+        var rotationVector = transform.rotation.eulerAngles;
+        if (playerScript.PlayerRotationRight)
+        {
+            angle = 0f;
+            UpdatePosition(posX, posY, angle);
+            UpdateRotation(rotationVector, 180f);
+        }
+        else
+        {
+            angle = 180f * Mathf.Deg2Rad;
+            UpdatePosition(posX, posY, angle);
+            UpdateRotation(rotationVector, 0f);
+        }
     }
         
 }
