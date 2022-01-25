@@ -2487,15 +2487,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b93bf952f3629f14896ac4088cf9206d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlatformLayerMask:
-    serializedVersion: 2
-    m_Bits: 200
-  OneWayPlatformLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
   WalkForce: 5
   SprintForce: 8
-  JumpForce: 10
+  JumpForce: 10.5
   LadderVertical: 5
   LadderHorizontal: 3
   DoubleTapTime: 0.2
@@ -2504,7 +2498,7 @@ MonoBehaviour:
   ThrowJumpGravity: 2
   NormalGravity: 2.5
   FallGravity: 4.5
-  fallSpeed: 15
+  fallSpeed: 25
   fallAcceleration: 20
   fallDmg: 2
   Jump: {fileID: 8300000, guid: 441f817e39bf8d144974ecf25de21f01, type: 3}
@@ -8851,9 +8845,6 @@ MonoBehaviour:
   MaxHealth: 200
   Saturation: 100
   PlayerRotationRight: 1
-  fallSpeed: 25
-  fallAcceleration: 20
-  fallDmg: 2
   isInPlatform: 0
   PlatformLayerMask:
     serializedVersion: 2

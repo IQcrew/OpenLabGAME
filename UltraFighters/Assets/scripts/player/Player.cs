@@ -21,9 +21,15 @@ public class Player : MonoBehaviour
     public bool PlayerRotationRight = true;
     private bool PlayerLastRotationRight;
     private float Health;
+    // movement
+    private bool GoRight;
+    private bool GoLeft;
+    private bool GoUp;
+    private bool GoDown;
+
     //jumping & falling
     private bool isGrounded;
-    private bool jumped = false;
+    private float jumpTime = 0f;
     private bool isFalling = false;
     private float maxFallSpeed = 0f;
     private bool knockedOut = false;
@@ -69,7 +75,6 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource PlayerAudio;
     [SerializeField] private GameObject LevelManager;
     private FirePoint FP;
-
 
     private float WalkForce = 5f;
     private float SprintForce = 8f;
@@ -130,7 +135,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (Input.GetKey(Right) || Input.GetKey(Left) || Input.GetKey(Up) || Input.GetKey(Down) || Input.GetKey(hit) || Input.GetKey(slot)))
+
+        if (Input.GetKey(Right) && !Input.GetKey(Left)) { GoRight = true; GoLeft = false; }
+        else if ((!Input.GetKey(Right)) && Input.GetKey(Left)) { GoRight = false; GoLeft = true; }
+        else { GoRight = false; GoLeft = false; }
+        if (Input.GetKey(Up) && !Input.GetKey(Down)) { GoUp = true; GoDown = false; }
+        else if ((!Input.GetKey(Up)) && Input.GetKey(Down)) { GoUp = false; GoDown = true; }
+        else { GoUp = false; GoDown = false; }
+        if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (GoRight || GoLeft || GoUp || GoDown || Input.GetKey(hit) || Input.GetKey(slot)))
         {
             shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true; FP.exitFP();
         }
@@ -141,8 +153,8 @@ public class Player : MonoBehaviour
         else if ((!isOnLadder) && (!isCrouching) && Input.GetKey(hit)) { meleeAttack(); }
         else if (PlayerGun.name != "None" && !isCrouching && isGrounded && (Input.GetKey(fire) || shooting))
         {
-            if (Input.GetKey(Right) && !Input.GetKey(Left)) { PlayerRotationRight = true; }
-            else if (Input.GetKey(Left) && !Input.GetKey(Right)) { PlayerRotationRight = false; }
+            if (GoRight) { PlayerRotationRight = true; }
+            else if (GoLeft) { PlayerRotationRight = false; }
             if (PlayerRotationRight && !PlayerLastRotationRight) { transform.Rotate(0f, 180f, 0F); }
             else if (!PlayerRotationRight && PlayerLastRotationRight) { transform.Rotate(0f, 180f, 0F); }
             PlayerLastRotationRight = PlayerRotationRight;
@@ -156,7 +168,7 @@ public class Player : MonoBehaviour
         {
             BulletsToShot = 0;
             //move
-            if ((Input.GetKey(Down) && isGrounded) || isCrouching) { crouch(); PlayerAudio.clip = null; }
+            if ((GoDown && isGrounded) || isCrouching) { crouch(); PlayerAudio.clip = null; }
             else
             {
                 jump();
@@ -214,14 +226,14 @@ public class Player : MonoBehaviour
     }
     private void walk()
     {
-        if (Input.GetKey(Right) && !Input.GetKey(Left)) //walk right
+        if (GoRight) //walk right
         {   //sprint check
             if (Input.GetKeyDown(Right) && Time.time - LastKeyRight < DoubleTapTime) { sprinting = true; }
             LastKeyRight = Time.time; PlayerRotationRight = true;
             PlayerBody.velocity = new Vector2(+WalkForce, PlayerBody.velocity.y);
             if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); }
         }
-        else if (Input.GetKey(Left) && !Input.GetKey(Right))     // walk left
+        else if (GoLeft)     // walk left
         {   //sprint check
             if (Input.GetKeyDown(Left) && Time.time - LastKeyLeft < DoubleTapTime) { sprinting = true; }
             LastKeyLeft = Time.time; PlayerRotationRight = false;
@@ -232,13 +244,13 @@ public class Player : MonoBehaviour
     }
     private void sprint()
     {
-        if (Input.GetKey(Right) && !Input.GetKey(Left)) //sprint right
+        if (GoRight) //sprint right
         {   //check double tap right to walk
             if (Input.GetKeyDown(Right) && Time.time - LastSprintRight < DoubleTapTime) { sprinting = false; }
             LastSprintRight = Time.time; PlayerRotationRight = true;
             PlayerBody.velocity = new Vector2(+SprintForce, PlayerBody.velocity.y);
         }
-        else if (Input.GetKey(Left) && !Input.GetKey(Right))  //sprint left
+        else if (GoLeft)  //sprint left
         {   //check double tap left to walk
             if (Input.GetKeyDown(Left) && Time.time - LastSprintLeft < DoubleTapTime) { sprinting = false; }
             LastSprintLeft = Time.time; PlayerRotationRight = false;
@@ -252,32 +264,29 @@ public class Player : MonoBehaviour
     }
     private void jump()
     {
-        if (Input.GetKey(Up) && isGrounded && (!Input.GetKey(Down)) && (!isCrouching) && (!jumped))
+        if (GoUp && isGrounded && (!isCrouching))
         {
-            jumped = true;
-            PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, JumpForce);
-            PlayerAudio.PlayOneShot(Jump);
-            StartCoroutine(JumpPause());
+            if (Time.time - jumpTime > 0.1f)
+            {
+                PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, JumpForce);
+                PlayerAudio.PlayOneShot(Jump);
+                jumpTime = Time.time;
+            }
         }
-    }
-    private IEnumerator JumpPause()
-    {
-        yield return new WaitForSeconds(0.1f);
-        jumped = false;
     }
     private void Ladder()
     {
         PlayerBody.gravityScale = 0f;
         // pohyb vpravo a vlavo
-        if (Input.GetKey(Right) && !Input.GetKey(Left))
+        if (GoRight)
         { PlayerBody.velocity = new Vector2(+LadderHorizontal, PlayerBody.velocity.y); PlayerRotationRight = true; }
-        else if (Input.GetKey(Left) && !Input.GetKey(Right))
+        else if (GoLeft)
         { PlayerBody.velocity = new Vector2(-LadderHorizontal, PlayerBody.velocity.y); PlayerRotationRight = false; }
         else { PlayerBody.velocity = new Vector2(0f, PlayerBody.velocity.y); }
         // pohyb hore a dole
-        if (Input.GetKey(Up) && (!Input.GetKey(Down)))
+        if (GoUp)
         { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, +LadderVertical); }
-        else if (Input.GetKey(Down) && (!Input.GetKey(Up)))
+        else if (GoDown)
         { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, -LadderVertical); }
         else { PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, 0f); }
     }
@@ -292,7 +301,7 @@ public class Player : MonoBehaviour
                 HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false);
             }
             if (!isCrouching) { HitBoxChanger(1.2f, 1.7f, 0f, -0.323f, true); }
-            else if (!Input.GetKey(Down)) { HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false); }
+            else if (!GoDown) { HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false); }
         }
         else if ((Math.Abs(PlayerBody.velocity.x) <= WalkForce) && (!inRoll)) { StartCoroutine(Roll()); }
         else if (((Math.Abs(PlayerBody.velocity.x) <= SprintForce) && (Math.Abs(PlayerBody.velocity.x) >= WalkForce)) && (!inRoll))
@@ -466,7 +475,7 @@ public class Player : MonoBehaviour
     }
     private void AnimationSetter()
     {
-        if((isGrounded && Input.GetKey(Up)) || !isGrounded || isInPlatform)
+        if((isGrounded && GoUp) || !isGrounded || isInPlatform)
             PlayerAnimator.SetBool("isGrounded", false);
         else
             PlayerAnimator.SetBool("isGrounded", true);
@@ -495,7 +504,7 @@ public class Player : MonoBehaviour
     {
         if (GunName == "MedicKit") { Health = MaxHealth; return true; }
         if(PlayerGun.name == "None") { PlayerGun = GetGun(GunName); return true; }
-        else if (Input.GetKey(Down) && Input.GetKey(hit)) { PlayerGun = GetGun(GunName); return true; }
+        else if (isCrouching && Input.GetKey(hit)) { PlayerGun = GetGun(GunName); return true; }
         return false;
     }
     private void death()
