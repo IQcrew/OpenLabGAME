@@ -8,6 +8,7 @@ public class GunManager : MonoBehaviour
 {
     public List<Gun> AllGuns = new List<Gun>();
     public List<MeleeWeapon> AllMeleeWeapons = new List<MeleeWeapon>();
+    public List<Granades> AllGranades = new List<Granades>();
 }
 
 [System.Serializable]
@@ -87,4 +88,22 @@ public class MeleeWeapon
         };
     }
     
+}
+[System.Serializable]
+public class Granades
+{
+    public string name;
+    public Granade Grnd;
+    public int numGranades;
+
+    public Granades clone()
+    {
+        return new Granades
+        {
+            name = this.name,
+            Grnd = this.Grnd,
+            numGranades = this.numGranades,
+        };
+    }
+
 }

@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     private bool inRoll = false;
     private bool isOnLadder;
     public bool isInPlatform = false;
+    private float lastExplosion = -10;
 
     // walking variables
     private float LastKeyRight = -5f;
@@ -135,7 +136,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKey(Right) && !Input.GetKey(Left)) { GoRight = true; GoLeft = false; }
         else if ((!Input.GetKey(Right)) && Input.GetKey(Left)) { GoRight = false; GoLeft = true; }
         else { GoRight = false; GoLeft = false; }
@@ -204,12 +204,19 @@ public class Player : MonoBehaviour
     {
         if (PlayerBody.velocity.y < maxFallSpeed) { maxFallSpeed = PlayerBody.velocity.y; }
         if (!isFalling) { isFalling = true; fallingTime = Time.time; HitBoxChanger(0.5f, 0.5f, 0f, -0.575f, false); }
-        else if (isGrounded)
+        else if (isGrounded && !(lastExplosion+0.1>Time.time))
         {
             isFalling = false;
             TakeDamage((int)(fallDmg * Math.Abs(maxFallSpeed - (Time.time - fallingTime) * fallAcceleration)));
             StartCoroutine(knockedOff());
         }
+    }
+    
+    public void giveExplosion()
+    {
+        lastExplosion = Time.time;
+        isFalling = true;
+        fallingTime = Time.time;
     }
     private IEnumerator knockedOff()
     {

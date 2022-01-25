@@ -13,6 +13,8 @@ public class GunSpawner : MonoBehaviour
     private float TickTime = 0f;
     [SerializeField] private AudioSource AudioManager;
     [SerializeField] private AudioClip PickUpAudio;
+    [Header("Granades")]
+
     private SpriteRenderer ThisRender;
     private void Start(){ Setup(); AudioManager.clip = PickUpAudio; ThisRender = ThisGameObject.GetComponent<SpriteRenderer>(); }
     private void Update()
