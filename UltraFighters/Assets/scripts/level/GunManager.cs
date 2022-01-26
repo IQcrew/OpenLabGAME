@@ -8,7 +8,7 @@ public class GunManager : MonoBehaviour
 {
     public List<Gun> AllGuns = new List<Gun>();
     public List<MeleeWeapon> AllMeleeWeapons = new List<MeleeWeapon>();
-    public List<Granades> AllGranades = new List<Granades>();
+    public List<granadePack> AllGranades = new List<granadePack>();
 }
 
 [System.Serializable]
@@ -89,21 +89,24 @@ public class MeleeWeapon
     }
     
 }
+
 [System.Serializable]
-public class Granades
+public class granadePack
 {
     public string name;
-    public Granade Grnd;
-    public int numGranades;
-
-    public Granades clone()
+    public Granade granade;
+    public int coutInPack;
+    public Sprite weaponTexture;
+    public AudioClip PickUpAudio;
+    [Range(0f, 1f)] public float volume = 1;
+    public granadePack Clone()
     {
-        return new Granades
+        return new granadePack
         {
             name = this.name,
-            Grnd = this.Grnd,
-            numGranades = this.numGranades,
+            granade = this.granade,
+            coutInPack = this.coutInPack,
+            weaponTexture = this.weaponTexture,
         };
     }
-
 }

@@ -507,12 +507,25 @@ public class Player : MonoBehaviour
         Quaternion identityTarget = Quaternion.identity * Quaternion.Inverse(target);
         return identityOrigin * Quaternion.Inverse(identityTarget);
     }
-    public bool PickUpGun(string GunName)
+    public bool PickUpWeapon(string GunName, string type)
     {
-        if (GunName == "MedicKit") { Health = MaxHealth; return true; }
-        if(PlayerGun.name == "None") { PlayerGun = GetGun(GunName); return true; }
-        else if (isCrouching && Input.GetKey(hit)) { PlayerGun = GetGun(GunName); return true; }
-        return false;
+        switch (type)
+        {
+            case "Gun":
+                if (GunName == "MedicKit") { Health = MaxHealth; return true; }
+                if (PlayerGun.name == "None") { PlayerGun = GetGun(GunName); return true; }
+                else if (isCrouching && Input.GetKey(hit)) { PlayerGun = GetGun(GunName); return true; }
+                return false;
+            case "Melee":
+                //Ellipsis, treba doplnit
+                return false;
+            case "Granade":
+                //Ellipsis, treba doplnit
+                return false;
+            default:
+                return false;
+        }
+        
     }
     private void death()
     {
