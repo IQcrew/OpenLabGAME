@@ -149,3 +149,5 @@ MonoBehaviour:
   damage: 90
   RigidBodyObject: {fileID: 4183995721774498977}
   MaxBulletTime: 22.62
+  HitAudio: {fileID: 8300000, guid: 8031e34d8211b5847901781e3ca1d95e, type: 3}
+  volume: 0.19

@@ -10,7 +10,9 @@ public class bullet : MonoBehaviour
     public int damage = 20;
     public Rigidbody2D RigidBodyObject;
     public float MaxBulletTime = 20f;
-    
+    public AudioClip HitAudio;
+    [Range(0f, 1f)] public float volume = 1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +61,7 @@ public class bullet : MonoBehaviour
             }
 
         }
-
+        GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(HitAudio,volume);
         Destroy(gameObject);
     }
 

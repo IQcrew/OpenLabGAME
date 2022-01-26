@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Scene
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
@@ -45,10 +45,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 579, y: 492}
+  m_MinSize: {x: 578, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 122
+  controlID: 144
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -94,8 +94,8 @@ MonoBehaviour:
     y: 0
     width: 333
     height: 468
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -225,10 +225,10 @@ MonoBehaviour:
     y: 0
     width: 1406
     height: 947
-  m_MinSize: {x: 303, y: 492}
+  m_MinSize: {x: 302, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 123
+  controlID: 145
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -250,10 +250,10 @@ MonoBehaviour:
     y: 0
     width: 1406
     height: 468
-  m_MinSize: {x: 303, y: 221}
-  m_MaxSize: {x: 8003, y: 4021}
+  m_MinSize: {x: 302, y: 221}
+  m_MaxSize: {x: 8002, y: 4021}
   vertical: 0
-  controlID: 124
+  controlID: 146
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1198,7 +1198,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 68ebffff86eeffff46fbffff
+      m_ExpandedIDs: 46fbffff5c43000036440000c0440000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1327,7 +1327,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 102144
+  m_LastSelectedObjectID: 17244
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1455,36 +1455,36 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/important
+    - Assets/Prefabs/important/bullets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 71
   m_LastFolders:
-  - Assets/Prefabs/important
+  - Assets/Prefabs/important/bullets
   m_LastFoldersGridSize: 71
   m_LastProjectPath: C:\IT\unity\OpenLabGAME\UltraFighters
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 146}
-    m_SelectedIDs: 68470000
-    m_LastClickedID: 18280
-    m_ExpandedIDs: 00000000624700006447000066470000684700006a4700006c4700006e4700007047000072470000744700007647000000ca9a3b
+    scrollPos: {x: 0, y: 206}
+    m_SelectedIDs: c8470000
+    m_LastClickedID: 18376
+    m_ExpandedIDs: 0000000090470000924700009447000096470000984700009a4700009c4700009e470000a0470000a2470000a447000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: effects
-      m_OriginalName: effects
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 22936
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 5}
     m_SearchString: 
@@ -1498,7 +1498,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000624700006447000066470000684700006a4700006c4700006e47000070470000724700007447000076470000
+    m_ExpandedIDs: 0000000090470000924700009447000096470000984700009a4700009c4700009e470000a0470000a2470000a4470000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1525,7 +1525,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000000450000ac5800009c4700008a5200004e4400005c470000f64d000078170000d8440000421800005251000000000000bc440000b644000056170000f44c0000f04e000072510000161700001c1700002a17000022170000224400001417000012170000be450000fc460000ac450000624400002c4b0000ae45000036170000501700003c17000030170000481700004c170000341700004417000022480000c84b0000bc450000984500009a450000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1627,9 +1627,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -14.917486, y: -3.3808234, z: -1976.1075}
+    m_Target: {x: -16.513273, y: -1.9818467, z: -2126.1743}
     speed: 2
-    m_Value: {x: -14.917486, y: -3.3808234, z: -1976.1075}
+    m_Value: {x: -16.513273, y: -1.9818467, z: -2126.1743}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1680,9 +1680,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 2.7094681
+    m_Target: 2.9855103
     speed: 2
-    m_Value: 2.7094681
+    m_Value: 2.9855103
   m_Ortho:
     m_Target: 1
     speed: 2

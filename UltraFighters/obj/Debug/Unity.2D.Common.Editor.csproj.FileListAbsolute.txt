@@ -1,0 +1,2 @@
+C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.2D.Common.Editor.csproj.AssemblyReference.cache
+C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.2D.Common.Editor.csproj.CoreCompileInputs.cache

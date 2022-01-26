@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource PlayerAudio;
     [SerializeField] private GameObject LevelManager;
     private FirePoint FP;
+    private granadePack PlayerGranade;
 
     private float WalkForce = 5f;
     private float SprintForce = 8f;
@@ -107,7 +108,7 @@ public class Player : MonoBehaviour
         WalkForce = PT.WalkForce;
         SprintForce = PT.SprintForce;
         JumpForce = PT.JumpForce;
-         LadderVertical = PT.LadderVertical;
+        LadderVertical = PT.LadderVertical;
         LadderHorizontal = PT.LadderHorizontal;
         DoubleTapTime = PT.DoubleTapTime;
         TimeInRoll = PT.TimeInRoll;
@@ -130,6 +131,7 @@ public class Player : MonoBehaviour
         MyLaser = LaserPoint.GetComponent<Laser>();
         Health = MaxHealth;
         PlayerGun = GetGun("Pistol");
+        PlayerGranade = GetGranade("None");
         PlayerLastRotationRight = PlayerRotationRight;
         if (!PlayerRotationRight) { transform.Rotate(0f, 180f, 0F); }
     }
@@ -204,14 +206,14 @@ public class Player : MonoBehaviour
     {
         if (PlayerBody.velocity.y < maxFallSpeed) { maxFallSpeed = PlayerBody.velocity.y; }
         if (!isFalling) { isFalling = true; fallingTime = Time.time; HitBoxChanger(0.5f, 0.5f, 0f, -0.575f, false); }
-        else if (isGrounded && !(lastExplosion+0.1>Time.time))
+        else if (isGrounded && !(lastExplosion + 0.1 > Time.time))
         {
             isFalling = false;
             TakeDamage((int)(fallDmg * Math.Abs(maxFallSpeed - (Time.time - fallingTime) * fallAcceleration)));
             StartCoroutine(knockedOff());
         }
     }
-    
+
     public void giveExplosion()
     {
         lastExplosion = Time.time;
@@ -364,7 +366,7 @@ public class Player : MonoBehaviour
                     break;
                 case "AssalutRifle":
                     if (Time.time > LastTimeShoot + 0.1f) {
-                        
+
                         shootingBullet(FirePoint.rotation);
                         BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
                     }
@@ -406,8 +408,12 @@ public class Player : MonoBehaviour
         if (Input.GetKey(fire)) { LastTimeShoot = Time.time; }
         if (PlayerGun.ammo <= 0) { PlayerAudio.PlayOneShot(emptySound); PlayerGun = GetGun("None"); }
     }
+    private void GranadePosition() //treba dorobit
+    {
+        FP.FUpdate();
+    }
 
-    private void shootingBullet( Quaternion rotation)
+    private void shootingBullet(Quaternion rotation)
     {
         GameObject TVP = Instantiate(PlayerGun.Bullet, FirePoint.position, rotation);
         TVP.GetComponent<bullet>().shooter_name = PlayerName;
@@ -482,7 +488,7 @@ public class Player : MonoBehaviour
     }
     private void AnimationSetter()
     {
-        if((isGrounded && GoUp) || !isGrounded || isInPlatform)
+        if ((isGrounded && GoUp) || !isGrounded || isInPlatform)
             PlayerAnimator.SetBool("isGrounded", false);
         else
             PlayerAnimator.SetBool("isGrounded", true);
@@ -494,33 +500,39 @@ public class Player : MonoBehaviour
         else
             PlayerAnimator.SetBool("isLadderMoving", false);
     }
-    private Gun GetGun(string name)
-    {
-        GameObject GM = GameObject.Find("LevelManager");
-        GunManager GunM = GM.GetComponent<GunManager>();
-        foreach (var Gunitem in GunM.AllGuns){if (name == Gunitem.name) {return Gunitem.Clone();}}
-        return GunM.AllGuns[0];
-    }
     private Quaternion QuaternionDifference(Quaternion origin, Quaternion target)
     {
         Quaternion identityOrigin = Quaternion.identity * Quaternion.Inverse(origin);
         Quaternion identityTarget = Quaternion.identity * Quaternion.Inverse(target);
         return identityOrigin * Quaternion.Inverse(identityTarget);
     }
-    public bool PickUpWeapon(string GunName, string type)
+    private Gun GetGun(string name)
+    {
+        GunManager GunM = GameObject.Find("LevelManager").GetComponent<GunManager>();
+        foreach (var Gunitem in GunM.AllGuns) { if (name == Gunitem.name) { return Gunitem.Clone(); } }
+        return GunM.AllGuns[0];
+    }
+    private granadePack GetGranade(string name)
+    {
+        GunManager GunM = GameObject.Find("LevelManager").GetComponent<GunManager>();
+        foreach (var Grnde in GunM.AllGranades){if (name == Grnde.name) { return Grnde.Clone(); }}
+        return GunM.AllGranades[0];
+    }
+    public bool PickUpWeapon(string WeaponName, string type)
     {
         switch (type)
         {
             case "Gun":
-                if (GunName == "MedicKit") { Health = MaxHealth; return true; }
-                if (PlayerGun.name == "None") { PlayerGun = GetGun(GunName); return true; }
-                else if (isCrouching && Input.GetKey(hit)) { PlayerGun = GetGun(GunName); return true; }
+                if (WeaponName == "MedicKit") { Health = MaxHealth; return true; }
+                if (PlayerGun.name == "None") { PlayerGun = GetGun(WeaponName); return true; }
+                else if (isCrouching && Input.GetKey(hit)) { PlayerGun = GetGun(WeaponName); return true; }
                 return false;
             case "Melee":
-                //Ellipsis, treba doplnit
+                // treba doplnit
                 return false;
             case "Granade":
-                //Ellipsis, treba doplnit
+                if (PlayerGranade.name == "None") { PlayerGranade = GetGranade(WeaponName); return true; }
+                else if (isCrouching && Input.GetKey(hit)) { PlayerGranade = GetGranade(WeaponName); return true; }
                 return false;
             default:
                 return false;
