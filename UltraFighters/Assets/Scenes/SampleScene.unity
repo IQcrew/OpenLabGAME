@@ -8471,6 +8471,10 @@ PrefabInstance:
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: kickForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: deathSound
       value: 
       objectReference: {fileID: 8300000, guid: 096ba5f43b8b53b4895bd82bbfa733e0, type: 3}
@@ -8487,7 +8491,19 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: playerLayerMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: platformLayerMask.m_Bits
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: OneWayPlatformLayerMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: oneWayPlatformLayerMask.m_Bits
       value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 1631260843464700150, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
@@ -8955,12 +8971,15 @@ MonoBehaviour:
   Saturation: 100
   PlayerRotationRight: 1
   isInPlatform: 0
-  PlatformLayerMask:
+  platformLayerMask:
     serializedVersion: 2
     m_Bits: 200
-  OneWayPlatformLayerMask:
+  oneWayPlatformLayerMask:
     serializedVersion: 2
     m_Bits: 128
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
   FirePoint: {fileID: 2985014994384760375}
   PlayerGun:
     name: 
@@ -8978,6 +8997,8 @@ MonoBehaviour:
     ReloadPickup: {fileID: 0}
     reloadVolume: 1
   shooting: 0
+  hitTime: 0.5
+  kickForce: 1
   PlayerBody: {fileID: 6255620023719281905}
   PlayerHitBox: {fileID: 6255620023719281910}
   OpponentHitBox: {fileID: 801980984605335098}

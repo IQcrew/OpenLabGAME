@@ -51,8 +51,9 @@ public class Player : MonoBehaviour
     private float LastSprintRight = -5f;
     private float LastSprintLeft = -5f;
     [Header("LayerMasks")]
-    [SerializeField] public LayerMask PlatformLayerMask;
-    [SerializeField] public LayerMask OneWayPlatformLayerMask;
+    [SerializeField] public LayerMask platformLayerMask;
+    [SerializeField] public LayerMask oneWayPlatformLayerMask;
+    [SerializeField] public LayerMask playerLayerMask;
     [Header("Shooting")]
     [SerializeField] public Transform FirePoint;
     public Gun PlayerGun;
@@ -64,6 +65,11 @@ public class Player : MonoBehaviour
     private Laser MyLaser;
     private float lastHit = 0f;
 
+    [Header("Fighting")]
+    private float lastHitMelee = 0f;
+    [SerializeField] private float hitTime = 0.5f;
+    [SerializeField] private float kickForce;
+    private bool kicked = false;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
@@ -149,6 +155,7 @@ public class Player : MonoBehaviour
             shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true; FP.exitFP();
         }
         isGrounded = GroundCheck();
+        if (isGrounded) { kicked = false; }
         if (PlayerBody.velocity.y <= -fallSpeed || isFalling) { fall(); }
         else if (knockedOut) { PlayerBody.velocity = Vector2.zero; PlayerAudio.clip = null; }
         else if (isOnLadder && (!isCrouching) && (!isGrounded)) { Ladder(); PlayerAudio.clip = null; }
@@ -233,7 +240,31 @@ public class Player : MonoBehaviour
     }
     private void meleeAttack()
     {
-
+        if (isGrounded)
+        {
+            PlayerBody.velocity = Vector2.zero;
+            PlayerAudio.clip = null;
+            RaycastHit2D rayCastHit;
+            if (PlayerRotationRight) { rayCastHit = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.right, PlayerHitBox.bounds.size.x, playerLayerMask); }
+            else { rayCastHit = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.left, PlayerHitBox.bounds.size.x, playerLayerMask); }
+            if (rayCastHit.collider != null && Time.time - lastHitMelee > hitTime)
+            {
+                rayCastHit.collider.GetComponent<Player>().TakeDamage(25);
+                lastHitMelee = Time.time;
+            }
+        }
+        else
+        {
+            RaycastHit2D rayCastHit;
+            if (PlayerRotationRight) { rayCastHit = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y-PlayerHitBox.bounds.extents.y), Vector2.right, PlayerHitBox.bounds.size.x, playerLayerMask); }
+            else { rayCastHit = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.left, PlayerHitBox.bounds.size.x, playerLayerMask); }
+            if (rayCastHit.collider != null && !kicked)
+            {
+                rayCastHit.collider.GetComponent<Player>().giveExplosion(20);
+                rayCastHit.collider.GetComponent<Rigidbody2D>().AddForce(PlayerBody.velocity * kickForce);
+                kicked = true;
+            }
+        }
     }
     private void walk()
     {
@@ -426,9 +457,9 @@ public class Player : MonoBehaviour
 
     private bool GroundCheck()
     {
-        RaycastHit2D rayCastHit1 = Physics2D.Raycast(PlayerHitBox.bounds.center, Vector2.down, PlayerHitBox.bounds.extents.y - 0.2f, OneWayPlatformLayerMask);
-        RaycastHit2D rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.down, PlayerHitBox.bounds.extents.y - 0.2f, OneWayPlatformLayerMask);
-        RaycastHit2D rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.down, PlayerHitBox.bounds.extents.y - 0.2f, OneWayPlatformLayerMask);
+        RaycastHit2D rayCastHit1 = Physics2D.Raycast(PlayerHitBox.bounds.center, Vector2.down, PlayerHitBox.bounds.extents.y - 0.2f, oneWayPlatformLayerMask);
+        RaycastHit2D rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.down, PlayerHitBox.bounds.extents.y - 0.2f, oneWayPlatformLayerMask);
+        RaycastHit2D rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.down, PlayerHitBox.bounds.extents.y - 0.2f, oneWayPlatformLayerMask);
         if (isInPlatform)
             return false;
         else if (rayCastHit1.collider != null || rayCastHit2.collider != null || rayCastHit3.collider != null)
@@ -439,18 +470,18 @@ public class Player : MonoBehaviour
         }
         else
         {
-            rayCastHit1 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, OneWayPlatformLayerMask);
-            rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, OneWayPlatformLayerMask);
-            rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, OneWayPlatformLayerMask);
+            rayCastHit1 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, oneWayPlatformLayerMask);
+            rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, oneWayPlatformLayerMask);
+            rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, oneWayPlatformLayerMask);
             if (rayCastHit1.collider != null) { platformScript.currentPlatform = rayCastHit1.collider.gameObject; return true; }
             else if (rayCastHit2.collider != null) { platformScript.currentPlatform = rayCastHit2.collider.gameObject; return true; }
             else if (rayCastHit3.collider != null) { platformScript.currentPlatform = rayCastHit3.collider.gameObject; return true; }
             else
             {
                 platformScript.currentPlatform = null;
-                rayCastHit1 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
-                rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
-                rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, PlatformLayerMask);
+                rayCastHit1 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, platformLayerMask);
+                rayCastHit2 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, platformLayerMask);
+                rayCastHit3 = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.down, 0.1f, platformLayerMask);
                 if ((rayCastHit1.collider != null || rayCastHit2.collider != null || rayCastHit3.collider != null))
                     return true;
                 else return false;
