@@ -2441,7 +2441,14 @@ MonoBehaviour:
   - name: Hand
     damage: 0
     hitSpeed: 0
-    weaponTexture: {fileID: 0}
+    weaponTexture: {fileID: 21300000, guid: 91b84d7fd8890cd4ca7569d9c160863e, type: 3}
+    PlayerAnimator: {fileID: 0}
+    HitSound: {fileID: 0}
+    volume: 1
+  - name: Axe
+    damage: 0
+    hitSpeed: 0
+    weaponTexture: {fileID: 21300000, guid: 91b84d7fd8890cd4ca7569d9c160863e, type: 3}
     PlayerAnimator: {fileID: 0}
     HitSound: {fileID: 0}
     volume: 1

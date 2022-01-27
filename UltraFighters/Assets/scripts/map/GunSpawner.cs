@@ -65,6 +65,7 @@ public class GunSpawner : MonoBehaviour
         else if (TempRandom < 900) { ActualItem.Generate("SniperRifle", "Gun"); }
         else if (TempRandom < 950) { ActualItem.Generate("AssalutRifle", "Gun"); }
         else if (TempRandom < 1100) { ActualItem.Generate("Shotgun", "Gun"); }
+        else if (TempRandom < 1200) { ActualItem.Generate("Axe", "Melee"); }
         else if (TempRandom < 1300) { ActualItem.Generate("Explosive", "Granade"); }
         else { ActualItem.Generate("MedKit", "Gun"); }
     }

@@ -23,7 +23,6 @@ public class Granade : MonoBehaviour
     }
     public void Explode(float forceE, float radius, LayerMask layerMask, GameObject gameObject)
     {
-        Debug.Log(forceE);
         Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, radius, layerMask);
         foreach (Collider2D obj in objects)
         {

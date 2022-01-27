@@ -74,7 +74,7 @@ public class MeleeWeapon
     public AudioClip HitSound;
     [Range(0f, 1f)] public float volume = 1;
 
-    public MeleeWeapon clone()
+    public MeleeWeapon Clone()
     {
         return new MeleeWeapon
         {

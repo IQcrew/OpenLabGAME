@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject LevelManager;
     private FirePoint FP;
     private granadePack PlayerGranade;
+    private MeleeWeapon PlayerMelee;
 
     private float WalkForce = 5f;
     private float SprintForce = 8f;
@@ -110,6 +111,8 @@ public class Player : MonoBehaviour
     {
         FP = FirePoint.GetComponent<FirePoint>();
         playerTemplate PT = GameObject.Find("LevelManager").GetComponent<playerTemplate>();
+        GunManager GM = GameObject.Find("LevelManager").GetComponent<GunManager>();
+        PlayerMelee = GM.AllMeleeWeapons[0];
         //setup values
         WalkForce = PT.WalkForce;
         SprintForce = PT.SprintForce;
@@ -551,6 +554,12 @@ public class Player : MonoBehaviour
         foreach (var Grnde in GunM.AllGranades){if (name == Grnde.name) { return Grnde.Clone(); }}
         return GunM.AllGranades[0];
     }
+    private MeleeWeapon GetMelee(string name)
+    {
+        GunManager GunM = GameObject.Find("LevelManager").GetComponent<GunManager>();
+        foreach (var melleW in GunM.AllMeleeWeapons) { if (name == melleW.name) { return melleW.Clone(); } }
+        return GunM.AllMeleeWeapons[0];
+    }
     public bool PickUpWeapon(string WeaponName, string type)
     {
         switch (type)
@@ -561,7 +570,8 @@ public class Player : MonoBehaviour
                 else if (isCrouching && Input.GetKey(hit)) { PlayerGun = GetGun(WeaponName); return true; }
                 return false;
             case "Melee":
-                // treba doplnit
+                if (PlayerMelee.name == "Hand") { PlayerMelee = GetMelee(WeaponName); return true; }
+                else if (isCrouching && Input.GetKey(hit)) { PlayerMelee = GetMelee(WeaponName); return true; }
                 return false;
             case "Granade":
                 if (PlayerGranade.name == "None") { PlayerGranade = GetGranade(WeaponName); return true; }
