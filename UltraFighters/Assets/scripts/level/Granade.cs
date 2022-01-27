@@ -11,19 +11,15 @@ public class Granade : MonoBehaviour
     [SerializeField] public float force;
     [SerializeField] public float maxDamage = 100;
     [SerializeField] private LayerMask layerMask;
-    void Start()
+
+    private void Start()
     {
-        //StartCoroutine(tickOff(force));
+        StartCoroutine(TickOff());    
     }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E))
-            Explode(force, radius, layerMask, thisGameObject);
-    }
-    private IEnumerator tickOff(float Frc)
+    private IEnumerator TickOff()
     {
         yield return new WaitForSeconds(waitTime);
-        Explode(Frc, radius, layerMask, thisGameObject);
+        Explode(force, radius, layerMask, thisGameObject);
     }
     public void Explode(float forceE, float radius, LayerMask layerMask, GameObject gameObject)
     {
