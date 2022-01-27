@@ -278,3 +278,4 @@ C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.2D.Common.Runtime.csproj.C
 C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.2D.Common.Runtime.csproj.CopyComplete
 C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.2D.Common.Runtime.dll
 C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.2D.Common.Runtime.pdb
+C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.2D.Common.Runtime.csproj.AssemblyReference.cache

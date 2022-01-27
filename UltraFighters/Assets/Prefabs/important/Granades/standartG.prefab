@@ -134,5 +134,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d985ce6fc99964b913512488c4ae37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 8228904232259520829, guid: f62a370db22975e45ae1997a2403ea7d, type: 3}
+  thisGameObject: {fileID: 4175491966135855209}
   waitTime: 3
+  radius: 3
+  force: 1.56
+  maxDamage: 97.72
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 320

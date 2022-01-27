@@ -280,3 +280,4 @@ C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.VSCode.Editor.csproj.CoreC
 C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.VSCode.Editor.csproj.CopyComplete
 C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.VSCode.Editor.dll
 C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.VSCode.Editor.pdb
+C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.VSCode.Editor.csproj.AssemblyReference.cache

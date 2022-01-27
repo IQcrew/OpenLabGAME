@@ -210,12 +210,14 @@ public class Player : MonoBehaviour
         {
             isFalling = false;
             TakeDamage((int)(fallDmg * Math.Abs(maxFallSpeed - (Time.time - fallingTime) * fallAcceleration)));
+            PlayerBody.velocity = Vector2.zero;
             StartCoroutine(knockedOff());
         }
     }
 
-    public void giveExplosion()
+    public void giveExplosion(int dmg)
     {
+        TakeDamage(dmg);
         lastExplosion = Time.time;
         isFalling = true;
         fallingTime = Time.time;
