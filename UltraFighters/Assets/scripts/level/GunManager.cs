@@ -68,7 +68,7 @@ public class MeleeWeapon
 {
     public string name;
     public int damage;
-    public int hitSpeed;
+    public float hitSpeed;
     public Sprite weaponTexture;
     public Animator PlayerAnimator;
     public AudioClip HitSound;

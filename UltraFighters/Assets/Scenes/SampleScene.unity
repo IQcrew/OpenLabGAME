@@ -2439,15 +2439,43 @@ MonoBehaviour:
     reloadVolume: 0.7
   AllMeleeWeapons:
   - name: Hand
-    damage: 0
-    hitSpeed: 0
+    damage: 15
+    hitSpeed: 0.7
     weaponTexture: {fileID: 21300000, guid: 91b84d7fd8890cd4ca7569d9c160863e, type: 3}
     PlayerAnimator: {fileID: 0}
     HitSound: {fileID: 0}
     volume: 1
   - name: Axe
-    damage: 0
-    hitSpeed: 0
+    damage: 50
+    hitSpeed: 0.9
+    weaponTexture: {fileID: 21300000, guid: 91b84d7fd8890cd4ca7569d9c160863e, type: 3}
+    PlayerAnimator: {fileID: 0}
+    HitSound: {fileID: 0}
+    volume: 1
+  - name: Sword
+    damage: 60
+    hitSpeed: 0.9
+    weaponTexture: {fileID: 21300000, guid: 91b84d7fd8890cd4ca7569d9c160863e, type: 3}
+    PlayerAnimator: {fileID: 0}
+    HitSound: {fileID: 0}
+    volume: 1
+  - name: Machete
+    damage: 40
+    hitSpeed: 0.5
+    weaponTexture: {fileID: 21300000, guid: 91b84d7fd8890cd4ca7569d9c160863e, type: 3}
+    PlayerAnimator: {fileID: 0}
+    HitSound: {fileID: 0}
+    volume: 1
+  - name: Crowbar
+    damage: 35
+    hitSpeed: 0.6
+    weaponTexture: {fileID: 21300000, guid: 91b84d7fd8890cd4ca7569d9c160863e, type: 3}
+    PlayerAnimator: {fileID: 0}
+    HitSound: {fileID: 0}
+    volume: 1
+  - name: knife
+    damage: 30
+    hitSpeed: 0.3
     weaponTexture: {fileID: 21300000, guid: 91b84d7fd8890cd4ca7569d9c160863e, type: 3}
     PlayerAnimator: {fileID: 0}
     HitSound: {fileID: 0}
@@ -8757,11 +8785,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4175491966135855186, guid: 4d695e624de7ba74380b99acafa073c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.89
+      value: 13.15
       objectReference: {fileID: 0}
     - target: {fileID: 4175491966135855186, guid: 4d695e624de7ba74380b99acafa073c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.4
+      value: -4.52
       objectReference: {fileID: 0}
     - target: {fileID: 4175491966135855186, guid: 4d695e624de7ba74380b99acafa073c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9004,7 +9032,6 @@ MonoBehaviour:
     ReloadPickup: {fileID: 0}
     reloadVolume: 1
   shooting: 0
-  hitTime: 0.5
   kickForce: 1
   PlayerBody: {fileID: 6255620023719281905}
   PlayerHitBox: {fileID: 6255620023719281910}

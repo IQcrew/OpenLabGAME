@@ -67,9 +67,9 @@ public class Player : MonoBehaviour
 
     [Header("Fighting")]
     private float lastHitMelee = 0f;
-    [SerializeField] private float hitTime = 0.5f;
     [SerializeField] private float kickForce;
     private bool kicked = false;
+    private MeleeWeapon PlayerWeapon;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject LevelManager;
     private FirePoint FP;
     private granadePack PlayerGranade;
-    private MeleeWeapon PlayerMelee;
+    
 
     private float WalkForce = 5f;
     private float SprintForce = 8f;
@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
         FP = FirePoint.GetComponent<FirePoint>();
         playerTemplate PT = GameObject.Find("LevelManager").GetComponent<playerTemplate>();
         GunManager GM = GameObject.Find("LevelManager").GetComponent<GunManager>();
-        PlayerMelee = GM.AllMeleeWeapons[0];
+        PlayerWeapon = GM.AllMeleeWeapons[0];
         //setup values
         WalkForce = PT.WalkForce;
         SprintForce = PT.SprintForce;
@@ -250,9 +250,9 @@ public class Player : MonoBehaviour
             RaycastHit2D rayCastHit;
             if (PlayerRotationRight) { rayCastHit = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.right, PlayerHitBox.bounds.size.x, playerLayerMask); }
             else { rayCastHit = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.left, PlayerHitBox.bounds.size.x, playerLayerMask); }
-            if (rayCastHit.collider != null && Time.time - lastHitMelee > hitTime)
+            if (rayCastHit.collider != null && Time.time - lastHitMelee > PlayerWeapon.hitSpeed)
             {
-                rayCastHit.collider.GetComponent<Player>().TakeDamage(25);
+                rayCastHit.collider.GetComponent<Player>().TakeDamage(PlayerWeapon.damage);
                 lastHitMelee = Time.time;
             }
         }
@@ -570,8 +570,8 @@ public class Player : MonoBehaviour
                 else if (isCrouching && Input.GetKey(hit)) { PlayerGun = GetGun(WeaponName); return true; }
                 return false;
             case "Melee":
-                if (PlayerMelee.name == "Hand") { PlayerMelee = GetMelee(WeaponName); return true; }
-                else if (isCrouching && Input.GetKey(hit)) { PlayerMelee = GetMelee(WeaponName); return true; }
+                if (PlayerWeapon.name == "Hand") { PlayerWeapon = GetMelee(WeaponName); return true; }
+                else if (isCrouching && Input.GetKey(hit)) { PlayerWeapon = GetMelee(WeaponName); return true; }
                 return false;
             case "Granade":
                 if (PlayerGranade.name == "None") { PlayerGranade = GetGranade(WeaponName); return true; }
