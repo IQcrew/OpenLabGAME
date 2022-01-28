@@ -179,10 +179,8 @@ public class Player : MonoBehaviour
                     PlayerRenderer.enabled = false;
                     PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
                 }
-                if (PlayerBody.velocity.y < 0)
-                    PlayerBody.gravityScale = FallGravity;
-                else
-                    PlayerBody.gravityScale = NormalGravity;
+                if (PlayerBody.velocity.y < 0) { PlayerBody.gravityScale = FallGravity; }
+                else { PlayerBody.gravityScale = NormalGravity; }
             }
             //Fliping Player
             if (PlayerRotationRight && !PlayerLastRotationRight) { transform.Rotate(0f, 180f, 0F); }
@@ -229,13 +227,19 @@ public class Player : MonoBehaviour
         {
             PlayerBody.velocity = Vector2.zero;
             PlayerAudio.clip = null;
-            RaycastHit2D rayCastHit;
-            if (PlayerRotationRight) { rayCastHit = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.right, PlayerHitBox.bounds.size.x, playerLayerMask); }
-            else { rayCastHit = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.left, PlayerHitBox.bounds.size.x, playerLayerMask); }
-            if (rayCastHit.collider != null && Time.time - lastHitMelee > PlayerWeapon.hitSpeed)
+            RaycastHit2D[] rayCastHits;
+            if (PlayerRotationRight) { rayCastHits = Physics2D.RaycastAll(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.right, PlayerHitBox.bounds.size.x, playerLayerMask); }
+            else { rayCastHits = Physics2D.RaycastAll(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.left, PlayerHitBox.bounds.size.x, playerLayerMask); }
+            if (Time.time - lastHitMelee > PlayerWeapon.hitSpeed)
             {
-                rayCastHit.collider.GetComponent<Player>().TakeDamage(PlayerWeapon.damage);
-                lastHitMelee = Time.time;
+                foreach (RaycastHit2D raycast in rayCastHits)
+                {
+                    if(raycast.collider != PlayerHitBox)
+                    {
+                        raycast.collider.GetComponent<Player>().TakeDamage(PlayerWeapon.damage);
+                        lastHitMelee = Time.time;
+                    }                 
+                }
             }
         }
         else
