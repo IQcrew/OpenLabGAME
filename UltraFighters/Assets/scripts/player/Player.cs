@@ -244,14 +244,21 @@ public class Player : MonoBehaviour
         }
         else
         {
-            RaycastHit2D rayCastHit;
-            if (PlayerRotationRight) { rayCastHit = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y-PlayerHitBox.bounds.extents.y), Vector2.right, PlayerHitBox.bounds.size.x, playerLayerMask); }
-            else { rayCastHit = Physics2D.Raycast(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.left, PlayerHitBox.bounds.size.x, playerLayerMask); }
-            if (rayCastHit.collider != null && !kicked)
+            RaycastHit2D[] rayCastHits;
+            if (PlayerRotationRight) { rayCastHits = Physics2D.RaycastAll(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y-PlayerHitBox.bounds.extents.y), Vector2.right, PlayerHitBox.bounds.size.x, playerLayerMask); }
+            else { rayCastHits = Physics2D.RaycastAll(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.left, PlayerHitBox.bounds.size.x, playerLayerMask); }
+            if (!kicked)
             {
-                rayCastHit.collider.GetComponent<Player>().giveExplosion(20);
-                rayCastHit.collider.GetComponent<Rigidbody2D>().AddForce(PlayerBody.velocity * kickForce);
-                kicked = true;
+                foreach (RaycastHit2D raycast in rayCastHits)
+                {
+                    if (raycast.collider != PlayerHitBox)
+                    {
+                        raycast.collider.GetComponent<Player>().giveExplosion(20);
+                        if (PlayerRotationRight) { raycast.collider.GetComponent<Rigidbody2D>().AddForce(new Vector2(kickForce, 0f)); }
+                        else { raycast.collider.GetComponent<Rigidbody2D>().AddForce(new Vector2(-kickForce, 0f)); }
+                        kicked = true;
+                    }
+                }
             }
         }
     }

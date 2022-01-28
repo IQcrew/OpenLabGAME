@@ -8507,7 +8507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: kickForce
-      value: 1
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: deathSound
@@ -9032,7 +9032,7 @@ MonoBehaviour:
     ReloadPickup: {fileID: 0}
     reloadVolume: 1
   shooting: 0
-  kickForce: 1
+  kickForce: 500
   PlayerBody: {fileID: 6255620023719281905}
   PlayerHitBox: {fileID: 6255620023719281910}
   OpponentHitBox: {fileID: 801980984605335098}
