@@ -92,6 +92,7 @@ public class Player : MonoBehaviour
     private float LadderHorizontal = 3f;
     private float DoubleTapTime = 0.2f;
     private float TimeInRoll = 0.5f;
+    private float timeBetweenRoll = 0.2f;
     private float ThrowJump = 5f;
     private float ThrowJumpGravity = 2f;
     private float NormalGravity = 2.5f;
@@ -153,17 +154,21 @@ public class Player : MonoBehaviour
         if (Input.GetKey(Up) && !Input.GetKey(Down)) { GoUp = true; GoDown = false; }
         else if ((!Input.GetKey(Up)) && Input.GetKey(Down)) { GoUp = false; GoDown = true; }
         else { GoUp = false; GoDown = false; }
+
         if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (GoRight || GoLeft || GoUp || GoDown || Input.GetKey(hit) || Input.GetKey(slot)))
         {
             shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true; FP.exitFP();
         }
+
         isGrounded = GroundCheck();
+
         if (isGrounded) { kicked = false; }
-        if (PlayerBody.velocity.y <= -fallSpeed || isFalling) { fall(); }
+        if (isCrouching) { crouch(); PlayerAudio.clip = null; }
+        else if (PlayerBody.velocity.y <= -fallSpeed || isFalling) { fall(); }
         else if (knockedOut) { PlayerBody.velocity = Vector2.zero; PlayerAudio.clip = null; }
-        else if (isOnLadder && (!isCrouching) && (!isGrounded)) { Ladder(); PlayerAudio.clip = null; }
-        else if ((!isOnLadder) && (!isCrouching) && Input.GetKey(hit)) { meleeAttack(); }
-        else if (PlayerGun.name != "None" && !isCrouching && isGrounded && (Input.GetKey(fire) || shooting))
+        else if (isOnLadder && (!isGrounded)) { Ladder(); PlayerAudio.clip = null; }
+        else if (Input.GetKey(hit)) { meleeAttack(); }
+        else if (PlayerGun.name != "None" && isGrounded && (Input.GetKey(fire) || shooting))
         {
             if (GoRight) { PlayerRotationRight = true; }
             else if (GoLeft) { PlayerRotationRight = false; }
@@ -180,7 +185,7 @@ public class Player : MonoBehaviour
         {
             BulletsToShot = 0;
             //move
-            if ((GoDown && isGrounded) || isCrouching) { crouch(); PlayerAudio.clip = null; }
+            if (GoDown && isGrounded) { crouch(); PlayerAudio.clip = null; }
             else
             {
                 jump();
@@ -224,7 +229,6 @@ public class Player : MonoBehaviour
             StartCoroutine(knockedOff());
         }
     }
-
     public void giveExplosion(int dmg)
     {
         TakeDamage(dmg);
@@ -373,7 +377,7 @@ public class Player : MonoBehaviour
         HitBoxChanger(1.2f, 1.2f, 0f, -0.575f, true);
         yield return new WaitForSeconds(TimeInRoll);
         HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(timeBetweenRoll);
         inRoll = false;
     }
     private void HitBoxChanger(float sizeX, float sizeY, float offsetX, float offsetY, bool isCrouching)
