@@ -278,3 +278,4 @@ C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.InternalAPIEngineBridge.00
 C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.InternalAPIEngineBridge.001.csproj.CopyComplete
 C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.InternalAPIEngineBridge.001.dll
 C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.InternalAPIEngineBridge.001.pdb
+C:\IT\unity\OpenLabGAME\UltraFighters\obj\Debug\Unity.InternalAPIEngineBridge.001.csproj.AssemblyReference.cache

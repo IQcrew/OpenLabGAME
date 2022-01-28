@@ -148,39 +148,20 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        isGrounded = GroundCheck(); //nastavenie vstupov z klavesnice za premenné
         if (Input.GetKey(Right) && !Input.GetKey(Left)) { GoRight = true; GoLeft = false; }
         else if ((!Input.GetKey(Right)) && Input.GetKey(Left)) { GoRight = false; GoLeft = true; }
         else { GoRight = false; GoLeft = false; }
         if (Input.GetKey(Up) && !Input.GetKey(Down)) { GoUp = true; GoDown = false; }
         else if ((!Input.GetKey(Up)) && Input.GetKey(Down)) { GoUp = false; GoDown = true; }
         else { GoUp = false; GoDown = false; }
-
-        if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (GoRight || GoLeft || GoUp || GoDown || Input.GetKey(hit) || Input.GetKey(slot)))
-        {
-            shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true; FP.exitFP();
-        }
-
-        isGrounded = GroundCheck();
-
         if (isGrounded) { kicked = false; }
         if (isCrouching) { crouch(); PlayerAudio.clip = null; }
         else if (PlayerBody.velocity.y <= -fallSpeed || isFalling) { fall(); }
         else if (knockedOut) { PlayerBody.velocity = Vector2.zero; PlayerAudio.clip = null; }
         else if (isOnLadder && (!isGrounded)) { Ladder(); PlayerAudio.clip = null; }
         else if (Input.GetKey(hit)) { meleeAttack(); }
-        else if (PlayerGun.name != "None" && isGrounded && (Input.GetKey(fire) || shooting))
-        {
-            if (GoRight) { PlayerRotationRight = true; }
-            else if (GoLeft) { PlayerRotationRight = false; }
-            if (PlayerRotationRight && !PlayerLastRotationRight) { transform.Rotate(0f, 180f, 0F); }
-            else if (!PlayerRotationRight && PlayerLastRotationRight) { transform.Rotate(0f, 180f, 0F); }
-            PlayerLastRotationRight = PlayerRotationRight;
-            PlayerAudio.clip = null;
-            shooting = true;
-            PlayerRenderer.enabled = false;
-            ShootPosition();
-            PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
-        }
+        else if (shooting){ShootPosition();}
         else
         {
             BulletsToShot = 0;
@@ -189,17 +170,14 @@ public class Player : MonoBehaviour
             else
             {
                 jump();
-                if (sprinting)
+                walk();
+
+                if (PlayerGun.name != "None" && isGrounded && Input.GetKey(fire))
                 {
-                    sprint();
-                    PlayerAudio.clip = Run;
-                    if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); }
-                }
-                else
-                {
-                    walk();
-                    if (PlayerAudio.clip == Run) { PlayerAudio.clip = null; }
-                    PlayerAudio.clip = Walk;
+                    PlayerAudio.clip = null;
+                    shooting = true; LastTimeShoot = Time.time;
+                    PlayerRenderer.enabled = false;
+                    PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
                 }
                 if (PlayerBody.velocity.y < 0)
                     PlayerBody.gravityScale = FallGravity;
@@ -275,6 +253,15 @@ public class Player : MonoBehaviour
     }
     private void walk()
     {
+        if (sprinting)
+        {
+            sprint();
+            PlayerAudio.clip = Run;
+            if (!PlayerAudio.isPlaying) { PlayerAudio.Play(); }
+            return;
+        }
+        if (PlayerAudio.clip == Run) { PlayerAudio.clip = null; }
+        PlayerAudio.clip = Walk;
         if (GoRight) //walk right
         {   //sprint check
             if (Input.GetKeyDown(Right) && Time.time - LastKeyRight < DoubleTapTime) { sprinting = true; }
@@ -393,6 +380,14 @@ public class Player : MonoBehaviour
     }
     private void ShootPosition()
     {
+        if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (GoRight || GoLeft || GoUp || GoDown || Input.GetKey(hit) || Input.GetKey(slot))){
+            shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true; FP.exitFP(); return;
+        }
+        if (GoRight) { PlayerRotationRight = true; }
+        else if (GoLeft) { PlayerRotationRight = false; }
+        if (PlayerRotationRight && !PlayerLastRotationRight) { transform.Rotate(0f, 180f, 0F); }
+        else if (!PlayerRotationRight && PlayerLastRotationRight) { transform.Rotate(0f, 180f, 0F); }
+        PlayerLastRotationRight = PlayerRotationRight;
         FP.FUpdate();
         if (BulletsToShot > 0) {
             switch (PlayerGun.name)
