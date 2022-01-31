@@ -136,14 +136,15 @@ public class Player : MonoBehaviour
         emptySound = PT.emptySound;
         deathSound = PT.deathSound;
         getHit = PT.getHit;
-
         Physics2D.IgnoreCollision(PlayerHitBox, OpponentHitBox);
         MyLaser = LaserPoint.GetComponent<Laser>();
         Health = MaxHealth;
-        PlayerGun = GetGun("Pistol");
-        PlayerGranade = GetGranade("None");
         PlayerLastRotationRight = PlayerRotationRight;
         if (!PlayerRotationRight) { transform.Rotate(0f, 180f, 0F); }
+        PlayerGun = GetGun("Pistol");
+        PlayerGranade = GetGranade("None");
+        MyLaser.ShootLaser(false);
+        FP.exitFP();
     }
 
     void Update()
@@ -409,6 +410,15 @@ public class Player : MonoBehaviour
                         BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
                     }
                     break;
+                case "MiniGun":
+                    if (Time.time > LastTimeShoot + PlayerGun.FireSpeed)
+                    {
+                        LastTimeShoot = Time.time;
+                        TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 6) - 3);
+                        shootingBullet(QuaternionDifference(TempQuaternion, FirePoint.rotation));
+                        BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
+                    }
+                    break;
             }
             return;
         }
@@ -434,6 +444,9 @@ public class Player : MonoBehaviour
                     case "AssalutRifle":
                         BulletsToShot = PlayerGun.ammo >= PlayerGun.BulletsOnShoot ? PlayerGun.BulletsOnShoot : PlayerGun.ammo;
                         break;
+                    case "MiniGun":
+                        BulletsToShot = PlayerGun.ammo;
+                        break;
                     default:
                         shootingBullet(FirePoint.rotation);
                         PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
@@ -444,7 +457,7 @@ public class Player : MonoBehaviour
             }
         }
         if (Input.GetKey(fire)) { LastTimeShoot = Time.time; }
-        if (PlayerGun.ammo <= 0) { PlayerAudio.PlayOneShot(emptySound); PlayerGun = GetGun("None"); }
+        if (PlayerGun.ammo <= 0) { PlayerAudio.PlayOneShot(emptySound); PlayerGun = GetGun("None"); LastTimeShoot = -5f; }
     }
     private void GranadePosition() //treba dorobit
     {

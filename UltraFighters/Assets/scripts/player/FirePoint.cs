@@ -22,34 +22,25 @@ public class FirePoint : MonoBehaviour
         var rotationVector = transform.rotation.eulerAngles;
         if (playerScript.PlayerRotationRight)
         {
-            if (playerScript.shooting)
+            if (PlayerLastRotationRight != playerScript.PlayerRotationRight) { angle = 0f; UpdatePosition(posX, posY, angle); }
+            PlayerLastRotationRight = playerScript.PlayerRotationRight;
+            if (Input.GetKey(playerScript.Up) && (!Input.GetKey(playerScript.Down)))
             {
-                if (PlayerLastRotationRight != playerScript.PlayerRotationRight) { angle = 0f; UpdatePosition(posX, posY, angle); }
-                PlayerLastRotationRight = playerScript.PlayerRotationRight;
-                if (Input.GetKey(playerScript.Up) && (!Input.GetKey(playerScript.Down)))
-                {
-                    UpdatePosition(posX, posY, angle);
-                    if (angle < 90f * Mathf.Deg2Rad || angle >= 265f * Mathf.Deg2Rad) { angle += Time.deltaTime * RotationSpeed; }
-                    else { angle = 90f * Mathf.Deg2Rad; }
-                    if (angle >= 360f * Mathf.Deg2Rad) { angle = 0f; }
-                }
-                else if (Input.GetKey(playerScript.Down) && (!Input.GetKey(playerScript.Up)))
-                {
-                    UpdatePosition(posX, posY, angle);
-                    if (angle <= 95f * Mathf.Deg2Rad || angle > 270f * Mathf.Deg2Rad) { angle -= Time.deltaTime * RotationSpeed; }
-                    else { angle = 270f * Mathf.Deg2Rad; }
-                    if (angle <= 0f) { angle = 360f * Mathf.Deg2Rad; }
-                }
-                UpdateRotation(rotationVector, angle * Mathf.Rad2Deg);
-            }
-            else
-            {
-                angle = 0f;
                 UpdatePosition(posX, posY, angle);
-                UpdateRotation(rotationVector, 180f);
+                if (angle < 90f * Mathf.Deg2Rad || angle >= 265f * Mathf.Deg2Rad) { angle += Time.deltaTime * RotationSpeed; }
+                else { angle = 90f * Mathf.Deg2Rad; }
+                if (angle >= 360f * Mathf.Deg2Rad) { angle = 0f; }
             }
+            else if (Input.GetKey(playerScript.Down) && (!Input.GetKey(playerScript.Up)))
+            {
+                UpdatePosition(posX, posY, angle);
+                if (angle <= 95f * Mathf.Deg2Rad || angle > 270f * Mathf.Deg2Rad) { angle -= Time.deltaTime * RotationSpeed; }
+                else { angle = 270f * Mathf.Deg2Rad; }
+                if (angle <= 0f) { angle = 360f * Mathf.Deg2Rad; }
+            }
+            UpdateRotation(rotationVector, angle * Mathf.Rad2Deg);
         }
-        else if (!playerScript.PlayerRotationRight)
+        else
         {
             if (playerScript.shooting)
             {
@@ -88,6 +79,7 @@ public class FirePoint : MonoBehaviour
     }
     public void exitFP()
     {
+        playerScript = currectPlayer.GetComponent<Player>();
         var rotationVector = transform.rotation.eulerAngles;
         if (playerScript.PlayerRotationRight)
         {
