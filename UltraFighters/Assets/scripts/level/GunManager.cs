@@ -22,6 +22,7 @@ public class Gun
     public double FireSpeed;
     public int BulletsOnShoot = 0;
     public GameObject Bullet;
+    public GameObject EmptyBullet;
     public Sprite weaponTexture;
     public Sprite ShootingTextureP1;
     public Sprite ShootingTextureP2;
@@ -59,6 +60,7 @@ public class Gun
             ReloadPickup = this.ReloadPickup,
             reloadVolume = this.reloadVolume,
             fireVolume = this.fireVolume,
+            EmptyBullet = this.EmptyBullet,
         };
     }
 }

@@ -37,5 +37,6 @@ public class Laser : MonoBehaviour
         LineRender.SetPosition(0, StartPos);
         LineRender.SetPosition(1, EndPos);
     }
+    
 
 }

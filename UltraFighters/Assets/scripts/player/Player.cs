@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject LaserPoint;
     [SerializeField] private AudioSource PlayerAudio;
     [SerializeField] private GameObject LevelManager;
+    [SerializeField] private Transform EmptyPoint;
     private FirePoint FP;
     private granadePack PlayerGranade;
 
@@ -430,12 +431,17 @@ public class Player : MonoBehaviour
         {
             ReadyToFire = false;
             if (PlayerGun.fire()) {
-                switch (PlayerGun.name) {
+                switch (PlayerGun.name){
                     case "Shotgun":
-                        for (int i = 0; i < 4; i++) {
+                        for (int i = 0; i < 4; i++)
+                        {
                             TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 14) - 7);
-                            shootingBullet(QuaternionDifference(TempQuaternion, FirePoint.rotation));
+                            GameObject TVP = Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation));
+                            TVP.GetComponent<bullet>().shooter_name = PlayerName;
+                            TVP.GetComponent<bullet>().damage = PlayerGun.damage;
+                            TVP.GetComponent<bullet>().speed = PlayerGun.speed;
                         }
+                        Instantiate(PlayerGun.EmptyBullet, EmptyPoint.position, EmptyPoint.rotation);
                         PlayerGun.ammo -= 1;
                         PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
                         PlayerAudio.PlayOneShot(Reload, PlayerGun.fireVolume);
@@ -469,6 +475,7 @@ public class Player : MonoBehaviour
         TVP.GetComponent<bullet>().shooter_name = PlayerName;
         TVP.GetComponent<bullet>().damage = PlayerGun.damage;
         TVP.GetComponent<bullet>().speed = PlayerGun.speed;
+        Instantiate(PlayerGun.EmptyBullet, EmptyPoint.position, EmptyPoint.rotation);
     }
     private bool GroundCheck()
     {

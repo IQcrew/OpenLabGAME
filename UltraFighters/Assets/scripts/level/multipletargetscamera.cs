@@ -68,7 +68,7 @@ public class multipletargetscamera : MonoBehaviour         // TOBIAS - Program u
             {
                 bounds.Encapsulate(targets[i].position);
             }
-            return bounds.size.x > bounds.size.y ? bounds.size.x : (bounds.size.y * 1.9f);
+            return bounds.size.x > bounds.size.y ? bounds.size.x : (bounds.size.y * 1.7f);
         }
         catch { return 0f; }
     }
