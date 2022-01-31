@@ -460,7 +460,7 @@ public class Player : MonoBehaviour
     private bool GroundCheck()
     {
         if (isInPlatform) { return false; }
-        else if (RayCast(PlayerHitBox.bounds.center, PlayerHitBox.bounds.extents.y - 0.2f, oneWayPlatformLayerMask))
+        else if (RayCast(PlayerHitBox.bounds.center, PlayerHitBox.bounds.extents.y - 0.2f, oneWayPlatformLayerMask,true))
         {
             platformScript.currentPlatform = null;
             StartCoroutine(IsInPlatform());
@@ -468,20 +468,26 @@ public class Player : MonoBehaviour
         }
         else
         {
-            platformScript.currentPlatform = null;
-            if (RayCast(new Vector2(PlayerHitBox.bounds.center.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), 0.1f, platformLayerMask)) { return true; }
+            if (RayCast(new Vector2(PlayerHitBox.bounds.center.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), 0.1f, platformLayerMask,false)) { return true; }
             else { return false; }
         }
     }
-    private bool RayCast(Vector2 origin, float distance, LayerMask layerMask)
+    private bool RayCast(Vector2 origin, float distance, LayerMask layerMask, bool oneWay)
     {
         RaycastHit2D[] rayCasts = new RaycastHit2D[] {
         Physics2D.Raycast(origin, Vector2.down, distance, layerMask),
         Physics2D.Raycast(new Vector2(origin.x + PlayerHitBox.bounds.extents.x, origin.y), Vector2.down, distance, layerMask),
         Physics2D.Raycast(new Vector2(origin.x - PlayerHitBox.bounds.extents.x, origin.y), Vector2.down, distance, layerMask)
         };
-        //foreach (RaycastHit2D item in rayCasts)
-        //    if (item.collider.gameObject.layer == oneWayPlatformLayerMask) { platformScript.currentPlatform = item.collider.gameObject; return true; }
+        if (oneWay) { return rayCasts[0].collider != null || rayCasts[1].collider != null || rayCasts[2].collider != null; }
+        foreach (RaycastHit2D item in rayCasts)
+        {
+            if (item.collider != null)
+            {
+                if (item.collider.gameObject.layer == LayerMask.NameToLayer("OneWayPlatform")) { Debug.Log("Hey"); platformScript.currentPlatform = item.collider.gameObject; return true; }
+                else { platformScript.currentPlatform = null; }
+            }
+        }
         return rayCasts[0].collider != null || rayCasts[1].collider != null || rayCasts[2].collider != null;
     }
     private IEnumerator IsInPlatform()
