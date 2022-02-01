@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: 05544299ecbb49a4097c63da98a861e7
+guid: 8aaae86d58938784daa293dbd8d6d698
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4767880067820600482
-    second: UF-shoot agent_0
+      213: 3785663470463989132
+    second: UF-shoot_0
   - first:
-      213: -8865965697991447391
-    second: UF-shoot agent_1
+      213: 7157651828581922068
+    second: UF-shoot_1
   - first:
-      213: 8927664636750835710
-    second: UF-shoot agent_2
+      213: 6048353983754201218
+    second: UF-shoot_2
   - first:
-      213: 1860027645441148040
-    second: UF-shoot agent_3
+      213: 8208245753667161119
+    second: UF-shoot_3
   - first:
-      213: 8402364051210284345
-    second: UF-shoot agent_4
+      213: 9219531731433995601
+    second: UF-shoot_4
   - first:
-      213: -6185314415179336160
-    second: UF-shoot agent_5
+      213: -5198715494201027924
+    second: UF-shoot_5
   - first:
-      213: -4964990418014030874
-    second: UF-shoot agent_6
+      213: -2891875160962825184
+    second: UF-shoot_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -108,152 +108,164 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UF-shoot agent_0
+      name: UF-shoot_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 1
         y: 27
         width: 31
         height: 22
       alignment: 9
-      pivot: {x: 0.16821633, y: 0.31638354}
+      pivot: {x: 0.16183104, y: 0.31047857}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5343e1f65615ddb0800000000000000
-      internalID: -4767880067820600482
+      spriteID: c85bd2c7ed0698430800000000000000
+      internalID: 3785663470463989132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UF-shoot agent_1
+      name: UF-shoot_1
       rect:
         serializedVersion: 2
-        x: 37
+        x: 35
         y: 27
         width: 33
         height: 22
       alignment: 9
-      pivot: {x: 0.15411632, y: 0.31615898}
+      pivot: {x: 0.15344666, y: 0.3213083}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1aceb6ceb23c5f480800000000000000
-      internalID: -8865965697991447391
+      spriteID: 415fc8c4a66155360800000000000000
+      internalID: 7157651828581922068
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UF-shoot agent_2
+      name: UF-shoot_2
       rect:
         serializedVersion: 2
-        x: 78
+        x: 76
         y: 27
         width: 28
         height: 22
       alignment: 9
-      pivot: {x: 0.16887365, y: 0.33288038}
+      pivot: {x: 0.19367136, y: 0.33213806}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: effa953bfaf65eb70800000000000000
-      internalID: 8927664636750835710
+      spriteID: 288ec7517e110f350800000000000000
+      internalID: 6048353983754201218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UF-shoot agent_3
+      name: UF-shoot_3
       rect:
         serializedVersion: 2
-        x: 113
+        x: 123
         y: 29
         width: 33
         height: 20
       alignment: 9
-      pivot: {x: 0.19165987, y: 0.29001045}
+      pivot: {x: 0.19676532, y: 0.2796135}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8840de6e94520d910800000000000000
-      internalID: 1860027645441148040
+      spriteID: f1c8078160c89e170800000000000000
+      internalID: 8208245753667161119
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UF-shoot agent_4
+      name: UF-shoot_4
       rect:
         serializedVersion: 2
-        x: 3
+        x: 1
         y: 1
         width: 39
         height: 20
       alignment: 9
-      pivot: {x: 0.12731537, y: 0.25324795}
+      pivot: {x: 0.15178055, y: 0.2677009}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93da6e146913b9470800000000000000
-      internalID: 8402364051210284345
+      spriteID: 15db097334b52ff70800000000000000
+      internalID: 9219531731433995601
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UF-shoot agent_5
+      name: UF-shoot_5
       rect:
         serializedVersion: 2
-        x: 44
+        x: 42
         y: 1
         width: 35
         height: 20
       alignment: 9
-      pivot: {x: 0.14864928, y: 0.23637752}
+      pivot: {x: 0.1494242, y: 0.25578815}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 026f1238f49592aa0800000000000000
-      internalID: -6185314415179336160
+      spriteID: ca214df4dc37ad7b0800000000000000
+      internalID: -5198715494201027924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UF-shoot agent_6
+      name: UF-shoot_6
       rect:
         serializedVersion: 2
-        x: 82
+        x: 80
         y: 0
         width: 36
         height: 21
       alignment: 9
-      pivot: {x: 0.14185143, y: 0.2955459}
+      pivot: {x: 0.13930766, y: 0.3127991}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e33e0d358fc81bb0800000000000000
-      internalID: -4964990418014030874
+      spriteID: 0240908ecdefdd7d0800000000000000
+      internalID: -2891875160962825184
       vertices: []
       indices: 
       edges: []
