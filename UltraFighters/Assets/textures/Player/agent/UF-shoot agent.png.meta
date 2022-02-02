@@ -23,6 +23,9 @@ TextureImporter:
   - first:
       213: -4964990418014030874
     second: UF-shoot agent_6
+  - first:
+      213: 5073038367347760001
+    second: UF-shoot agent_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -116,7 +119,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 32
+        y: 37
         width: 31
         height: 22
       alignment: 9
@@ -137,7 +140,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 35
-        y: 32
+        y: 38
         width: 33
         height: 22
       alignment: 9
@@ -158,7 +161,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 76
-        y: 32
+        y: 37
         width: 28
         height: 22
       alignment: 9
@@ -179,7 +182,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 110
-        y: 34
+        y: 39
         width: 33
         height: 20
       alignment: 9
@@ -200,7 +203,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 6
+        y: 11
         width: 39
         height: 20
       alignment: 9
@@ -221,7 +224,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 42
-        y: 6
+        y: 11
         width: 35
         height: 20
       alignment: 9
@@ -242,7 +245,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 80
-        y: 5
+        y: 10
         width: 36
         height: 21
       alignment: 9
@@ -254,6 +257,27 @@ TextureImporter:
       bones: []
       spriteID: 6e33e0d358fc81bb0800000000000000
       internalID: -4964990418014030874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF-shoot agent_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 2
+        width: 40
+        height: 34
+      alignment: 9
+      pivot: {x: 0.15159225, y: 0.5836518}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18bd0b9548d076640800000000000000
+      internalID: 5073038367347760001
       vertices: []
       indices: 
       edges: []
