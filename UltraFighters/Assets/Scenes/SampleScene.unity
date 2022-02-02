@@ -2428,8 +2428,8 @@ MonoBehaviour:
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: 3626a6e73b44dea43b8fed2eb4cb0125, type: 3}
-    ShootingTextureP1: {fileID: 9219531731433995601, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
-    ShootingTextureP2: {fileID: 8402364051210284345, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
+    ShootingTextureP1: {fileID: -5198715494201027924, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP2: {fileID: -6185314415179336160, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: fa13a11b184d06f4b814b7cf2b0026e3, type: 3}
     fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
@@ -2458,8 +2458,8 @@ MonoBehaviour:
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: df92c48779dc6b14c9ea30bf8e843c5b, type: 3}
-    ShootingTextureP1: {fileID: 8208245753667161119, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
-    ShootingTextureP2: {fileID: 1860027645441148040, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
+    ShootingTextureP1: {fileID: 9219531731433995601, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP2: {fileID: 8402364051210284345, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: 64fb4e88c804d4e49ac1ee66fe371e55, type: 3}
     fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 9d7aa32a171db6445b37083a822325ba, type: 3}
@@ -2473,8 +2473,8 @@ MonoBehaviour:
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: 50d83569f80fc5e4295a17d8aba05dfe, type: 3}
-    ShootingTextureP1: {fileID: -5198715494201027924, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
-    ShootingTextureP2: {fileID: -6185314415179336160, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
+    ShootingTextureP1: {fileID: -2891875160962825184, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP2: {fileID: -4964990418014030874, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: 37edb0187dbf1d4479a9c712031420a1, type: 3}
     fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 953b412f362aa6543928102d2d1e6177, type: 3}
@@ -2488,8 +2488,8 @@ MonoBehaviour:
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: 50d83569f80fc5e4295a17d8aba05dfe, type: 3}
-    ShootingTextureP1: {fileID: -5198715494201027924, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
-    ShootingTextureP2: {fileID: -6185314415179336160, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
+    ShootingTextureP1: {fileID: -2891875160962825184, guid: 8aaae86d58938784daa293dbd8d6d698, type: 3}
+    ShootingTextureP2: {fileID: -4964990418014030874, guid: 05544299ecbb49a4097c63da98a861e7, type: 3}
     Sound: {fileID: 8300000, guid: 37edb0187dbf1d4479a9c712031420a1, type: 3}
     fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 953b412f362aa6543928102d2d1e6177, type: 3}
@@ -8671,7 +8671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7480673093429925620, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.044
+      value: -0.143
       objectReference: {fileID: 0}
     - target: {fileID: 7480673093429925620, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8869,7 +8869,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8494271806506804104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.006, y: 0.258, z: 0}
+  m_LocalPosition: {x: -0.077, y: 0.234, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6255620023719281911}
