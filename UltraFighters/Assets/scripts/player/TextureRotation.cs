@@ -6,6 +6,7 @@ public class TextureRotation : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private Animator animator;
     [SerializeField] public GameObject currectPlayer;
     Player playerScript;
 
@@ -15,17 +16,14 @@ public class TextureRotation : MonoBehaviour
         if (playerScript.shooting)
         {
             spriteRenderer.enabled = true;
-            if (playerScript.PlayerGun.ShootingTextureP1 != null || playerScript.PlayerGun.ShootingTextureP1 != null)
-            {
-                if (currectPlayer.name == "Player_2") { spriteRenderer.sprite = playerScript.PlayerGun.ShootingTextureP2; }
-                else if (currectPlayer.name == "Player_1") { spriteRenderer.sprite = playerScript.PlayerGun.ShootingTextureP1; }
-            }
+            animator.SetBool("isShooting", true);
+            animator.SetInteger("GunID", playerScript.gunIndex);
             if (playerScript.PlayerRotationRight) { spriteRenderer.flipY = false; }
             else if (!playerScript.PlayerRotationRight) { spriteRenderer.flipY = true; }
             float angle = Mathf.Atan2(firePoint.position.y - transform.position.y, firePoint.position.x - transform.position.x) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 100);
         }
-        else { spriteRenderer.enabled = false; }
+        else { spriteRenderer.enabled = false; animator.SetBool("isShooting", false); }
     }
 }

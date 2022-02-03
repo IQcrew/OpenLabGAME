@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &908746347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 908746348}
+  m_Layer: 8
+  m_Name: EmptyPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &908746348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908746347}
+  m_LocalRotation: {x: -0, y: -0, z: 0.877456, w: 0.47965708}
+  m_LocalPosition: {x: -0.69, y: 0.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8403082907911671737}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 122.674}
 --- !u!1 &801980984305395069
 GameObject:
   m_ObjectHideFlags: 0
@@ -16,7 +46,7 @@ GameObject:
   - component: {fileID: 801980984305395067}
   - component: {fileID: 801980984305395070}
   - component: {fileID: 5396672426453200219}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player_1
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -272,30 +302,20 @@ MonoBehaviour:
   hit: 110
   fire: 109
   slot: 107
-  PlatformLayerMask:
-    serializedVersion: 2
-    m_Bits: 200
-  OneWayPlatformLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
   PlayerName: Player_1
   MaxHealth: 200
   Saturation: 100
-  WalkForce: 5
-  SprintForce: 8
-  JumpForce: 10.5
-  LadderVertical: 5
-  LadderHorizontal: 3
-  DoubleTapTime: 0.2
-  TimeInRoll: 0.5
-  ThrowJump: 5
-  ThrowJumpGravity: 2
-  NormalGravity: 2.5
-  FallGravity: 4.5
   PlayerRotationRight: 0
-  startFallTime: 1
-  fallDmg: 50
   isInPlatform: 0
+  platformLayerMask:
+    serializedVersion: 2
+    m_Bits: 200
+  oneWayPlatformLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
   FirePoint: {fileID: 8403082907911671737}
   PlayerGun:
     name: 
@@ -305,18 +325,16 @@ MonoBehaviour:
     FireSpeed: 0
     BulletsOnShoot: 0
     Bullet: {fileID: 0}
-    Bullet2P: {fileID: 0}
-    GunTexture: {fileID: 0}
+    EmptyBullet: {fileID: 0}
+    weaponTexture: {fileID: 0}
     ShootingTextureP1: {fileID: 0}
     ShootingTextureP2: {fileID: 0}
     Sound: {fileID: 0}
+    fireVolume: 1
     ReloadPickup: {fileID: 0}
+    reloadVolume: 1
   shooting: 0
-  Jump: {fileID: 8300000, guid: 441f817e39bf8d144974ecf25de21f01, type: 3}
-  Walk: {fileID: 8300000, guid: 82c6e445c77e9754ab33c95b85878344, type: 3}
-  Run: {fileID: 8300000, guid: 98bae598f646fe040ac921b802625c41, type: 3}
-  Reload: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
-  emptySound: {fileID: 8300000, guid: b17dd5805767e92479ec9bb1c434c205, type: 3}
+  kickForce: 500
   PlayerBody: {fileID: 801980984305395071}
   PlayerHitBox: {fileID: 801980984305395064}
   OpponentHitBox: {fileID: 0}
@@ -326,6 +344,7 @@ MonoBehaviour:
   LaserPoint: {fileID: 1631260843464700150}
   PlayerAudio: {fileID: 8855404817806557075}
   LevelManager: {fileID: 0}
+  EmptyPoint: {fileID: 908746348}
 --- !u!114 &5396672426453200219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +372,7 @@ GameObject:
   - component: {fileID: 5981032485778403896}
   - component: {fileID: 801980984605335094}
   - component: {fileID: 801980984605335095}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LaserPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,7 +517,8 @@ GameObject:
   - component: {fileID: 7480673093429925620}
   - component: {fileID: 3324419334488222410}
   - component: {fileID: 1523462023}
-  m_Layer: 0
+  - component: {fileID: 7880933519869570194}
+  m_Layer: 8
   m_Name: ShootingTextureUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2887070162707268102}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2494, y: 0.3589, z: 0}
+  m_LocalPosition: {x: -0.143, y: 0.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 801980984305395065}
@@ -564,7 +584,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.75, y: 0.8125}
+  m_Size: {x: 1.9375, y: 1.375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -585,6 +605,25 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3324419334488222410}
   firePoint: {fileID: 8403082907911671737}
   currectPlayer: {fileID: 801980984305395069}
+--- !u!95 &7880933519869570194
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2887070162707268102}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3878938826071732551
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,7 +635,7 @@ GameObject:
   - component: {fileID: 8403082907911671737}
   - component: {fileID: 425872334}
   - component: {fileID: 425872333}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FirePiont
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,6 +654,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5981032485778403896}
+  - {fileID: 908746348}
   m_Father: {fileID: 801980984305395065}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -697,7 +737,7 @@ GameObject:
   - component: {fileID: 5006640324493165864}
   - component: {fileID: 7979028992066343863}
   - component: {fileID: 1100847910}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShootingTextureDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -712,7 +752,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8950934517234673387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.283, y: -0.344, z: 0}
+  m_LocalPosition: {x: -0.057, y: -0.345, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 801980984305395065}

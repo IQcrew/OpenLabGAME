@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float kickForce;
     private bool kicked = false;
     private MeleeWeapon PlayerWeapon;
-    private int gunIndex = 0;
+    public int gunIndex = 0;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
