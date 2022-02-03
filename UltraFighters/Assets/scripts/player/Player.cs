@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float kickForce;
     private bool kicked = false;
     private MeleeWeapon PlayerWeapon;
+    private int gunIndex = 0;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
@@ -558,8 +559,8 @@ public class Player : MonoBehaviour
     private Gun GetGun(string name)
     {
         GunManager GunM = GameObject.Find("LevelManager").GetComponent<GunManager>();
-        foreach (var Gunitem in GunM.AllGuns) { if (name == Gunitem.name) { return Gunitem.Clone(); } }
-        return GunM.AllGuns[0];
+        for (int i = 0; i < GunM.AllGuns.Count; i++){if (name == GunM.AllGuns[i].name) { gunIndex = i; return GunM.AllGuns[i].Clone(); }}
+        gunIndex = 0; return GunM.AllGuns[0];
     }
     private granadePack GetGranade(string name)
     {
