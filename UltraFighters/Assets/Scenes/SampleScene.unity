@@ -8542,6 +8542,10 @@ PrefabInstance:
       propertyPath: OpponentHitBox
       value: 
       objectReference: {fileID: 6255620023719281910}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: ShootingAnimator
+      value: 
+      objectReference: {fileID: 801980984605335093}
     - target: {fileID: 7880933519869570194, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_Controller
       value: 
@@ -8924,11 +8928,11 @@ MonoBehaviour:
     reloadVolume: 1
   shooting: 0
   kickForce: 500
-  gunIndex: 0
   PlayerBody: {fileID: 6255620023719281905}
   PlayerHitBox: {fileID: 6255620023719281910}
   OpponentHitBox: {fileID: 801980984605335098}
   PlayerAnimator: {fileID: 6255620023719281909}
+  ShootingAnimator: {fileID: 8494271806506804105}
   PlayerRenderer: {fileID: 6255620023719281908}
   platformScript: {fileID: 1663390440727809237}
   LaserPoint: {fileID: 5427469943896035704}

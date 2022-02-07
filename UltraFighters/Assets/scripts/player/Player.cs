@@ -69,8 +69,10 @@ public class Player : MonoBehaviour
     private float lastHitMelee = 0f;
     [SerializeField] private float kickForce;
     private bool kicked = false;
+    private bool iHit = false;
+    private bool hasHit = false;
     private MeleeWeapon PlayerWeapon;
-    [System.NonSerialized]public int gunIndex = 0;
+    [System.NonSerialized] public int gunIndex = 0;
     [System.NonSerialized] public int weaponIndex = 0;
 
     [Header("Components")]
@@ -78,6 +80,7 @@ public class Player : MonoBehaviour
     [SerializeField] private BoxCollider2D PlayerHitBox;
     [SerializeField] private BoxCollider2D OpponentHitBox;
     [SerializeField] private Animator PlayerAnimator;
+    [SerializeField] private Animator ShootingAnimator;
     [SerializeField] private SpriteRenderer PlayerRenderer;
     [SerializeField] private OneWayPlatform platformScript;
     [SerializeField] private GameObject LaserPoint;
@@ -152,30 +155,31 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        isGrounded = GroundCheck(); //nastavenie vstupov z klavesnice za premenné
-        if (Input.GetKey(Right) && !Input.GetKey(Left)) { GoRight = true; GoLeft = false; }
+        isGrounded = GroundCheck();
+        if (Input.GetKey(Right) && !Input.GetKey(Left)) { GoRight = true; GoLeft = false; } // Setting inputs - Left & Right ...
         else if ((!Input.GetKey(Right)) && Input.GetKey(Left)) { GoRight = false; GoLeft = true; }
         else { GoRight = false; GoLeft = false; }
-        if (Input.GetKey(Up) && !Input.GetKey(Down)) { GoUp = true; GoDown = false; }
+        if (Input.GetKey(Up) && !Input.GetKey(Down)) { GoUp = true; GoDown = false; } // ... Up & Down ...
         else if ((!Input.GetKey(Up)) && Input.GetKey(Down)) { GoUp = false; GoDown = true; }
         else { GoUp = false; GoDown = false; }
-        if (isGrounded) { kicked = false; }
-        if (isCrouching) { crouch(); PlayerAudio.clip = null; }
-        else if (PlayerBody.velocity.y <= -fallSpeed || isFalling) { fall(); }
-        else if (knockedOut) { PlayerBody.velocity = Vector2.zero; PlayerAudio.clip = null; }
-        else if (isOnLadder && (!isGrounded)) { Ladder(); PlayerAudio.clip = null; }
-        else if (Input.GetKey(hit)) { meleeAttack(); }
-        else if (shooting) { ShootPosition(); }
+        if (Input.GetKey(hit)) { iHit = true; } // ... hit
+        else { iHit = false; }
+        if (isGrounded) { kicked = false; } // reset kick premennej
+        if (Time.time - lastHitMelee < PlayerWeapon.hitSpeed) { return; }
+        if (knockedOut) { PlayerBody.velocity = Vector2.zero; PlayerAudio.clip = null; return; } // Stun
+        if (isCrouching) { crouch(); PlayerAudio.clip = null; } // Crouch continue
+        else if (PlayerBody.velocity.y <= -fallSpeed || isFalling) { fall(); } // Fall
+        else if (isOnLadder && (!isGrounded)) { Ladder(); PlayerAudio.clip = null; } // Ladder
+        else if (iHit) { meleeAttack(); } // Melee
+        else if (shooting) { ShootPosition(); } // Shooting
         else
         {
             BulletsToShot = 0;
-            //move
-            if (GoDown && isGrounded) { crouch(); PlayerAudio.clip = null; }
-            else
+            if (GoDown && isGrounded) { crouch(); PlayerAudio.clip = null; } // Crouch first
+            else // movement
             {
                 jump();
                 walk();
-
                 if (PlayerGun.name != "None" && isGrounded && Input.GetKey(fire))
                 {
                     PlayerAudio.clip = null;
@@ -191,11 +195,11 @@ public class Player : MonoBehaviour
             else if (!PlayerRotationRight && PlayerLastRotationRight) { transform.Rotate(0f, 180f, 0F); }
             PlayerLastRotationRight = PlayerRotationRight;
         }
-        AnimationSetter();
         if (Health < MaxHealth && Time.time - lastHit > 5) {
             Health += 20f * Time.deltaTime;
             if (Health > MaxHealth) { Health = MaxHealth; }
         }
+        AnimationSetter(); // AnimationSetter
     }
     private void fall()
     {
@@ -234,13 +238,14 @@ public class Player : MonoBehaviour
             RaycastHit2D[] rayCastHits;
             if (PlayerRotationRight) { rayCastHits = Physics2D.RaycastAll(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.right, PlayerHitBox.bounds.size.x, playerLayerMask); }
             else { rayCastHits = Physics2D.RaycastAll(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.left, PlayerHitBox.bounds.size.x, playerLayerMask); }
-            if (Time.time - lastHitMelee > PlayerWeapon.hitSpeed)
-                foreach (RaycastHit2D raycast in rayCastHits)
-                    if (raycast.collider != PlayerHitBox)
-                    {
-                        raycast.collider.GetComponent<Player>().TakeDamage(PlayerWeapon.damage);
-                        lastHitMelee = Time.time;
-                    }
+            PlayerAnimator.SetBool("isFighting", true);
+            foreach (RaycastHit2D raycast in rayCastHits)
+                if (raycast.collider != PlayerHitBox)
+                {
+                    raycast.collider.GetComponent<Player>().TakeDamage(PlayerWeapon.damage);
+                    lastHitMelee = Time.time;
+                }
+
         }
         else
         {
@@ -248,6 +253,8 @@ public class Player : MonoBehaviour
             if (PlayerRotationRight) { rayCastHits = Physics2D.RaycastAll(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.right, PlayerHitBox.bounds.size.x, playerLayerMask); }
             else { rayCastHits = Physics2D.RaycastAll(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y - PlayerHitBox.bounds.extents.y), Vector2.left, PlayerHitBox.bounds.size.x, playerLayerMask); }
             if (!kicked)
+            {
+                PlayerAnimator.SetBool("isFighting", true);
                 foreach (RaycastHit2D raycast in rayCastHits)
                     if (raycast.collider != PlayerHitBox)
                     {
@@ -256,6 +263,7 @@ public class Player : MonoBehaviour
                         else { raycast.collider.GetComponent<Rigidbody2D>().AddForce(new Vector2(-kickForce, 0f)); }
                         kicked = true;
                     }
+            }
         }
     }
     private void walk()
@@ -347,7 +355,7 @@ public class Player : MonoBehaviour
             else if (!GoDown) { HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false); }
         }
         else if ((Math.Abs(PlayerBody.velocity.x) <= WalkForce) && (!inRoll)) { StartCoroutine(Roll()); }
-        else if (((Math.Abs(PlayerBody.velocity.x) <= SprintForce) && (Math.Abs(PlayerBody.velocity.x) >= WalkForce)) && (!inRoll))
+        else if ((Math.Abs(PlayerBody.velocity.x) <= SprintForce) && (Math.Abs(PlayerBody.velocity.x) >= WalkForce) && (!inRoll))
         {
             if (!isCrouching)
             {
@@ -387,8 +395,14 @@ public class Player : MonoBehaviour
     }
     private void ShootPosition()
     {
-        if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (GoRight || GoLeft || GoUp || GoDown || Input.GetKey(hit) || Input.GetKey(slot))) {
-            shooting = false; MyLaser.ShootLaser(false); PlayerRenderer.enabled = true; FP.exitFP(); return;
+        ShootingAnimator.SetBool("Shot", false);
+        if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (GoRight || GoLeft || GoUp || GoDown || iHit || Input.GetKey(slot)))
+        {
+            shooting = false; 
+            MyLaser.ShootLaser(false); 
+            PlayerRenderer.enabled = true; 
+            FP.exitFP(); 
+            return;
         }
         if (GoRight) { PlayerRotationRight = true; }
         else if (GoLeft) { PlayerRotationRight = false; }
@@ -433,6 +447,7 @@ public class Player : MonoBehaviour
         {
             ReadyToFire = false;
             if (PlayerGun.fire()) {
+                ShootingAnimator.SetBool("Shot", true);
                 switch (PlayerGun.name){
                     case "Shotgun":
                         for (int i = 0; i < 4; i++)
@@ -516,8 +531,7 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("Ladder"))
         {
-            if (!isCrouching)
-                PlayerBody.gravityScale = 0f;
+            if (!isCrouching) { PlayerBody.gravityScale = 0f; }
             isOnLadder = true;
         }
     }
@@ -525,8 +539,7 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("Ladder"))
         {
-            if (!isCrouching)
-                PlayerBody.gravityScale = 2.5f;
+            if (!isCrouching) { PlayerBody.gravityScale = 2.5f; }
             isOnLadder = false;
         }
     }
@@ -539,18 +552,17 @@ public class Player : MonoBehaviour
     }
     private void AnimationSetter()
     {
-        if ((isGrounded && GoUp) || !isGrounded || isInPlatform)
-            PlayerAnimator.SetBool("isGrounded", false);
-        else
-            PlayerAnimator.SetBool("isGrounded", true);
+        if ((isGrounded && GoUp) || !isGrounded || isInPlatform) { PlayerAnimator.SetBool("isGrounded", false); }
+        else { PlayerAnimator.SetBool("isGrounded", true); }
+        if (PlayerBody.velocity != Vector2.zero) { PlayerAnimator.SetBool("isLadderMoving", true); }
+        else { PlayerAnimator.SetBool("isLadderMoving", false); }
+        if (!iHit) { PlayerAnimator.SetBool("isFighting", false); }
         PlayerAnimator.SetBool("isCrouching", isCrouching);
         PlayerAnimator.SetBool("isOnLadder", isOnLadder);
         PlayerAnimator.SetFloat("PlayerSpeed", Math.Abs(PlayerBody.velocity.x));
-        if (PlayerBody.velocity != Vector2.zero)
-            PlayerAnimator.SetBool("isLadderMoving", true);
-        else
-            PlayerAnimator.SetBool("isLadderMoving", false);
         PlayerAnimator.SetInteger("WeaponID", weaponIndex);
+        ShootingAnimator.SetInteger("GunID", gunIndex);
+        ShootingAnimator.SetBool("isShooting", shooting);
     }
     private Quaternion QuaternionDifference(Quaternion origin, Quaternion target)
     {
@@ -583,15 +595,15 @@ public class Player : MonoBehaviour
             case "Gun":
                 if (WeaponName == "MedicKit") { Health = MaxHealth; return true; }
                 if (PlayerGun.name == "None") { PlayerGun = GetGun(WeaponName); return true; }
-                else if (isCrouching && Input.GetKey(hit)) { PlayerGun = GetGun(WeaponName); return true; }
+                else if (isCrouching && iHit) { PlayerGun = GetGun(WeaponName); return true; }
                 return false;
             case "Melee":
                 if (PlayerWeapon.name == "Hand") { PlayerWeapon = GetMelee(WeaponName); return true; }
-                else if (isCrouching && Input.GetKey(hit)) { PlayerWeapon = GetMelee(WeaponName); return true; }
+                else if (isCrouching && iHit) { PlayerWeapon = GetMelee(WeaponName); return true; }
                 return false;
             case "Granade":
                 if (PlayerGranade.name == "None") { PlayerGranade = GetGranade(WeaponName); return true; }
-                else if (isCrouching && Input.GetKey(hit)) { PlayerGranade = GetGranade(WeaponName); return true; }
+                else if (isCrouching && iHit) { PlayerGranade = GetGranade(WeaponName); return true; }
                 return false;
             default:
                 return false;
