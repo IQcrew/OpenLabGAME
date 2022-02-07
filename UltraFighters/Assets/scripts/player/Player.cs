@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
     private bool kicked = false;
     private MeleeWeapon PlayerWeapon;
     [System.NonSerialized]public int gunIndex = 0;
+    [System.NonSerialized] public int weaponIndex = 0;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
@@ -549,6 +550,7 @@ public class Player : MonoBehaviour
             PlayerAnimator.SetBool("isLadderMoving", true);
         else
             PlayerAnimator.SetBool("isLadderMoving", false);
+        PlayerAnimator.SetInteger("WeaponID", weaponIndex);
     }
     private Quaternion QuaternionDifference(Quaternion origin, Quaternion target)
     {
@@ -571,8 +573,8 @@ public class Player : MonoBehaviour
     private MeleeWeapon GetMelee(string name)
     {
         GunManager GunM = GameObject.Find("LevelManager").GetComponent<GunManager>();
-        foreach (var melleW in GunM.AllMeleeWeapons) { if (name == melleW.name) { return melleW.Clone(); } }
-        return GunM.AllMeleeWeapons[0];
+        for (int i = 0; i < GunM.AllMeleeWeapons.Count; i++) { if (name == GunM.AllMeleeWeapons[i].name) { weaponIndex = 0; return GunM.AllMeleeWeapons[i].Clone(); } }
+        weaponIndex = 0; return GunM.AllMeleeWeapons[0];
     }
     public bool PickUpWeapon(string WeaponName, string type)
     {
