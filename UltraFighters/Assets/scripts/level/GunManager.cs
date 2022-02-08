@@ -21,7 +21,6 @@ public class Gun
     public int damage;
     public double FireSpeed;
     public int BulletsOnShoot = 0;
-    public Vector2 offSet;
     public GameObject Bullet;
     public GameObject EmptyBullet;
     public Sprite weaponTexture;
@@ -31,6 +30,7 @@ public class Gun
     [Range(0f,1f)]public float fireVolume = 1;
     public AudioClip ReloadPickup;
     [Range(0f, 1f)] public float reloadVolume = 1;
+    public Vector3 offSet;
 
     private double LastFire = -5f;
 

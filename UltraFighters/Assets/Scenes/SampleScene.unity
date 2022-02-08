@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &19613690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 19613691}
+  m_Layer: 8
+  m_Name: BulletPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &19613691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19613690}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2985014994384760375}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &42597944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2375,7 +2405,6 @@ MonoBehaviour:
     damage: 0
     FireSpeed: 0
     BulletsOnShoot: 0
-    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 0}
@@ -2385,13 +2414,13 @@ MonoBehaviour:
     fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
     reloadVolume: 1
+    offSet: {x: 0, y: 0, z: 0}
   - name: Pistol
     ammo: 12
     speed: 50
     damage: 20
     FireSpeed: 0.3
     BulletsOnShoot: 1
-    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: c443bf8cc52c6f24ca05b10b71f0d057, type: 3}
@@ -2401,13 +2430,13 @@ MonoBehaviour:
     fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
     reloadVolume: 1
+    offSet: {x: 0, y: 0, z: 0}
   - name: Eagle
     ammo: 7
     speed: 50
     damage: 40
     FireSpeed: 0.6
     BulletsOnShoot: 1
-    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: 2004b0d14fe15cf48b2bcb46a27ca347, type: 3}
@@ -2417,13 +2446,13 @@ MonoBehaviour:
     fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: fbdaade43c5701f4883c1928bf08f500, type: 3}
     reloadVolume: 1
+    offSet: {x: 0, y: 0, z: 0}
   - name: Shotgun
     ammo: 5
     speed: 60
     damage: 18
     FireSpeed: 0.7
     BulletsOnShoot: 1
-    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: 3626a6e73b44dea43b8fed2eb4cb0125, type: 3}
@@ -2433,13 +2462,13 @@ MonoBehaviour:
     fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
     reloadVolume: 1
+    offSet: {x: 0, y: 0, z: 0}
   - name: Mac-10
     ammo: 20
     speed: 50
     damage: 18
     FireSpeed: 0.5
     BulletsOnShoot: 5
-    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: 8a7fd03e7d00e8644a03887bf60a321e, type: 3}
@@ -2449,13 +2478,13 @@ MonoBehaviour:
     fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: a52e151384dfadf49b59b879ec413ce2, type: 3}
     reloadVolume: 1
+    offSet: {x: 0, y: 0, z: 0}
   - name: SniperRifle
     ammo: 5
     speed: 200
     damage: 90
     FireSpeed: 1.5
     BulletsOnShoot: 1
-    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: df92c48779dc6b14c9ea30bf8e843c5b, type: 3}
@@ -2465,13 +2494,13 @@ MonoBehaviour:
     fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 9d7aa32a171db6445b37083a822325ba, type: 3}
     reloadVolume: 1
+    offSet: {x: 0, y: 0, z: 0}
   - name: AssalutRifle
     ammo: 15
     speed: 50
     damage: 20
     FireSpeed: 1
     BulletsOnShoot: 3
-    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: 50d83569f80fc5e4295a17d8aba05dfe, type: 3}
@@ -2481,13 +2510,13 @@ MonoBehaviour:
     fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 953b412f362aa6543928102d2d1e6177, type: 3}
     reloadVolume: 0.7
+    offSet: {x: 0, y: 0, z: 0}
   - name: MiniGun
     ammo: 50
     speed: 50
     damage: 10
     FireSpeed: 0.18
     BulletsOnShoot: 100
-    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: 50d83569f80fc5e4295a17d8aba05dfe, type: 3}
@@ -2497,6 +2526,7 @@ MonoBehaviour:
     fireVolume: 1
     ReloadPickup: {fileID: 8300000, guid: 953b412f362aa6543928102d2d1e6177, type: 3}
     reloadVolume: 0.7
+    offSet: {x: 0, y: 0, z: 0}
   AllMeleeWeapons:
   - name: Hand
     damage: 15
@@ -7645,6 +7675,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72ab42eef3f63ce42aeedc06f2e30466, type: 3}
+--- !u!1 &1996385350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1996385351}
+  m_Layer: 8
+  m_Name: BulletPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1996385351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996385350}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 801980984605335094}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2001276248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8549,6 +8609,10 @@ PrefabInstance:
       value: Player_1
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: BulletPoint
+      value: 
+      objectReference: {fileID: 1996385351}
+    - target: {fileID: 801980984305395070, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: LevelManager
       value: 
       objectReference: {fileID: 657252222}
@@ -8577,6 +8641,11 @@ PrefabInstance:
 --- !u!95 &801980984605335093 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7880933519869570194, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+  m_PrefabInstance: {fileID: 801980984605335092}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &801980984605335094 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8403082907911671737, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
   m_PrefabInstance: {fileID: 801980984605335092}
   m_PrefabAsset: {fileID: 0}
 --- !u!61 &801980984605335098 stripped
@@ -8685,6 +8754,7 @@ Transform:
   m_Children:
   - {fileID: 1076850054072587190}
   - {fileID: 338900232}
+  - {fileID: 19613691}
   m_Father: {fileID: 6255620023719281911}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8939,7 +9009,6 @@ MonoBehaviour:
     damage: 0
     FireSpeed: 0
     BulletsOnShoot: 0
-    offSet: {x: 0, y: 0}
     Bullet: {fileID: 0}
     EmptyBullet: {fileID: 0}
     weaponTexture: {fileID: 0}
@@ -8949,6 +9018,7 @@ MonoBehaviour:
     fireVolume: 1
     ReloadPickup: {fileID: 0}
     reloadVolume: 1
+    offSet: {x: 0, y: 0, z: 0}
   shooting: 0
   kickForce: 500
   PlayerBody: {fileID: 6255620023719281905}
@@ -8962,6 +9032,7 @@ MonoBehaviour:
   PlayerAudio: {fileID: 6255620023719281912}
   LevelManager: {fileID: 657252222}
   EmptyPoint: {fileID: 338900232}
+  BulletPoint: {fileID: 19613691}
 --- !u!50 &6255620023719281905
 Rigidbody2D:
   serializedVersion: 4
@@ -9258,6 +9329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currectPlayer: {fileID: 6255620023719281907}
+  BulletPoint: {fileID: 0}
   RotationCenter: {fileID: 4188885018741405562}
   spriteRenderer: {fileID: 7504574227635638474}
   RotationSpeed: 3

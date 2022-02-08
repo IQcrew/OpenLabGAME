@@ -88,6 +88,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource PlayerAudio;
     [SerializeField] private GameObject LevelManager;
     [SerializeField] private Transform EmptyPoint;
+    [SerializeField] private Transform BulletPoint;
     private FirePoint FP;
     private granadePack PlayerGranade;
 
@@ -417,14 +418,14 @@ public class Player : MonoBehaviour
                 case "Mac-10":
                     if (Time.time > LastTimeShoot + 0.08f) {
                         TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 10) - 5);
-                        shootingBullet(QuaternionDifference(TempQuaternion, FirePoint.rotation));
+                        shootingBullet(QuaternionDifference(TempQuaternion, BulletPoint.rotation));
                         BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
                     }
                     break;
                 case "AssalutRifle":
                     if (Time.time > LastTimeShoot + 0.1f) {
 
-                        shootingBullet(FirePoint.rotation);
+                        shootingBullet(BulletPoint.rotation);
                         BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
                     }
                     break;
@@ -433,7 +434,7 @@ public class Player : MonoBehaviour
                     {
                         LastTimeShoot = Time.time;
                         TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 6) - 3);
-                        shootingBullet(QuaternionDifference(TempQuaternion, FirePoint.rotation));
+                        shootingBullet(QuaternionDifference(TempQuaternion, BulletPoint.rotation));
                         BulletsToShot -= 1; PlayerGun.ammo -= 1; LastTimeShoot = Time.time; PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
                     }
                     break;
@@ -453,7 +454,7 @@ public class Player : MonoBehaviour
                         for (int i = 0; i < 4; i++)
                         {
                             TempQuaternion = Quaternion.Euler(0, 0, (((float)rrr.NextDouble()) * 14) - 7);
-                            GameObject TVP = Instantiate(PlayerGun.Bullet, FirePoint.position, QuaternionDifference(TempQuaternion, FirePoint.rotation));
+                            GameObject TVP = Instantiate(PlayerGun.Bullet, BulletPoint.position, QuaternionDifference(TempQuaternion, BulletPoint.rotation));
                             TVP.GetComponent<bullet>().shooter_name = PlayerName;
                             TVP.GetComponent<bullet>().damage = PlayerGun.damage;
                             TVP.GetComponent<bullet>().speed = PlayerGun.speed;
@@ -471,7 +472,7 @@ public class Player : MonoBehaviour
                         BulletsToShot = PlayerGun.ammo;
                         break;
                     default:
-                        shootingBullet(FirePoint.rotation);
+                        shootingBullet(BulletPoint.rotation);
                         PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
                         PlayerGun.ammo -= 1;
                         if (PlayerGun.name == "SniperRifle") { PlayerAudio.PlayOneShot(Reload, PlayerGun.fireVolume); }
@@ -487,7 +488,7 @@ public class Player : MonoBehaviour
     }
     private void shootingBullet(Quaternion rotation)
     {
-        GameObject TVP = Instantiate(PlayerGun.Bullet, FirePoint.position, rotation);
+        GameObject TVP = Instantiate(PlayerGun.Bullet, BulletPoint.position, rotation);
         TVP.GetComponent<bullet>().shooter_name = PlayerName;
         TVP.GetComponent<bullet>().damage = PlayerGun.damage;
         TVP.GetComponent<bullet>().speed = PlayerGun.speed;
@@ -572,8 +573,9 @@ public class Player : MonoBehaviour
     private Gun GetGun(string name)
     {
         GunManager GunM = GameObject.Find("LevelManager").GetComponent<GunManager>();
-        for (int i = 0; i < GunM.AllGuns.Count; i++){if (name == GunM.AllGuns[i].name) { gunIndex = i; return GunM.AllGuns[i].Clone(); }}
-        gunIndex = 0; return GunM.AllGuns[0];
+        for (int i = 0; i < GunM.AllGuns.Count; i++){if (name == GunM.AllGuns[i].name) { gunIndex = i;
+        BulletPoint.position = GunM.AllGuns[i].offSet + FirePoint.position; return GunM.AllGuns[i].Clone(); }}
+        gunIndex = 0; BulletPoint.position = GunM.AllGuns[0].offSet+FirePoint.position; return GunM.AllGuns[0];
     }
     private granadePack GetGranade(string name)
     {
