@@ -74,6 +74,7 @@ public class Player : MonoBehaviour
     private MeleeWeapon PlayerWeapon;
     [System.NonSerialized] public int gunIndex = 0;
     [System.NonSerialized] public int weaponIndex = 0;
+    private bool iFire;
 
     [Header("Components")]
     [SerializeField] private Rigidbody2D PlayerBody;
@@ -156,14 +157,14 @@ public class Player : MonoBehaviour
     void Update()
     {
         isGrounded = GroundCheck();
+        iFire = Input.GetKey(fire); // bool variables (to safe power)
+        iHit = Input.GetKey(hit);
         if (Input.GetKey(Right) && !Input.GetKey(Left)) { GoRight = true; GoLeft = false; } // Setting inputs - Left & Right ...
         else if ((!Input.GetKey(Right)) && Input.GetKey(Left)) { GoRight = false; GoLeft = true; }
         else { GoRight = false; GoLeft = false; }
         if (Input.GetKey(Up) && !Input.GetKey(Down)) { GoUp = true; GoDown = false; } // ... Up & Down ...
         else if ((!Input.GetKey(Up)) && Input.GetKey(Down)) { GoUp = false; GoDown = true; }
         else { GoUp = false; GoDown = false; }
-        if (Input.GetKey(hit)) { iHit = true; } // ... hit
-        else { iHit = false; }
         if (isGrounded) { kicked = false; } // reset kick premennej
         if (Time.time - lastHitMelee < PlayerWeapon.hitSpeed) { return; }
         if (knockedOut) { PlayerBody.velocity = Vector2.zero; PlayerAudio.clip = null; return; } // Stun
@@ -180,7 +181,7 @@ public class Player : MonoBehaviour
             {
                 jump();
                 walk();
-                if (PlayerGun.name != "None" && isGrounded && Input.GetKey(fire))
+                if (PlayerGun.name != "None" && isGrounded && iFire)
                 {
                     PlayerAudio.clip = null;
                     shooting = true; LastTimeShoot = Time.time;
@@ -396,7 +397,7 @@ public class Player : MonoBehaviour
     private void ShootPosition()
     {
         ShootingAnimator.SetBool("Shot", false);
-        if (LastTimeShoot + 0.5 < Time.time || !Input.GetKey(fire) && (GoRight || GoLeft || GoUp || GoDown || iHit || Input.GetKey(slot)))
+        if (LastTimeShoot + 0.5 < Time.time || !iFire && (GoRight || GoLeft || iHit || Input.GetKey(slot)))
         {
             shooting = false; 
             MyLaser.ShootLaser(false); 
@@ -441,8 +442,7 @@ public class Player : MonoBehaviour
         }
         if (PlayerGun.name is "SniperRifle") { MyLaser.ShootLaser(true); }
         else { MyLaser.ShootLaser(false); }
-        if (Input.GetKeyDown(hit) || Input.GetKeyDown(slot)) { shooting = false; MyLaser.ShootLaser(false); }
-        if (Input.GetKey(fire)) { ReadyToFire = true; }
+        if (iFire) { ReadyToFire = true; LastTimeShoot = Time.time; }
         else if (ReadyToFire && PlayerGun.name != "" && PlayerGun.name != "None")
         {
             ReadyToFire = false;
@@ -479,7 +479,6 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        if (Input.GetKey(fire)) { LastTimeShoot = Time.time; }
         if (PlayerGun.ammo <= 0) { PlayerAudio.PlayOneShot(emptySound); PlayerGun = GetGun("None"); LastTimeShoot = -5f; }
     }
     private void GranadePosition() //treba dorobit
