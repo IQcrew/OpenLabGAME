@@ -4,20 +4,64 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
+    [SerializeField] GameObject RocketEngine;
+    [SerializeField] float speed;
     [SerializeField] int maxDamage;
-    [SerializeField] float Speed;
+    [SerializeField] public float radius = 3;
+    [SerializeField] public float force;
+    [SerializeField] public LayerMask LayerMask;
     [SerializeField] GameObject particle;
+    [SerializeField] float particleDensity;
     [SerializeField] AudioClip EplosionSound;
-    [SerializeField] [Range(0f, 1f)] float fireVolume = 1;
-
+    [SerializeField] [Range(0f, 1f)] float Volume = 1;
+    private Rigidbody2D body;
+    private float timer = 0;
+    Transform EnginePos;
 
     void Start()
     {
-        
+        EnginePos = RocketEngine.GetComponent<Transform>();
+        body = this.gameObject.GetComponent<Rigidbody2D>();
+        body.velocity = transform.right * speed;
+        timer = Time.time;
     }
     void Update()
     {
-        
+        if (Time.time > timer + particleDensity)
+        {
+            timer = Time.time;
+            Instantiate(particle, EnginePos.position ,EnginePos.rotation);
+
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D other) //checkuje stretnutie z druhym objektom
+    {
+
+
+        if (other.collider.tag is "OneWayPlatform" || other.collider.tag is "Bullet")
+        {
+            Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), other.collider);
+            body.velocity = transform.right * speed;
+            return;
+        }
+        else if (other.collider.tag is "OneTapBezZastavenia")
+        {
+            Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), other.collider);
+            objectHP enemy = other.collider.GetComponent<objectHP>();
+            enemy.destroyObject();
+            body.velocity = transform.right * speed;
+            return;
+        }
+        else if (other.collider.tag is "Player")
+        {
+            
+
+        }
+        else
+        {
+            GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(EplosionSound, Volume);
+            Explode(force, radius, LayerMask);
+        }
     }
     public void Explode(float forceE, float radius, LayerMask layerMask)
     {

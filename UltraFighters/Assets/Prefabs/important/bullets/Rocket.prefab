@@ -131,7 +131,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &7374855195824763802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,3 +144,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ff92a1f3b6ba24e997b0254f58c523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 30
+  maxDamage: 500
+  radius: 4.65
+  force: 6.85
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 320
+  particle: {fileID: 0}
+  EplosionSound: {fileID: 8300000, guid: 84efc399ba9b9ad4593c8c89bc930329, type: 3}
+  Volume: 1

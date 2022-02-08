@@ -23,11 +23,14 @@ public class objectHP : MonoBehaviour
         if (health <= 1)     //DeathEffect and remove object
         {
             AudioManagerSet.PlayOneShot(DeathSound,deathVolume);
-            Destroy(gameObject);
         }
         else      //HitEffect
         {
             AudioManagerSet.PlayOneShot(HitSound, hitVolume);
         }
+    }
+    public void destroyObject()
+    {
+        Destroy(gameObject);
     }
 }
