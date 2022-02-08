@@ -64,6 +64,8 @@ public class Player : MonoBehaviour
     private Quaternion TempQuaternion = Quaternion.Euler(0, 0, 0);
     private Laser MyLaser;
     private float lastHit = 0f;
+    private bool granadePos = false;
+    private bool iSlot = false;
 
     [Header("Fighting")]
     private float lastHitMelee = 0f;
@@ -160,6 +162,7 @@ public class Player : MonoBehaviour
         isGrounded = GroundCheck();
         iFire = Input.GetKey(fire); // bool variables (to safe power)
         iHit = Input.GetKey(hit);
+        iSlot = Input.GetKey(slot);
         if (Input.GetKey(Right) && !Input.GetKey(Left)) { GoRight = true; GoLeft = false; } // Setting inputs - Left & Right ...
         else if ((!Input.GetKey(Right)) && Input.GetKey(Left)) { GoRight = false; GoLeft = true; }
         else { GoRight = false; GoLeft = false; }
@@ -174,6 +177,7 @@ public class Player : MonoBehaviour
         else if (isOnLadder && (!isGrounded)) { Ladder(); PlayerAudio.clip = null; } // Ladder
         else if (iHit) { meleeAttack(); } // Melee
         else if (shooting) { ShootPosition(); } // Shooting
+        else if (granadePos) { GranadePosition(); } 
         else
         {
             BulletsToShot = 0;
@@ -182,12 +186,19 @@ public class Player : MonoBehaviour
             {
                 jump();
                 walk();
-                if (PlayerGun.name != "None" && isGrounded && iFire)
+                if (isGrounded)
                 {
-                    PlayerAudio.clip = null;
-                    shooting = true; LastTimeShoot = Time.time;
-                    PlayerRenderer.enabled = false;
-                    PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
+                    if (PlayerGun.name != "None" && iFire){
+                        PlayerAudio.clip = null;
+                        shooting = true; LastTimeShoot = Time.time;
+                        PlayerRenderer.enabled = false;
+                        PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
+                    }
+                    else if (iSlot && PlayerGranade.name != "None"){
+                        granadePos = true; LastTimeShoot = Time.time;
+                        PlayerAudio.clip = null; PlayerRenderer.enabled = false;
+                        PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
+                    }
                 }
                 if (PlayerBody.velocity.y < 0) { PlayerBody.gravityScale = FallGravity; }
                 else { PlayerBody.gravityScale = NormalGravity; }
@@ -398,9 +409,9 @@ public class Player : MonoBehaviour
     private void ShootPosition()
     {
         ShootingAnimator.SetBool("Shot", false);
-        if (LastTimeShoot + 0.5 < Time.time || !iFire && (GoRight || GoLeft || iHit || Input.GetKey(slot)))
+        if (LastTimeShoot + 0.5 < Time.time || !iFire && (GoRight || GoLeft || iHit || iSlot))
         {
-            shooting = false; 
+            shooting = false; LastTimeShoot = -5;
             MyLaser.ShootLaser(false); 
             PlayerRenderer.enabled = true; 
             FP.exitFP(); 
@@ -487,8 +498,16 @@ public class Player : MonoBehaviour
         }
         if (PlayerGun.ammo <= 0) { PlayerAudio.PlayOneShot(emptySound); PlayerGun = GetGun("None"); LastTimeShoot = -5f; }
     }
-    private void GranadePosition() //treba dorobit
+    private void GranadePosition()
     {
+        if (iSlot) { LastTimeShoot = Time.time; }
+        if (LastTimeShoot + 0.5 < Time.time || !iFire && (GoRight || GoLeft || iHit || iFire))
+        {
+            granadePos = false; LastTimeShoot = -5f;
+            PlayerRenderer.enabled = true;
+            FP.exitFP();
+            return;
+        }
         FP.FUpdate();
     }
     private void shootingBullet(Quaternion rotation)

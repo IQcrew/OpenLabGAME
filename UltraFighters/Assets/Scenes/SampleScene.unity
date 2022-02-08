@@ -2595,7 +2595,7 @@ MonoBehaviour:
     PickUpAudio: {fileID: 0}
     volume: 1
   - name: Explosive
-    granade: {fileID: 0}
+    granade: {fileID: 4175491966135855214, guid: 4d695e624de7ba74380b99acafa073c2, type: 3}
     coutInPack: 3
     weaponTexture: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     PlayerAnimator: {fileID: 0}

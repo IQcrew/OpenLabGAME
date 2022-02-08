@@ -177,7 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RocketEngine: {fileID: 330262231}
   speed: 30
-  maxDamage: 500
+  maxDamage: 300
   radius: 4.65
   force: 6.85
   LayerMask:
