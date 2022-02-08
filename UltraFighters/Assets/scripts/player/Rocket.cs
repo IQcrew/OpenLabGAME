@@ -2,23 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Granade : MonoBehaviour
+public class Rocket : MonoBehaviour
 {
+    [SerializeField] int maxDamage;
+    [SerializeField] float Speed;
+    [SerializeField] GameObject particle;
+    [SerializeField] AudioClip EplosionSound;
+    [SerializeField] [Range(0f, 1f)] float fireVolume = 1;
 
-    [SerializeField] public float waitTime;
-    [SerializeField] public float radius = 3;
-    [SerializeField] public float force;
-    [SerializeField] public float maxDamage = 100;
-    [SerializeField] private LayerMask layerMask;
 
-    private void Start()
+    void Start()
     {
-        StartCoroutine(TickOff());    
+        
     }
-    private IEnumerator TickOff()
+    void Update()
     {
-        yield return new WaitForSeconds(waitTime);
-        Explode(force, radius, layerMask);
+        
     }
     public void Explode(float forceE, float radius, LayerMask layerMask)
     {
@@ -45,5 +44,3 @@ public class Granade : MonoBehaviour
         Destroy(this.gameObject);
     }
 }
-
-

@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
         Health = MaxHealth;
         PlayerLastRotationRight = PlayerRotationRight;
         if (!PlayerRotationRight) { transform.Rotate(0f, 180f, 0F); }
-        PlayerGun = GetGun("Pistol");
+        PlayerGun = GetGun("RocketLauncher");
         PlayerGranade = GetGranade("None");
         MyLaser.ShootLaser(false);
         FP.exitFP();
@@ -472,7 +472,6 @@ public class Player : MonoBehaviour
                         BulletsToShot = PlayerGun.ammo;
                         break;
                     case "RocketLauncher":
-                        shootingBullet(BulletPoint.rotation);
                         PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
                         PlayerGun.ammo -= 1;
                         Instantiate(PlayerGun.Bullet, BulletPoint.position, BulletPoint.rotation);
