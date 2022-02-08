@@ -471,6 +471,12 @@ public class Player : MonoBehaviour
                     case "MiniGun":
                         BulletsToShot = PlayerGun.ammo;
                         break;
+                    case "RocketLauncher":
+                        shootingBullet(BulletPoint.rotation);
+                        PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
+                        PlayerGun.ammo -= 1;
+                        Instantiate(PlayerGun.Bullet, BulletPoint.position, BulletPoint.rotation);
+                        break;
                     default:
                         shootingBullet(BulletPoint.rotation);
                         PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
@@ -609,7 +615,6 @@ public class Player : MonoBehaviour
             default:
                 return false;
         }
-        
     }
     private void death()
     {
