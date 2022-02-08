@@ -2375,6 +2375,7 @@ MonoBehaviour:
     damage: 0
     FireSpeed: 0
     BulletsOnShoot: 0
+    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 0}
@@ -2390,6 +2391,7 @@ MonoBehaviour:
     damage: 20
     FireSpeed: 0.3
     BulletsOnShoot: 1
+    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: c443bf8cc52c6f24ca05b10b71f0d057, type: 3}
@@ -2405,6 +2407,7 @@ MonoBehaviour:
     damage: 40
     FireSpeed: 0.6
     BulletsOnShoot: 1
+    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: 2004b0d14fe15cf48b2bcb46a27ca347, type: 3}
@@ -2420,6 +2423,7 @@ MonoBehaviour:
     damage: 18
     FireSpeed: 0.7
     BulletsOnShoot: 1
+    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: 3626a6e73b44dea43b8fed2eb4cb0125, type: 3}
@@ -2435,6 +2439,7 @@ MonoBehaviour:
     damage: 18
     FireSpeed: 0.5
     BulletsOnShoot: 5
+    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: 8a7fd03e7d00e8644a03887bf60a321e, type: 3}
@@ -2450,6 +2455,7 @@ MonoBehaviour:
     damage: 90
     FireSpeed: 1.5
     BulletsOnShoot: 1
+    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: df92c48779dc6b14c9ea30bf8e843c5b, type: 3}
@@ -2465,6 +2471,7 @@ MonoBehaviour:
     damage: 20
     FireSpeed: 1
     BulletsOnShoot: 3
+    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: 50d83569f80fc5e4295a17d8aba05dfe, type: 3}
@@ -2480,6 +2487,7 @@ MonoBehaviour:
     damage: 10
     FireSpeed: 0.18
     BulletsOnShoot: 100
+    offSet: {x: 0, y: 0}
     Bullet: {fileID: 6080553533287604160, guid: a84445351014878409cb8b31b789a95f, type: 3}
     EmptyBullet: {fileID: 4408571464380728255, guid: 4daf74827c8852b4485ea6fe2e58d685, type: 3}
     weaponTexture: {fileID: 21300000, guid: 50d83569f80fc5e4295a17d8aba05dfe, type: 3}
@@ -2537,12 +2545,14 @@ MonoBehaviour:
     granade: {fileID: 0}
     coutInPack: 0
     weaponTexture: {fileID: 0}
+    PlayerAnimator: {fileID: 0}
     PickUpAudio: {fileID: 0}
     volume: 1
   - name: Explosive
     granade: {fileID: 0}
     coutInPack: 3
     weaponTexture: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+    PlayerAnimator: {fileID: 0}
     PickUpAudio: {fileID: 8300000, guid: bf465cf3bec4a6f4387e9484337b28ec, type: 3}
     volume: 1
 --- !u!4 &657252224
@@ -8482,6 +8492,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 425872333, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: RotationSmooth
+      value: 5.06
+      objectReference: {fileID: 0}
     - target: {fileID: 1523462023, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: animator
       value: 
@@ -8492,11 +8506,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395065, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.999098
+      value: 19.99
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395065, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.6700015
+      value: -3.75
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395065, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8546,6 +8560,14 @@ PrefabInstance:
       propertyPath: ShootingAnimator
       value: 
       objectReference: {fileID: 801980984605335093}
+    - target: {fileID: 801980984605335094, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 801980984605335094, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: m_Positions.Array.data[1].z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7880933519869570194, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_Controller
       value: 
@@ -8805,7 +8827,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -8917,6 +8939,7 @@ MonoBehaviour:
     damage: 0
     FireSpeed: 0
     BulletsOnShoot: 0
+    offSet: {x: 0, y: 0}
     Bullet: {fileID: 0}
     EmptyBullet: {fileID: 0}
     weaponTexture: {fileID: 0}
@@ -9087,7 +9110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6255620023719281907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.16, y: -3.49, z: 0}
+  m_LocalPosition: {x: -19.38, y: -3.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2985014994384760375}
@@ -9239,6 +9262,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 7504574227635638474}
   RotationSpeed: 3
   RotationRadius: 1.5
+  RotationSmooth: 0
 --- !u!1 &7504574227635638473
 GameObject:
   m_ObjectHideFlags: 0

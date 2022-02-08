@@ -21,6 +21,7 @@ public class Gun
     public int damage;
     public double FireSpeed;
     public int BulletsOnShoot = 0;
+    public Vector2 offSet;
     public GameObject Bullet;
     public GameObject EmptyBullet;
     public Sprite weaponTexture;
@@ -61,6 +62,7 @@ public class Gun
             reloadVolume = this.reloadVolume,
             fireVolume = this.fireVolume,
             EmptyBullet = this.EmptyBullet,
+            offSet = this.offSet,
         };
     }
 }
@@ -99,6 +101,7 @@ public class granadePack
     public Granade granade;
     public int coutInPack;
     public Sprite weaponTexture;
+    public Animator PlayerAnimator;
     public AudioClip PickUpAudio;
     [Range(0f, 1f)] public float volume = 1;
     public granadePack Clone()
@@ -109,6 +112,9 @@ public class granadePack
             granade = this.granade,
             coutInPack = this.coutInPack,
             weaponTexture = this.weaponTexture,
+            PickUpAudio = this.PickUpAudio,
+            volume = this.volume,
+            PlayerAnimator = this.PlayerAnimator,
         };
     }
 }
