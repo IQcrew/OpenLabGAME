@@ -20,12 +20,6 @@ public class bullet : MonoBehaviour
         RigidBodyObject.velocity = transform.right * speed;
         
     }
-    public void setparameter()
-    {
-        shooter_name = "";
-    }
-
-
     private void OnCollisionEnter2D (Collision2D other) //checkuje stretnutie z druhym objektom
     {
         
