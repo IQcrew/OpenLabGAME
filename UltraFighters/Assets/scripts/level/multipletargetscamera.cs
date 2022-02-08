@@ -13,7 +13,7 @@ public class multipletargetscamera : MonoBehaviour         // TOBIAS - Program u
     private Vector3 velocity;
 
 
-    private void LateUpdate()           //update camery
+    private void Update()           //update camery
     {
         if (targets.Count == 0) { Debug.Log("CAMERA-Nemá OBJEKTY NA SLEDOVANIE"); return; }
         move();
