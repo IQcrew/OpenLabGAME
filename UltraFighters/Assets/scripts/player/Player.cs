@@ -152,7 +152,7 @@ public class Player : MonoBehaviour
         Health = MaxHealth;
         PlayerLastRotationRight = PlayerRotationRight;
         if (!PlayerRotationRight) { transform.Rotate(0f, 180f, 0F); }
-        PlayerGun = GetGun("Eagle");
+        PlayerGun = GetGun("RocketLauncher");
         PlayerGranade = GetGranade("Explosive");
         MyLaser.ShootLaser(false);
         FP.exitFP();
