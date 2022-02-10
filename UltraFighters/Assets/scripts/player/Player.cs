@@ -93,6 +93,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform BulletPoint;
     private FirePoint FP;
     private granadePack PlayerGranade;
+    private bool readyToThrowGranade = false;
 
 
     private float WalkForce = 5f;
@@ -152,7 +153,7 @@ public class Player : MonoBehaviour
         PlayerLastRotationRight = PlayerRotationRight;
         if (!PlayerRotationRight) { transform.Rotate(0f, 180f, 0F); }
         PlayerGun = GetGun("Eagle");
-        PlayerGranade = GetGranade("None");
+        PlayerGranade = GetGranade("Explosive");
         MyLaser.ShootLaser(false);
         FP.exitFP();
     }
@@ -184,22 +185,18 @@ public class Player : MonoBehaviour
             if (GoDown && isGrounded) { crouch(); PlayerAudio.clip = null; } // Crouch first
             else // movement
             {
-                jump();
-                walk();
-                if (isGrounded)
-                {
-                    if (PlayerGun.name != "None" && iFire){
-                        PlayerAudio.clip = null;
-                        shooting = true; LastTimeShoot = Time.time;
-                        PlayerRenderer.enabled = false;
-                        PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
-                    }
-                    else if (iSlot && PlayerGranade.name != "None"){
-                        granadePos = true; LastTimeShoot = Time.time;
-                        PlayerAudio.clip = null; PlayerRenderer.enabled = false;
-                        PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
-                    }
+                if (isGrounded && PlayerGun.name != "None" && iFire){
+                    PlayerAudio.clip = null;
+                    shooting = true; LastTimeShoot = Time.time;
+                    PlayerRenderer.enabled = false;
+                    PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
                 }
+                else if (isGrounded && iSlot){// && PlayerGranade.name != "None"
+                    granadePos = true; LastTimeShoot = Time.time;
+                    PlayerAudio.clip = null; PlayerRenderer.enabled = false;
+                    PlayerBody.velocity = new Vector2(0, PlayerBody.velocity.y);
+                }
+                else { jump(); walk(); }
                 if (PlayerBody.velocity.y < 0) { PlayerBody.gravityScale = FallGravity; }
                 else { PlayerBody.gravityScale = NormalGravity; }
             }
@@ -500,13 +497,20 @@ public class Player : MonoBehaviour
     }
     private void GranadePosition()
     {
-        if (iSlot) { LastTimeShoot = Time.time; }
-        if (LastTimeShoot + 0.5 < Time.time || !iFire && (GoRight || GoLeft || iHit || iFire))
+        if (iSlot) { LastTimeShoot = Time.time; readyToThrowGranade = true; }
+        if (LastTimeShoot + 0.5 < Time.time || !iSlot && (GoRight || GoLeft || iHit || iFire))
         {
             granadePos = false; LastTimeShoot = -5f;
             PlayerRenderer.enabled = true;
             FP.exitFP();
             return;
+        }
+        if(readyToThrowGranade && !iSlot)
+        {
+            readyToThrowGranade=false; PlayerGranade.coutInPack -= 1;
+            GameObject tempG = Instantiate(PlayerGranade.granade, FirePoint.position, FirePoint.rotation);
+            tempG.GetComponent<Granade>().setVelocity(20);
+            if(PlayerGranade.coutInPack <= 0) { PlayerGranade = GetGranade("None"); }
         }
         FP.FUpdate();
     }

@@ -44,6 +44,10 @@ public class Granade : MonoBehaviour
         }
         Destroy(this.gameObject);
     }
+    public void setVelocity(float speed)
+    {
+        this.gameObject.GetComponent<Rigidbody2D>().velocity = transform.right * speed;
+    }
 }
 
 

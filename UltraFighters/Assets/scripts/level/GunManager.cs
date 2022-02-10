@@ -98,7 +98,7 @@ public class MeleeWeapon
 public class granadePack
 {
     public string name;
-    public Granade granade;
+    public GameObject granade;
     public int coutInPack;
     public Sprite weaponTexture;
     public Animator PlayerAnimator;

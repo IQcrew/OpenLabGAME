@@ -36,7 +36,7 @@ public class FirePoint : MonoBehaviour
             {
                 UpdatePosition(posX, posY, angle);
                 if (angle <= 95f * Mathf.Deg2Rad || angle > 270f * Mathf.Deg2Rad) { angle -= Time.deltaTime * RotationSpeed; RotationSpeed += RotationSpeed < 5 ? Time.deltaTime * RotationSmooth : 0; }
-                else { angle = 270f * Mathf.Deg2Rad;  }
+                else { angle = 270f * Mathf.Deg2Rad; }
                 if (angle <= 0f) { angle = 360f * Mathf.Deg2Rad; }
             }
             else { RotationSpeed = 1; }
@@ -44,29 +44,20 @@ public class FirePoint : MonoBehaviour
         }
         else
         {
-            if (playerScript.shooting)
+            if (PlayerLastRotationRight != playerScript.PlayerRotationRight) { angle = 180f * Mathf.Deg2Rad; UpdatePosition(posX, posY, angle); }
+            PlayerLastRotationRight = playerScript.PlayerRotationRight;
+            if (Input.GetKey(playerScript.Up) && (!Input.GetKey(playerScript.Down)))
             {
-                if (PlayerLastRotationRight != playerScript.PlayerRotationRight) { angle = 180f * Mathf.Deg2Rad; UpdatePosition(posX, posY, angle); }
-                PlayerLastRotationRight = playerScript.PlayerRotationRight;
-                if (Input.GetKey(playerScript.Up) && (!Input.GetKey(playerScript.Down)))
-                {
-                    UpdatePosition(posX, posY, angle);
-                    if (angle > 90f * Mathf.Deg2Rad) { angle -= Time.deltaTime * RotationSpeed; RotationSpeed += RotationSpeed < 5 ? Time.deltaTime * RotationSmooth : 0; }
-                }
-                else if (Input.GetKey(playerScript.Down) && (!Input.GetKey(playerScript.Up)))
-                {
-                    UpdatePosition(posX, posY, angle);
-                    if (angle < 270f * Mathf.Deg2Rad) { angle += Time.deltaTime * RotationSpeed; RotationSpeed += RotationSpeed < 5 ? Time.deltaTime * RotationSmooth : 0; }
-                }
-                else { RotationSpeed = 1; }
-                UpdateRotation(rotationVector, 180 - (angle * Mathf.Rad2Deg));
-            }
-            else
-            {
-                angle = 180f * Mathf.Deg2Rad;
                 UpdatePosition(posX, posY, angle);
-                UpdateRotation(rotationVector, 0f);
+                if (angle > 90f * Mathf.Deg2Rad) { angle -= Time.deltaTime * RotationSpeed; RotationSpeed += RotationSpeed < 5 ? Time.deltaTime * RotationSmooth : 0; }
             }
+            else if (Input.GetKey(playerScript.Down) && (!Input.GetKey(playerScript.Up)))
+            {
+                UpdatePosition(posX, posY, angle);
+                if (angle < 270f * Mathf.Deg2Rad) { angle += Time.deltaTime * RotationSpeed; RotationSpeed += RotationSpeed < 5 ? Time.deltaTime * RotationSmooth : 0; }
+            }
+            else { RotationSpeed = 1; }
+            UpdateRotation(rotationVector, 180 - (angle * Mathf.Rad2Deg));
         }
     }
     private void UpdatePosition(float posX, float posY, float angle)

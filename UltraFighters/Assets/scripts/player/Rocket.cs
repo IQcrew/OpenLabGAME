@@ -10,8 +10,6 @@ public class Rocket : MonoBehaviour
     [SerializeField] public float radius = 3;
     [SerializeField] public float force;
     [SerializeField] public LayerMask LayerMask;
-    [SerializeField] GameObject particle;
-    [SerializeField] float particleDensity;
     [SerializeField] AudioClip EplosionSound;
     [SerializeField] [Range(0f, 1f)] float Volume = 1;
     private Rigidbody2D body;
@@ -22,10 +20,6 @@ public class Rocket : MonoBehaviour
         EnginePos = RocketEngine.GetComponent<Transform>();
         body = this.gameObject.GetComponent<Rigidbody2D>();
         body.velocity = transform.right * speed;
-    }
-    void Update()
-    {
-            Instantiate(particle, EnginePos.position ,EnginePos.rotation);
     }
     private void OnCollisionEnter2D(Collision2D other) //checkuje stretnutie z druhym objektom
     {
