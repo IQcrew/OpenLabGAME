@@ -13,7 +13,7 @@ public class TextureRotation : MonoBehaviour
     void Start() { spriteRenderer.enabled = false; playerScript = currectPlayer.GetComponent<Player>(); }
     void Update()
     {
-        if (playerScript.shooting)
+        if (playerScript.shooting || playerScript.granadePos)
         {
             spriteRenderer.enabled = true;
             animator.SetBool("isShooting", true);

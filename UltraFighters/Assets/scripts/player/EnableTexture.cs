@@ -10,7 +10,7 @@ public class EnableTexture : MonoBehaviour
     void Start() { spriteRenderer.enabled = false; playerScript = currectPlayer.GetComponent<Player>(); }
     void Update()
     {
-        if (playerScript.shooting == true) { spriteRenderer.enabled = true; }
+        if (playerScript.shooting == true || playerScript.granadePos) { spriteRenderer.enabled = true; }
         else { spriteRenderer.enabled = false; }
     }
 }

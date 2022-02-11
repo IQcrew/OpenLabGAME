@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
     private Quaternion TempQuaternion = Quaternion.Euler(0, 0, 0);
     private Laser MyLaser;
     private float lastHit = 0f;
-    private bool granadePos = false;
+    public bool granadePos = false;
     private bool iSlot = false;
 
     [Header("Fighting")]
@@ -76,6 +76,7 @@ public class Player : MonoBehaviour
     private MeleeWeapon PlayerWeapon;
     [System.NonSerialized] public int gunIndex = 0;
     [System.NonSerialized] public int weaponIndex = 0;
+    [System.NonSerialized] public int granadeIndex = 0;
     private bool iFire;
 
     [Header("Components")]
@@ -497,6 +498,7 @@ public class Player : MonoBehaviour
     }
     private void GranadePosition()
     {
+        ShootingAnimator.SetBool("Thrown", false);
         if (iSlot) { LastTimeShoot = Time.time; readyToThrowGranade = true; }
         if (LastTimeShoot + 0.5 < Time.time || !iSlot && (GoRight || GoLeft || iHit || iFire))
         {
@@ -507,7 +509,8 @@ public class Player : MonoBehaviour
         }
         if(readyToThrowGranade && !iSlot)
         {
-            readyToThrowGranade=false; PlayerGranade.coutInPack -= 1;
+            ShootingAnimator.SetBool("Thrown", true);
+            readyToThrowGranade =false; PlayerGranade.coutInPack -= 1;
             GameObject tempG = Instantiate(PlayerGranade.granade, FirePoint.position, FirePoint.rotation);
             tempG.GetComponent<Granade>().setVelocity(20);
             if(PlayerGranade.coutInPack <= 0) { PlayerGranade = GetGranade("None"); }
@@ -591,6 +594,8 @@ public class Player : MonoBehaviour
         PlayerAnimator.SetInteger("WeaponID", weaponIndex);
         ShootingAnimator.SetInteger("GunID", gunIndex);
         ShootingAnimator.SetBool("isShooting", shooting);
+        ShootingAnimator.SetInteger("GranadeID", granadeIndex);
+        ShootingAnimator.SetBool("isThrowing", granadePos);
     }
     private Quaternion QuaternionDifference(Quaternion origin, Quaternion target)
     {
@@ -608,13 +613,13 @@ public class Player : MonoBehaviour
     private granadePack GetGranade(string name)
     {
         GunManager GunM = GameObject.Find("LevelManager").GetComponent<GunManager>();
-        foreach (var Grnde in GunM.AllGranades){if (name == Grnde.name) { return Grnde.Clone(); }}
+        for(int i = 0; i < GunM.AllGranades.Count; i++){if (name == GunM.AllGranades[i].name) { return GunM.AllGranades[i].Clone(); }}
         return GunM.AllGranades[0];
     }
     private MeleeWeapon GetMelee(string name)
     {
         GunManager GunM = GameObject.Find("LevelManager").GetComponent<GunManager>();
-        for (int i = 0; i < GunM.AllMeleeWeapons.Count; i++) { if (name == GunM.AllMeleeWeapons[i].name) { weaponIndex = 0; return GunM.AllMeleeWeapons[i].Clone(); } }
+        for (int i = 0; i < GunM.AllMeleeWeapons.Count; i++) { if (name == GunM.AllMeleeWeapons[i].name) { weaponIndex = i; return GunM.AllMeleeWeapons[i].Clone(); } }
         weaponIndex = 0; return GunM.AllMeleeWeapons[0];
     }
     public bool PickUpWeapon(string WeaponName, string type)
