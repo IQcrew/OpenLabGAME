@@ -14,18 +14,28 @@ public class Rocket : MonoBehaviour
     [SerializeField] [Range(0f, 1f)] float Volume = 1;
     private Rigidbody2D body;
     Transform EnginePos;
+    float time;
+    [System.NonSerialized] public string shooterName = "";
 
+    
     void Start()
     {
         EnginePos = RocketEngine.GetComponent<Transform>();
         body = this.gameObject.GetComponent<Rigidbody2D>();
         body.velocity = transform.right * speed;
+        time = Time.time;
+    }
+    private void Update()
+    {
+        if (time + 10 < Time.time)
+        {
+            GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(EplosionSound, Volume);
+            Explode(force, radius, LayerMask);
+        }
     }
     private void OnCollisionEnter2D(Collision2D other) //checkuje stretnutie z druhym objektom
     {
-
-
-        if (other.collider.tag is "OneWayPlatform" || other.collider.tag is "Bullet")
+        if (other.collider.tag is "OneWayPlatform" || other.collider.tag is "Bullet" || other.collider.tag is "Ladder")
         {
             Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), other.collider);
             body.velocity = transform.right * speed;
@@ -41,8 +51,11 @@ public class Rocket : MonoBehaviour
         }
         else if (other.collider.tag is "Player")
         {
-        
-
+            if (shooterName != other.collider.name) {
+                Player enemy = other.collider.GetComponent<Player>();
+                //treba dorobit napychnutie playera
+            }
+            else { Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), other.collider);body.velocity = transform.right * speed;return; }
         }
         else
         {

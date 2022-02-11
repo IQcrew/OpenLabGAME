@@ -1284,6 +1284,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 30.427
       objectReference: {fileID: 0}
+    - target: {fileID: 3560026576669954689, guid: 30f651c671c3c3e49b1eff46733960f6, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 5c0a6cad8d9b8b6409154dc405fe0c45, type: 2}
     - target: {fileID: 5429555108538109829, guid: 30f651c671c3c3e49b1eff46733960f6, type: 3}
       propertyPath: m_Name
       value: Ground (24)
@@ -3821,6 +3825,7 @@ MonoBehaviour:
     reloadVolume: 1
     offSet: {x: 0, y: 0, z: 0}
   shooting: 0
+  granadePos: 0
   kickForce: 500
   PlayerBody: {fileID: 6255620023719281905}
   PlayerHitBox: {fileID: 6255620023719281910}

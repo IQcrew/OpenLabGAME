@@ -483,7 +483,8 @@ public class Player : MonoBehaviour
                     case "RocketLauncher":
                         PlayerAudio.PlayOneShot(PlayerGun.Sound, PlayerGun.fireVolume);
                         PlayerGun.ammo -= 1;
-                        Instantiate(PlayerGun.Bullet, BulletPoint.position, BulletPoint.rotation);
+                        GameObject RT = Instantiate(PlayerGun.Bullet, BulletPoint.position, BulletPoint.rotation);
+                        RT.GetComponent<Rocket>().shooterName = PlayerName;
                         break;
                     default:
                         shootingBullet(BulletPoint.rotation);
