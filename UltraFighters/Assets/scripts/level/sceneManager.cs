@@ -9,7 +9,8 @@ public class sceneManager : MonoBehaviour
     private bool endScreen = false;
     [SerializeField] private Text TextBox;
     [SerializeField] private GameObject textObject;
-
+    public List<GameObject> PlayersAlive = new List<GameObject>();
+    public List<GameObject> PlayersInGame = new List<GameObject>();
 
     private void Start()
     {
@@ -26,9 +27,18 @@ public class sceneManager : MonoBehaviour
             }
         }
     }
-    public void setEndScreen(string loser) {
-        TextBox.text = loser == "Player_1" ? "Player2 Wins": "Player1 Wins";
-        endScreen = true; textObject.SetActive(true);
-    
+    public void appendPlayer(GameObject player){ PlayersInGame.Add(player); PlayersAlive.Add(player); }
+
+    public void PlayerDeath(GameObject player)
+    {
+        PlayersAlive.Remove(player);
+        if( PlayersAlive.Count == 1) {
+            TextBox.text = PlayersAlive[0].name;
+            endScreen = true; textObject.SetActive(true);
+        }
+        else if(PlayersAlive.Count < 1){
+            TextBox.text = "remiza";
+            endScreen = true; textObject.SetActive(true);
+        }
     }
 }
