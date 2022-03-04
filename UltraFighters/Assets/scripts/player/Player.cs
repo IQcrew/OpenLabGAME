@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        GameObject.Find("LevelManager").GetComponent<sceneManager>().appendPlayer(this.gameObject);
+        GameObject.Find("LevelManager").GetComponent<sceneManager>().appendPlayer(gameObject);
         FP = FirePoint.GetComponent<FirePoint>();
         playerTemplate PT = GameObject.Find("LevelManager").GetComponent<playerTemplate>();
         GunManager GM = GameObject.Find("LevelManager").GetComponent<GunManager>();

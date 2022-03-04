@@ -14,5 +14,9 @@ public class MenuGUI : MonoBehaviour
     {
         SceneManager.LoadScene("Demolition");
     }
+    public void toSettingsMenu()
+    {
+        
+    }
 
 }

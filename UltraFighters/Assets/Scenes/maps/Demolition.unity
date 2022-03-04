@@ -1883,6 +1883,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 776032255}
+    - target: {fileID: 801980984305395064, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 801980984305395065, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2683,13 +2687,13 @@ MonoBehaviour:
   fallSpeed: 25
   fallAcceleration: 20
   fallDmg: 2
-  Jump: {fileID: 8300000, guid: 441f817e39bf8d144974ecf25de21f01, type: 3}
-  Walk: {fileID: 8300000, guid: 82c6e445c77e9754ab33c95b85878344, type: 3}
-  Run: {fileID: 8300000, guid: 98bae598f646fe040ac921b802625c41, type: 3}
-  Reload: {fileID: 8300000, guid: 78fb687532778fa43a77a393a937001b, type: 3}
-  emptySound: {fileID: 8300000, guid: b17dd5805767e92479ec9bb1c434c205, type: 3}
-  getHit: {fileID: 8300000, guid: 258395c04a4cdd043b6d445d08c3422e, type: 3}
-  deathSound: {fileID: 8300000, guid: 096ba5f43b8b53b4895bd82bbfa733e0, type: 3}
+  Jump: {fileID: 8300000, guid: ea4f0bf6f56bbe043b2031973d65637d, type: 3}
+  Walk: {fileID: 8300000, guid: 275c60b079be60b4ba8117830a22cb63, type: 3}
+  Run: {fileID: 8300000, guid: 0cc1b5f200811924a83f84eb92d64da2, type: 3}
+  Reload: {fileID: 8300000, guid: 1cf31ca79b88cd642b0ee198ae24290f, type: 3}
+  emptySound: {fileID: 8300000, guid: 6e6452d3c0a6c2542b2013641624dd0b, type: 3}
+  getHit: {fileID: 8300000, guid: 0512129503869cc4dbee1343ea86756c, type: 3}
+  deathSound: {fileID: 8300000, guid: 0721d378075c33042a849be18ee09fa2, type: 3}
 --- !u!114 &1160059145
 MonoBehaviour:
   m_ObjectHideFlags: 0
