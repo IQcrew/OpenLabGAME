@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuGUI : MonoBehaviour
 {
+
+
     void Start()
     {
+    }
+    public void playOffline()
+    {
+        SceneManager.LoadScene("Demolition");
     }
 
 }
