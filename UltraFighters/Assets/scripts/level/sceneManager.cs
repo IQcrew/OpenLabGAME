@@ -15,6 +15,7 @@ public class sceneManager : MonoBehaviour
     private void Start()
     {
         textObject.SetActive(false);
+
     }
     private void Update()
     {

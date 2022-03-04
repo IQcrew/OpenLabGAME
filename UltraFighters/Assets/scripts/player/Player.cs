@@ -122,7 +122,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        GameObject.Find("LevelManager").GetComponent<sceneManager>().appendPlayer(gameObject);
+        GameObject.Find("LevelManager").GetComponent<sceneManager>().appendPlayer(this.gameObject);
         FP = FirePoint.GetComponent<FirePoint>();
         playerTemplate PT = GameObject.Find("LevelManager").GetComponent<playerTemplate>();
         GunManager GM = GameObject.Find("LevelManager").GetComponent<GunManager>();
@@ -650,5 +650,9 @@ public class Player : MonoBehaviour
         GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(deathSound);
         LevelManager.GetComponent<sceneManager>().PlayerDeath(this.gameObject);
         Destroy(gameObject);
+    }
+    public void startPlayer()
+    {
+        GameObject.Find("LevelManager").GetComponent<sceneManager>().appendPlayer(gameObject);
     }
 }

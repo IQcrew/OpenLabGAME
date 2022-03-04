@@ -848,7 +848,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1492203722}
   - component: {fileID: 1492203724}
-  - component: {fileID: 1492203723}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -875,14 +874,6 @@ RectTransform:
   m_AnchoredPosition: {x: 989.9437, y: 493.72}
   m_SizeDelta: {x: 416.1046, y: 208.791}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!81 &1492203723
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1492203721}
-  m_Enabled: 1
 --- !u!20 &1492203724
 Camera:
   m_ObjectHideFlags: 0
