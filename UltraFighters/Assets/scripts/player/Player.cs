@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private bool GoLeft;
     private bool GoUp;
     private bool GoDown;
+    public bool readyToTeleport = true;
 
     //jumping & falling
     private bool isGrounded;
