@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TeleportCharge : MonoBehaviour
 {
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         collision.gameObject.GetComponent<Player>().readyToTeleport = true;
     }
