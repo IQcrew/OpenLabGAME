@@ -10,28 +10,43 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af7181f404f1447c0a7a17b3070b952b, type: 3}
-  m_Name: light bricks
+  m_Name: light bricks 2
   m_EditorClassIdentifier: 
   m_Angles:
-  - m_Start: -180
-    m_End: 180
+  - m_Start: -45
+    m_End: 45
     m_Order: 0
     m_Sprites:
     - {fileID: 21300000, guid: 117f6d4fe259afa438fe6b2bce2a66e7, type: 3}
-  m_FillTexture: {fileID: 2800000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
+  - m_Start: 45
+    m_End: 129
+    m_Order: 0
+    m_Sprites:
+    - {fileID: 21300000, guid: 117f6d4fe259afa438fe6b2bce2a66e7, type: 3}
+  - m_Start: 130
+    m_End: 220
+    m_Order: 0
+    m_Sprites:
+    - {fileID: 21300000, guid: 117f6d4fe259afa438fe6b2bce2a66e7, type: 3}
+  - m_Start: -137
+    m_End: -47
+    m_Order: 0
+    m_Sprites:
+    - {fileID: 21300000, guid: 117f6d4fe259afa438fe6b2bce2a66e7, type: 3}
+  m_FillTexture: {fileID: 2800000, guid: 117f6d4fe259afa438fe6b2bce2a66e7, type: 3}
   m_CornerSprites:
   - m_CornerType: 0
     m_Sprites:
-    - {fileID: 21300000, guid: 117f6d4fe259afa438fe6b2bce2a66e7, type: 3}
+    - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - m_CornerType: 1
     m_Sprites:
-    - {fileID: 21300000, guid: 117f6d4fe259afa438fe6b2bce2a66e7, type: 3}
+    - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - m_CornerType: 2
     m_Sprites:
-    - {fileID: 21300000, guid: 117f6d4fe259afa438fe6b2bce2a66e7, type: 3}
+    - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - m_CornerType: 3
     m_Sprites:
-    - {fileID: 21300000, guid: 117f6d4fe259afa438fe6b2bce2a66e7, type: 3}
+    - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - m_CornerType: 4
     m_Sprites:
     - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
