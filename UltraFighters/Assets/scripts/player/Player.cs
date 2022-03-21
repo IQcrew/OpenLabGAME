@@ -408,6 +408,7 @@ public class Player : MonoBehaviour
     }
     private void ShootPosition()
     {
+        PlayerBody.velocity = Vector2.zero;
         ShootingAnimator.SetBool("Shot", false);
         if (LastTimeShoot + 0.5 < Time.time || !iFire && (GoRight || GoLeft || iHit || iSlot))
         {
