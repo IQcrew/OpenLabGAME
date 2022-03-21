@@ -40,6 +40,7 @@ public class UpDownPlatform : MonoBehaviour
             }
         else { alphaTime = 0f;
             this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            this.gameObject.transform.position = StartPointPos;
         }
     }
 }
