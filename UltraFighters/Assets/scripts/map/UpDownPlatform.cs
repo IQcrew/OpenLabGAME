@@ -12,6 +12,8 @@ public class UpDownPlatform : MonoBehaviour
     private Vector3 EndPointPos;
     private Vector3 oneHop;
     private float alphaTime = 0f; 
+    bool velUP = true;
+    bool velDOWN = true;
     void Start()
     {
         StartPointPos = StartPoint.transform.position;
@@ -22,10 +24,22 @@ public class UpDownPlatform : MonoBehaviour
     private void Update()
     {
         alphaTime += Time.deltaTime;
-        if(alphaTime < (timeForOneLoop/2)){ this.gameObject.transform.position += (oneHop * Time.deltaTime); }
-        else if(alphaTime < timeForOneLoop) { this.gameObject.transform.position -= (oneHop * Time.deltaTime); }
-        else { alphaTime = 0f; }
+        if(alphaTime < (timeForOneLoop/2)){ 
+            velUP = true;
+            if (velDOWN){
+                velDOWN = false;
+                 this.gameObject.GetComponent<Rigidbody2D>().velocity = oneHop;
+            }
+        }
+        else if(alphaTime < timeForOneLoop) { 
+            velDOWN = true;
+            if (velUP){
+                velUP = false;
+                this.gameObject.GetComponent<Rigidbody2D>().velocity = -oneHop;
+            }
+            }
+        else { alphaTime = 0f;
+            this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
     }
-
-
 }

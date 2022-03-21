@@ -10332,10 +10332,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4149194027533658303, guid: fe2559d5299936e46ad9471a36cd6298, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -6.66
-      objectReference: {fileID: 0}
     - target: {fileID: 4149194028885582824, guid: fe2559d5299936e46ad9471a36cd6298, type: 3}
       propertyPath: m_Name
       value: platform hore dole 1
