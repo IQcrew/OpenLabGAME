@@ -23,7 +23,6 @@ public class sceneManager : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                endScreen = false;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
@@ -34,7 +33,7 @@ public class sceneManager : MonoBehaviour
     {
         PlayersAlive.Remove(player);
         if( PlayersAlive.Count == 1) {
-            TextBox.text = PlayersAlive[0].name;
+            TextBox.text = PlayersAlive[0].GetComponent<Player>().PlayerName;
             endScreen = true; textObject.SetActive(true);
         }
         else if(PlayersAlive.Count < 1){
