@@ -10,13 +10,22 @@ public class MenuGUI : MonoBehaviour
     void Start()
     {
     }
-    public void playOffline()
+    public void toPlayOffline()
     {
-        SceneManager.LoadScene("Demolition");
+        SceneManager.LoadScene("SinglePlayer");
+    }
+    public void toPlayMultiplayer()
+    {
+        SceneManager.LoadScene("MultiPlayer");
     }
     public void toSettingsMenu()
     {
-        
+        SceneManager.LoadScene("Settings");
+    }
+
+    public void toExit()
+    {
+        Application.Quit();
     }
 
 }
