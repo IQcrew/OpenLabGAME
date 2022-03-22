@@ -16,7 +16,7 @@ public class MenuGUI : MonoBehaviour
     }
     public void toPlayMultiplayer()
     {
-        SceneManager.LoadScene("MultiPlayer");
+        SceneManager.LoadScene("Demolition");
     }
     public void toSettingsMenu()
     {
