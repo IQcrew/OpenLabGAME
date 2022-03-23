@@ -14,41 +14,43 @@ public static class dataManager
     {
          overWriteAllData();
     }
-    public static void updateAllData()
+    public static void readAllData()
     {
         string json = File.ReadAllText(settingsPath);
         settingsData = JsonUtility.FromJson<dataSettings>(json);
         json = File.ReadAllText(gamePath);
         gameData = JsonUtility.FromJson<dataGame>(json);
     }
-    public static void overWriteAllData()
+    public static void writeGame()
     {
         string json = JsonUtility.ToJson(gameData);
         File.WriteAllText(gamePath, json);
-        json = JsonUtility.ToJson(settingsData);
+    }
+    public static void writeSettings()
+    {
+        string json = JsonUtility.ToJson(settingsData);
         File.WriteAllText(settingsPath, json);
     }
+    public static void overWriteAllData(){writeGame(); writeSettings();}
 }
 public class dataSettings : MonoBehaviour
 {
-    public int volume = 100;
+    private int volume = 100;
+    public int Volume { get { return volume; } set { if (value <= 100 && value >= 0) { volume = value ; dataManager.writeSettings(); } } }
 
-
-    ~dataSettings()
-    {
-        dataManager.overWriteAllData();
-    }
+    ~dataSettings(){dataManager.overWriteAllData();}
 }
 public class dataGame : MonoBehaviour
 {
-    public string lastScene;
-    public string lastMap;
-    public bool randomMap;
+    string lastScene;
+    string lastMap;
+    bool randomMap;
+
+    public string LastScene { get { return lastScene; } set { lastScene = value; dataManager.writeGame(); } }
+    public string LastMap { get { return lastMap; } set { lastMap = value; dataManager.writeGame(); } }
+    public bool RandomMap { get { return randomMap; } set { randomMap = value; dataManager.writeGame(); } }
 
 
 
-    ~dataGame()
-    {
-        dataManager.overWriteAllData();
-    }
+    ~dataGame(){dataManager.overWriteAllData();}
 }
