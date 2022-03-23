@@ -159,6 +159,7 @@ public class Player : MonoBehaviour
         PlayerGranade = GetGranade("Explosive");
         MyLaser.ShootLaser(false);
         FP.exitFP();
+        dataManager.updateAllData();
     }
 
     void Update()
