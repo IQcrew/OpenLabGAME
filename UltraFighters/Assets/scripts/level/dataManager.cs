@@ -33,55 +33,63 @@ public static class dataManager
     }
     public static void overWriteAllData(){writeGame(); writeSettings();}
 }
-public class dataSettings : MonoBehaviour
+
+
+public class dataSettings
 {
-    private int volume = 100;
-    public int Volume { get { return volume; } set { if (value <= 100 && value >= 0) { volume = value ; dataManager.writeSettings(); } } }
+    //  !!!!! you should never use xxx values !!!!!
+
+    public int xxxvolume = 100;
+    public int Volume { get { return xxxvolume; } set { if (value <= 100 && value >= 0) { xxxvolume = value ; dataManager.writeSettings(); } } }
+
 
     //keybinds Plyer1
-    KeyCode rightP1 = KeyCode.RightArrow;
-    KeyCode leftP1 = KeyCode.LeftArrow;
-    KeyCode upP1 = KeyCode.UpArrow;
-    KeyCode downP1 = KeyCode.DownArrow;
-    KeyCode hitP1 = KeyCode.N;
-    KeyCode fireP1 = KeyCode.M;
-    KeyCode slotP1 = KeyCode.K;
-    public KeyCode RightP1 { get { return rightP1; } set { rightP1 = value; dataManager.writeGame(); } }
-    public KeyCode LeftP1 { get { return leftP1; } set { leftP1 = value; dataManager.writeGame(); } }
-    public KeyCode UpP1 { get { return upP1; } set { upP1 = value; dataManager.writeGame(); } }
-    public KeyCode DownP1 { get { return downP1; } set { downP1 = value; dataManager.writeGame(); } }
-    public KeyCode HitP1 { get { return hitP1; } set { hitP1 = value; dataManager.writeGame(); } }
-    public KeyCode FireP1 { get { return fireP1; } set { fireP1 = value; dataManager.writeGame(); } }
-    public KeyCode SlotP1 { get { return slotP1; } set { slotP1 = value; dataManager.writeGame(); } }
+    public KeyCode xxxrightP1 = KeyCode.RightArrow;
+    public KeyCode xxxleftP1 = KeyCode.LeftArrow;
+    public KeyCode xxxupP1 = KeyCode.UpArrow;
+    public KeyCode xxxdownP1 = KeyCode.DownArrow;
+    public KeyCode xxxhitP1 = KeyCode.N;
+    public KeyCode xxxfireP1 = KeyCode.M;
+    public KeyCode xxxslotP1 = KeyCode.K;
+    public KeyCode RightP1 { get { return xxxrightP1; } set { xxxrightP1 = value; dataManager.writeGame(); } }
+    public KeyCode LeftP1 { get { return xxxleftP1; } set { xxxleftP1 = value; dataManager.writeGame(); } }
+    public KeyCode UpP1 { get { return xxxupP1; } set { xxxupP1 = value; dataManager.writeGame(); } }
+    public KeyCode DownP1 { get { return xxxdownP1; } set { xxxdownP1 = value; dataManager.writeGame(); } }
+    public KeyCode HitP1 { get { return xxxhitP1; } set { xxxhitP1 = value; dataManager.writeGame(); } }
+    public KeyCode FireP1 { get { return xxxfireP1; } set { xxxfireP1 = value; dataManager.writeGame(); } }
+    public KeyCode SlotP1 { get { return xxxslotP1; } set { xxxslotP1 = value; dataManager.writeGame(); } }
+
 
     // keybinds Player2
-    KeyCode rightP2 = KeyCode.D;
-    KeyCode leftP2 = KeyCode.A;
-    KeyCode upP2 = KeyCode.W;
-    KeyCode downP2 = KeyCode.S;
-    KeyCode hitP2 = KeyCode.X;
-    KeyCode fireP2 = KeyCode.C;
-    KeyCode slotP2 = KeyCode.V;
-    public KeyCode RightP2 { get { return rightP2; } set { rightP2 = value; dataManager.writeGame(); } }
-    public KeyCode LeftP2 { get { return leftP2; } set { leftP2 = value; dataManager.writeGame(); } }
-    public KeyCode UpP2 { get { return upP2; } set { upP2 = value; dataManager.writeGame(); } }
-    public KeyCode DownP2 { get { return downP2; } set { downP2 = value; dataManager.writeGame(); } }
-    public KeyCode HitP2 { get { return hitP2; } set { hitP2 = value; dataManager.writeGame(); } }
-    public KeyCode FireP2 { get { return fireP2; } set { fireP2 = value; dataManager.writeGame(); } }
-    public KeyCode SlotP2 { get { return slotP2; } set { slotP2 = value; dataManager.writeGame(); } }
-    ~dataSettings(){dataManager.overWriteAllData();}
+    public KeyCode xxxrightP2 = KeyCode.D;
+    public KeyCode xxxleftP2 = KeyCode.A;
+    public KeyCode xxxupP2 = KeyCode.W;
+    public KeyCode xxxdownP2 = KeyCode.S;
+    public KeyCode xxxhitP2 = KeyCode.X;
+    public KeyCode xxxfireP2 = KeyCode.C;
+    public KeyCode xxxslotP2 = KeyCode.V;
+    public KeyCode RightP2 { get { return xxxrightP2; } set { xxxrightP2 = value; dataManager.writeGame(); } }
+    public KeyCode LeftP2 { get { return xxxleftP2; } set { xxxleftP2 = value; dataManager.writeGame(); } }
+    public KeyCode UpP2 { get { return xxxupP2; } set { xxxupP2 = value; dataManager.writeGame(); } }
+    public KeyCode DownP2 { get { return xxxdownP2; } set { xxxdownP2 = value; dataManager.writeGame(); } }
+    public KeyCode HitP2 { get { return xxxhitP2; } set { xxxhitP2 = value; dataManager.writeGame(); } }
+    public KeyCode FireP2 { get { return xxxfireP2; } set { xxxfireP2 = value; dataManager.writeGame(); } }
+    public KeyCode SlotP2 { get { return xxxslotP2; } set { xxxslotP2 = value; dataManager.writeGame(); } }
 }
-public class dataGame : MonoBehaviour
+
+
+public class dataGame
 {
-    string lastScene;
-    string lastMap;
-    bool randomMap;
+    //  !!!!! you should never use xxx values !!!!!
 
-    public string LastScene { get { return lastScene; } set { lastScene = value; dataManager.writeGame(); } }
-    public string LastMap { get { return lastMap; } set { lastMap = value; dataManager.writeGame(); } }
-    public bool RandomMap { get { return randomMap; } set { randomMap = value; dataManager.writeGame(); } }
+    public string xxxlastScene;
+    public string xxxlastMap;
+    public bool xxxrandomMap;
+
+    public string LastScene { get { return xxxlastScene; } set { xxxlastScene = value; dataManager.writeGame(); } }
+    public string LastMap { get { return xxxlastMap; } set { xxxlastMap = value; dataManager.writeGame(); } }
+    public bool RandomMap { get { return xxxrandomMap; } set { xxxrandomMap = value; dataManager.writeGame(); } }
 
 
-
-    ~dataGame(){dataManager.overWriteAllData();}
 }
+

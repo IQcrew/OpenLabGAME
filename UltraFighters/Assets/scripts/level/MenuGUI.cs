@@ -9,6 +9,7 @@ public class MenuGUI : MonoBehaviour
 
     void Start()
     {
+        dataManager.overWriteAllData();
     }
     public void toPlayOffline()
     {
