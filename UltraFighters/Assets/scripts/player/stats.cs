@@ -14,6 +14,10 @@ public class stats : MonoBehaviour
     {
         followedplayer = FollowedObject.GetComponent<Player>();
         Bar = HealthBar.GetComponent<SpriteRenderer>();
+        if(FollowedObject.name == "Player_1")
+            gameObject.GetComponent<TextMesh>().text = dataManager.gameData.NicknameP1;
+        else
+            gameObject.GetComponent<TextMesh>().text = dataManager.gameData.NicknameP2;
     }
 
     void Update()

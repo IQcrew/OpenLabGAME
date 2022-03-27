@@ -2534,7 +2534,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1920786599}
+        m_TargetAssemblyTypeName: OfflineMenu, Assembly-CSharp
+        m_MethodName: nickChangeP2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -3224,6 +3236,8 @@ MonoBehaviour:
   p1Skin: {fileID: 16406083}
   p2Skin: {fileID: 1079438601}
   mapImage: {fileID: 1580706664}
+  p1inputField: {fileID: 2064260337}
+  p2inputField: {fileID: 1716759588}
 --- !u!1 &1999666621
 GameObject:
   m_ObjectHideFlags: 0
@@ -3498,7 +3512,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1920786599}
+        m_TargetAssemblyTypeName: OfflineMenu, Assembly-CSharp
+        m_MethodName: nickChangeP1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []

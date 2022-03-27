@@ -17,12 +17,15 @@ public class OfflineMenu : MonoBehaviour
     public Image p1Skin;
     public Image p2Skin;
     public Image mapImage;
+    public TMP_InputField p1inputField;
+    public TMP_InputField p2inputField;
     void Start()
     {
         p1Skin.sprite = skins[p1Index];
         p2Skin.sprite = skins[p2Index];
         mapImage.sprite = mapImages[mapIndex];
         mapName.text = maps[mapIndex].ToUpper();
+        dataManager.readAllData();
     }
     public void goToMainMenu()
     {
@@ -81,6 +84,14 @@ public class OfflineMenu : MonoBehaviour
         else
             p2Index--;
         p2Skin.sprite = skins[p2Index];
+    }
+    public void nickChangeP1()
+    {
+        dataManager.gameData.NicknameP1 = p1inputField.text;
+    }
+    public void nickChangeP2()
+    {
+        dataManager.gameData.NicknameP2 = p2inputField.text;
     }
 
 }

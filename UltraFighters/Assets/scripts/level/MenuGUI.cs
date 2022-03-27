@@ -9,7 +9,7 @@ public class MenuGUI : MonoBehaviour
 
     void Start()
     {
-        dataManager.overWriteAllData();
+        dataManager.gameData.LastScene = "idklol";
     }
     public void toPlayOffline()
     {

@@ -12,7 +12,7 @@ public static class dataManager
     public static dataSettings settingsData = new dataSettings();
     static dataManager()
     {
-        overWriteAllData();
+        readAllData();
     }
     public static void readAllData()
     {
@@ -31,7 +31,6 @@ public static class dataManager
         string json = JsonUtility.ToJson(settingsData);
         File.WriteAllText(settingsPath, json);
     }
-    public static void overWriteAllData(){writeGame(); writeSettings();}
 }
 
 
@@ -51,13 +50,13 @@ public class dataSettings
     public KeyCode xxxhitP1 = KeyCode.N;
     public KeyCode xxxfireP1 = KeyCode.M;
     public KeyCode xxxslotP1 = KeyCode.K;
-    public KeyCode RightP1 { get { return xxxrightP1; } set { xxxrightP1 = value; dataManager.writeGame(); } }
-    public KeyCode LeftP1 { get { return xxxleftP1; } set { xxxleftP1 = value; dataManager.writeGame(); } }
-    public KeyCode UpP1 { get { return xxxupP1; } set { xxxupP1 = value; dataManager.writeGame(); } }
-    public KeyCode DownP1 { get { return xxxdownP1; } set { xxxdownP1 = value; dataManager.writeGame(); } }
-    public KeyCode HitP1 { get { return xxxhitP1; } set { xxxhitP1 = value; dataManager.writeGame(); } }
-    public KeyCode FireP1 { get { return xxxfireP1; } set { xxxfireP1 = value; dataManager.writeGame(); } }
-    public KeyCode SlotP1 { get { return xxxslotP1; } set { xxxslotP1 = value; dataManager.writeGame(); } }
+    public KeyCode RightP1 { get { return xxxrightP1; } set { xxxrightP1 = value; dataManager.writeSettings(); } }
+    public KeyCode LeftP1 { get { return xxxleftP1; } set { xxxleftP1 = value; dataManager.writeSettings(); } }
+    public KeyCode UpP1 { get { return xxxupP1; } set { xxxupP1 = value; dataManager.writeSettings(); } }
+    public KeyCode DownP1 { get { return xxxdownP1; } set { xxxdownP1 = value; dataManager.writeSettings(); } }
+    public KeyCode HitP1 { get { return xxxhitP1; } set { xxxhitP1 = value; dataManager.writeSettings(); } }
+    public KeyCode FireP1 { get { return xxxfireP1; } set { xxxfireP1 = value; dataManager.writeSettings(); } }
+    public KeyCode SlotP1 { get { return xxxslotP1; } set { xxxslotP1 = value; dataManager.writeSettings(); } }
 
 
     // keybinds Player2
@@ -68,13 +67,13 @@ public class dataSettings
     public KeyCode xxxhitP2 = KeyCode.X;
     public KeyCode xxxfireP2 = KeyCode.C;
     public KeyCode xxxslotP2 = KeyCode.V;
-    public KeyCode RightP2 { get { return xxxrightP2; } set { xxxrightP2 = value; dataManager.writeGame(); } }
-    public KeyCode LeftP2 { get { return xxxleftP2; } set { xxxleftP2 = value; dataManager.writeGame(); } }
-    public KeyCode UpP2 { get { return xxxupP2; } set { xxxupP2 = value; dataManager.writeGame(); } }
-    public KeyCode DownP2 { get { return xxxdownP2; } set { xxxdownP2 = value; dataManager.writeGame(); } }
-    public KeyCode HitP2 { get { return xxxhitP2; } set { xxxhitP2 = value; dataManager.writeGame(); } }
-    public KeyCode FireP2 { get { return xxxfireP2; } set { xxxfireP2 = value; dataManager.writeGame(); } }
-    public KeyCode SlotP2 { get { return xxxslotP2; } set { xxxslotP2 = value; dataManager.writeGame(); } }
+    public KeyCode RightP2 { get { return xxxrightP2; } set { xxxrightP2 = value; dataManager.writeSettings(); } }
+    public KeyCode LeftP2 { get { return xxxleftP2; } set { xxxleftP2 = value; dataManager.writeSettings(); } }
+    public KeyCode UpP2 { get { return xxxupP2; } set { xxxupP2 = value; dataManager.writeSettings(); } }
+    public KeyCode DownP2 { get { return xxxdownP2; } set { xxxdownP2 = value; dataManager.writeSettings(); } }
+    public KeyCode HitP2 { get { return xxxhitP2; } set { xxxhitP2 = value; dataManager.writeSettings(); } }
+    public KeyCode FireP2 { get { return xxxfireP2; } set { xxxfireP2 = value; dataManager.writeSettings(); } }
+    public KeyCode SlotP2 { get { return xxxslotP2; } set { xxxslotP2 = value; dataManager.writeSettings(); } }
 }
 
 
@@ -85,10 +84,14 @@ public class dataGame
     public string xxxlastScene;
     public string xxxlastMap;
     public bool xxxrandomMap;
+    public string xxxNicknameP1;
+    public string xxxNicknameP2;
 
     public string LastScene { get { return xxxlastScene; } set { xxxlastScene = value; dataManager.writeGame(); } }
     public string LastMap { get { return xxxlastMap; } set { xxxlastMap = value; dataManager.writeGame(); } }
     public bool RandomMap { get { return xxxrandomMap; } set { xxxrandomMap = value; dataManager.writeGame(); } }
+    public string NicknameP1 { get { return xxxNicknameP1; } set { xxxNicknameP1 = value; dataManager.writeGame(); } }
+    public string NicknameP2 { get { return xxxNicknameP2; } set { xxxNicknameP2 = value; dataManager.writeGame(); } }
 
 
 }
