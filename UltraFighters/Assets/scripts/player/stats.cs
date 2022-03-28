@@ -8,10 +8,20 @@ public class stats : MonoBehaviour
     [SerializeField] GameObject FollowedObject;
     [SerializeField] GameObject HealthBar;
     [SerializeField] Vector3 offset;
+    //render layer sorting
+    [SerializeField] Renderer MyRenderer;
+    public string sortingLayerName = "Default"; //initialization before the methods
+    public int orderInLayer = 0;
+
     private Player followedplayer;
     private SpriteRenderer Bar;
     void Start()
     {
+        if (sortingLayerName != string.Empty)
+        {
+            MyRenderer.sortingLayerName = sortingLayerName;
+            MyRenderer.sortingOrder = orderInLayer;
+        }
         followedplayer = FollowedObject.GetComponent<Player>();
         Bar = HealthBar.GetComponent<SpriteRenderer>();
         if(FollowedObject.name == "Player_1")
