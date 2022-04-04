@@ -43,7 +43,7 @@ public class dataSettings
 
 
     // keyBinds
-    private List<string> xxxKeys = new List<string>()
+    public List<string> xxxKeys = new List<string>()
     {
         "P1 up",
         "P1 down",
