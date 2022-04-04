@@ -74,9 +74,9 @@ public class dataSettings
         KeyCode.S, // P2 down
         KeyCode.D, // P2 right
         KeyCode.A, // P2 left
-        KeyCode.N, // P2 hit
-        KeyCode.M, // P2 fire
-        KeyCode.K, // P2 slot
+        KeyCode.X, // P2 hit
+        KeyCode.C, // P2 fire
+        KeyCode.V, // P2 slot
     };
 
     public KeyCode getKeyBind(string key){
