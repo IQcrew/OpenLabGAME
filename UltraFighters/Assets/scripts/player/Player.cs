@@ -128,7 +128,29 @@ public class Player : MonoBehaviour
         playerTemplate PT = GameObject.Find("LevelManager").GetComponent<playerTemplate>();
         GunManager GM = GameObject.Find("LevelManager").GetComponent<GunManager>();
         PlayerWeapon = GM.AllMeleeWeapons[0];
-        //setup values
+        //setup keybinds
+        if(gameObject.name == "Player_1"){
+            Right = dataManager.settingsData.getKeyBind("P1 right");
+            Left = dataManager.settingsData.getKeyBind("P1 left");
+            Up = dataManager.settingsData.getKeyBind("P1 up");
+            Down = dataManager.settingsData.getKeyBind("P1 down");
+            hit = dataManager.settingsData.getKeyBind("P1 hit");
+            fire = dataManager.settingsData.getKeyBind("P1 fire");
+            slot = dataManager.settingsData.getKeyBind("P1 slot");
+        }
+        else{
+            Right = dataManager.settingsData.getKeyBind("P2 right");
+            Left = dataManager.settingsData.getKeyBind("P2 left");
+            Up = dataManager.settingsData.getKeyBind("P2 up");
+            Down = dataManager.settingsData.getKeyBind("P2 down");
+            hit = dataManager.settingsData.getKeyBind("P2 hit");
+            fire = dataManager.settingsData.getKeyBind("P2 fire");
+            slot = dataManager.settingsData.getKeyBind("P2 slot");
+        }
+
+
+
+        //setup values 
         WalkForce = PT.WalkForce;
         SprintForce = PT.SprintForce;
         JumpForce = PT.JumpForce;

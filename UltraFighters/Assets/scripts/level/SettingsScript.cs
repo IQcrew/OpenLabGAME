@@ -1,28 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SettingsScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private GameObject currentObject;
+    private Color32 normal = Color.white;
+    private Color32 trigger = Color.yellow;
     void Start()
     {
         dataManager.readAllData();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     public void backToMainMenu()
     {
         SceneManager.LoadScene("Menu");
     }
-    public void changeKeyBind(string s)
+    public void changeKeyBind(GameObject self)
     {
-        KeyCode input = KeyCode.K;
-        // execute("dataManager.gameData." + s + "=" + input);
+        if (currentObject != null)
+            currentObject.GetComponent<Image>().color = normal;
+        currentObject = self;
+        currentObject.GetComponent<Image>().color = trigger;
+    }
+    private void OnGUI()
+    {
+        if (currentObject != null)
+        {
+            Event e = Event.current;
+            if (e.isKey)
+            {
+                dataManager.settingsData.setKeyBind(currentObject.name, e.keyCode);
+                currentObject.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
+                currentObject.GetComponent<Image>().color = normal;
+                currentObject = null;
+            }
+        }
     }
 }

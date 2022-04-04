@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 25196443}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 235922853}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: changeKeyBind
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 25196440}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &25196443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,7 +506,7 @@ GameObject:
   - component: {fileID: 87008872}
   - component: {fileID: 87008871}
   m_Layer: 0
-  m_Name: P1 Up
+  m_Name: P1 up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -567,10 +579,10 @@ MonoBehaviour:
       - m_Target: {fileID: 235922853}
         m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
         m_MethodName: changeKeyBind
-        m_Mode: 5
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 87008869}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -873,7 +885,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 308257143}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 235922853}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: changeKeyBind
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 308257140}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &308257143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,7 +1018,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 370641862}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 235922853}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: changeKeyBind
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 370641859}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &370641862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1921,7 +1957,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 730743132}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 235922853}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: changeKeyBind
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 730743129}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &730743132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2326,7 +2374,7 @@ GameObject:
   - component: {fileID: 864612268}
   - component: {fileID: 864612267}
   m_Layer: 0
-  m_Name: P2 Up
+  m_Name: P2 up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2395,7 +2443,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 864612268}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 235922853}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: changeKeyBind
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 864612265}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &864612268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2516,7 +2576,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 910290987}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 235922853}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: changeKeyBind
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 910290984}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &910290987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2637,7 +2709,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 922023868}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 235922853}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: changeKeyBind
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 922023865}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &922023868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3298,7 +3382,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1159270349}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 235922853}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: changeKeyBind
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1159270346}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1159270349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4091,7 +4187,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1397287578}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 235922853}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: changeKeyBind
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1397287575}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1397287578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4212,7 +4320,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1556635584}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 235922853}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: changeKeyBind
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1556635581}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1556635584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4287,7 +4407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -757, y: 466}
+  m_AnchoredPosition: {x: -304, y: -248}
   m_SizeDelta: {x: 350, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1566777602
@@ -4874,7 +4994,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1767110956}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 235922853}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: changeKeyBind
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1767110953}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1767110956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4995,7 +5127,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1847363502}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 235922853}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: changeKeyBind
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1847363499}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1847363502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5362,7 +5506,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2041857671}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 235922853}
+        m_TargetAssemblyTypeName: SettingsScript, Assembly-CSharp
+        m_MethodName: changeKeyBind
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2041857668}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2041857671
 MonoBehaviour:
   m_ObjectHideFlags: 0
