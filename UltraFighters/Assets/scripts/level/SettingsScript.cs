@@ -25,6 +25,26 @@ public class SettingsScript : MonoBehaviour
         currentObject = self;
         currentObject.GetComponent<Image>().color = trigger;
     }
+    public void loadDefault()
+    {
+        dataManager.settingsData.xxxKeyCodeValues = new List<KeyCode>(){
+        KeyCode.UpArrow, // P1 up
+        KeyCode.DownArrow, // P1 down
+        KeyCode.RightArrow, // P1 right
+        KeyCode.LeftArrow, // P1 left
+        KeyCode.N, // P1 hit
+        KeyCode.M, // P1 fire
+        KeyCode.K, // P1 slot
+        KeyCode.W, // P2 up
+        KeyCode.S, // P2 down
+        KeyCode.D, // P2 right
+        KeyCode.A, // P2 left
+        KeyCode.N, // P2 hit
+        KeyCode.M, // P2 fire
+        KeyCode.K, // P2 slot
+        };
+        dataManager.writeSettings();
+    }
     private void OnGUI()
     {
         if (currentObject != null)

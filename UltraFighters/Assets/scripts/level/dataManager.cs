@@ -41,29 +41,50 @@ public class dataSettings
     public int xxxvolume = 100;
     public int Volume { get { return xxxvolume; } set { if (value <= 100 && value >= 0) { xxxvolume = value; dataManager.writeSettings(); } } }
 
-    public Dictionary<string, KeyCode> KeyBinds = new Dictionary<string, KeyCode>()
+
+    // keyBinds
+    private List<string> xxxKeys = new List<string>()
     {
-        {"P1 up", KeyCode.UpArrow },
-        {"P1 down", KeyCode.DownArrow },
-        {"P1 right", KeyCode.RightArrow},
-        {"P1 left", KeyCode.LeftArrow},
-        {"P1 hit", KeyCode.N},
-        {"P1 fire", KeyCode.M },
-        {"P1 slot", KeyCode.K },
-        {"P2 up", KeyCode.W },
-        {"P2 down", KeyCode.S },
-        {"P2 right", KeyCode.D},
-        {"P2 left", KeyCode.A},
-        {"P2 hit", KeyCode.N},
-        {"P2 fire", KeyCode.M },
-        {"P2 slot", KeyCode.K }
+        "P1 up",
+        "P1 down",
+        "P1 right",
+        "P1 left",
+        "P1 hit",
+        "P1 fire",
+        "P1 slot",
+        "P2 up",
+        "P2 down",
+        "P2 right",
+        "P2 left",
+        "P2 hit",
+        "P2 fire",
+        "P2 slot",
     };
+
+    public List<KeyCode> xxxKeyCodeValues = new List<KeyCode>()
+    {
+        KeyCode.UpArrow, // P1 up
+        KeyCode.DownArrow, // P1 down
+        KeyCode.RightArrow, // P1 right
+        KeyCode.LeftArrow, // P1 left
+        KeyCode.N, // P1 hit
+        KeyCode.M, // P1 fire
+        KeyCode.K, // P1 slot
+        KeyCode.W, // P2 up
+        KeyCode.S, // P2 down
+        KeyCode.D, // P2 right
+        KeyCode.A, // P2 left
+        KeyCode.N, // P2 hit
+        KeyCode.M, // P2 fire
+        KeyCode.K, // P2 slot
+    };
+
     public KeyCode getKeyBind(string key){
         try
         {
-           return KeyBinds[key]; 
+           return xxxKeyCodeValues[xxxKeys.IndexOf(key)];
         }
-        catch (System.Exception ex)
+        catch
         {
             Debug.Log("keyBind not found: "+key);
             return KeyCode.F12;
@@ -71,11 +92,16 @@ public class dataSettings
     }
     
     public void setKeyBind(string key, KeyCode value){
-        KeyBinds[key] = value;
-        dataManager.writeSettings();
+        try
+        {
+            xxxKeyCodeValues[xxxKeys.IndexOf(key)] = value;
+            dataManager.writeSettings();
+        }
+        catch
+        {
+            Debug.Log("keyBind index not found: " + key);
+        }
     }
-
-
 
 }
 
