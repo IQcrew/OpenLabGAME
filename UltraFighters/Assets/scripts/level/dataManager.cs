@@ -61,40 +61,46 @@ public class dataSettings
         "P2 slot",
     };
 
-    public List<KeyCode> xxxKeyCodeValues = new List<KeyCode>()
+    public List<KeyCode> KeyCodeValues = new List<KeyCode>()
     {
-        KeyCode.UpArrow, // P1 up
-        KeyCode.DownArrow, // P1 down
-        KeyCode.RightArrow, // P1 right
-        KeyCode.LeftArrow, // P1 left
-        KeyCode.N, // P1 hit
-        KeyCode.M, // P1 fire
-        KeyCode.K, // P1 slot
-        KeyCode.W, // P2 up
-        KeyCode.S, // P2 down
-        KeyCode.D, // P2 right
-        KeyCode.A, // P2 left
-        KeyCode.X, // P2 hit
-        KeyCode.C, // P2 fire
-        KeyCode.V, // P2 slot
     };
 
     public KeyCode getKeyBind(string key){
         try
         {
-           return xxxKeyCodeValues[xxxKeys.IndexOf(key)];
+            if (KeyCodeValues.Contains(KeyCode.None)) { throw new System.Exception(); }
+            return KeyCodeValues[xxxKeys.IndexOf(key)];
         }
         catch
         {
             Debug.Log("keyBind not found: "+key);
-            return KeyCode.F12;
+            KeyCodeValues = new List<KeyCode>()
+            {
+                KeyCode.UpArrow, // P1 up
+                KeyCode.DownArrow, // P1 down
+                KeyCode.RightArrow, // P1 right
+                KeyCode.LeftArrow, // P1 left
+                KeyCode.N, // P1 hit
+                KeyCode.M, // P1 fire
+                KeyCode.K, // P1 slot
+                KeyCode.W, // P2 up
+                KeyCode.S, // P2 down
+                KeyCode.D, // P2 right
+                KeyCode.A, // P2 left
+                KeyCode.X, // P2 hit
+                KeyCode.C, // P2 fire
+                KeyCode.V, // P2 slot
+            };
+            dataManager.writeSettings();
+            return KeyCodeValues[xxxKeys.IndexOf(key)];
         }
+      
     }
     
     public void setKeyBind(string key, KeyCode value){
         try
         {
-            xxxKeyCodeValues[xxxKeys.IndexOf(key)] = value;
+            KeyCodeValues[xxxKeys.IndexOf(key)] = value;
             dataManager.writeSettings();
         }
         catch

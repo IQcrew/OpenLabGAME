@@ -10,7 +10,9 @@ public class SettingsScript : MonoBehaviour
     private GameObject currentObject;
     private Color32 normal = Color.white;
     private Color32 trigger = Color.yellow;
-    [SerializeField] private GameObject KeyBindsButtons; 
+    private Color32 warning = Color.red;
+    [SerializeField] private GameObject KeyBindsButtons;
+    [SerializeField] private TextMeshProUGUI warningBox;
     void Start()
     {
         dataManager.readAllData();
@@ -23,7 +25,10 @@ public class SettingsScript : MonoBehaviour
     public void changeKeyBind(GameObject self)
     {
         if (currentObject != null)
-            currentObject.GetComponent<Image>().color = normal;
+            if(currentObject.GetComponentInChildren<TextMeshProUGUI>().text == "")
+                currentObject.GetComponent<Image>().color = warning;
+            else
+                currentObject.GetComponent<Image>().color = normal;
         currentObject = self;
         currentObject.GetComponent<Image>().color = trigger;
     }
@@ -40,6 +45,14 @@ public class SettingsScript : MonoBehaviour
             Event e = Event.current;
             if (e.isKey)
             {
+                if (dataManager.settingsData.KeyCodeValues.Contains(e.keyCode))
+                {
+                    int index = dataManager.settingsData.KeyCodeValues.IndexOf(e.keyCode);
+                    dataManager.settingsData.KeyCodeValues[index] = KeyCode.None;
+                    KeyBindsButtons.transform.Find(dataManager.settingsData.xxxKeys[index]).GetComponent<Image>().color = warning;
+                    KeyBindsButtons.transform.Find(dataManager.settingsData.xxxKeys[index]).GetComponentInChildren<TextMeshProUGUI>().text = "";
+
+                }
                 dataManager.settingsData.setKeyBind(currentObject.name, e.keyCode);
                 currentObject.GetComponentInChildren<TextMeshProUGUI>().text = e.keyCode.ToString();
                 currentObject.GetComponent<Image>().color = normal;
