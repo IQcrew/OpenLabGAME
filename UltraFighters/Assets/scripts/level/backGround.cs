@@ -26,7 +26,6 @@ public class backGround : MonoBehaviour
             shiftPosY = Input.mousePosition.y / Screen.height - 0.5f;
             transformBG.position = centerPosition + new Vector3(Screen.width * (shiftPosX * 0.02f), Screen.height * (shiftPosY * 0.02f), 0);
             transformBGS.position = centerPosition + new Vector3(Screen.width * (shiftPosX * 0.015f), Screen.height * (shiftPosY * 0.015f), 0);
-            Debug.Log(Input.mousePosition);
         }
         
 

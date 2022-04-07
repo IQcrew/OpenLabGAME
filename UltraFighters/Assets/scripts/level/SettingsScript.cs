@@ -11,6 +11,7 @@ public class SettingsScript : MonoBehaviour
     private Color32 normal = Color.white;
     private Color32 trigger = Color.yellow;
     private Color32 warning = Color.red;
+    [SerializeField] private AudioClip clickSound;
     [SerializeField] private GameObject KeyBindsButtons;
     [SerializeField] private TextMeshProUGUI warningBox;
     void Start()
@@ -24,6 +25,7 @@ public class SettingsScript : MonoBehaviour
     }
     public void changeKeyBind(GameObject self)
     {
+        gameObject.GetComponent<AudioSource>().PlayOneShot(clickSound);
         if (currentObject != null)
             if(currentObject.GetComponentInChildren<TextMeshProUGUI>().text == "")
                 currentObject.GetComponent<Image>().color = warning;
