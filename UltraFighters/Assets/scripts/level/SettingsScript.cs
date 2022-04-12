@@ -14,6 +14,7 @@ public class SettingsScript : MonoBehaviour
     [SerializeField] private AudioClip clickSound;
     [SerializeField] private GameObject KeyBindsButtons;
     [SerializeField] private TextMeshProUGUI warningBox;
+    [SerializeField] private Sprite Image;
     void Start()
     {
         dataManager.readAllData();
