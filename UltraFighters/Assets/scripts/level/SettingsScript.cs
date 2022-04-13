@@ -73,4 +73,16 @@ public class SettingsScript : MonoBehaviour
             catch { }
         }
     }
+    public void changeSliderMV(GameObject self)
+    {
+        dataManager.settingsData.masterVolume = self.GetComponent<Slider>().value;
+    }
+    public void changeSliderSE(GameObject self)
+    {
+        dataManager.settingsData.soundEffectsVolume = self.GetComponent<Slider>().value;
+    }
+    public void changeSliderMU(GameObject self)
+    {
+        dataManager.settingsData.musicVolume = self.GetComponent<Slider>().value;
+    }
 }

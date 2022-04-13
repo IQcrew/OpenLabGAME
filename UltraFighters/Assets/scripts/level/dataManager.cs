@@ -38,8 +38,12 @@ public class dataSettings
 {
     //  !!!!! you should never use xxx values !!!!!
 
-    public int xxxvolume = 100;
-    public int Volume { get { return xxxvolume; } set { if (value <= 100 && value >= 0) { xxxvolume = value; dataManager.writeSettings(); } } }
+    public float xxxMasterVolume = 100;
+    public float masterVolume { get { return xxxMasterVolume; } set { if (value <= 100 && value >= 0) { xxxMasterVolume = value; dataManager.writeSettings(); } } }
+    public float xxxMusicVolume = 100;
+    public float musicVolume { get { return xxxMusicVolume; } set { if (value <= 100 && value >= 0) { xxxMusicVolume = value; dataManager.writeSettings(); } } }
+    public float xxxSoundEffectsVolume = 100;
+    public float soundEffectsVolume { get { return xxxSoundEffectsVolume; } set { if (value <= 100 && value >= 0) { xxxSoundEffectsVolume = value; dataManager.writeSettings(); } } }
 
 
     // keyBinds
