@@ -45,7 +45,6 @@ public class dataSettings
     public float xxxSoundEffectsVolume = 100;
     public float soundEffectsVolume { get { return xxxSoundEffectsVolume; } set { if (value <= 100 && value >= 0) { xxxSoundEffectsVolume = value; dataManager.writeSettings(); } } }
 
-
     // keyBinds
     public List<string> xxxKeys = new List<string>()
     {

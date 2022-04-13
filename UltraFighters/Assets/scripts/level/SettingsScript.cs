@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class SettingsScript : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class SettingsScript : MonoBehaviour
     private Color32 warning = Color.red;
     [SerializeField] private AudioClip clickSound;
     [SerializeField] private GameObject KeyBindsButtons;
-    [SerializeField] private TextMeshProUGUI warningBox;
     void Start()
     {
         dataManager.readAllData();
@@ -73,16 +73,34 @@ public class SettingsScript : MonoBehaviour
             catch { }
         }
     }
-    public void changeSliderMV(GameObject self)
+    public void changeSliderMV(GameObject parent)
     {
-        dataManager.settingsData.masterVolume = self.GetComponent<Slider>().value;
+        dataManager.settingsData.masterVolume = parent.GetComponentInChildren<Slider>().value;
+        parent.transform.Find("ValueMasterVolume").GetComponent<TextMeshProUGUI>().text = parent.GetComponentInChildren<Slider>().value.ToString();
     }
-    public void changeSliderSE(GameObject self)
+    public void changeSliderSE(GameObject parent)
     {
-        dataManager.settingsData.soundEffectsVolume = self.GetComponent<Slider>().value;
+        dataManager.settingsData.soundEffectsVolume = parent.GetComponentInChildren<Slider>().value;
+        parent.transform.Find("ValueSoundEffects").GetComponent<TextMeshProUGUI>().text = parent.GetComponentInChildren<Slider>().value.ToString();
+
     }
-    public void changeSliderMU(GameObject self)
+    public void changeSliderMU(GameObject parent)
     {
-        dataManager.settingsData.musicVolume = self.GetComponent<Slider>().value;
+        dataManager.settingsData.musicVolume = parent.GetComponentInChildren<Slider>().value;
+        parent.transform.Find("ValueMusic").GetComponent<TextMeshProUGUI>().text = parent.GetComponentInChildren<Slider>().value.ToString();
+    }
+    public void fullScreen(TextMeshProUGUI text)
+    {
+        Screen.fullScreen = text.text == "Full-Screen";
+    }
+    public void changeResolution(TextMeshProUGUI text)
+    {
+        Dictionary<string, int[]> resolutions = new Dictionary<string, int[]>()
+        {
+            {"Full HD" , new int[] {1920,1080} },
+            {"HD", new int[] {1280,720}},
+            {"480p", new int[] {854,480} }
+        };
+        Screen.SetResolution(resolutions[text.ToString()][0], resolutions[text.ToString()][1], Screen.fullScreen);
     }
 }
