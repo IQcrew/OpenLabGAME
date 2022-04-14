@@ -14,6 +14,8 @@ public class SettingsScript : MonoBehaviour
     private Color32 warning = Color.red;
     [SerializeField] private AudioClip clickSound;
     [SerializeField] private GameObject KeyBindsButtons;
+    [SerializeField] private TextMeshProUGUI warningBox;
+    [SerializeField] private Sprite Image;
     void Start()
     {
         dataManager.readAllData();
