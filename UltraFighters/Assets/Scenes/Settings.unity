@@ -1227,6 +1227,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: e867e0e23682c5143b58896c118f4f95, type: 3}
   KeyBindsButtons: {fileID: 1963564328}
+  warningBox: {fileID: 0}
+  Image: {fileID: 0}
 --- !u!82 &235922854
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8029,7 +8031,7 @@ GameObject:
   - component: {fileID: 1450868855}
   - component: {fileID: 1450868854}
   m_Layer: 0
-  m_Name: fs/winDD
+  m_Name: ResolutionDD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8180,7 +8182,7 @@ GameObject:
   - component: {fileID: 1466231865}
   - component: {fileID: 1466231864}
   m_Layer: 0
-  m_Name: ResolutionDD
+  m_Name: fs/winDD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11132,7 +11134,7 @@ GameObject:
   - component: {fileID: 1919503544}
   - component: {fileID: 1919503543}
   m_Layer: 0
-  m_Name: ResloutionText
+  m_Name: fs/winText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11402,7 +11404,7 @@ GameObject:
   - component: {fileID: 1935618029}
   - component: {fileID: 1935618028}
   m_Layer: 0
-  m_Name: fs/winText
+  m_Name: ResloutionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

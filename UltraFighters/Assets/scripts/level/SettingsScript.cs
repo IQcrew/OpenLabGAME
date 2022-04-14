@@ -12,10 +12,18 @@ public class SettingsScript : MonoBehaviour
     private Color32 normal = Color.white;
     private Color32 trigger = Color.yellow;
     private Color32 warning = Color.red;
+    private bool lastFullScreen = true;
     [SerializeField] private AudioClip clickSound;
     [SerializeField] private GameObject KeyBindsButtons;
     [SerializeField] private TextMeshProUGUI warningBox;
     [SerializeField] private Sprite Image;
+
+    private Dictionary<string, int[]> resolutions = new Dictionary<string, int[]>()
+    {
+        {"Full HD" , new int[] {1920,1080} },
+        {"HD", new int[] {1280,720}},
+        {"480p", new int[] {854,480} }
+    };
     void Start()
     {
         dataManager.readAllData();
@@ -97,12 +105,6 @@ public class SettingsScript : MonoBehaviour
     }
     public void changeResolution(TextMeshProUGUI text)
     {
-        Dictionary<string, int[]> resolutions = new Dictionary<string, int[]>()
-        {
-            {"Full HD" , new int[] {1920,1080} },
-            {"HD", new int[] {1280,720}},
-            {"480p", new int[] {854,480} }
-        };
-        Screen.SetResolution(resolutions[text.ToString()][0], resolutions[text.ToString()][1], Screen.fullScreen);
+        Screen.SetResolution(resolutions[text.text.ToString()][0], resolutions[text.text.ToString()][1], Screen.fullScreen);
     }
 }
