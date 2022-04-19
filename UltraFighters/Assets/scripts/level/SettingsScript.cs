@@ -12,11 +12,11 @@ public class SettingsScript : MonoBehaviour
     private Color32 normal = Color.white;
     private Color32 trigger = Color.yellow;
     private Color32 warning = Color.red;
-    private bool lastFullScreen = true;
     [SerializeField] private AudioClip clickSound;
     [SerializeField] private GameObject KeyBindsButtons;
     [SerializeField] private TextMeshProUGUI warningBox;
     [SerializeField] private Sprite Image;
+    [SerializeField] private GameObject windowSettings;
 
     private Dictionary<string, int[]> resolutions = new Dictionary<string, int[]>()
     {
@@ -49,6 +49,7 @@ public class SettingsScript : MonoBehaviour
         dataManager.settingsData = new dataSettings();
         dataManager.writeSettings();
         refreshButtonsText();
+        refreshDD();
     }
     private void OnGUI()
     {
@@ -106,5 +107,13 @@ public class SettingsScript : MonoBehaviour
     public void changeResolution(TextMeshProUGUI text)
     {
         Screen.SetResolution(resolutions[text.text.ToString()][0], resolutions[text.text.ToString()][1], Screen.fullScreen);
+    }
+    public void refreshDD()
+    {
+        Screen.fullScreen = true;
+        Screen.SetResolution(resolutions["Full HD"][0], resolutions["Full HD"][1], true);
+        windowSettings.transform.Find("ResolutionDD/Label").GetComponent<TextMeshProUGUI>().text = "Full HD";
+        Debug.Log(windowSettings.transform.Find("fswinDD"));
+        windowSettings.transform.Find("fswinDD/Label").GetComponent<TextMeshProUGUI>().text = "Full-Screen";
     }
 }
