@@ -13,6 +13,7 @@ public static class dataManager
     static dataManager()
     {
         readAllData();
+        settingsData.getKeyBind("P1 up");
     }
     public static void readAllData()
     {
@@ -76,7 +77,6 @@ public class dataSettings
         }
         catch
         {
-            Debug.Log("keyBind not found: "+key);
             KeyCodeValues = new List<KeyCode>()
             {
                 KeyCode.UpArrow, // P1 up

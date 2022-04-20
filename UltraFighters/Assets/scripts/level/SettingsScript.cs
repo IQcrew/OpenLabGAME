@@ -50,6 +50,7 @@ public class SettingsScript : MonoBehaviour
         dataManager.writeSettings();
         refreshButtonsText();
         refreshDD();
+
     }
     private void OnGUI()
     {
@@ -80,6 +81,10 @@ public class SettingsScript : MonoBehaviour
             try
             {
                 KeyBindsButtons.transform.Find(key).GetComponentInChildren<TextMeshProUGUI>().text = dataManager.settingsData.getKeyBind(key).ToString();
+                if(KeyBindsButtons.transform.Find(key).GetComponentInChildren<TextMeshProUGUI>().text != "")
+                {
+                    KeyBindsButtons.transform.Find(key).GetComponent<Image>().color = normal;
+                }
             }
             catch { }
         }
@@ -113,7 +118,6 @@ public class SettingsScript : MonoBehaviour
         Screen.fullScreen = true;
         Screen.SetResolution(resolutions["Full HD"][0], resolutions["Full HD"][1], true);
         windowSettings.transform.Find("ResolutionDD/Label").GetComponent<TextMeshProUGUI>().text = "Full HD";
-        Debug.Log(windowSettings.transform.Find("fswinDD"));
         windowSettings.transform.Find("fswinDD/Label").GetComponent<TextMeshProUGUI>().text = "Full-Screen";
     }
 }
