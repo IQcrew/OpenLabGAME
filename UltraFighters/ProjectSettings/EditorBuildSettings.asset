@@ -8,4 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartingLoad.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 6ed69adb5ed55e44f93824656394f2a4
+  - enabled: 1
+    path: Assets/Scenes/SinglePlayer.unity
+    guid: 84dd24bf12ab257459d6d4c415889c19
+  - enabled: 1
+    path: Assets/Scenes/MultiPlayer.unity
+    guid: abb71e1d94d6fc946b2776c8a23b9f7c
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: 3820a148d13ef8649a4891b8d4627071
+  - enabled: 1
+    path: Assets/Scenes/maps/Demolition.unity
+    guid: 4216fec025892c54ea8d00c21361af71
   m_configObjects: {}

@@ -23,6 +23,7 @@ public class SettingsScript : MonoBehaviour
         {"Full HD" , new int[] {1920,1080} },
         {"HD", new int[] {1280,720}},
         {"480p", new int[] {854,480} }
+        
     };
     void Start()
     {
@@ -111,7 +112,7 @@ public class SettingsScript : MonoBehaviour
     }
     public void changeResolution(TextMeshProUGUI text)
     {
-        Screen.SetResolution(resolutions[text.text.ToString()][0], resolutions[text.text.ToString()][1], Screen.fullScreen);
+        //Screen.SetResolution(resolutions[text.text.ToString()][0], resolutions[text.text.ToString()][1], Screen.fullScreen);
     }
     public void refreshDD()
     {
@@ -120,4 +121,5 @@ public class SettingsScript : MonoBehaviour
         windowSettings.transform.Find("ResolutionDD/Label").GetComponent<TextMeshProUGUI>().text = "Full HD";
         windowSettings.transform.Find("fswinDD/Label").GetComponent<TextMeshProUGUI>().text = "Full-Screen";
     }
+    
 }
