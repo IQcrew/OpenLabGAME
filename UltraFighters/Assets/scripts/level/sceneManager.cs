@@ -12,10 +12,15 @@ public class sceneManager : MonoBehaviour
     [System.NonSerialized] public List<GameObject> PlayersAlive = new List<GameObject>();
     [System.NonSerialized] public List<GameObject> PlayersInGame = new List<GameObject>();
     public List<GameObject> PlayerSpawns = new List<GameObject>();
+    [System.NonSerialized] public bool Paused = false;
+    AudioListener audioListener;
+    [SerializeField] GameObject menuScreen;
     private void Start()
     {
+        audioListener = GameObject.Find("Camera").GetComponent<AudioListener>();
         textObject.SetActive(false);
         StartCoroutine(LateStart(0.01f));
+        menuScreen.SetActive(false);
     }
     
      
@@ -28,12 +33,13 @@ public class sceneManager : MonoBehaviour
         {
             int temp = rrr.Next(PlayerSpawns.Count);
             PlayersInGame[i].GetComponent<Transform>().position = new Vector3(PlayerSpawns[temp].GetComponent<Transform>().position.x,PlayerSpawns[temp].GetComponent<Transform>().position.y, 0f);
-            
+            PlayersInGame[i].GetComponent<Player>().PlayerRotationRight = rrr.Next(2) == 0;
             PlayerSpawns.RemoveAt(temp);
         }
     }
 private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape)) { changePauseStatus(); }
         if (endScreen)
         {
             if (Input.GetKey(KeyCode.Space))
@@ -42,6 +48,24 @@ private void Update()
             }
         }
     }
+    public void changePauseStatus()
+    {
+        if (Paused)
+        {
+            Paused = false;
+            audioListener.enabled = true;
+            menuScreen.SetActive(false);
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            Paused = true;
+            audioListener.enabled = false;
+            menuScreen.SetActive(true);
+            Time.timeScale = 0f;
+        }
+    }
+    public void backToMainMenu(){ SceneManager.LoadScene("Menu"); }
     public void appendPlayer(GameObject player){ PlayersInGame.Add(player); PlayersAlive.Add(player); }
 
     public void PlayerDeath(GameObject player)
