@@ -28,7 +28,7 @@ public class sceneManager : MonoBehaviour
         {
             int temp = rrr.Next(PlayerSpawns.Count);
             PlayersInGame[i].GetComponent<Transform>().position = new Vector3(PlayerSpawns[temp].GetComponent<Transform>().position.x,PlayerSpawns[temp].GetComponent<Transform>().position.y, 0f);
-            
+            PlayersInGame[i].GetComponent<Player>().PlayerRotationRight = rrr.Next(2) == 0;
             PlayerSpawns.RemoveAt(temp);
         }
     }
