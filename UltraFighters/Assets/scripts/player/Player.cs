@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
     private FirePoint FP;
     private granadePack PlayerGranade;
     private bool readyToThrowGranade = false;
+    private sceneManager SM;
 
 
     private float WalkForce = 5f;
@@ -123,7 +124,8 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        GameObject.Find("LevelManager").GetComponent<sceneManager>().appendPlayer(this.gameObject);
+        SM = GameObject.Find("LevelManager").GetComponent<sceneManager>();
+        SM.appendPlayer(this.gameObject);
         FP = FirePoint.GetComponent<FirePoint>();
         playerTemplate PT = GameObject.Find("LevelManager").GetComponent<playerTemplate>();
         GunManager GM = GameObject.Find("LevelManager").GetComponent<GunManager>();
@@ -185,6 +187,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (SM.Paused) { return; }
         isGrounded = GroundCheck();
         iFire = Input.GetKey(fire); // bool variables (to safe power)
         iHit = Input.GetKey(hit);
