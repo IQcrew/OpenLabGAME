@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class OfflineMenu : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class OfflineMenu : MonoBehaviour
     public Image mapImage;
     public TMP_InputField p1inputField;
     public TMP_InputField p2inputField;
+    public GameObject playButton;
+    private bool readyToPlay = false;
     void Start()
     {
         p1Skin.sprite = skins[p1Index];
@@ -27,13 +30,25 @@ public class OfflineMenu : MonoBehaviour
         mapName.text = maps[mapIndex].ToUpper();
         dataManager.readAllData();
     }
+    private void Update()
+    {
+        p1inputField.text = Regex.Replace(p1inputField.text, "[^a-zA-Z0-9_]", "");
+        p2inputField.text = Regex.Replace(p2inputField.text, "[^a-zA-Z0-9_]", "");
+        readyToPlay = p1inputField.text != p2inputField.text && p1inputField.text != "" && p2inputField.text != "";
+        playButton.GetComponent<Image>().color = readyToPlay ? Color.white : Color.black;
+    }
+
+
+
     public void goToMainMenu()
     {
         SceneManager.LoadScene("Menu");
     }
     public void play()
     {
-        SceneManager.LoadScene(maps[mapIndex]);
+        if (readyToPlay) { SceneManager.LoadScene(maps[mapIndex]); }
+        
+
     }
     public void mapChangeRight()
     {
