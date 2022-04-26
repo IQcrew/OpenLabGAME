@@ -9,15 +9,30 @@ public class sceneManager : MonoBehaviour
     private bool endScreen = false;
     [SerializeField] private Text TextBox;
     [SerializeField] private GameObject textObject;
-    public List<GameObject> PlayersAlive = new List<GameObject>();
-    public List<GameObject> PlayersInGame = new List<GameObject>();
-
+    [System.NonSerialized] public List<GameObject> PlayersAlive = new List<GameObject>();
+    [System.NonSerialized] public List<GameObject> PlayersInGame = new List<GameObject>();
+    public List<GameObject> PlayerSpawns = new List<GameObject>();
     private void Start()
     {
         textObject.SetActive(false);
-
+        StartCoroutine(LateStart(0.01f));
     }
-    private void Update()
+    
+     
+
+    IEnumerator LateStart(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        System.Random rrr = new System.Random();
+        for (int i = 0; i < PlayersInGame.Count; i++)
+        {
+            int temp = rrr.Next(PlayerSpawns.Count);
+            PlayersInGame[i].GetComponent<Transform>().position = new Vector3(PlayerSpawns[temp].GetComponent<Transform>().position.x,PlayerSpawns[temp].GetComponent<Transform>().position.y, 0f);
+            
+            PlayerSpawns.RemoveAt(temp);
+        }
+    }
+private void Update()
     {
         if (endScreen)
         {

@@ -9,7 +9,7 @@ sceneSetups:
   isSubScene: 0
 - path: Assets/Scenes/SinglePlayer.unity
   isLoaded: 1
-  isActive: 1
+  isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/MultiPlayer.unity
   isLoaded: 1
@@ -25,5 +25,5 @@ sceneSetups:
   isSubScene: 0
 - path: Assets/Scenes/maps/Metro.unity
   isLoaded: 1
-  isActive: 0
+  isActive: 1
   isSubScene: 0
