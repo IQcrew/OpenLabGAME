@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
 
     //crouching,ladder,onewayplatform variables
     private bool isCrouching = false;
+    private bool isInThrow = false;
     private bool inRoll = false;
     private bool isOnLadder;
     public bool isInPlatform = false;
@@ -381,31 +382,48 @@ public class Player : MonoBehaviour
     }
     private void crouch()
     {
+        if (inRoll) Debug.Log("inRoll");
+        if (isCrouching) Debug.Log("isCrouching");
+        if (GoDown) Debug.Log("goDown");
+
         if (Math.Abs(PlayerBody.velocity.x) <= WalkForce - 1f)
         {
+            PlayerBody.velocity = Vector2.zero;
             if (inRoll)
             {
-                StopCoroutine(Roll());
                 inRoll = false;
+                StopCoroutine(Roll());
                 HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false);
             }
-            if (!isCrouching) { HitBoxChanger(1.2f, 1.7f, 0f, -0.323f, true); }
+            else if (isInThrow)
+            {
+                isInThrow = false;
+                PlayerBody.gravityScale = NormalGravity;
+                HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false);
+            }
+            else if (!isCrouching) { HitBoxChanger(1.2f, 1.7f, 0f, -0.323f, true); }
             else if (!GoDown) { HitBoxChanger(1.2f, 2.2f, 0f, -0.075f, false); }
         }
-        else if ((Math.Abs(PlayerBody.velocity.x) <= WalkForce) && (!inRoll)) { StartCoroutine(Roll()); }
-        else if ((Math.Abs(PlayerBody.velocity.x) <= SprintForce) && (Math.Abs(PlayerBody.velocity.x) >= WalkForce) && (!inRoll))
+        else if (Math.Abs(PlayerBody.velocity.x) <= WalkForce + 1f || inRoll) 
+        {
+            if (!inRoll)
+                StartCoroutine(Roll());
+            PlayerBody.velocity = PlayerRotationRight ? new Vector2(WalkForce, PlayerBody.velocity.y) : new Vector2(-WalkForce, PlayerBody.velocity.y);
+        }
+        else if (Math.Abs(PlayerBody.velocity.x) >= WalkForce+1f && (!inRoll))
         {
             if (!isCrouching)
             {
+                isInThrow = true;
                 HitBoxChanger(2f, 1f, 0f, 0f, true);
                 PlayerBody.gravityScale = ThrowJumpGravity;
-                PlayerBody.velocity = new Vector2(PlayerBody.velocity.x, ThrowJump);
+                PlayerBody.velocity = PlayerRotationRight ? new Vector2(SprintForce, ThrowJump) : new Vector2(-SprintForce, ThrowJump);
                 PlayerAudio.PlayOneShot(Jump);
             }
             else if (isGrounded)
             {
-                if (PlayerRotationRight) { PlayerBody.velocity = new Vector2(WalkForce, 0f); }
-                else if (!PlayerRotationRight) { PlayerBody.velocity = new Vector2(-WalkForce, 0f); }
+                isInThrow = false;
+                PlayerBody.velocity = PlayerRotationRight ? new Vector2(WalkForce, PlayerBody.velocity.y) : new Vector2(-WalkForce, PlayerBody.velocity.y);
                 PlayerBody.gravityScale = NormalGravity;
                 StartCoroutine(Roll());
             }
