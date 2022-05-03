@@ -206,8 +206,8 @@ public class Player : MonoBehaviour
         else if (PlayerBody.velocity.y <= -fallSpeed || isFalling) { fall(); } // Fall
         else if (isOnLadder && (!isGrounded)) { Ladder(); PlayerAudio.clip = null; } // Ladder
         else if (iHit) { meleeAttack(); } // Melee
-        else if (shooting) { ShootPosition(); } // Shooting
         else if (granadePos) { GranadePosition(); } 
+        else if (shooting) { ShootPosition(); } // Shooting
         else
         {
             BulletsToShot = 0;
@@ -640,9 +640,10 @@ public class Player : MonoBehaviour
         PlayerAnimator.SetFloat("PlayerSpeed", Math.Abs(PlayerBody.velocity.x));
         PlayerAnimator.SetInteger("WeaponID", weaponIndex);
         ShootingAnimator.SetInteger("GunID", gunIndex);
+        Debug.Log(shooting);
+        ShootingAnimator.SetBool("isThrowing", granadePos);
         ShootingAnimator.SetBool("isShooting", shooting);
         ShootingAnimator.SetInteger("GranadeID", granadeIndex);
-        ShootingAnimator.SetBool("isThrowing", granadePos);
     }
     private Quaternion QuaternionDifference(Quaternion origin, Quaternion target)
     {
