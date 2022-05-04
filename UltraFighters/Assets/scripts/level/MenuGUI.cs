@@ -9,6 +9,7 @@ public class MenuGUI : MonoBehaviour
 
     void Start()
     {
+        Debug.ClearDeveloperConsole();
         dataManager.gameData.LastScene = "idklol";
     }
     public void toPlayOffline()

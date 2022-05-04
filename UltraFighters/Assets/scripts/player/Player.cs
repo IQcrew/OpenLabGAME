@@ -122,6 +122,7 @@ public class Player : MonoBehaviour
     private AudioClip emptySound;
     private AudioClip getHit;
     private AudioClip deathSound;
+    private SpriteRenderer PlayerSkin;
 
     void Start()
     {
@@ -131,10 +132,7 @@ public class Player : MonoBehaviour
         playerTemplate PT = GameObject.Find("LevelManager").GetComponent<playerTemplate>();
         GunManager GM = GameObject.Find("LevelManager").GetComponent<GunManager>();
         PlayerWeapon = GM.AllMeleeWeapons[0];
-        if (PlayerName == "Player_1")
-            SM.setName(PlayerName, dataManager.gameData.NicknameP1);
-        else
-            SM.setName(PlayerName, dataManager.gameData.NicknameP1);
+
         //setup keybinds
         if (gameObject.name == "Player_1"){
             Right = dataManager.settingsData.getKeyBind("P1 right");
@@ -179,6 +177,7 @@ public class Player : MonoBehaviour
         emptySound = PT.emptySound;
         deathSound = PT.deathSound;
         getHit = PT.getHit;
+        PlayerSkin = this.gameObject.GetComponent<SpriteRenderer>();
         Physics2D.IgnoreCollision(PlayerHitBox, OpponentHitBox);
         MyLaser = LaserPoint.GetComponent<Laser>();
         Health = MaxHealth;
@@ -192,6 +191,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        SM.SkinUpdate(PlayerName, PlayerSkin.sprite, gameObject.transform.rotation);
         if (SM.Paused) { return; }
         isGrounded = GroundCheck();
         iFire = Input.GetKey(fire); // bool variables (to safe power)

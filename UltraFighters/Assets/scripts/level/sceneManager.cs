@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class sceneManager : MonoBehaviour
 {
@@ -17,14 +18,22 @@ public class sceneManager : MonoBehaviour
     [SerializeField] GameObject menuScreen;
     public GameObject HudP1;
     public GameObject HudP2;
+    private Image SkinP1;
+    private Image SkinP2;
+    private Transform rotSP1;
+    private Transform rotSP2;
     private void Start()
     {
         audioListener = GameObject.Find("Camera").GetComponent<AudioListener>();
         textObject.SetActive(false);
         StartCoroutine(LateStart(0.01f));
         menuScreen.SetActive(false);
+        SkinP1 = HudP1.transform.Find("Skin").GetComponent<Image>();
+        SkinP2 = HudP2.transform.Find("Skin").GetComponent<Image>();
+        rotSP1 = HudP1.transform.Find("Skin").GetComponent<Transform>();
+        rotSP2 = HudP2.transform.Find("Skin").GetComponent<Transform>();
     }
-    public void setTexture(string playerName, string nameOfTexture, Sprite sourceIMG)
+    public void setTexture(string playerName, string nameOfTexture, Sprite sourceIMG, float rotation=0)
     {
         GameObject temp = playerName == "Player_1" ? HudP1 : HudP2;
         Image image = temp.transform.Find("Gun").GetComponent<Image>();
@@ -38,6 +47,21 @@ public class sceneManager : MonoBehaviour
     public void setName(string playerName, string text)
     {
         GameObject temp = playerName == "Player_1" ? HudP1 : HudP2;
+        TextMeshProUGUI textField = temp.transform.Find("Name").GetComponent<TextMeshProUGUI>();
+        textField.text = text;
+    }
+    public void SkinUpdate(string playerName, Sprite sourceIMG, Quaternion rotation)
+    {
+        if(playerName == "Player_1")
+        {
+            SkinP1.sprite = sourceIMG;
+            rotSP1.rotation = rotation;
+        }
+        else
+        {
+            SkinP2.sprite = sourceIMG;
+            rotSP2.rotation = rotation;
+        }
     }
      
 
