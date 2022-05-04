@@ -17,7 +17,7 @@ sceneSetups:
   isSubScene: 0
 - path: Assets/Scenes/Settings.unity
   isLoaded: 1
-  isActive: 1
+  isActive: 0
   isSubScene: 0
 - path: Assets/Scenes/maps/Demolition.unity
   isLoaded: 1
@@ -26,4 +26,8 @@ sceneSetups:
 - path: Assets/Scenes/maps/Metro.unity
   isLoaded: 1
   isActive: 0
+  isSubScene: 0
+- path: Assets/Scenes/maps/Nuke.unity
+  isLoaded: 1
+  isActive: 1
   isSubScene: 0

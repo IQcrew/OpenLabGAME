@@ -3178,12 +3178,14 @@ MonoBehaviour:
   maps:
   - Demolition
   - Metro
+  - Nuke
   skins:
   - {fileID: -965382487560948686, guid: 32e9fa94b050af146b22807f81c6a176, type: 3}
   - {fileID: 390387539734613594, guid: b8da1becd0544854fb332b8ef5819ab7, type: 3}
   mapImages:
   - {fileID: 21300000, guid: 4b37786d7081302409e4609f4a1cf1a4, type: 3}
   - {fileID: 21300000, guid: 108f4f02b8520e3439c64cfeb495d953, type: 3}
+  - {fileID: 21300000, guid: 55c2f7e543fe53247b6b7cd8290e8b15, type: 3}
   mapName: {fileID: 1800187064}
   p1Skin: {fileID: 16406083}
   p2Skin: {fileID: 1079438601}
