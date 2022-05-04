@@ -131,8 +131,12 @@ public class Player : MonoBehaviour
         playerTemplate PT = GameObject.Find("LevelManager").GetComponent<playerTemplate>();
         GunManager GM = GameObject.Find("LevelManager").GetComponent<GunManager>();
         PlayerWeapon = GM.AllMeleeWeapons[0];
+        if (PlayerName == "Player_1")
+            SM.setName(PlayerName, dataManager.gameData.NicknameP1);
+        else
+            SM.setName(PlayerName, dataManager.gameData.NicknameP1);
         //setup keybinds
-        if(gameObject.name == "Player_1"){
+        if (gameObject.name == "Player_1"){
             Right = dataManager.settingsData.getKeyBind("P1 right");
             Left = dataManager.settingsData.getKeyBind("P1 left");
             Up = dataManager.settingsData.getKeyBind("P1 up");
@@ -640,7 +644,6 @@ public class Player : MonoBehaviour
         PlayerAnimator.SetFloat("PlayerSpeed", Math.Abs(PlayerBody.velocity.x));
         PlayerAnimator.SetInteger("WeaponID", weaponIndex);
         ShootingAnimator.SetInteger("GunID", gunIndex);
-        Debug.Log(shooting);
         ShootingAnimator.SetBool("isThrowing", granadePos);
         ShootingAnimator.SetBool("isShooting", shooting);
         ShootingAnimator.SetInteger("GranadeID", granadeIndex);
@@ -654,7 +657,7 @@ public class Player : MonoBehaviour
     private Gun GetGun(string name)
     {
         GunManager GunM = GameObject.Find("LevelManager").GetComponent<GunManager>();
-        for (int i = 0; i < GunM.AllGuns.Count; i++){if (name == GunM.AllGuns[i].name) { gunIndex = i;
+        for (int i = 0; i < GunM.AllGuns.Count; i++){if (name == GunM.AllGuns[i].name) { gunIndex = i; SM.setTexture(PlayerName, "Gun", GunM.AllGuns[i].weaponTexture);
         BulletPoint.position = GunM.AllGuns[i].offSet + FirePoint.position; return GunM.AllGuns[i].Clone(); }}
         gunIndex = 0; BulletPoint.position = GunM.AllGuns[0].offSet+FirePoint.position; return GunM.AllGuns[0];
     }

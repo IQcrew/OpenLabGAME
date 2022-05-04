@@ -15,6 +15,8 @@ public class sceneManager : MonoBehaviour
     [System.NonSerialized] public bool Paused = false;
     AudioListener audioListener;
     [SerializeField] GameObject menuScreen;
+    public GameObject HudP1;
+    public GameObject HudP2;
     private void Start()
     {
         audioListener = GameObject.Find("Camera").GetComponent<AudioListener>();
@@ -22,7 +24,21 @@ public class sceneManager : MonoBehaviour
         StartCoroutine(LateStart(0.01f));
         menuScreen.SetActive(false);
     }
-    
+    public void setTexture(string playerName, string nameOfTexture, Sprite sourceIMG)
+    {
+        GameObject temp = playerName == "Player_1" ? HudP1 : HudP2;
+        Image image = temp.transform.Find("Gun").GetComponent<Image>();
+        image.color =  sourceIMG != null ? Color.white : Color.clear;
+        image.sprite = sourceIMG;
+    }
+    public void setHP(string playerName,int value)
+    {
+        GameObject temp = playerName == "Player_1" ? HudP1 : HudP2;
+    }
+    public void setName(string playerName, string text)
+    {
+        GameObject temp = playerName == "Player_1" ? HudP1 : HudP2;
+    }
      
 
     IEnumerator LateStart(float waitTime)

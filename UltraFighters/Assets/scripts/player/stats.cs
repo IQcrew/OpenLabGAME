@@ -28,6 +28,7 @@ public class stats : MonoBehaviour
             gameObject.GetComponent<TextMesh>().text = dataManager.gameData.NicknameP1;
         else
             gameObject.GetComponent<TextMesh>().text = dataManager.gameData.NicknameP2;
+        GameObject.Find("LevelManager").GetComponent<sceneManager>().setName(followedplayer.name, gameObject.GetComponent<TextMesh>().text);
     }
 
     void Update()
