@@ -91,7 +91,6 @@ public class Player : MonoBehaviour
     [SerializeField] private OneWayPlatform platformScript;
     [SerializeField] private GameObject LaserPoint;
     [SerializeField] private AudioSource PlayerAudio;
-    [SerializeField] private GameObject LevelManager;
     [SerializeField] private Transform EmptyPoint;
     [SerializeField] private Transform BulletPoint;
     private FirePoint FP;
@@ -279,8 +278,8 @@ public class Player : MonoBehaviour
             PlayerBody.velocity = Vector2.zero;
             PlayerAudio.clip = null;
             RaycastHit2D[] rayCastHits;
-            if (PlayerRotationRight) { rayCastHits = Physics2D.RaycastAll(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.right, PlayerHitBox.bounds.size.x, playerLayerMask); }
-            else { rayCastHits = Physics2D.RaycastAll(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.left, PlayerHitBox.bounds.size.x, playerLayerMask); }
+            if (PlayerRotationRight) { rayCastHits = Physics2D.RaycastAll(new Vector2(PlayerHitBox.bounds.center.x + PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.right, PlayerWeapon.range, playerLayerMask); }
+            else { rayCastHits = Physics2D.RaycastAll(new Vector2(PlayerHitBox.bounds.center.x - PlayerHitBox.bounds.extents.x, PlayerHitBox.bounds.center.y), Vector2.left, PlayerWeapon.range, playerLayerMask); }
             PlayerAnimator.SetBool("isFighting", true);
             foreach (RaycastHit2D raycast in rayCastHits)
                 if (raycast.collider != PlayerHitBox)
@@ -428,6 +427,7 @@ public class Player : MonoBehaviour
             {
                 isInThrow = false;
                 PlayerBody.velocity = PlayerRotationRight ? new Vector2(WalkForce, PlayerBody.velocity.y) : new Vector2(-WalkForce, PlayerBody.velocity.y);
+                sprinting = false;
                 PlayerBody.gravityScale = NormalGravity;
                 StartCoroutine(Roll());
             }
@@ -697,7 +697,7 @@ public class Player : MonoBehaviour
     private void death()
     {
         GameObject.Find("LevelManager").GetComponent<AudioSource>().PlayOneShot(deathSound);
-        LevelManager.GetComponent<sceneManager>().PlayerDeath(this.gameObject);
+        SM.PlayerDeath(this.gameObject);
         Destroy(gameObject);
     }
     public void startPlayer()
