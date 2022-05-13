@@ -3180,8 +3180,11 @@ MonoBehaviour:
   - Metro
   - Nuke
   skins:
-  - {fileID: -965382487560948686, guid: 32e9fa94b050af146b22807f81c6a176, type: 3}
-  - {fileID: 390387539734613594, guid: b8da1becd0544854fb332b8ef5819ab7, type: 3}
+  - Basic
+  - Agent
+  skinImages:
+  - {fileID: 21300000, guid: 763adbd62e86fd84ba41385a1eb0c271, type: 3}
+  - {fileID: 21300000, guid: 06a009bfc9e72954d9eecdc1eb65e4ce, type: 3}
   mapImages:
   - {fileID: 21300000, guid: 4b37786d7081302409e4609f4a1cf1a4, type: 3}
   - {fileID: 21300000, guid: 108f4f02b8520e3439c64cfeb495d953, type: 3}

@@ -9,7 +9,8 @@ using System.Text.RegularExpressions;
 public class OfflineMenu : MonoBehaviour
 {
     public List<string> maps = new List<string>();
-    public List<Sprite> skins = new List<Sprite> ();
+    public List<string> skins  = new List<string>();
+    public List<Sprite> skinImages = new List<Sprite> ();
     public List<Sprite> mapImages = new List<Sprite>();
     private int mapIndex = 0;
     private int p1Index = 0;
@@ -24,8 +25,8 @@ public class OfflineMenu : MonoBehaviour
     private bool readyToPlay = false;
     void Start()
     {
-        p1Skin.sprite = skins[p1Index];
-        p2Skin.sprite = skins[p2Index];
+        p1Skin.sprite = skinImages[p1Index];
+        p2Skin.sprite = skinImages[p2Index];
         mapImage.sprite = mapImages[mapIndex];
         mapName.text = maps[mapIndex].ToUpper();
         dataManager.readAllData();
@@ -37,9 +38,6 @@ public class OfflineMenu : MonoBehaviour
         readyToPlay = p1inputField.text != p2inputField.text && p1inputField.text != "" && p2inputField.text != "";
         playButton.GetComponent<Image>().color = readyToPlay ? Color.white : Color.black;
     }
-
-
-
     public void goToMainMenu()
     {
         SceneManager.LoadScene("Menu");
@@ -47,8 +45,6 @@ public class OfflineMenu : MonoBehaviour
     public void play()
     {
         if (readyToPlay) { SceneManager.LoadScene(maps[mapIndex]); }
-        
-
     }
     public void mapChangeRight()
     {
@@ -74,7 +70,8 @@ public class OfflineMenu : MonoBehaviour
             p1Index = 0;
         else
             p1Index++;
-        p1Skin.sprite = skins[p1Index];
+        p1Skin.sprite = skinImages[p1Index];
+        dataManager.gameData.SkinP1 = skins[p1Index];
     }
     public void skinPlayer1Left()
     {
@@ -82,7 +79,8 @@ public class OfflineMenu : MonoBehaviour
             p1Index = skins.Count - 1;
         else
             p1Index--;
-        p1Skin.sprite = skins[p1Index];
+        p1Skin.sprite = skinImages[p1Index];
+        dataManager.gameData.SkinP1 = skins[p1Index];
     }
     public void skinPlayer2Right()
     {
@@ -90,7 +88,8 @@ public class OfflineMenu : MonoBehaviour
             p2Index = 0;
         else
             p2Index++;
-        p2Skin.sprite = skins[p2Index];
+        p2Skin.sprite = skinImages[p2Index];
+        dataManager.gameData.SkinP2 = skins[p2Index];
     }
     public void skinPlayer2Left()
     {
@@ -98,7 +97,8 @@ public class OfflineMenu : MonoBehaviour
             p2Index = skins.Count - 1;
         else
             p2Index--;
-        p2Skin.sprite = skins[p2Index];
+        p2Skin.sprite = skinImages[p2Index];
+        dataManager.gameData.SkinP2 = skins[p2Index];
     }
     public void nickChangeP1()
     {

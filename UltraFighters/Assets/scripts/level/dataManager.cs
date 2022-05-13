@@ -124,12 +124,16 @@ public class dataGame
     public bool xxxrandomMap;
     public string xxxNicknameP1;
     public string xxxNicknameP2;
+    public string xxxSkinP1;
+    public string xxxSkinP2;
 
     public string LastScene { get { return xxxlastScene; } set { xxxlastScene = value; dataManager.writeGame(); } }
     public string LastMap { get { return xxxlastMap; } set { xxxlastMap = value; dataManager.writeGame(); } }
     public bool RandomMap { get { return xxxrandomMap; } set { xxxrandomMap = value; dataManager.writeGame(); } }
     public string NicknameP1 { get { return xxxNicknameP1; } set { xxxNicknameP1 = value; dataManager.writeGame(); } }
     public string NicknameP2 { get { return xxxNicknameP2; } set { xxxNicknameP2 = value; dataManager.writeGame(); } }
+    public string SkinP1 { get { return xxxSkinP1; } set { xxxSkinP1 = value; dataManager.writeGame(); } }
+    public string SkinP2 { get { return xxxSkinP2; } set { xxxSkinP2 = value; dataManager.writeGame(); } }
 
 
 }

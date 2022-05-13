@@ -193,7 +193,7 @@ public class Player : MonoBehaviour
         SM.SkinUpdate(PlayerName, PlayerSkin.sprite, gameObject.transform.rotation);
         if (SM.Paused) { return; }
         isGrounded = GroundCheck();
-        iFire = Input.GetKey(fire); // bool variables (to safe power)
+        iFire = Input.GetKey(fire); // bool variables (to save power)
         iHit = Input.GetKey(hit);
         iSlot = Input.GetKey(slot);
         if (Input.GetKey(Right) && !Input.GetKey(Left)) { GoRight = true; GoLeft = false; } // Setting inputs - Left & Right ...
