@@ -124,8 +124,8 @@ public class dataGame
     public bool xxxrandomMap;
     public string xxxNicknameP1;
     public string xxxNicknameP2;
-    public string xxxSkinP1;
-    public string xxxSkinP2;
+    public string xxxSkinP1 = "Basic";
+    public string xxxSkinP2 = "Basic";
 
     public string LastScene { get { return xxxlastScene; } set { xxxlastScene = value; dataManager.writeGame(); } }
     public string LastMap { get { return xxxlastMap; } set { xxxlastMap = value; dataManager.writeGame(); } }

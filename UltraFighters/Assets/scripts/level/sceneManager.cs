@@ -16,6 +16,7 @@ public class sceneManager : MonoBehaviour
     [System.NonSerialized] public bool Paused = false;
     AudioListener audioListener;
     [SerializeField] GameObject menuScreen;
+    public List<Skin> skins = new List<Skin>();
     public GameObject HudP1;
     public GameObject HudP2;
     private Image SkinP1;
@@ -119,5 +120,12 @@ private void Update()
             TextBox.text = "remiza";
             endScreen = true; textObject.SetActive(true);
         }
+    }
+    public AnimatorOverrideController[] getSkin(string skinName,string playerName)
+    {
+        foreach (Skin skin in skins)
+            if (skin.skinName == skinName && skin.playerName == playerName)
+                return new[] { skin.movement, skin.shooting };
+        return null;
     }
 }

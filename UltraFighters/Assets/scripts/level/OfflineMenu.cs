@@ -29,6 +29,8 @@ public class OfflineMenu : MonoBehaviour
         p2Skin.sprite = skinImages[p2Index];
         mapImage.sprite = mapImages[mapIndex];
         mapName.text = maps[mapIndex].ToUpper();
+        dataManager.gameData.SkinP1 = skins[p1Index];
+        dataManager.gameData.SkinP2 = skins[p2Index];
         dataManager.readAllData();
     }
     private void Update()

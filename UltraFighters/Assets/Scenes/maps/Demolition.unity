@@ -8281,6 +8281,23 @@ MonoBehaviour:
   - {fileID: 1881686371}
   - {fileID: 826669742}
   menuScreen: {fileID: 1658618316}
+  skins:
+  - skinName: Basic
+    playerName: Player_1
+    movement: {fileID: 22100000, guid: 5632f311c6908714c83850cf38834302, type: 2}
+    shooting: {fileID: 22100000, guid: 76434b6ec6985ca4991033d9101ef067, type: 2}
+  - skinName: Basic
+    playerName: Player_2
+    movement: {fileID: 22100000, guid: 7089d5f1ad819734fbc9fef07eeeb6d3, type: 2}
+    shooting: {fileID: 22100000, guid: 9eb0b4555b9a8e84da67c2749a1380a2, type: 2}
+  - skinName: Agent
+    playerName: Player_1
+    movement: {fileID: 22100000, guid: 1d218d7761302b141a21e36033f1b5d4, type: 2}
+    shooting: {fileID: 22100000, guid: cf6ee10f02e117c42aa0ab2738705486, type: 2}
+  - skinName: Agent
+    playerName: Player_2
+    movement: {fileID: 22100000, guid: 8c37322388c85cb42a1ec4674b62ca7d, type: 2}
+    shooting: {fileID: 22100000, guid: 6fb780b2d72df7b4bb7b45c3f0a31864, type: 2}
   HudP1: {fileID: 1777417874}
   HudP2: {fileID: 1859772537}
 --- !u!114 &1160059146

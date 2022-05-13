@@ -4368,7 +4368,6 @@ MonoBehaviour:
   platformScript: {fileID: 1119125377}
   LaserPoint: {fileID: 1928103605}
   PlayerAudio: {fileID: 1119125380}
-  LevelManager: {fileID: 1679042899}
   EmptyPoint: {fileID: 975689689}
   BulletPoint: {fileID: 1927678053}
 --- !u!95 &1119125379
@@ -7516,6 +7515,9 @@ MonoBehaviour:
   - {fileID: 1261896884}
   - {fileID: 1407912838}
   menuScreen: {fileID: 27295072}
+  skins: []
+  HudP1: {fileID: 0}
+  HudP2: {fileID: 0}
 --- !u!114 &1679042904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7677,6 +7679,7 @@ MonoBehaviour:
   - name: Hand
     damage: 15
     hitSpeed: 0.7
+    range: 0
     weaponTexture: {fileID: 21300000, guid: 91b84d7fd8890cd4ca7569d9c160863e, type: 3}
     PlayerAnimator: {fileID: 0}
     HitSound: {fileID: 0}
@@ -7684,6 +7687,7 @@ MonoBehaviour:
   - name: Axe
     damage: 50
     hitSpeed: 0.9
+    range: 0
     weaponTexture: {fileID: 21300000, guid: 91b84d7fd8890cd4ca7569d9c160863e, type: 3}
     PlayerAnimator: {fileID: 0}
     HitSound: {fileID: 0}
@@ -7691,6 +7695,7 @@ MonoBehaviour:
   - name: Sword
     damage: 60
     hitSpeed: 0.9
+    range: 0
     weaponTexture: {fileID: 21300000, guid: 91b84d7fd8890cd4ca7569d9c160863e, type: 3}
     PlayerAnimator: {fileID: 0}
     HitSound: {fileID: 0}
@@ -7698,6 +7703,7 @@ MonoBehaviour:
   - name: Machete
     damage: 40
     hitSpeed: 0.5
+    range: 0
     weaponTexture: {fileID: 21300000, guid: 91b84d7fd8890cd4ca7569d9c160863e, type: 3}
     PlayerAnimator: {fileID: 0}
     HitSound: {fileID: 0}
@@ -7705,6 +7711,7 @@ MonoBehaviour:
   - name: Crowbar
     damage: 35
     hitSpeed: 0.6
+    range: 0
     weaponTexture: {fileID: 21300000, guid: 91b84d7fd8890cd4ca7569d9c160863e, type: 3}
     PlayerAnimator: {fileID: 0}
     HitSound: {fileID: 0}
@@ -7712,6 +7719,7 @@ MonoBehaviour:
   - name: knife
     damage: 30
     hitSpeed: 0.3
+    range: 0
     weaponTexture: {fileID: 21300000, guid: 91b84d7fd8890cd4ca7569d9c160863e, type: 3}
     PlayerAnimator: {fileID: 0}
     HitSound: {fileID: 0}
