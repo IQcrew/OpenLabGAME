@@ -25,12 +25,13 @@ public class OfflineMenu : MonoBehaviour
     private bool readyToPlay = false;
     void Start()
     {
+        dataManager.readAllData();
+        p1Index = skins.IndexOf(dataManager.gameData.SkinP1);
+        p2Index = skins.IndexOf(dataManager.gameData.SkinP2);
         p1Skin.sprite = skinImages[p1Index];
         p2Skin.sprite = skinImages[p2Index];
         mapImage.sprite = mapImages[mapIndex];
         mapName.text = maps[mapIndex].ToUpper();
-        dataManager.gameData.SkinP1 = skins[p1Index];
-        dataManager.gameData.SkinP2 = skins[p2Index];
         dataManager.readAllData();
     }
     private void Update()

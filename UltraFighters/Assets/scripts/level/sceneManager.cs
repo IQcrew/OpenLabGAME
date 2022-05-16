@@ -23,6 +23,8 @@ public class sceneManager : MonoBehaviour
     private Image SkinP2;
     private Transform rotSP1;
     private Transform rotSP2;
+    private TextMeshProUGUI ammoGunP1;
+    private TextMeshProUGUI ammoGunP2;
     private void Start()
     {
         audioListener = GameObject.Find("Camera").GetComponent<AudioListener>();
@@ -33,6 +35,11 @@ public class sceneManager : MonoBehaviour
         SkinP2 = HudP2.transform.Find("Skin").GetComponent<Image>();
         rotSP1 = HudP1.transform.Find("Skin").GetComponent<Transform>();
         rotSP2 = HudP2.transform.Find("Skin").GetComponent<Transform>();
+        ammoGunP1 = HudP1.transform.Find("AmmoGun").GetComponent<TextMeshProUGUI>();
+        ammoGunP2 = HudP2.transform.Find("AmmoGun").GetComponent<TextMeshProUGUI>();
+        audioListener.enabled = true;
+        menuScreen.SetActive(false);
+        Time.timeScale = 1f;
     }
     public void setTexture(string playerName, string nameOfTexture, Sprite sourceIMG, float rotation=0)
     {
@@ -44,6 +51,12 @@ public class sceneManager : MonoBehaviour
     public void setHP(string playerName,int value)
     {
         GameObject temp = playerName == "Player_1" ? HudP1 : HudP2;
+    }
+    public void updateAmmoGun(string playerName, int ammo)
+    {
+        //TextMeshProUGUI temp = playerName == "Player_1" ? ammoGunP1 : ammoGunP2;
+        //temp.text = ammo.ToString();
+        
     }
     public void setName(string playerName, string text)
     {

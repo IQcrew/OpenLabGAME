@@ -190,7 +190,8 @@ public class Player : MonoBehaviour
         Health = MaxHealth;
         PlayerLastRotationRight = PlayerRotationRight;
         if (!PlayerRotationRight) { transform.Rotate(0f, 180f, 0F); }
-        PlayerGun = GetGun("SniperRifle");
+        PlayerGun = GetGun("Pistol");
+        Debug.Log(PlayerName+"  " + PlayerGun.name);
         PlayerGranade = GetGranade("Explosive");
         MyLaser.ShootLaser(false);
         FP.exitFP();
@@ -393,9 +394,6 @@ public class Player : MonoBehaviour
     }
     private void crouch()
     {
-        if (inRoll) Debug.Log("inRoll");
-        if (isCrouching) Debug.Log("isCrouching");
-        if (GoDown) Debug.Log("goDown");
 
         if (Math.Abs(PlayerBody.velocity.x) <= WalkForce - 1f)
         {
@@ -463,6 +461,7 @@ public class Player : MonoBehaviour
     }
     private void ShootPosition()
     {
+        SM.updateAmmoGun(PlayerName, PlayerGun.ammo);
         PlayerBody.velocity = Vector2.zero;
         ShootingAnimator.SetBool("Shot", false);
         if (LastTimeShoot + 0.5 < Time.time || !iFire && (GoRight || GoLeft || iHit || iSlot))
@@ -583,6 +582,7 @@ public class Player : MonoBehaviour
         TVP.GetComponent<bullet>().damage = PlayerGun.damage;
         TVP.GetComponent<bullet>().speed = PlayerGun.speed;
         Instantiate(PlayerGun.EmptyBullet, EmptyPoint.position, EmptyPoint.rotation);
+
     }
     private bool GroundCheck()
     {
@@ -666,8 +666,8 @@ public class Player : MonoBehaviour
     {
         GunManager GunM = GameObject.Find("LevelManager").GetComponent<GunManager>();
         for (int i = 0; i < GunM.AllGuns.Count; i++){if (name == GunM.AllGuns[i].name) { gunIndex = i; SM.setTexture(PlayerName, "Gun", GunM.AllGuns[i].weaponTexture);
-        BulletPoint.position = GunM.AllGuns[i].offSet + FirePoint.position; return GunM.AllGuns[i].Clone(); }}
-        gunIndex = 0; BulletPoint.position = GunM.AllGuns[0].offSet+FirePoint.position; return GunM.AllGuns[0];
+        BulletPoint.position = GunM.AllGuns[i].offSet + FirePoint.position; SM.updateAmmoGun(PlayerName, GunM.AllGuns[i].ammo); return GunM.AllGuns[i].Clone(); }}
+        gunIndex = 0; BulletPoint.position = GunM.AllGuns[0].offSet+FirePoint.position; SM.updateAmmoGun(PlayerName, GunM.AllGuns[0].ammo); return GunM.AllGuns[0];
     }
     private granadePack GetGranade(string name)
     {
