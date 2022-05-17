@@ -131,18 +131,6 @@ public class Player : MonoBehaviour
         playerTemplate PT = GameObject.Find("LevelManager").GetComponent<playerTemplate>();
         GunManager GM = GameObject.Find("LevelManager").GetComponent<GunManager>();
         PlayerWeapon = GM.AllMeleeWeapons[0];
-        if (gameObject.name == "Player_1")
-        {
-            AnimatorOverrideController[] controller = SM.getSkin(dataManager.gameData.SkinP1, gameObject.name);
-            PlayerAnimator.runtimeAnimatorController = controller[0];
-            ShootingAnimator.runtimeAnimatorController = controller[1];
-        }
-        else if (gameObject.name == "Player_2")
-        {
-            AnimatorOverrideController[] controller = SM.getSkin(dataManager.gameData.SkinP2, gameObject.name);
-            PlayerAnimator.runtimeAnimatorController = controller[0];
-            ShootingAnimator.runtimeAnimatorController = controller[1];
-        }
         //setup keybinds
         if (gameObject.name == "Player_1"){
             Right = dataManager.settingsData.getKeyBind("P1 right");
@@ -152,6 +140,10 @@ public class Player : MonoBehaviour
             hit = dataManager.settingsData.getKeyBind("P1 hit");
             fire = dataManager.settingsData.getKeyBind("P1 fire");
             slot = dataManager.settingsData.getKeyBind("P1 slot");
+            AnimatorOverrideController[] controller = SM.getSkin(dataManager.gameData.SkinP1, gameObject.name);
+            PlayerAnimator.runtimeAnimatorController = controller[0];
+            ShootingAnimator.runtimeAnimatorController = controller[1];
+            gameObject.transform.Find("ShootingTextureDown").GetComponent<SpriteRenderer>().sprite = SM.getTexture(dataManager.gameData.SkinP1, gameObject.name);
         }
         else{
             Right = dataManager.settingsData.getKeyBind("P2 right");
@@ -161,6 +153,10 @@ public class Player : MonoBehaviour
             hit = dataManager.settingsData.getKeyBind("P2 hit");
             fire = dataManager.settingsData.getKeyBind("P2 fire");
             slot = dataManager.settingsData.getKeyBind("P2 slot");
+            AnimatorOverrideController[] controller = SM.getSkin(dataManager.gameData.SkinP2, gameObject.name);
+            PlayerAnimator.runtimeAnimatorController = controller[0];
+            ShootingAnimator.runtimeAnimatorController = controller[1];
+            gameObject.transform.Find("ShootingTextureDown").GetComponent<SpriteRenderer>().sprite = SM.getTexture(dataManager.gameData.SkinP2, gameObject.name);
         }
         //setup values 
         WalkForce = PT.WalkForce;

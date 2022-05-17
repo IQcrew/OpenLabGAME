@@ -6,7 +6,7 @@ public class UpDownPlatform : MonoBehaviour
 {
     [SerializeField] GameObject StartPoint;
     [SerializeField] GameObject EndPoint;
-    [SerializeField] int timeForOneLoop = 10;
+    [SerializeField] float timeForOneLoop = 10;
 
     private Vector3 StartPointPos;
     private Vector3 EndPointPos;

@@ -7,6 +7,7 @@ public class Skin
 {
     public string skinName;
     public string playerName;
+    public Sprite downTexture;
     public AnimatorOverrideController movement;
     public AnimatorOverrideController shooting;
 }

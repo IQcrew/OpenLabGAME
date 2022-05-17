@@ -13,6 +13,7 @@ TagManager:
   - OneTapBezZastavenia
   - Bullet
   - Doors
+  - pass
   layers:
   - Default
   - TransparentFX

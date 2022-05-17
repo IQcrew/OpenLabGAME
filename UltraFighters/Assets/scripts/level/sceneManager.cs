@@ -141,4 +141,11 @@ private void Update()
                 return new[] { skin.movement, skin.shooting };
         return null;
     }
+    public Sprite getTexture(string textureName,string playerName)
+    {
+        foreach (Skin skin in skins)
+            if (skin.skinName == textureName && skin.playerName == playerName)
+                return skin.downTexture;
+        return null;
+    }
 }

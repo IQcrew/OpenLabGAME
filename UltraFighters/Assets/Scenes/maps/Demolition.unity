@@ -11978,6 +11978,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.data[0].downTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: c1a3d759e65d97447b7703645a93ef1f, type: 3}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.data[1].downTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: c1a3d759e65d97447b7703645a93ef1f, type: 3}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.data[2].downTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: 01dab539b87327d45a7cadf742e96c2c, type: 3}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.data[3].downTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: 01dab539b87327d45a7cadf742e96c2c, type: 3}
     - target: {fileID: 9110796599049590588, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
