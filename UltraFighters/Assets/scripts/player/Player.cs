@@ -187,7 +187,6 @@ public class Player : MonoBehaviour
         PlayerLastRotationRight = PlayerRotationRight;
         if (!PlayerRotationRight) { transform.Rotate(0f, 180f, 0F); }
         PlayerGun = GetGun("Pistol");
-        Debug.Log(PlayerName+"  " + PlayerGun.name);
         PlayerGranade = GetGranade("Explosive");
         MyLaser.ShootLaser(false);
         FP.exitFP();

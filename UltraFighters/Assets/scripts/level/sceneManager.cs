@@ -54,9 +54,10 @@ public class sceneManager : MonoBehaviour
     }
     public void updateAmmoGun(string playerName, int ammo)
     {
-        //TextMeshProUGUI temp = playerName == "Player_1" ? ammoGunP1 : ammoGunP2;
-        //temp.text = ammo.ToString();
-        
+        Debug.Log(playerName + "  " + ammo.ToString());
+        GameObject temp = playerName == "Player_1" ? HudP1 : HudP2;
+        temp.transform.Find("AmmoGun").GetComponent<TextMeshProUGUI>().text = ammo.ToString();
+
     }
     public void setName(string playerName, string text)
     {
