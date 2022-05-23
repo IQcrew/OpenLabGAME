@@ -16,7 +16,6 @@ public class TextureRotation : MonoBehaviour
         if (playerScript.shooting || playerScript.granadePos)
         {
             spriteRenderer.enabled = true;
-            animator.SetBool("isShooting", true);
             animator.SetInteger("GunID", playerScript.gunIndex);
             if (playerScript.PlayerRotationRight) { spriteRenderer.flipY = false; }
             else if (!playerScript.PlayerRotationRight) { spriteRenderer.flipY = true; }
@@ -24,6 +23,6 @@ public class TextureRotation : MonoBehaviour
             Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 100);
         }
-        else { spriteRenderer.enabled = false; animator.SetBool("isShooting", false); }
+        else { spriteRenderer.enabled = false; }
     }
 }
