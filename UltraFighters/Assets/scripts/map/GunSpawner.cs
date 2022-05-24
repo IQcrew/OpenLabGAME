@@ -56,7 +56,7 @@ public class GunSpawner : MonoBehaviour
         ThisGameObject.GetComponent<SpriteRenderer>().enabled = false;
         Timer = Random.Range(5, 30);
         StartTime = Time.time;
-        TempRandom = Random.Range(0,1500);
+        TempRandom = Random.Range(0,1400);
         if (TempRandom < 200) { ActualItem.Generate("MedKit", "Gun"); }
         else if (TempRandom < 400) { ActualItem.Generate("Pistol", "Gun"); }
         else if (TempRandom < 550) { ActualItem.Generate("Eagle", "Gun"); }
@@ -68,6 +68,7 @@ public class GunSpawner : MonoBehaviour
         else if (TempRandom < 1200) { ActualItem.Generate("Axe", "Melee"); }
         else if (TempRandom < 1300) { ActualItem.Generate("Explosive", "Granade"); }
         else if (TempRandom < 1325) { ActualItem.Generate("MiniGun", "Gun"); }
+        else if (TempRandom < 1400) { ActualItem.Generate("Axe", "Melee"); }
         else { ActualItem.Generate("MedKit", "Gun"); }
     }
     
