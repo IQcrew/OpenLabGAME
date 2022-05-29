@@ -11978,6 +11978,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9110796598205673388, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: AllGuns.Array.data[1].ReloadPickup
+      value: 
+      objectReference: {fileID: 8300000, guid: 505963f0dd65d8b4b92f6bcec8ef37e9, type: 3}
+    - target: {fileID: 9110796598205673388, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: AllGuns.Array.data[2].ReloadPickup
+      value: 
+      objectReference: {fileID: 8300000, guid: 505963f0dd65d8b4b92f6bcec8ef37e9, type: 3}
+    - target: {fileID: 9110796598205673388, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: AllGuns.Array.data[4].ReloadPickup
+      value: 
+      objectReference: {fileID: 8300000, guid: 505963f0dd65d8b4b92f6bcec8ef37e9, type: 3}
+    - target: {fileID: 9110796598205673388, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: AllGuns.Array.data[5].ReloadPickup
+      value: 
+      objectReference: {fileID: 8300000, guid: 505963f0dd65d8b4b92f6bcec8ef37e9, type: 3}
+    - target: {fileID: 9110796598205673388, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: AllGuns.Array.data[6].ReloadPickup
+      value: 
+      objectReference: {fileID: 8300000, guid: 505963f0dd65d8b4b92f6bcec8ef37e9, type: 3}
+    - target: {fileID: 9110796598205673388, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: AllGuns.Array.data[7].ReloadPickup
+      value: 
+      objectReference: {fileID: 8300000, guid: 505963f0dd65d8b4b92f6bcec8ef37e9, type: 3}
+    - target: {fileID: 9110796598205673388, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: AllGuns.Array.data[8].ReloadPickup
+      value: 
+      objectReference: {fileID: 8300000, guid: 505963f0dd65d8b4b92f6bcec8ef37e9, type: 3}
     - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
       propertyPath: skins.Array.data[0].downTexture
       value: 

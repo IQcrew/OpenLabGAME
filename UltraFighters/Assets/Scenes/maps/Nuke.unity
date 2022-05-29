@@ -1140,7 +1140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395065, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 801980984305395065, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_LocalScale.y
@@ -2140,7 +2140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8248453585854687095, guid: 787d110cfb65a0c4c8d4d8249fe691a1, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8248453585854687095, guid: 787d110cfb65a0c4c8d4d8249fe691a1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3364,7 +3364,7 @@ Transform:
   - {fileID: 748049442}
   - {fileID: 139062742}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &806340845
 GameObject:
@@ -5726,7 +5726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8248453585854687095, guid: 787d110cfb65a0c4c8d4d8249fe691a1, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8248453585854687095, guid: 787d110cfb65a0c4c8d4d8249fe691a1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6117,7 +6117,7 @@ GameObject:
   - component: {fileID: 1673991908}
   - component: {fileID: 1673991907}
   m_Layer: 0
-  m_Name: dchycka-c2c8cfd7-587c-4225-a2cd-2aa5cdccff63
+  m_Name: 'pozadie '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6443,6 +6443,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9110796598205673388, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: AllGuns.Array.data[1].Sound
+      value: 
+      objectReference: {fileID: 8300000, guid: c003b739377cdba448735c0aa7b6327e, type: 3}
     - target: {fileID: 9110796598328863550, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -799.93
@@ -7201,7 +7205,7 @@ Transform:
   - {fileID: 1297417621}
   - {fileID: 766417469}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2035650209
 BoxCollider2D:
