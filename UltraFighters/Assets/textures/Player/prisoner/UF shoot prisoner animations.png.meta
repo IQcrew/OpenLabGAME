@@ -1,0 +1,636 @@
+fileFormatVersion: 2
+guid: 49c3d59d684968d4f8eb5014d963152c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1862778663637193641
+    second: UF shoot prisoner animations_0
+  - first:
+      213: -6624537406096191465
+    second: UF shoot prisoner animations_1
+  - first:
+      213: -9189252017710096192
+    second: UF shoot prisoner animations_2
+  - first:
+      213: 4275978894907005887
+    second: UF shoot prisoner animations_3
+  - first:
+      213: -4492318935701070677
+    second: UF shoot prisoner animations_4
+  - first:
+      213: -6428590808671838156
+    second: UF shoot prisoner animations_5
+  - first:
+      213: 8243789258606526494
+    second: UF shoot prisoner animations_6
+  - first:
+      213: -1559071783181920896
+    second: UF shoot prisoner animations_7
+  - first:
+      213: 6472567008196060376
+    second: UF shoot prisoner animations_8
+  - first:
+      213: 1883856257245584043
+    second: UF shoot prisoner animations_9
+  - first:
+      213: -4093875660313577911
+    second: UF shoot prisoner animations_10
+  - first:
+      213: 1547987384186882251
+    second: UF shoot prisoner animations_11
+  - first:
+      213: 6395504917976621506
+    second: UF shoot prisoner animations_12
+  - first:
+      213: 1931305152850839877
+    second: UF shoot prisoner animations_13
+  - first:
+      213: -3873646754614769326
+    second: UF shoot prisoner animations_14
+  - first:
+      213: 4902523269204407515
+    second: UF shoot prisoner animations_15
+  - first:
+      213: -6519859261063530338
+    second: UF shoot prisoner animations_16
+  - first:
+      213: 3928358923426608112
+    second: UF shoot prisoner animations_17
+  - first:
+      213: -8626322150261671606
+    second: UF shoot prisoner animations_18
+  - first:
+      213: 5150074516235942295
+    second: UF shoot prisoner animations_19
+  - first:
+      213: 6695064105966551057
+    second: UF shoot prisoner animations_20
+  - first:
+      213: 6053771036903747416
+    second: UF shoot prisoner animations_21
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 237
+        width: 31
+        height: 22
+      alignment: 9
+      pivot: {x: 0.1758378, y: 0.364898}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a3954d335be9d910800000000000000
+      internalID: 1862778663637193641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 237
+        width: 32
+        height: 22
+      alignment: 9
+      pivot: {x: 0.14616096, y: 0.364898}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7105954d35ae014a0800000000000000
+      internalID: -6624537406096191465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_2
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 237
+        width: 31
+        height: 22
+      alignment: 9
+      pivot: {x: 0.1758376, y: 0.364898}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c029d40af7397080800000000000000
+      internalID: -9189252017710096192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 204
+        width: 33
+        height: 22
+      alignment: 9
+      pivot: {x: 0.23408465, y: 0.36489868}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbbdff95624575b30800000000000000
+      internalID: 4275978894907005887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_4
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 204
+        width: 34
+        height: 22
+      alignment: 9
+      pivot: {x: 0.17946345, y: 0.33916542}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bacd6c3bab318a1c0800000000000000
+      internalID: -4492318935701070677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_5
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 204
+        width: 32
+        height: 22
+      alignment: 9
+      pivot: {x: 0.19923687, y: 0.33916473}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43026ca38be09c6a0800000000000000
+      internalID: -6428590808671838156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 172
+        width: 28
+        height: 22
+      alignment: 9
+      pivot: {x: 0.24220309, y: 0.364898}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e104c6a37a2d76270800000000000000
+      internalID: 8243789258606526494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_7
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 172
+        width: 30
+        height: 22
+      alignment: 9
+      pivot: {x: 0.22164662, y: 0.37133166}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0855b1839701d5ae0800000000000000
+      internalID: -1559071783181920896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_8
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 172
+        width: 29
+        height: 22
+      alignment: 9
+      pivot: {x: 0.22668983, y: 0.364898}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d4607c966d23d950800000000000000
+      internalID: 6472567008196060376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 140
+        width: 36
+        height: 21
+      alignment: 9
+      pivot: {x: 0.25231275, y: 0.30454654}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baa150de84dc42a10800000000000000
+      internalID: 1883856257245584043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_10
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 139
+        width: 41
+        height: 21
+      alignment: 9
+      pivot: {x: 0.21002449, y: 0.31128582}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9463468f6c1af27c0800000000000000
+      internalID: -4093875660313577911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_11
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 139
+        width: 41
+        height: 21
+      alignment: 9
+      pivot: {x: 0.19621593, y: 0.3247659}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc8ce37035e8b7510800000000000000
+      internalID: 1547987384186882251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 108
+        width: 35
+        height: 20
+      alignment: 9
+      pivot: {x: 0.23867574, y: 0.22778663}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c1a24b86d561c850800000000000000
+      internalID: 6395504917976621506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_13
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 107
+        width: 39
+        height: 21
+      alignment: 9
+      pivot: {x: 0.22639114, y: 0.30296907}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5494e84ddcf5dca10800000000000000
+      internalID: 1931305152850839877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_14
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 108
+        width: 37
+        height: 20
+      alignment: 9
+      pivot: {x: 0.22337279, y: 0.22778663}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25987d5dcca0e3ac0800000000000000
+      internalID: -3873646754614769326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 76
+        width: 39
+        height: 20
+      alignment: 9
+      pivot: {x: 0.22639126, y: 0.23867568}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd4f30c40f2490440800000000000000
+      internalID: 4902523269204407515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_16
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 77
+        width: 41
+        height: 21
+      alignment: 9
+      pivot: {x: 0.19193482, y: 0.2822291}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9874c6bb8ec485a0800000000000000
+      internalID: -6519859261063530338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_17
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 45
+        width: 33
+        height: 20
+      alignment: 9
+      pivot: {x: 0.3482206, y: 0.3040064}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f33415a0a5548630800000000000000
+      internalID: 3928358923426608112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_18
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 45
+        width: 43
+        height: 20
+      alignment: 9
+      pivot: {x: 0.34806716, y: 0.2931179}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a49b19365b5294880800000000000000
+      internalID: -8626322150261671606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_19
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 40
+        height: 33
+      alignment: 9
+      pivot: {x: 0.21689865, y: 0.5329956}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 799f80b7c7db87740800000000000000
+      internalID: 5150074516235942295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_20
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 1
+        width: 49
+        height: 33
+      alignment: 9
+      pivot: {x: 0.17556678, y: 0.55279285}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 110ca981555a9ec50800000000000000
+      internalID: 6695064105966551057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF shoot prisoner animations_21
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 1
+        width: 50
+        height: 33
+      alignment: 9
+      pivot: {x: 0.16898896, y: 0.5329956}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85f223e0fa0530450800000000000000
+      internalID: 6053771036903747416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

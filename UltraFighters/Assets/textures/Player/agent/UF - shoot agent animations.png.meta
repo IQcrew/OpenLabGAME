@@ -1,16 +1,78 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
 guid: 64ecb6bf0b294b44db05b2bbda0b2f7e
-=======
-guid: 3c4d6ed0cf69adb4cb5a53fd87f61e6e
->>>>>>> Stashed changes
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 4336699662076085144
+    second: UF - shoot agent animations_0
+  - first:
+      213: -3813029756261423923
+    second: UF - shoot agent animations_1
+  - first:
+      213: -9077397196731568830
+    second: UF - shoot agent animations_2
+  - first:
+      213: -1105658867931280319
+    second: UF - shoot agent animations_3
+  - first:
+      213: 8688615010867253881
+    second: UF - shoot agent animations_4
+  - first:
+      213: -7502316395462812516
+    second: UF - shoot agent animations_5
+  - first:
+      213: -2447487333314476931
+    second: UF - shoot agent animations_6
+  - first:
+      213: 2753033954121295072
+    second: UF - shoot agent animations_7
+  - first:
+      213: 88155290188072436
+    second: UF - shoot agent animations_8
+  - first:
+      213: 4775122247786623620
+    second: UF - shoot agent animations_9
+  - first:
+      213: 48732948931315922
+    second: UF - shoot agent animations_10
+  - first:
+      213: 2735975936056821135
+    second: UF - shoot agent animations_11
+  - first:
+      213: -7733402001586042796
+    second: UF - shoot agent animations_12
+  - first:
+      213: 4603103302067970347
+    second: UF - shoot agent animations_13
+  - first:
+      213: -3902202199779283173
+    second: UF - shoot agent animations_14
+  - first:
+      213: 8075361041179693768
+    second: UF - shoot agent animations_15
+  - first:
+      213: -5246834770495551393
+    second: UF - shoot agent animations_16
+  - first:
+      213: 7333213687030623404
+    second: UF - shoot agent animations_17
+  - first:
+      213: 5017165981013705519
+    second: UF - shoot agent animations_18
+  - first:
+      213: 7083526484416012756
+    second: UF - shoot agent animations_19
+  - first:
+      213: 1983305141245346880
+    second: UF - shoot agent animations_20
+  - first:
+      213: 286635775644086209
+    second: UF - shoot agent animations_21
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -36,21 +98,21 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -65,14 +127,26 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -81,7 +155,469 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: UF - shoot agent animations_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 237
+        width: 31
+        height: 22
+      alignment: 9
+      pivot: {x: 0.19151263, y: 0.34011495}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8930a97ad5d0f2c30800000000000000
+      internalID: 4336699662076085144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 237
+        width: 32
+        height: 22
+      alignment: 9
+      pivot: {x: 0.19771779, y: 0.33511838}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc42b0493a5651bc0800000000000000
+      internalID: -3813029756261423923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_2
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 237
+        width: 31
+        height: 22
+      alignment: 9
+      pivot: {x: 0.20214991, y: 0.36509705}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24d20bbf75b960280800000000000000
+      internalID: -9077397196731568830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_3
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 204
+        width: 33
+        height: 22
+      alignment: 9
+      pivot: {x: 0.21020882, y: 0.35510394}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14c023e1e19e7a0f0800000000000000
+      internalID: -1105658867931280319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_4
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 204
+        width: 34
+        height: 22
+      alignment: 9
+      pivot: {x: 0.17347056, y: 0.3700936}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9729ed07159249870800000000000000
+      internalID: 8688615010867253881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_5
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 204
+        width: 32
+        height: 22
+      alignment: 9
+      pivot: {x: 0.1839776, y: 0.36509705}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9c99dfbcfa62e790800000000000000
+      internalID: -7502316395462812516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_6
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 172
+        width: 28
+        height: 22
+      alignment: 9
+      pivot: {x: 0.2644554, y: 0.3700936}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d74c589dc37c80ed0800000000000000
+      internalID: -2447487333314476931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_7
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 172
+        width: 30
+        height: 22
+      alignment: 9
+      pivot: {x: 0.228862, y: 0.36509705}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e42df98bcdb43620800000000000000
+      internalID: 2753033954121295072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_8
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 172
+        width: 29
+        height: 22
+      alignment: 9
+      pivot: {x: 0.2233029, y: 0.38008603}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f54bb4f4c0393100800000000000000
+      internalID: 88155290188072436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_9
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 140
+        width: 36
+        height: 21
+      alignment: 9
+      pivot: {x: 0.2439608, y: 0.3595443}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 482f26a7264a44240800000000000000
+      internalID: 4775122247786623620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_10
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 139
+        width: 41
+        height: 21
+      alignment: 9
+      pivot: {x: 0.20324428, y: 0.37710136}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d888eddb522da000800000000000000
+      internalID: 48732948931315922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_11
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 139
+        width: 41
+        height: 21
+      alignment: 9
+      pivot: {x: 0.22122955, y: 0.38587952}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f850fa63e9328f520800000000000000
+      internalID: 2735975936056821135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 108
+        width: 35
+        height: 20
+      alignment: 9
+      pivot: {x: 0.1997758, y: 0.2972168}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4584b265adf6da490800000000000000
+      internalID: -7733402001586042796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_13
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 107
+        width: 39
+        height: 21
+      alignment: 9
+      pivot: {x: 0.17857234, y: 0.33320835}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b216030a01281ef30800000000000000
+      internalID: 4603103302067970347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_14
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 108
+        width: 37
+        height: 20
+      alignment: 9
+      pivot: {x: 0.191092, y: 0.32486916}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1f686826c798d9c0800000000000000
+      internalID: -3902202199779283173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 76
+        width: 39
+        height: 20
+      alignment: 9
+      pivot: {x: 0.16439174, y: 0.28799972}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c25b84f412711070800000000000000
+      internalID: 8075361041179693768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_16
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 77
+        width: 41
+        height: 21
+      alignment: 9
+      pivot: {x: 0.18076296, y: 0.33320835}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f58c17d339f7f27b0800000000000000
+      internalID: -5246834770495551393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_17
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 45
+        width: 33
+        height: 20
+      alignment: 9
+      pivot: {x: 0.2933065, y: 0.34330386}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cac2e7dcefec4c560800000000000000
+      internalID: 7333213687030623404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_18
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 45
+        width: 43
+        height: 20
+      alignment: 9
+      pivot: {x: 0.33280057, y: 0.34330386}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f230f7da0ed80a540800000000000000
+      internalID: 5017165981013705519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 40
+        height: 33
+      alignment: 9
+      pivot: {x: 0.22370812, y: 0.5548012}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d120b4becdbd4260800000000000000
+      internalID: 7083526484416012756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_20
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 1
+        width: 49
+        height: 33
+      alignment: 9
+      pivot: {x: 0.17603613, y: 0.5608904}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0448229948d168b10800000000000000
+      internalID: 1983305141245346880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UF - shoot agent animations_21
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 1
+        width: 50
+        height: 33
+      alignment: 9
+      pivot: {x: 0.18542434, y: 0.5820007}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cf2f2328b55af300800000000000000
+      internalID: 286635775644086209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
