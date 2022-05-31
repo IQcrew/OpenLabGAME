@@ -1399,6 +1399,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 801980984305395067, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 6fb780b2d72df7b4bb7b45c3f0a31864, type: 2}
     - target: {fileID: 801980984305395069, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_Name
       value: Player_1
@@ -1427,10 +1431,22 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[1].z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3324419334488222410, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324419334488222410, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3125
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324419334488222410, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7880933519869570194, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 63e2b0d297464ca47b3cb4c1f1cc6897, type: 2}
+      objectReference: {fileID: 22100000, guid: 6fb780b2d72df7b4bb7b45c3f0a31864, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
 --- !u!4 &260151141 stripped
