@@ -4946,7 +4946,7 @@ PrefabInstance:
     - target: {fileID: 801980984305395067, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: 5632f311c6908714c83850cf38834302, type: 2}
+      objectReference: {fileID: 22100000, guid: a5d46bad7feba49439c9a47daf6e2611, type: 2}
     - target: {fileID: 801980984305395069, guid: cfdd563d7a36fb546a4adc16e0f89aa9, type: 3}
       propertyPath: m_Name
       value: Player_1
@@ -12015,6 +12015,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 505963f0dd65d8b4b92f6bcec8ef37e9, type: 3}
     - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.data[4].movement
+      value: 
+      objectReference: {fileID: 22100000, guid: a5d46bad7feba49439c9a47daf6e2611, type: 2}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.data[4].shooting
+      value: 
+      objectReference: {fileID: 22100000, guid: 76f90a4505fbbde4d969ac886f83f630, type: 2}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.data[4].skinName
+      value: Prisoner
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.data[5].movement
+      value: 
+      objectReference: {fileID: 22100000, guid: 08ede1bfc4ad37545bd2408380cca3e6, type: 2}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.data[5].shooting
+      value: 
+      objectReference: {fileID: 22100000, guid: 939591a8a4d074545996032aadd18214, type: 2}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.data[5].skinName
+      value: Prisoner
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.data[4].playerName
+      value: Player_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.data[5].playerName
+      value: Player_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
       propertyPath: skins.Array.data[0].downTexture
       value: 
       objectReference: {fileID: 21300000, guid: c1a3d759e65d97447b7703645a93ef1f, type: 3}
@@ -12030,6 +12066,14 @@ PrefabInstance:
       propertyPath: skins.Array.data[3].downTexture
       value: 
       objectReference: {fileID: 21300000, guid: 01dab539b87327d45a7cadf742e96c2c, type: 3}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.data[4].downTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: 4e0bd6fa58dba6b4d88007adbba508dc, type: 3}
+    - target: {fileID: 9110796598205673391, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
+      propertyPath: skins.Array.data[5].downTexture
+      value: 
+      objectReference: {fileID: 21300000, guid: 4e0bd6fa58dba6b4d88007adbba508dc, type: 3}
     - target: {fileID: 9110796599049590588, guid: 2e7e3da6f2bc1614fae2365bad241dd0, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
