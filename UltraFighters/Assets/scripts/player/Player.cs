@@ -194,7 +194,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        SM.SkinUpdate(PlayerName, PlayerSkin.sprite, gameObject.transform.rotation);
+        //SM.SkinUpdate(PlayerName, PlayerSkin.sprite, gameObject.transform.rotation);
         if (SM.Paused) { return; }
         isGrounded = GroundCheck();
         iFire = Input.GetKey(fire); // bool variables (to save power)
